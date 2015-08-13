@@ -6,8 +6,9 @@ import java.util.Set;
 /**
  * Created by Saied on 8/9/2015.
  */
-public class PlanTrip {
+public class Plan {
     private int id;
+    private String type;
     private String association;
     private String title;
     private String place;
@@ -30,11 +31,11 @@ public class PlanTrip {
     private Set guests;
     private Set judges;
 
-    public PlanTrip() {
+    public Plan() {
     }
-    public PlanTrip(String association, String title, String place, Date beginDate, Date endDate, String time,
-                    String requestedItems, String supervisorAgreement, String advisorComment, String expertComment,
-                    String bossComment, String poster, long studentMoney, long sponsorMoney, int editorID, Date editedTimestamp) {
+    public Plan(String association, String title, String place, Date beginDate, Date endDate, String time,
+                String requestedItems, String supervisorAgreement, String advisorComment, String expertComment,
+                String bossComment, String poster, long studentMoney, long sponsorMoney, int editorID, Date editedTimestamp) {
         this.association = association;
         this.title = title;
         this.place = place;
@@ -227,5 +228,13 @@ public class PlanTrip {
 
     public void setJudges(Set judges) {
         this.judges = judges;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

@@ -49,7 +49,7 @@
       <column name="plan_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
     </table>
-    <table name="plan_trip" schema="" catalog="sc" type="TABLE">
+    <table name="plan" schema="" catalog="sc" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="association" sqlType="VARCHAR" precision="40" scale="0" nullable="true" jdbcType="12"/>
       <column name="title" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
@@ -71,6 +71,7 @@
       <column name="guidlines" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
       <column name="side_programs" sqlType="VARCHAR" precision="250" scale="0" nullable="true" jdbcType="12"/>
       <column name="resume" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="type" sqlType="VARCHAR" precision="40" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
     </table>
   </data-source>
