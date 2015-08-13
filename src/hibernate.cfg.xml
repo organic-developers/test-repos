@@ -16,6 +16,9 @@
         <mapping class="Models.Plan" />
         <mapping class="Models.Judge"/>
         <mapping class="Models.Guest"/>
+        <mapping class="Models.Member"/>
+        <mapping class="Models.User"/>
+        <mapping class="Models.Association"/>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
     </session-factory>
