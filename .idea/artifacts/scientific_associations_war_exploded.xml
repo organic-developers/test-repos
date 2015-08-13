@@ -5,6 +5,7 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="scientific-associations" />
+          <element id="library" level="application" name="lib" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="application" name="Hibernate 4.2.2-4.2.2" />

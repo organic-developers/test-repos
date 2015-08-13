@@ -13,7 +13,7 @@
             <generator class="native"/>
         </id>
         <property name="type" column="type" type="string"/>
-        <property name="association" column="association" type="string"/>
+        <property name="association" column="association_number" type="string"/>
         <property name="title" column="title" type="string"/>
         <property name="place" column="place" type="string"/>
         <property name="beginDate" column="begin_date" type="date"/>
@@ -123,5 +123,5 @@
         <property name="grade" column="grade" type="string"/>
     </class>
     <!-- /judges -->
-
+    
 </hibernate-mapping>
