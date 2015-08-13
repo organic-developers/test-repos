@@ -64,54 +64,76 @@
             <!-- /.row -->
             <div class="row">
                 <form class="form-horizontal" role="form">
+                    <!-- type -->
+                    <!-- text -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">ماهیت:</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="text" class="form-control" name="association" value="بازدید علمی" disabled="disabled">
+                        </div>
+                    </div>
+                    <!-- association -->
+                    <!-- text -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">انجمن علمی دانشجویی:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="association">
                         </div>
                     </div>
+                    <!-- title -->
+                    <!-- text -->
                     <div class="form-group" >
                         <label class="control-label col-sm-2"style="background-color: #FBB2B2;">عنوان طرح:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="title">
                         </div>
                     </div>
+                    <!-- place -->
+                    <!-- text -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">محل برگزاری:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="place">
                         </div>
                     </div>
+                    <!-- date -->
+                    <!-- text -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">تاریخ برگزاری: </label>
-
+                        <!-- beginDate -->
                         <div class="col-sm-3 col-sm-offset-1">
-                            <input type="text" class="form-control" placeholder="yyyy/mm/dd">
+                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="beginDate">
                         </div>
-
                         <label class="control-label col-sm-1">لغایت</label>
-
+                        <!-- endDate -->
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" placeholder="yyyy/mm/dd">
+                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="endDate">
                         </div>
                     </div>
+                    <!-- time -->
+                    <!-- text -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">ساعت برگزاری:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="time">
                         </div>
                     </div>
+                    <!-- requestedItems -->
+                    <!-- textarea -->
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="needed">موارد درخواستی:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <textarea class="form-control" rows="3" id="needed"></textarea>
+                            <textarea class="form-control" rows="3" id="needed" name="requestedItems"></textarea>
                         </div>
                     </div>
+                    <!-- personnel -->
+                    <!-- modal -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">پرسنل اجرایی:</label>
 
@@ -119,6 +141,8 @@
                                                                  data-target="#personnel"><i
                                 class="fa fa-table fa-2x"></i></a></div>
                     </div>
+                    <!-- supervisorAgreement -->
+                    <!-- file -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">موافقت مسئول یا سرپرست (در صورت نیاز):</label>
 
@@ -126,33 +150,39 @@
                             <input type="file">
                         </div>
                     </div>
+                    <!-- expenses -->
+                    <!-- modal -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">ریز هزینه ها:</label>
 
                         <div class="col-sm-7 col-sm-offset-1"><a href="#" data-toggle="modal" data-target="#expenses"><i
                                 class="fa fa-table fa-2x"></i></a></div>
                     </div>
+                    <!-- advisorComment textarea -->
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="#">نظرات مشاور انجمن:</label>
+                        <label class="control-label col-sm-2" for="advisorComments">نظرات مشاور انجمن:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <textarea class="form-control" rows="3" id="#"></textarea>
+                            <textarea class="form-control" rows="3" id="advisorComments" name="advisorComments"></textarea>
                         </div>
                     </div>
+                    <!-- expertComment textarea -->
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="#">نظرات کارشناس انجمن:</label>
+                        <label class="control-label col-sm-2" for="expertComment">نظرات کارشناس انجمن:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <textarea class="form-control" rows="3" id="#"></textarea>
+                            <textarea class="form-control" rows="3" id="expertComment" name="bossComment"></textarea>
                         </div>
                     </div>
+                    <!-- bossComment textarea -->
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="#">نظر نهایی ریاست انجمن های علمی:</label>
+                        <label class="control-label col-sm-2" for="bossComment">نظر نهایی ریاست انجمن های علمی:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <textarea class="form-control" rows="3" id="#"></textarea>
+                            <textarea class="form-control" rows="3" id="bossComment" name="bossComment"></textarea>
                         </div>
                     </div>
+                    <!-- poster file -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">پوستر:</label>
 
@@ -160,12 +190,14 @@
                             <input type="file" >
                         </div>
                     </div>
+                    <!-- enlisted modal -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">ثبت نام کنندگان:</label>
 
                         <div class="col-sm-7 col-sm-offset-1"><a href="#" data-toggle="modal" data-target="#enlisted">
                             <i class="fa fa-table fa-2x"></i></a></div>
                     </div>
+                    <!-- studentsMoney number -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">مبالغ دریافتی از دانشجویان (ریال)</label>
 
@@ -173,6 +205,7 @@
                             <input type="number" class="form-control" >
                         </div>
                     </div>
+                    <!-- sponserMoney number-->
                     <div class="form-group">
                         <label class="control-label col-sm-2">مبالغ دریافتی از اسپانسر(ریال)</label>
 
@@ -180,7 +213,7 @@
                             <input type="number" class="form-control" >
                         </div>
                     </div>
-
+                    <!-- submit button -->
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-10">
                             <button type="submit" class="btn btn-primary" action="#" method="POST">اعمال تغییرات</button>
