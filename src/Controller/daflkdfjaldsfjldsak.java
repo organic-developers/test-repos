@@ -5,7 +5,7 @@ import java.io.IOException;
 /**
  * Created by Amir on 8/13/2015.
  */
-public class Servlettest extends javax.servlet.http.HttpServlet {
+public class daflkdfjaldsfjldsak extends javax.servlet.http.HttpServlet {
     protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
 
     }
