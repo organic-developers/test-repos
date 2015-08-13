@@ -5,7 +5,11 @@
          version="3.1">
 
     <servlet>
-        <servlet-name>Servlettest</servlet-name>
-        <servlet-class>Controller.daflkdfjaldsfjldsak</servlet-class>
+        <servlet-name>ServletCreateplan</servlet-name>
+        <servlet-class>Controller.ServletCreateplan</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletCreatePlanConference</servlet-name>
+        <servlet-class>Controller.ServletCreatePlanConference</servlet-class>
     </servlet>
 </web-app>

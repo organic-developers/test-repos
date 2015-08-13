@@ -63,7 +63,7 @@
 
             <!-- /.row -->
             <div class="row">
-                <form class="form-horizontal" role="form">
+                <form class="form-horizontal" role="form" action="servletCreateplan" method="post">
                     <!-- type -->
                     <!-- text -->
                     <div class="form-group">
@@ -158,7 +158,8 @@
                         <div class="col-sm-7 col-sm-offset-1"><a href="#" data-toggle="modal" data-target="#expenses"><i
                                 class="fa fa-table fa-2x"></i></a></div>
                     </div>
-                    <!-- advisorComment textarea -->
+                    <!-- advisorComment -->
+                    <!-- textarea -->
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="advisorComments">نظرات مشاور انجمن:</label>
 
@@ -166,15 +167,17 @@
                             <textarea class="form-control" rows="3" id="advisorComments" name="advisorComments"></textarea>
                         </div>
                     </div>
-                    <!-- expertComment textarea -->
+                    <!-- expertComment -->
+                    <!-- textarea -->
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="expertComment">نظرات کارشناس انجمن:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <textarea class="form-control" rows="3" id="expertComment" name="bossComment"></textarea>
+                            <textarea class="form-control" rows="3" id="expertComment" name="expertComment"></textarea>
                         </div>
                     </div>
-                    <!-- bossComment textarea -->
+                    <!-- bossComment -->
+                    <!-- textarea -->
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="bossComment">نظر نهایی ریاست انجمن های علمی:</label>
 
@@ -202,7 +205,7 @@
                         <label class="control-label col-sm-2">مبالغ دریافتی از دانشجویان (ریال)</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="number" class="form-control" >
+                            <input type="number" class="form-control" name="studentMoney">
                         </div>
                     </div>
                     <!-- sponserMoney number-->
@@ -210,13 +213,13 @@
                         <label class="control-label col-sm-2">مبالغ دریافتی از اسپانسر(ریال)</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="number" class="form-control" >
+                            <input type="number" class="form-control" name="sponsorMoney" >
                         </div>
                     </div>
                     <!-- submit button -->
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-10">
-                            <button type="submit" class="btn btn-primary" action="#" method="POST">اعمال تغییرات</button>
+                            <button type="submit" class="btn btn-primary" value="submit">اعمال تغییرات</button>
                         </div>
                     </div>
                 </form>

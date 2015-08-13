@@ -4,4 +4,12 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
+    <servlet>
+        <servlet-name>ServletCreateplan</servlet-name>
+        <servlet-class>Controller.ServletCreateplan</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletCreatePlanConference</servlet-name>
+        <servlet-class>Controller.ServletCreatePlanConference</servlet-class>
+    </servlet>
 </web-app>
