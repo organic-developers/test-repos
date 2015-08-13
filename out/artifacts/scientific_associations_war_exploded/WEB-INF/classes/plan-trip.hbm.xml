@@ -4,14 +4,15 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <!-- Models.PlanTrip -->
-    <class name="Models.PlanTrip" table="PLAN_TRIP">
+    <!-- Models.Plan -->
+    <class name="Models.Plan" table="plan">
         <meta attribute="class-description">
             This class contains the plan-trip detail.
         </meta>
         <id name="id" type="int" column="id">
             <generator class="native"/>
         </id>
+        <property name="type" column="type" type="string"/>
         <property name="association" column="association" type="string"/>
         <property name="title" column="title" type="string"/>
         <property name="place" column="place" type="string"/>
@@ -49,7 +50,7 @@
             <one-to-many class="Models.Judge"/>
         </set>
     </class>
-    <!-- /Models.PlanTrip -->
+    <!-- /Models.Plan -->
 
     <!-- Models.Personnel -->
     <class name="Models.Personnel" table="PERSONNEL">

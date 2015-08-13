@@ -12,7 +12,7 @@ a.btn-type, button.btn-type {
 }
 
 button {
-	min-width: 70px;
+	min-width: 80px;
 }
 div.modal-footer {
 	text-align: right;
