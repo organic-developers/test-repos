@@ -127,4 +127,30 @@ public class Member {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (!this.getClass().equals(obj.getClass())) return false;
+
+        Member obj2 = (Member) obj;
+        if ((this.id == obj2.getId()) && (this.associationNumber == obj2.getAssociationNumber())
+                && (this.positionTitle.equals(obj2.getPositionTitle())) && (this.fName.equals(obj2.getfName()))
+                && (this.lName.equals(obj2.getlName())) && (this.studnetID == obj2.getStudnetID())
+                && (this.nationalID.equals(obj2.getNationalID())) && (this.birthYear.equals(obj2.getBirthYear()))
+                && (this.phone.equals(obj2.getPhone())) && (this.email.equals(obj2.getEmail()))
+                && (this.photo.equals(obj2.getPhoto()))
+                ) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int tmp = 0;
+        tmp = (id + associationNumber + positionTitle + fName + lName + studnetID + nationalID
+                + birthYear + phone + email + photo ).hashCode();
+        return tmp;
+    }
 }

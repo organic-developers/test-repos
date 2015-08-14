@@ -29,7 +29,7 @@
         </div>
         <div class="navbar-collapse collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>  ورود اعضا</a></li>
+                <li><a href="dashboard-index.jsp"><span class="glyphicon glyphicon-log-in"></span>  ورود اعضا</a></li>
             </ul>
         </div>
         <!--/.navbar-collapse -->

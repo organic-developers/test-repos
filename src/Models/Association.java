@@ -3,6 +3,8 @@ package Models;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.Set;
 
 /**
  * Created by Saied on 8/14/2015.
@@ -51,5 +53,38 @@ public class Association {
 
     public void setLogo(String logo) {
         this.logo = logo;
+    }
+
+    private Set<Member> members;
+
+    @OneToMany
+    public Set<Member> getMembers() {
+        return members;
+    }
+
+    public void setMembers(Set<Member> members) {
+        this.members = members;
+    }
+
+    private Set<User> users;
+
+    @OneToMany
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
+    private Set<Plan> plans;
+
+    @OneToMany
+    public Set<Plan> getPlans() {
+        return plans;
+    }
+
+    public void setPlans(Set<Plan> plans) {
+        this.plans = plans;
     }
 }
