@@ -3,6 +3,7 @@ package Controller;
 
 import org.hibernate.Session;
 import Models.*;
+
 import javax.servlet.*;
 
 import javax.servlet.ServletException;
@@ -17,9 +18,9 @@ import java.io.PrintWriter;
 @WebServlet(name = "ServletCreate-plan")
 public class ServletCreateplan extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-response.setContentType("text/html");
+        doGet(request,response);
+        response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-
         createPlan(request, response);
 
     }
@@ -35,7 +36,7 @@ response.setContentType("text/html");
 
         session.getTransaction().commit();
 
-        RequestDispatcher rd=request.getRequestDispatcher("success.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("success.jsp");
         rd.forward(request, response);
     }
 
