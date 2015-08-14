@@ -9,7 +9,7 @@ import java.util.Set;
 public class Plan {
     private int id;
     private String type;
-    private String association;
+    private int associationNumber;
     private String title;
     private String place;
     private Date beginDate;
@@ -33,10 +33,10 @@ public class Plan {
 
     public Plan() {
     }
-    public Plan(String association, String title, String place, Date beginDate, Date endDate, String time,
+    public Plan(int association, String title, String place, Date beginDate, Date endDate, String time,
                 String requestedItems, String supervisorAgreement, String advisorComment, String expertComment,
                 String bossComment, String poster, long studentMoney, long sponsorMoney, int editorID, Date editedTimestamp) {
-        this.association = association;
+        this.associationNumber = association;
         this.title = title;
         this.place = place;
         this.beginDate = beginDate;
@@ -62,12 +62,12 @@ public class Plan {
         this.id = id;
     }
 
-    public String getAssociation() {
-        return association;
+    public int getAssociationNumber() {
+        return associationNumber;
     }
 
-    public void setAssociation(String association) {
-        this.association = association;
+    public void setAssociationNumber(int association) {
+        this.associationNumber = association;
     }
 
     public String getTitle() {

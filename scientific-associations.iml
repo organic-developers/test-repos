@@ -30,6 +30,12 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+<<<<<<< HEAD
+    <orderEntry type="library" name="Hibernate 4.2.2-4.2.2" level="application" />
+    <orderEntry type="library" name="servlet-api" level="application" />
+    <orderEntry type="library" name="lib" level="application" />
+    <orderEntry type="library" name="hibernate-core-4.3.10.Final" level="application" />
+=======
     <orderEntry type="library" exported="" name="Hibernate 4.2.2-4.2.2" level="application" />
     <orderEntry type="module-library" exported="">
       <library>
@@ -40,5 +46,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+>>>>>>> origin/master
   </component>
 </module>
