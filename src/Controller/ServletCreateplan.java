@@ -18,7 +18,7 @@ import java.io.PrintWriter;
 @WebServlet(name = "ServletCreate-plan")
 public class ServletCreateplan extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request,response);
+        //doGet(request,response);
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         createPlan(request, response);
