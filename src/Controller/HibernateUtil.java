@@ -24,5 +24,5 @@ public class HibernateUtil {
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
-
+    //test for commit
 }
