@@ -63,7 +63,7 @@
 
             <!-- /.row -->
             <div class="row">
-                <form class="form-horizontal" role="form" action="servletCreateplan" method="post">
+                <form class="form-horizontal" role="form" action="ServletCreateplan" method="post">
                     <!-- type -->
                     <!-- text -->
                     <div class="form-group">
@@ -76,10 +76,10 @@
                     <!-- association -->
                     <!-- text -->
                     <div class="form-group">
-                        <label class="control-label col-sm-2">انجمن علمی دانشجویی:</label>
+                        <label class="control-label col-sm-2" for="asso">انجمن علمی دانشجویی:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="association">
+                            <input type="text" class="form-control" id="asso" name="association">
                         </div>
                     </div>
                     <!-- title -->

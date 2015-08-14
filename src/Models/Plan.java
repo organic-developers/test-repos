@@ -3,9 +3,7 @@ package Models;
 import java.util.Date;
 import java.util.Set;
 
-/**
- * Created by Saied on 8/9/2015.
- */
+
 public class Plan {
     private int id;
     private String type;
