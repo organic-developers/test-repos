@@ -1,8 +1,15 @@
 package Models;
 
+import Controller.HibernateUtil;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
+
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.List;
 
 /**
  * Created by Saied on 8/14/2015.
@@ -106,4 +113,7 @@ public class User {
         tmp = (id + fName + lName + userName + password + associationNumber + positionTitle).hashCode();
         return tmp;
     }
+
+
+
 }

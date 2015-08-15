@@ -85,12 +85,12 @@
 
 <div class="container" >
 
-  <form class="form-signin">
+  <form class="form-signin" action="/Controller/ServletLogin" method="post">
     <h2 class="form-signin-heading">اطلاعات خود را وارد کنید</h2>
     <label for="id" class="sr-only">نام کاربری</label>
-    <input type="text" id="id" class="form-control" placeholder="نام کاربری" required="required" autofocus="autofocus">
+    <input type="text" name="user_name" id="id" class="form-control" placeholder="نام کاربری" required="required" autofocus="autofocus">
     <label for="inputPassword" class="sr-only">رمز عبور</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="رمز عبور" required="required">
+    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="رمز عبور" required="required">
     <div class="checkbox">
       <label><input type="checkbox" value="remember-me" style="margin-right: -20px">به خاطر بسپار</label>
     </div>
