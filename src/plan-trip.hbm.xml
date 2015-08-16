@@ -133,7 +133,7 @@
         <generator class="native"/>
     </id>
     <property name="number" column="number" type="int"/>
-    <property name="name" column="name" type="String"/>
+    <property name="name" column="name" type="string"/>
     <property name="logo" column="logo" type="string" />
     <set name="members" cascade="all" >
         <key column="association_number"/>

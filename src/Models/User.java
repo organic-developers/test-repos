@@ -1,29 +1,22 @@
 package Models;
 
-import Controller.HibernateUtil;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.Restrictions;
-
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.List;
 
 /**
  * Created by Saied on 8/14/2015.
  */
 @Entity
 public class User {
-    private int id;
+    private Integer id;
 
     @Id
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -71,14 +64,14 @@ public class User {
         this.password = password;
     }
 
-    private int associationNumber;
+    private Integer associationNumber;
 
     @Basic
-    public int getAssociationNumber() {
+    public Integer getAssociationNumber() {
         return associationNumber;
     }
 
-    public void setAssociationNumber(int associationNumber) {
+    public void setAssociationNumber(Integer associationNumber) {
         this.associationNumber = associationNumber;
     }
 

@@ -13,25 +13,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
+  <c:set var="root" value="${pageContext.request.contextPath}" />
 
   <title>صفحه ورود</title>
 
   <!-- Bootstrap Core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="${root}/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Bootstrap Core CSS RTL-->
-  <link href="css/bootstrap-rtl.min.css" rel="stylesheet">
+  <link href="${root}/css/bootstrap-rtl.min.css" rel="stylesheet">
 
   <!-- Custom CSS -->
-  <link href="css/sb-admin.css" rel="stylesheet">
-  <link href="css/sb-admin-rtl.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/added.css"/>
+  <link href="${root}/css/sb-admin.css" rel="stylesheet">
+  <link href="${root}/css/sb-admin-rtl.css" rel="stylesheet">
+  <link rel="stylesheet" href="${root}/css/added.css"/>
 
   <!-- Morris Charts CSS -->
-  <link href="css/plugins/morris.css" rel="stylesheet">
+  <link href="${root}/css/plugins/morris.css" rel="stylesheet">
 
   <!-- Custom Fonts -->
-  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="${root}/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -42,14 +43,15 @@
 
   <style>
     body {
-      padding-top: 40px;
-      padding-bottom: 40px;
+      padding-top: 0px;
+      padding-bottom: 0px;
       background-color: #eee;
     }
     .form-signin {
       max-width: 330px;
       padding: 15px;
       margin: 0 auto;
+
     }
     .form-signin .form-signin-heading, .form-signin .checkbox {
       margin-bottom: 10px;
@@ -81,7 +83,7 @@
   </style>
 
 </head>
-<body style="margin-top: 0px;">
+<body style="border-bottom-width: thin">
 
 <div class="container" >
 

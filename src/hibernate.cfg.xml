@@ -9,6 +9,8 @@
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.username">root</property>
         <property name="connection.password"/>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <!--<property name="hibernate.current_session_context_class">thread</property>-->
         <mapping resource="plan-trip.hbm.xml"/>
         <mapping class="Models.Enlisted" />
         <mapping class="Models.Expense" />
