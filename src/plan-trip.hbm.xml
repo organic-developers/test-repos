@@ -27,8 +27,7 @@
         <property name="poster" column="poster" type="string"/>
         <property name="studentMoney" column="student_money" type="long"/>
         <property name="sponsorMoney" column="sponsor_money" type="long"/>
-        <property name="editorID" column="editor_id" type="int"/>
-        <property name="editedTimestamp" column="edited_timestamp" type="timestamp"/>
+        <many-to-one name="workflowState" column="workflow_state_id" class="Models.WorkflowState"/>
         <set name="personnel" cascade="all">
             <key column="plan_id"/>
             <one-to-many class="Models.Personnel"/>
@@ -48,6 +47,10 @@
         <set name="judges" cascade="all">
             <key column="plan_id"/>
             <one-to-many class="Models.Judge"/>
+        </set>
+        <set name="planStateHistory" cascade="all">
+            <key column="plan_id"/>
+            <one-to-many class="Models.PlanStateHistory"/>
         </set>
     </class>
     <!-- /Models.Plan -->
@@ -97,7 +100,7 @@
     <!-- /Models.Enlisted -->
 
     <!-- Models.Guest-->
-    <class name="Models.Guest" table="guests">
+    <class name="Models.Guest" table="guest">
         <meta attribute="class-description">
             This class contains the guests detail.
         </meta>
@@ -110,7 +113,7 @@
     <!-- /Models.Guest-->
 
     <!-- judges -->
-    <class name="Models.Judge" table="judges">
+    <class name="Models.Judge" table="judge">
         <meta attribute="class-description">
             This class contains the judges detail.
         </meta>
@@ -135,10 +138,6 @@
     <property name="number" column="number" type="int"/>
     <property name="name" column="name" type="string"/>
     <property name="logo" column="logo" type="string" />
-    <set name="members" cascade="all" >
-        <key column="association_number"/>
-        <one-to-many class="Models.Member"/>
-    </set>
     <set name="users" cascade="all">
         <key column="association_number" />
         <one-to-many class="Models.User"/>
@@ -150,29 +149,8 @@
 </class>
     <!-- /associations -->
 
-    <!-- members -->
-    <class name="Models.Member" table="members">
-        <meta attribute="class-description">
-                This class contains the detail of members.
-        </meta>
-        <id name="id" column="id" type="int">
-            <generator class="native"/>
-        </id>
-        <property name="associationNumber" column="association_number" type="int"/>
-        <property name="positionTitle" column="position_title" type="java.lang.String"/>
-        <property name="fName" column="f_name" type="java.lang.String"/>
-        <property name="lName" column="l_name" type="java.lang.String"/>
-        <property name="studnetID" column="student_id" type="int" />
-        <property name="nationalID" column="national_id" type="java.lang.String"/>
-        <property name="birthYear" column="birth_year" type="java.lang.String"/>
-        <property name="phone" column="phone" type="java.lang.String"/>
-        <property name="email" column="email" type="java.lang.String"/>
-        <property name="photo" column="photo" type="java.lang.String"/>
-    </class>
-    <!-- /members -->
-
     <!-- users -->
-    <class name="Models.User" table="users">
+    <class name="Models.User" table="user">
         <meta attribute="class-description">
             This class contains the detail of users.
         </meta>
@@ -185,7 +163,88 @@
         <property name="password" column="password" type="java.lang.String"/>
         <property name="associationNumber" column="association_number" type="int"/>
         <property name="positionTitle" column="position_title" type="java.lang.String"/>
+        <property name="birthYear" column="birth_year" type="java.lang.String"/>
+        <property name="email" column="email" type="java.lang.String"/>
+        <property name="nationalId" column="national_id" type="java.lang.String"/>
+        <property name="phone" column="phone" type="java.lang.String"/>
+        <property name="photo" column="phone" type="java.lang.String"/>
+        <property name="studentId" column="student_id" type="java.lang.String"/>
     </class>
     <!-- /users -->
+
+    <!-- workflow -->
+    <class name="Models.Workflow" table="workflow">
+        <meta attribute="class-description">
+            This class contains the detail of workflows.
+        </meta>
+        <id name="id" column="id" type="int">
+            <generator class="native"/>
+        </id>
+        <property name="name" column="name" type="java.lang.String"/>
+        <set name="workflowStates" cascade="all">
+            <key column="workflow_id"/>
+            <one-to-many class="Models.WorkflowState"/>
+        </set>
+    </class>
+    <!-- /workflow -->
+
+    <!-- workflowStates -->
+    <class name="Models.WorkflowState" table="workflow_state">
+        <meta attribute="class-description">
+            This class contains the detail of workflowStates.
+        </meta>
+        <id name="id" column="id" type="int">
+            <generator class="native"/>
+        </id>
+        <property name="name" column="name" type="java.lang.String"/>
+        <set name="workflowNavigations" cascade="all">
+            <key column="workflow_state_id"/>
+            <one-to-many class="Models.WorkflowNavigation"/>
+        </set>
+    </class>
+    <!-- /workflowStates -->
+
+    <!-- workflowNavigation -->
+    <class name="Models.WorkflowNavigation" table="workflow_navigation">
+        <meta attribute="class-description">
+            This class contains the detail of workflowNavigation.
+        </meta>
+        <id name="id" column="id" type="int">
+            <generator class="native"/>
+        </id>
+        <many-to-one name="nextWorkflowState" column="next_workflow_State_id" class="Models.WorkflowState"/>
+    </class>
+    <!-- /workflowNavigation -->
+
+    <!-- planStateHistory -->
+    <class name="Models.PlanStateHistory" table="plan_state_history">
+        <meta attribute="class-description">
+            This class contains the detail of planStateHistory.
+        </meta>
+        <id name="id" column="id" type="int">
+            <generator class="native"/>
+        </id>
+        <property name="createdTimeStamp" column="created_timestamp" type="int"/>
+        <many-to-one name="workflowState" column="workflow_state_id" class="Models.WorkflowState"/>
+        <many-to-one name="user" column="user_id" class="Models.User"/>
+        <set name="changes" cascade="all">
+            <key column="plan_state_history_id"/>
+            <one-to-many class="Models.Change"/>
+        </set>
+    </class>
+    <!-- /planStateHistory -->
+
+    <!-- changes -->
+    <class name="Models.Change" table="change">
+        <meta attribute="class-description">
+            This class contains the detail of changes.
+        </meta>
+        <id name="id" column="id" type="int">
+            <generator class="native"/>
+        </id>
+        <property name="fieldName" column="field_name" type="java.lang.String"/>
+        <property name="fieldValue" column="field_value" type="java.lang.String"/>
+    </class>
+    <!-- /changes -->
 
 </hibernate-mapping>

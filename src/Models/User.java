@@ -92,9 +92,19 @@ public class User {
         if (!this.getClass().equals(obj.getClass())) return false;
 
         User obj2 = (User) obj;
-        if ((this.id == obj2.getId()) && (this.fName.equals(obj2.getfName())) && (this.lName.equals(obj2.getlName()))
-                && (this.userName.equals(obj2.getUserName())) && (this.password.equals(obj2.getPassword()))
-                && (this.associationNumber == obj2.getAssociationNumber()) && (this.positionTitle.equals(obj2.getPositionTitle()))) {
+        if ((this.id == obj2.getId())
+                && (this.fName.equals(obj2.getfName()))
+                && (this.lName.equals(obj2.getlName()))
+                && (this.userName.equals(obj2.getUserName()))
+                && (this.password.equals(obj2.getPassword()))
+                && (this.associationNumber == obj2.getAssociationNumber())
+                && (this.positionTitle.equals(obj2.getPositionTitle()))
+                && (this.birthYear.equals(obj2.getBirthYear()))
+                && (this.email.equals(obj2.getEmail()))
+                && (this.nationalId.equals(obj2.getNationalId()))
+                && (this.phone.equals(obj2.getPhone()))
+                && (this.photo.equals(obj2.getPhoto()))
+                && (this.studentId.equals(obj2.getStudentId()))) {
             return true;
         }
         return false;
@@ -103,10 +113,75 @@ public class User {
     @Override
     public int hashCode() {
         int tmp = 0;
-        tmp = (id + fName + lName + userName + password + associationNumber + positionTitle).hashCode();
+        tmp = (id + fName + lName + userName + password + associationNumber + positionTitle + birthYear + email +
+        nationalId + phone + photo + studentId).hashCode();
         return tmp;
     }
 
 
+    private String birthYear;
 
+    @Basic
+    public String getBirthYear() {
+        return birthYear;
+    }
+
+    public void setBirthYear(String birthYear) {
+        this.birthYear = birthYear;
+    }
+
+    private String email;
+
+    @Basic
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    private String nationalId;
+
+    @Basic
+    public String getNationalId() {
+        return nationalId;
+    }
+
+    public void setNationalId(String nationalId) {
+        this.nationalId = nationalId;
+    }
+
+    private String phone;
+
+    @Basic
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    private String photo;
+
+    @Basic
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    private String studentId;
+
+    @Basic
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
 }

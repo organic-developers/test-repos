@@ -1,5 +1,6 @@
 package Models;
 
+import javax.persistence.ManyToOne;
 import java.util.Date;
 import java.util.Set;
 
@@ -21,8 +22,6 @@ public class Plan {
     private String poster;
     private long studentMoney;
     private long sponsorMoney;
-    private int editorID;
-    private Date editedTimestamp;
     private Set personnel;
     private Set expenses;
     private Set enlisted;
@@ -33,7 +32,7 @@ public class Plan {
     }
     public Plan(int association, String title, String place, Date beginDate, Date endDate, String time,
                 String requestedItems, String supervisorAgreement, String advisorComment, String expertComment,
-                String bossComment, String poster, long studentMoney, long sponsorMoney, int editorID, Date editedTimestamp) {
+                String bossComment, String poster, long studentMoney, long sponsorMoney, Set planStateHistory) {
         this.associationNumber = association;
         this.title = title;
         this.place = place;
@@ -48,8 +47,7 @@ public class Plan {
         this.poster = poster;
         this.studentMoney = studentMoney;
         this.sponsorMoney = sponsorMoney;
-        this.editorID = editorID;
-        this.editedTimestamp = editedTimestamp;
+        this.planStateHistory = planStateHistory;
     }
 
     public int getId() {
@@ -172,22 +170,6 @@ public class Plan {
         this.sponsorMoney = sponsorMoney;
     }
 
-    public int getEditorID() {
-        return editorID;
-    }
-
-    public void setEditorID(int editorID) {
-        this.editorID = editorID;
-    }
-
-    public Date getEditedTimestamp() {
-        return editedTimestamp;
-    }
-
-    public void setEditedTimestamp(Date editedTimestamp) {
-        this.editedTimestamp = editedTimestamp;
-    }
-
     public Set getPersonnel() {
         return personnel;
     }
@@ -234,5 +216,27 @@ public class Plan {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    private WorkflowState workflowState;
+
+    @ManyToOne
+    public WorkflowState getWorkflowState() {
+        return workflowState;
+    }
+
+    public void setWorkflowState(WorkflowState workFlowState) {
+        this.workflowState = workFlowState;
+    }
+
+    private Set<PlanStateHistory> planStateHistory;
+
+    @javax.persistence.OneToMany
+    public Set<PlanStateHistory> getPlanStateHistory() {
+        return planStateHistory;
+    }
+
+    public void setPlanStateHistory(Set<PlanStateHistory> planStateHistory) {
+        this.planStateHistory = planStateHistory;
     }
 }

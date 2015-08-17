@@ -55,16 +55,6 @@ public class Association {
         this.logo = logo;
     }
 
-    private Set<Member> members;
-
-    @OneToMany
-    public Set<Member> getMembers() {
-        return members;
-    }
-
-    public void setMembers(Set<Member> members) {
-        this.members = members;
-    }
 
     private Set<User> users;
 
