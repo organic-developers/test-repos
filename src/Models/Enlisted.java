@@ -1,19 +1,16 @@
 package Models;
 
-/**
- * Created by Saied on 8/9/2015.
- */
 public class Enlisted {
     private int id;
     private String fName;
     private String lName;
-    private int studentID;
+    private String studentID;
     private String email;
     private String phone;
 
     public Enlisted() {
     }
-    public Enlisted(String fName, String lName, int studentID, String email, String phone) {
+    public Enlisted(String fName, String lName, String studentID, String email, String phone) {
         this.fName = fName;
         this.lName = lName;
         this.studentID = studentID;
@@ -45,11 +42,11 @@ public class Enlisted {
         this.lName = lName;
     }
 
-    public int getStudentID() {
+    public String getStudentID() {
         return studentID;
     }
 
-    public void setStudentID(int studentID) {
+    public void setStudentID(String studentID) {
         this.studentID = studentID;
     }
 
@@ -76,8 +73,8 @@ public class Enlisted {
 
         Enlisted obj2 = (Enlisted) obj;
         if ((this.id == obj2.getId()) && (this.fName.equals(obj2.getfName()))
-                && (this.lName.equals(obj2.getlName())) && (this.studentID == obj2.getStudentID())
-                && (this.email == obj2.getEmail()) && (this.phone.equals(obj2.getPhone()))) {
+                && (this.lName.equals(obj2.getlName())) && (this.studentID.equals(obj2.getStudentID()))
+                && (this.email.equals(obj2.getEmail())) && (this.phone.equals(obj2.getPhone()))) {
             return true;
         }
         return false;

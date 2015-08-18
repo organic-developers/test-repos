@@ -63,7 +63,7 @@
 
             <!-- /.row -->
             <div class="row">
-                <form class="form-horizontal" role="form" action="ServletCreateplan" method="post">
+                <form class="form-horizontal" role="form" action="/Controller/ServletCreatePlanTriplanTrip" method="post">
                     <!-- type -->
                     <!-- text -->
                     <div class="form-group">
@@ -233,12 +233,12 @@
         <div class="modal fade" id="personnel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">
             <div class="modal-dialog">
-                <form action="#">
+                <form action="/Controller/ServletCreatePlanTrip" method="POST">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                     aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">پرسنل</h4>
+                            <h4 class="modal-title">پرسنل</h4>
                         </div>
                         <div class="modal-body">
 
@@ -251,19 +251,19 @@
                                 <tr>
                                     <td>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
+                                            <input type="text" class="form-control" id="#" name="fName1"
                                                    placeholder="نام">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
+                                            <input type="text" class="form-control" id="#" name="lName1"
                                                    placeholder="نام خانوادگی">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
+                                            <input type="text" class="form-control" id="#" name="phone1"
                                                    placeholder="تلفن">
                                         </div>
                                     </td>
@@ -271,19 +271,19 @@
                                 <tr>
                                     <td>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
+                                            <input type="text" class="form-control" id="#" name="fName2"
                                                    placeholder="نام">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
+                                            <input type="text" class="form-control" id="#" name="lName2"
                                                    placeholder="نام خانوادگی">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
+                                            <input type="text" class="form-control" id="#" name="phone2"
                                                    placeholder="تلفن">
                                         </div>
                                     </td>

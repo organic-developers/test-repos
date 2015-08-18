@@ -1,16 +1,14 @@
 package Models;
 
-/**
- * Created by Saied on 8/9/2015.
- */
+
 public class Expense {
     private int id;
     private String name;
-    private long value;
+    private String value;
     private String comment;
 
     public Expense() {}
-    public Expense(String name, long value, String comment) {
+    public Expense(String name, String value, String comment) {
         this. name = name;
         this.value = value;
         this.comment = comment;
@@ -32,11 +30,11 @@ public class Expense {
         this.name = name;
     }
 
-    public long getValue() {
+    public String getValue() {
         return value;
     }
 
-    public void setValue(long value) {
+    public void setValue(String value) {
         this.value = value;
     }
 

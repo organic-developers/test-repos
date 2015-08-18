@@ -1,5 +1,6 @@
 package Models;
 
+import javax.persistence.Basic;
 import javax.persistence.ManyToOne;
 import java.util.Date;
 import java.util.Set;
@@ -11,8 +12,8 @@ public class Plan {
     private int associationNumber;
     private String title;
     private String place;
-    private Date beginDate;
-    private Date endDate;
+    private int beginDate;
+    private int endDate;
     private String time;
     private String requestedItems;
     private String supervisorAgreement;
@@ -20,8 +21,8 @@ public class Plan {
     private String expertComment;
     private String bossComment;
     private String poster;
-    private long studentMoney;
-    private long sponsorMoney;
+    private String studentMoney;
+    private String sponsorMoney;
     private Set personnel;
     private Set expenses;
     private Set enlisted;
@@ -30,9 +31,9 @@ public class Plan {
 
     public Plan() {
     }
-    public Plan(int association, String title, String place, Date beginDate, Date endDate, String time,
+    public Plan(int association, String title, String place, int beginDate, int endDate, String time,
                 String requestedItems, String supervisorAgreement, String advisorComment, String expertComment,
-                String bossComment, String poster, long studentMoney, long sponsorMoney, Set planStateHistory) {
+                String bossComment, String poster, String studentMoney, String sponsorMoney, Set planStateHistory) {
         this.associationNumber = association;
         this.title = title;
         this.place = place;
@@ -74,11 +75,11 @@ public class Plan {
         this.title = title;
     }
 
-    public Date getEndDate() {
+    public int getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(int endDate) {
         this.endDate = endDate;
     }
 
@@ -90,11 +91,11 @@ public class Plan {
         this.place = place;
     }
 
-    public Date getBeginDate() {
+    public int getBeginDate() {
         return beginDate;
     }
 
-    public void setBeginDate(Date beginDate) {
+    public void setBeginDate(int beginDate) {
         this.beginDate = beginDate;
     }
 
@@ -154,19 +155,19 @@ public class Plan {
         this.poster = poster;
     }
 
-    public long getStudentMoney() {
+    public String getStudentMoney() {
         return studentMoney;
     }
 
-    public void setStudentMoney(long studentMoney) {
+    public void setStudentMoney(String studentMoney) {
         this.studentMoney = studentMoney;
     }
 
-    public long getSponsorMoney() {
+    public String getSponsorMoney() {
         return sponsorMoney;
     }
 
-    public void setSponsorMoney(long sponsorMoney) {
+    public void setSponsorMoney(String sponsorMoney) {
         this.sponsorMoney = sponsorMoney;
     }
 
@@ -238,5 +239,37 @@ public class Plan {
 
     public void setPlanStateHistory(Set<PlanStateHistory> planStateHistory) {
         this.planStateHistory = planStateHistory;
+    }
+
+    private String guidelines;
+
+    @Basic
+    public String getGuidelines() {
+        return guidelines;
+    }
+
+    public void setGuidelines(String guidelines) {
+        this.guidelines = guidelines;
+    }
+
+    private String sidePrograms;
+
+    @Basic
+    public String getSidePrograms() {
+        return sidePrograms;
+    }
+
+    public void setSidePrograms(String sidePrograms) {
+        this.sidePrograms = sidePrograms;
+    }
+    private String resume;
+
+    @Basic
+    public String getResume() {
+        return resume;
+    }
+
+    public void setResume(String resume) {
+        this.resume = resume;
     }
 }
