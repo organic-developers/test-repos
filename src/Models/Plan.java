@@ -7,13 +7,13 @@ import java.util.Set;
 
 
 public class Plan {
-    private int id;
+    private Integer id;
     private String type;
-    private int associationNumber;
+    private Integer associationNumber;
     private String title;
     private String place;
-    private int beginDate;
-    private int endDate;
+    private Integer beginDate;
+    private Integer endDate;
     private String time;
     private String requestedItems;
     private String supervisorAgreement;
@@ -31,39 +31,20 @@ public class Plan {
 
     public Plan() {
     }
-    public Plan(int association, String title, String place, int beginDate, int endDate, String time,
-                String requestedItems, String supervisorAgreement, String advisorComment, String expertComment,
-                String bossComment, String poster, String studentMoney, String sponsorMoney, Set planStateHistory) {
-        this.associationNumber = association;
-        this.title = title;
-        this.place = place;
-        this.beginDate = beginDate;
-        this.endDate = endDate;
-        this.time = time;
-        this.requestedItems = requestedItems;
-        this.supervisorAgreement = supervisorAgreement;
-        this.advisorComment = advisorComment;
-        this.expertComment = expertComment;
-        this.bossComment = bossComment;
-        this.poster = poster;
-        this.studentMoney = studentMoney;
-        this.sponsorMoney = sponsorMoney;
-        this.planStateHistory = planStateHistory;
-    }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getAssociationNumber() {
+    public Integer getAssociationNumber() {
         return associationNumber;
     }
 
-    public void setAssociationNumber(int association) {
+    public void setAssociationNumber(Integer association) {
         this.associationNumber = association;
     }
 
@@ -75,11 +56,11 @@ public class Plan {
         this.title = title;
     }
 
-    public int getEndDate() {
+    public Integer getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(int endDate) {
+    public void setEndDate(Integer endDate) {
         this.endDate = endDate;
     }
 
@@ -91,11 +72,11 @@ public class Plan {
         this.place = place;
     }
 
-    public int getBeginDate() {
+    public Integer getBeginDate() {
         return beginDate;
     }
 
-    public void setBeginDate(int beginDate) {
+    public void setBeginDate(Integer beginDate) {
         this.beginDate = beginDate;
     }
 

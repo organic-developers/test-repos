@@ -17,21 +17,22 @@
     <title>سامانه انجمن های علمی</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Bootstrap Core CSS RTL-->
-    <link href="css/bootstrap-rtl.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-rtl.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/sb-admin.css" rel="stylesheet">
-    <link href="css/sb-admin-rtl.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/added.css"/>
+    <link href="/css/sb-admin.css" rel="stylesheet">
+    <link href="/css/sb-admin-rtl.css" rel="stylesheet">
+    <link href="/css/added.css" rel="stylesheet"/>
 
     <!-- Morris Charts CSS -->
-    <link href="css/plugins/morris.css" rel="stylesheet">
+    <link href="/css/plugins/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -39,6 +40,46 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+
+    <script src="/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".personnel-line").click(function () {
+                $(".personnel-table, #personnel-plus").slideToggle();
+            });
+            $("#personnel-plus").click(function () {
+                var i = $(".personnel-table .table-row").length;
+                var x = '<div class="table-row">' +
+                        '<div class="form-group col-xs-3">' +
+                        '<input type="text" class="form-control" name="personnel-fName-' + i + '" placeholder="نام">' +
+                        '</div>' +
+                        '<div class="form-group col-xs-4">' +
+                        '<input type="text" class="form-control" name="personnel-lName-' + i + '" placeholder="نام خانوادگی">' +
+                        '</div>' +
+                        '<div class="form-group col-xs-4">' +
+                        '<input type="text" class="form-control" name="personnel-phone-' + i + '" placeholder="تلفن">' +
+                        '</div>' +
+                        '<div class="form-group col-xs-1"><span class="glyphicon glyphicon-remove" ></span></div>' +
+                        '</div>'
+                $(".personnel-table").append(x);
+                makeRemovable();
+            });
+            makeRemovable();
+        });
+        function makeRemovable() {
+            $(".form-group .glyphicon-remove").each(function () {
+                $(this).click(function () {
+                    $(this).parents(".table-row").remove();
+                    rename();
+                });
+            });
+        }
+        function rename() {
+
+        }
+    </script>
+
 
 </head>
 <body class="dashboard-background">
@@ -63,14 +104,16 @@
 
             <!-- /.row -->
             <div class="row">
-                <form class="form-horizontal" role="form" action="/Controller/ServletCreatePlanTriplanTrip" method="post">
+                <form class="form-horizontal" role="form" action="/Controller/ServletCreatePlanTrip"
+                      method="post">
                     <!-- type -->
                     <!-- text -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">ماهیت:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="association" value="بازدید علمی" disabled="disabled">
+                            <input type="text" class="form-control" name="association" value="بازدید علمی"
+                                   disabled="disabled">
                         </div>
                     </div>
                     <!-- association -->
@@ -84,8 +127,8 @@
                     </div>
                     <!-- title -->
                     <!-- text -->
-                    <div class="form-group" >
-                        <label class="control-label col-sm-2"style="background-color: #FBB2B2;">عنوان طرح:</label>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" >عنوان طرح:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
                             <input type="text" class="form-control" name="title">
@@ -137,9 +180,70 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2">پرسنل اجرایی:</label>
 
-                        <div class="col-sm-7 col-sm-offset-1"><a href="#" data-toggle="modal"
-                                                                 data-target="#personnel"><i
-                                class="fa fa-table fa-2x"></i></a></div>
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <div class="line-top personnel-line"></div>
+
+                            <div class="row personnel-table">
+                                <div class="table-row">
+                                    <div class="form-group col-xs-3">
+                                        <input type="text" class="form-control" name="personnel-fName-0"
+                                               placeholder="نام">
+                                    </div>
+                                    <div class="form-group col-xs-4">
+                                        <input type="text" class="form-control" name="personnel-lName-0"
+                                               placeholder="نام خانوادگی">
+                                    </div>
+                                    <div class="form-group col-xs-4">
+                                        <input type="text" class="form-control" name="personnel-phone-0"
+                                               placeholder="تلفن">
+                                    </div>
+                                    <div class="form-group col-xs-1">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </div>
+                                </div>
+
+                                <div class="table-row">
+                                    <div class="form-group col-xs-3">
+                                        <input type="text" class="form-control" name="personnel-fName-1"
+                                               placeholder="نام">
+                                    </div>
+                                    <div class="form-group col-xs-4">
+                                        <input type="text" class="form-control" name="personnel-lName-1"
+                                               placeholder="نام خانوادگی">
+                                    </div>
+                                    <div class="form-group col-xs-4">
+                                        <input type="text" class="form-control" name="personnel-phone-1"
+                                               placeholder="تلفن">
+                                    </div>
+                                    <div class="form-group col-xs-1">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </div>
+                                </div>
+
+                                <div class="table-row">
+                                    <div class="form-group col-xs-3">
+                                        <input type="text" class="form-control" name="personnel-fName-2"
+                                               placeholder="نام">
+                                    </div>
+                                    <div class="form-group col-xs-4">
+                                        <input type="text" class="form-control" name="personnel-lName-2"
+                                               placeholder="نام خانوادگی">
+                                    </div>
+                                    <div class="form-group col-xs-4">
+                                        <input type="text" class="form-control" name="personnel-phone-2"
+                                               placeholder="تلفن">
+                                    </div>
+                                    <div class="form-group col-xs-1">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="glyphicon glyphicon-plus" id="personnel-plus"></span>
+
+                            <div class="line-bottom personnel-line"></div>
+                        </div>
+
                     </div>
                     <!-- supervisorAgreement -->
                     <!-- file -->
@@ -164,7 +268,8 @@
                         <label class="control-label col-sm-2" for="advisorComments">نظرات مشاور انجمن:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <textarea class="form-control" rows="3" id="advisorComments" name="advisorComments"></textarea>
+                            <textarea class="form-control" rows="3" id="advisorComments"
+                                      name="advisorComments"></textarea>
                         </div>
                     </div>
                     <!-- expertComment -->
@@ -190,7 +295,7 @@
                         <label class="control-label col-sm-2">پوستر:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="file" >
+                            <input type="file">
                         </div>
                     </div>
                     <!-- enlisted modal -->
@@ -213,7 +318,7 @@
                         <label class="control-label col-sm-2">مبالغ دریافتی از اسپانسر(ریال)</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="number" class="form-control" name="sponsorMoney" >
+                            <input type="number" class="form-control" name="sponsorMoney">
                         </div>
                     </div>
                     <!-- submit button -->
@@ -229,7 +334,7 @@
         <!-- /.container-fluid -->
 
         <!-- Models.Personnel -->
-        <!-- Modal -->
+        <%--<!-- Modal -->--%>
         <div class="modal fade" id="personnel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">
             <div class="modal-dialog">
@@ -379,11 +484,11 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal -->
+        <%--<!-- /.modal -->--%>
 
 
-        <!-- expenses -->
-        <!-- Modal -->
+        <%--<!-- expenses -->--%>
+        <%--<!-- Modal -->--%>
         <div class="modal fade" id="expenses" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -533,11 +638,11 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal -->
+        <%--<!-- /.modal -->--%>
 
 
-        <!-- enlisted -->
-        <!-- Modal -->
+        <%--<!-- enlisted -->--%>
+        <%--<!-- Modal -->--%>
         <div class="modal fade" id="enlisted" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">
             <div class="modal-dialog">
@@ -761,7 +866,7 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal -->
+        <%--<!-- /.modal -->--%>
 
     </div>
     <!-- /#page-wrapper -->
@@ -769,16 +874,19 @@
 </div>
 <!-- /#wrapper -->
 
+
 <!-- jQuery -->
-<script src="js/jquery.js"></script>
+<script src="/js/jquery.js"></script>
+
+<!-- jQuery -->
 
 <!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Morris Charts JavaScript -->
-<script src="js/plugins/morris/raphael.min.js"></script>
-<script src="js/plugins/morris/morris.min.js"></script>
-<script src="js/plugins/morris/morris-data.js"></script>
+<script src="/js/plugins/morris/raphael.min.js"></script>
+<script src="/js/plugins/morris/morris.min.js"></script>
+<script src="/js/plugins/morris/morris-data.js"></script>
 
 
 </body>

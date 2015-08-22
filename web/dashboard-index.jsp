@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <c:set var="root" value="${pageContext.request.contextPath}" />
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,10 +13,10 @@
     <title>سامانه انجمن های علمی</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="${root}/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Bootstrap Core CSS RTL-->
-    <link href="${root}/css/bootstrap-rtl.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-rtl.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="/css/sb-admin.css" rel="stylesheet">
@@ -35,7 +35,6 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 
 </head>
 
@@ -875,16 +874,16 @@
 
 
 <!-- jQuery -->
-<script src="${root}/js/jquery.js"></script>
+<script src="/js/jquery.js"></script>
 
 
 <!-- Bootstrap Core JavaScript -->
-<script src="${root}/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Morris Charts JavaScript -->
-<script src="${root}/js/plugins/morris/raphael.min.js"></script>
-<script src="${root}/js/plugins/morris/morris.min.js"></script>
-<script src="${root}/js/plugins/morris/morris-data.js"></script>
+<script src="/js/plugins/morris/raphael.min.js"></script>
+<script src="/js/plugins/morris/morris.min.js"></script>
+<script src="/js/plugins/morris/morris-data.js"></script>
 
 </body>
 

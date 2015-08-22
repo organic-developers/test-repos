@@ -16,8 +16,8 @@
         <property name="associationNumber" column="association_number" type="int"/>
         <property name="title" column="title" type="string"/>
         <property name="place" column="place" type="string"/>
-        <property name="beginDate" column="begin_date" type="date"/>
-        <property name="endDate" column="end_date" type="date"/>
+        <property name="beginDate" column="begin_date" type="int"/>
+        <property name="endDate" column="end_date" type="int"/>
         <property name="time" column="time" type="string"/>
         <property name="requestedItems" column="requested_items" type="string"/>
         <property name="supervisorAgreement" column="supervisor_agreement" type="string"/>
@@ -25,8 +25,8 @@
         <property name="expertComment" column="expert_comment" type="string"/>
         <property name="bossComment" column="boss_comment" type="string"/>
         <property name="poster" column="poster" type="string"/>
-        <property name="studentMoney" column="student_money" type="long"/>
-        <property name="sponsorMoney" column="sponsor_money" type="long"/>
+        <property name="studentMoney" column="student_money" type="string"/>
+        <property name="sponsorMoney" column="sponsor_money" type="string"/>
         <property name="guidelines" column="guidelines" type="string"/>
         <property name="sidePrograms" column="side_programs" type="string"/>
         <property name="resume" column="resume" type="string"/>
