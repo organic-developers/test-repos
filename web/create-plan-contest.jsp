@@ -63,46 +63,46 @@
 
             <!-- /.row -->
             <div class="row">
-                <form class="form-horizontal" role="form">
+                <form class="form-horizontal" role="form" method="get" action="/Controller/ServletCreatePlanContest">
                     <div class="form-group">
                         <label class="control-label col-sm-2">انجمن علمی دانشجویی:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="association">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2">عنوان طرح:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="title">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2">محل برگزاری:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="place">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2">تاریخ برگزاری: </label>
 
                         <div class="col-sm-3 col-sm-offset-1">
-                            <input type="text" class="form-control" placeholder="yyyy/mm/dd">
+                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="beginDate">
                         </div>
 
                         <label class="control-label col-sm-1">لغایت</label>
 
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" placeholder="yyyy/mm/dd">
+                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="endDate">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2">ساعت برگزاری:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="time">
                         </div>
                     </div>
                     <div class="form-group">

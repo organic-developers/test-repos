@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="connection.url">jdbc:mysql://localhost/sc</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password"/>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <!--<property name="hibernate.current_session_context_class">thread</property>-->
+        <mapping resource="plan-trip.hbm.xml"/>
+        <mapping class="Models.Enlisted" />
+        <mapping class="Models.Expense" />
+        <mapping class="Models.Personnel" />
+        <mapping class="Models.Plan" />
+        <mapping class="Models.Judge"/>
+        <mapping class="Models.Guest"/>
+        <!--<mapping class="Models.Member"/>-->
+        <mapping class="Models.User"/>
+        <mapping class="Models.Association"/>
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hbm2ddl.auto">update</property> -->
+    </session-factory>
+</hibernate-configuration>

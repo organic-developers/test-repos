@@ -1,8 +1,14 @@
 package Models;
 
+import Controller.HibernateUtil;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by Saied on 8/14/2015.
@@ -184,4 +190,22 @@ public class User {
     public void setStudentId(String studentId) {
         this.studentId = studentId;
     }
+
+    public boolean isUser() throws IOException {
+
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        List modifiedUser = session.createCriteria(User.class)
+                .add(Restrictions.eq("userName", userName))
+                .add(Restrictions.eq("password", password))
+                .list();
+        session.getTransaction().commit();
+        if (modifiedUser.isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
 }
