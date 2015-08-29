@@ -191,7 +191,7 @@ public class User {
         this.studentId = studentId;
     }
 
-    public boolean isUser() throws IOException {
+    public User isValid() throws IOException {
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
@@ -200,10 +200,12 @@ public class User {
                 .add(Restrictions.eq("password", password))
                 .list();
         session.getTransaction().commit();
-        if (modifiedUser.isEmpty()) {
-            return false;
+        //session.close();
+        User user = (User) modifiedUser.get(0);
+        if (!modifiedUser.isEmpty()) {
+            return user;
         } else {
-            return true;
+            return null;
         }
 
     }

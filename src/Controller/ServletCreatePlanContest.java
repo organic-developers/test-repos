@@ -45,6 +45,7 @@ public class ServletCreatePlanContest extends HttpServlet {
             e.printStackTrace();
             request.getRequestDispatcher("/create-plan.jsp").include(request, response);
         }
+        session.close();
 
     }
 }

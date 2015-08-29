@@ -64,7 +64,7 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a href="<%=request.getContextPath()%>/Controller/ServletLogout"><i class="fa fa-fw fa-power-off"></i>خروج</a>
+                    <a href="${pageContext.request.contextPath}/Controller/ServletLogout"><i class="fa fa-fw fa-power-off"></i>خروج</a>
                 </li>
             </ul>
         </li>
