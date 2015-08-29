@@ -29,8 +29,8 @@ public class ServletCreatePlanContest extends HttpServlet {
         //Get parameters and set them into Models.Plan Class for preparing them to save in DB
         plan.setTitle(request.getParameter("title"));
         plan.setPlace(request.getParameter("place"));
-        plan.setBeginDate(Integer.parseInt(request.getParameter("beginDate")));
-        plan.setBeginDate(Integer.parseInt(request.getParameter("endDate")));
+        plan.setBeginDate(request.getParameter("beginDate"));
+        plan.setBeginDate(request.getParameter("endDate"));
         plan.setTime(request.getParameter("time"));
         //Creating Session and saving in DB
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();

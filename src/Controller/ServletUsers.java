@@ -13,9 +13,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 
-@WebServlet(name = "ServletCreatePlanTrip", urlPatterns = {"/ServletCreatePlanTrip"})
-public class ServletCreatePlanTrip extends HttpServlet {
-
+@WebServlet(name = "ServletUsers", urlPatterns = {"/ServletUsers"})
+public class ServletUsers extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,7 +46,6 @@ public class ServletCreatePlanTrip extends HttpServlet {
         }
 
     }
-
 
 }
 

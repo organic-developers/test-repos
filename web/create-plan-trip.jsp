@@ -45,9 +45,12 @@
     <script src="/js/jquery-1.11.3.min.js"></script>
     <script>
         $(document).ready(function () {
-            $(".personnel-line").click(function () {
-                $(".personnel-table, #personnel-plus").slideToggle();
-            });
+            $(".line").each(function(){
+                $(this).click(function () {
+                    $(this).siblings(".row, .glyphicon-plus").slideToggle();
+//                $(".personnel-table, #personnel-plus").slideToggle();
+                });
+            })
             $("#personnel-plus").click(function () {
                 var i = $(".personnel-table .table-row").length;
                 var x = '<div class="table-row">' +
@@ -65,6 +68,23 @@
                 $(".personnel-table").append(x);
                 makeRemovable();
             });
+            $("#expenses-plus").click(function () {
+                var i = $(".expenses-table .table-row").length;
+                var x = '<div class="table-row">' +
+                        '<div class="form-group col-xs-2">' +
+                        '<input type="text" class="form-control" name="expense-name-' + i + '" placeholder="عنوان">' +
+                        '</div>' +
+                        '<div class="form-group col-xs-2">' +
+                        '<input type="text" class="form-control" name="expense-value-' + i + '" placeholder="هزینه">' +
+                        '</div>' +
+                        '<div class="form-group col-xs-7">' +
+                        '<input type="text" class="form-control" name="expense-comment-' + i + '" placeholder="توضیحات">' +
+                        '</div>' +
+                        '<div class="form-group col-xs-1"><span class="glyphicon glyphicon-remove" ></span></div>' +
+                        '</div>'
+                $(".expenses-table").append(x);
+                makeRemovable();
+            });
             makeRemovable();
         });
         function makeRemovable() {
@@ -76,8 +96,8 @@
             });
         }
         function rename() {
-
         }
+
     </script>
 
 
@@ -102,33 +122,24 @@
             </div>
             <!-- /.row -->
 
+
             <!-- /.row -->
             <div class="row">
                 <form class="form-horizontal" role="form" action="/Controller/ServletCreatePlanTrip"
                       method="post">
                     <!-- type -->
                     <!-- text -->
-                    <div class="form-group">
+                    <div class="form-group" style="display: none;">
                         <label class="control-label col-sm-2">ماهیت:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="association" value="بازدید علمی"
-                                   disabled="disabled">
-                        </div>
-                    </div>
-                    <!-- association -->
-                    <!-- text -->
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="asso">انجمن علمی دانشجویی:</label>
-
-                        <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" id="asso" name="association">
+                            <input type="text" class="form-control" name="type" value="بازدید علمی">
                         </div>
                     </div>
                     <!-- title -->
                     <!-- text -->
                     <div class="form-group">
-                        <label class="control-label col-sm-2" >عنوان طرح:</label>
+                        <label class="control-label col-sm-2">عنوان طرح:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
                             <input type="text" class="form-control" name="title">
@@ -175,15 +186,18 @@
                             <textarea class="form-control" rows="3" id="needed" name="requestedItems"></textarea>
                         </div>
                     </div>
+
                     <!-- personnel -->
                     <!-- modal -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">پرسنل اجرایی:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <div class="line-top personnel-line"></div>
+
+                            <div class="line line-top"></div>
 
                             <div class="row personnel-table">
+
                                 <div class="table-row">
                                     <div class="form-group col-xs-3">
                                         <input type="text" class="form-control" name="personnel-fName-0"
@@ -241,9 +255,8 @@
 
                             <span class="glyphicon glyphicon-plus" id="personnel-plus"></span>
 
-                            <div class="line-bottom personnel-line"></div>
+                            <div class="line line-bottom"></div>
                         </div>
-
                     </div>
                     <!-- supervisorAgreement -->
                     <!-- file -->
@@ -251,7 +264,7 @@
                         <label class="control-label col-sm-2">موافقت مسئول یا سرپرست (در صورت نیاز):</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="file">
+                            <input type="file" oninput="upload()" id="agreement">
                         </div>
                     </div>
                     <!-- expenses -->
@@ -259,22 +272,86 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2">ریز هزینه ها:</label>
 
-                        <div class="col-sm-7 col-sm-offset-1"><a href="#" data-toggle="modal" data-target="#expenses"><i
-                                class="fa fa-table fa-2x"></i></a></div>
+                        <div class="col-sm-7 col-sm-offset-1">
+
+                            <div class="line line-top"></div>
+
+                            <div class="row expenses-table">
+
+                                <div class="table-row">
+                                    <div class="form-group col-xs-2">
+                                        <input type="text" class="form-control" name="expense-name-0"
+                                               placeholder="عنوان">
+                                    </div>
+                                    <div class="form-group col-xs-2">
+                                        <input type="text" class="form-control" name="expense-value-0"
+                                               placeholder="هزینه">
+                                    </div>
+                                    <div class="form-group col-xs-7">
+                                        <input type="text" class="form-control" name="expense-comment-0"
+                                               placeholder="توضیحات">
+                                    </div>
+                                    <div class="form-group col-xs-1">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </div>
+                                </div>
+
+                                <div class="table-row">
+                                    <div class="form-group col-xs-2">
+                                        <input type="text" class="form-control" name="expense-name-1"
+                                               placeholder="عنوان">
+                                    </div>
+                                    <div class="form-group col-xs-2">
+                                        <input type="text" class="form-control" name="expense-value-1"
+                                               placeholder="هزینه">
+                                    </div>
+                                    <div class="form-group col-xs-7">
+                                        <input type="text" class="form-control" name="expense-comment-1"
+                                               placeholder="توضیحات">
+                                    </div>
+                                    <div class="form-group col-xs-1">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </div>
+                                </div>
+
+                                <div class="table-row">
+                                    <div class="form-group col-xs-2">
+                                        <input type="text" class="form-control" name="expense-name-2"
+                                               placeholder="عنوان">
+                                    </div>
+                                    <div class="form-group col-xs-2">
+                                        <input type="text" class="form-control" name="expense-value-2"
+                                               placeholder="هزینه">
+                                    </div>
+                                    <div class="form-group col-xs-7">
+                                        <input type="text" class="form-control" name="expense-comment-2"
+                                               placeholder="توضیحات">
+                                    </div>
+                                    <div class="form-group col-xs-1">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="glyphicon glyphicon-plus" id="expenses-plus"></span>
+
+                            <div class="line line-bottom"></div>
+                        </div>
+
                     </div>
                     <!-- advisorComment -->
                     <!-- textarea -->
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="advisorComments">نظرات مشاور انجمن:</label>
+                    <div class="form-group" style="display: none;">
+                        <label class="control-label col-sm-2" for="advisorComment">نظرات مشاور انجمن:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <textarea class="form-control" rows="3" id="advisorComments"
-                                      name="advisorComments"></textarea>
+                            <textarea class="form-control" rows="3" id="advisorComment"
+                                      name="advisorComment"></textarea>
                         </div>
                     </div>
                     <!-- expertComment -->
                     <!-- textarea -->
-                    <div class="form-group">
+                    <div class="form-group" style="display: none;">
                         <label class="control-label col-sm-2" for="expertComment">نظرات کارشناس انجمن:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
@@ -283,7 +360,7 @@
                     </div>
                     <!-- bossComment -->
                     <!-- textarea -->
-                    <div class="form-group">
+                    <div class="form-group" style="display: none;">
                         <label class="control-label col-sm-2" for="bossComment">نظر نهایی ریاست انجمن های علمی:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
@@ -291,7 +368,7 @@
                         </div>
                     </div>
                     <!-- poster file -->
-                    <div class="form-group">
+                    <div class="form-group" style="display: none;">
                         <label class="control-label col-sm-2">پوستر:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
@@ -299,14 +376,14 @@
                         </div>
                     </div>
                     <!-- enlisted modal -->
-                    <div class="form-group">
+                    <div class="form-group" style="display: none;">
                         <label class="control-label col-sm-2">ثبت نام کنندگان:</label>
 
                         <div class="col-sm-7 col-sm-offset-1"><a href="#" data-toggle="modal" data-target="#enlisted">
                             <i class="fa fa-table fa-2x"></i></a></div>
                     </div>
                     <!-- studentsMoney number -->
-                    <div class="form-group">
+                    <div class="form-group" style="display: none;">
                         <label class="control-label col-sm-2">مبالغ دریافتی از دانشجویان (ریال)</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
@@ -314,7 +391,7 @@
                         </div>
                     </div>
                     <!-- sponserMoney number-->
-                    <div class="form-group">
+                    <div class="form-group" style="display: none;">
                         <label class="control-label col-sm-2">مبالغ دریافتی از اسپانسر(ریال)</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
@@ -333,162 +410,9 @@
         </div>
         <!-- /.container-fluid -->
 
-        <!-- Models.Personnel -->
-        <%--<!-- Modal -->--%>
-        <div class="modal fade" id="personnel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <form action="/Controller/ServletCreatePlanTrip" method="POST">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">پرسنل</h4>
-                        </div>
-                        <div class="modal-body">
 
-                            <table>
-                                <tr>
-                                    <th>نام</th>
-                                    <th>نام خانوادگی</th>
-                                    <th>شماره تلفن</th>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#" name="fName1"
-                                                   placeholder="نام">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#" name="lName1"
-                                                   placeholder="نام خانوادگی">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#" name="phone1"
-                                                   placeholder="تلفن">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#" name="fName2"
-                                                   placeholder="نام">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#" name="lName2"
-                                                   placeholder="نام خانوادگی">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#" name="phone2"
-                                                   placeholder="تلفن">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="نام">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="نام خانوادگی">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="تلفن">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="نام">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="نام خانوادگی">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="تلفن">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="نام">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="نام خانوادگی">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="تلفن">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="نام">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="نام خانوادگی">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="تلفن">
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">اعمال تغییرات</button>
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </form>
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-        <%--<!-- /.modal -->--%>
-
-
-        <%--<!-- expenses -->--%>
-        <%--<!-- Modal -->--%>
+        <!-- expenses -->
+        <!-- Modal -->
         <div class="modal fade" id="expenses" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -638,11 +562,11 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
-        <%--<!-- /.modal -->--%>
+        <!-- /.modal -->
 
 
-        <%--<!-- enlisted -->--%>
-        <%--<!-- Modal -->--%>
+        <!-- enlisted -->
+        <!-- Modal -->
         <div class="modal fade" id="enlisted" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">
             <div class="modal-dialog">
@@ -866,7 +790,7 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
-        <%--<!-- /.modal -->--%>
+        <!-- /.modal -->
 
     </div>
     <!-- /#page-wrapper -->
@@ -875,18 +799,18 @@
 <!-- /#wrapper -->
 
 
-<!-- jQuery -->
-<script src="/js/jquery.js"></script>
+<%--<!-- jQuery -->--%>
+<%--<script src="/js/jquery.js"></script>--%>
 
 <!-- jQuery -->
 
 <!-- Bootstrap Core JavaScript -->
 <script src="/js/bootstrap.min.js"></script>
 
-<!-- Morris Charts JavaScript -->
-<script src="/js/plugins/morris/raphael.min.js"></script>
-<script src="/js/plugins/morris/morris.min.js"></script>
-<script src="/js/plugins/morris/morris-data.js"></script>
+<%--<!-- Morris Charts JavaScript -->--%>
+<%--<script src="/js/plugins/morris/raphael.min.js"></script>--%>
+<%--<script src="/js/plugins/morris/morris.min.js"></script>--%>
+<%--<script src="/js/plugins/morris/morris-data.js"></script>--%>
 
 
 </body>

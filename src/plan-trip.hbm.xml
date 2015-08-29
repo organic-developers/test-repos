@@ -16,8 +16,8 @@
         <property name="associationNumber" column="association_number" type="int"/>
         <property name="title" column="title" type="string"/>
         <property name="place" column="place" type="string"/>
-        <property name="beginDate" column="begin_date" type="int"/>
-        <property name="endDate" column="end_date" type="int"/>
+        <property name="beginDate" column="begin_date" type="string"/>
+        <property name="endDate" column="end_date" type="string"/>
         <property name="time" column="time" type="string"/>
         <property name="requestedItems" column="requested_items" type="string"/>
         <property name="supervisorAgreement" column="supervisor_agreement" type="string"/>

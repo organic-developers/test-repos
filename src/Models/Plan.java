@@ -12,8 +12,8 @@ public class Plan {
     private Integer associationNumber;
     private String title;
     private String place;
-    private Integer beginDate;
-    private Integer endDate;
+    private String beginDate;
+    private String endDate;
     private String time;
     private String requestedItems;
     private String supervisorAgreement;
@@ -56,11 +56,11 @@ public class Plan {
         this.title = title;
     }
 
-    public Integer getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Integer endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
@@ -72,11 +72,11 @@ public class Plan {
         this.place = place;
     }
 
-    public Integer getBeginDate() {
+    public String getBeginDate() {
         return beginDate;
     }
 
-    public void setBeginDate(Integer beginDate) {
+    public void setBeginDate(String beginDate) {
         this.beginDate = beginDate;
     }
 

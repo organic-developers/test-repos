@@ -5,6 +5,15 @@
          version="3.1">
 
     <servlet>
+        <servlet-name>FileUploadHandler</servlet-name>
+        <servlet-class>Controller.FileUploadHandler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FileUploadHandler</servlet-name>
+        <url-pattern>/Controller/FileUploadHandler</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>ServletCreateplan</servlet-name>
         <servlet-class>Controller.ServletCreateplan</servlet-class>
     </servlet>
