@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * Created by Amir on 8/24/2015.
  */
-@WebServlet(name = "ServletLogout",urlPatterns = ("/ServletLogout"))
+@WebServlet(name = "ServletLogout")
 public class ServletLogout extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request,
@@ -26,9 +26,8 @@ public class ServletLogout extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        request.getRequestDispatcher("/login.jsp").include(request,response);
         HttpSession session = request.getSession();
         session.invalidate();
-        request.getRequestDispatcher("/login.jsp");
-
     }
 }

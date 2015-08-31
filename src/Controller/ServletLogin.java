@@ -36,7 +36,7 @@ public class ServletLogin extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("name", name);
             session.setAttribute("user",user.isValid());
-            request.getRequestDispatcher("/dashboard-index.jsp").include(request, response);
+            request.getRequestDispatcher("/app/dashboard-index.jsp").include(request, response);
         } else {
             //PrintWriter out = response.getWriter();
             request.getRequestDispatcher("/login.jsp").include(request, response);

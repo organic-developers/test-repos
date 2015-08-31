@@ -74,7 +74,7 @@
                     <div class="row" style="margin: auto">
                         <div class="col-xs-7">طرح با موفقیت ثبت شد!</div>
                         <div class="col-xs-5">
-                            <button class="btn btn-lg btn-primary" onclick="goBack" style="float: left; margin: auto;">بازگشت
+                            <button class="btn btn-lg btn-primary" onclick="goBack()" style="float: left; margin: auto;">بازگشت
                             </button>
                         </div>
                     </div>

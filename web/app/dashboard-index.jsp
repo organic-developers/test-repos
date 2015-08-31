@@ -580,7 +580,7 @@
                             </div>
                         </div>
                         <div class="col-lg-4 col-lg-offset-0"><img style="width: 50%; float: left; margin-top: 7px;"
-                                                                   src="image/pic1.jpg" class=""
+                                                                   src="../image/pic1.jpg" class=""
                                                                    alt="Generic placeholder image"></div>
 
                     </div>
