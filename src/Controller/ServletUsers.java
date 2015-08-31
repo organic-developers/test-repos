@@ -12,8 +12,6 @@ import java.util.List;
 
 import Logic.UserDAO;
 import Models.*;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 import com.google.gson.Gson;
 
@@ -50,16 +48,9 @@ public class ServletUsers extends HttpServlet {
         } else {
             // Handle regular (JSP) response.
             User user = makeUser(request);
+
             try {
-                SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-                Session session = sessionFactory.openSession();
-                session.beginTransaction();
-
-                session.save(user);
-
-                session.getTransaction().commit();
-                session.close();
-
+                userDAO.addUser(user);
             } catch (Exception e){
                 e.printStackTrace();
                 request.getRequestDispatcher("/failed.jsp").forward(request, response);
@@ -69,7 +60,6 @@ public class ServletUsers extends HttpServlet {
             request.setAttribute("users", users);
             request.getRequestDispatcher("/users.jsp").forward(request, response);
         }
-
     }
 
     public User makeUser(HttpServletRequest request) throws IOException, ServletException{
@@ -92,7 +82,6 @@ public class ServletUsers extends HttpServlet {
             photo.write(photo.getSubmittedFileName());
             user.setPhoto(directory + photo.getSubmittedFileName());
         }
-
         return user;
     }
 }

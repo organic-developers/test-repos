@@ -66,29 +66,29 @@
             <div>
                 <div class="row">
                     <div class="col-md-3">
-                        <a class="btn btn-type btn-primary" href="/create-plan-contest.jsp"><p>مسابقات علمی</p></a>
+                        <a class="btn btn-type btn-primary" href="/app/create-plan-contest.jsp.jsp"><p>مسابقات علمی</p></a>
                     </div>
                     <div class="col-md-3">
-                        <a class="btn btn-type btn-primary" href="/create-plan-trip.jsp"><p>بازدید عملی</p></a>
+                        <a class="btn btn-type btn-primary" href="/app/create-plan-trip.jsp.jsp"><p>بازدید عملی</p></a>
                     </div>
                     <div class="col-md-3">
-                        <a class="btn btn-type btn-primary" href="/create-plan-exhibition.jsp"><p>برگزاری نمایشگاه</p></a>
+                        <a class="btn btn-type btn-primary" href="/app/create-plan-exhibition.jsp"><p>برگزاری نمایشگاه</p></a>
                     </div>
                     <div class="col-md-3">
-                        <a class="btn btn-type btn-primary" href="/create-plan-conference.jsp"><p>همایش ها و کنفرانس</p></a>
+                        <a class="btn btn-type btn-primary" href="/app/create-plan-conference.jsp"><p>همایش ها و کنفرانس</p></a>
                     </div>
                 </div>
                 <br/>
                 <br/>
                 <div class="row">
                     <div class="col-md-3">
-                        <a class="btn btn-type btn-primary" href="/create-plan-educational.jsp"><p>کلاس ها و دوره های آموزشی</p></a>
+                        <a class="btn btn-type btn-primary" href="/app/create-plan-educational.jsp.jsp"><p>کلاس ها و دوره های آموزشی</p></a>
                     </div>
                     <div class="col-md-3">
-                        <a class="btn btn-type btn-primary" href="/create-plan-magazine.jsp"><p>چاپ نشریه</p></a>
+                        <a class="btn btn-type btn-primary" href="/app/create-plan-magazine.jsp"><p>چاپ نشریه</p></a>
                     </div>
                     <div class="col-md-3">
-                        <a class="btn btn-type btn-primary" href="/create-plan-else.jsp"><p>سایر موارد</p></a>
+                        <a class="btn btn-type btn-primary" href="/app/create-plan-else.jsp.jsp"><p>سایر موارد</p></a>
                     </div>
                 </div>
             </div>

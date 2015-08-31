@@ -13,15 +13,15 @@
     <title>SB Admin - Bootstrap Admin Template</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/sb-admin.css" rel="stylesheet">
-    <link href="css/sb-admin-rtl.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/added.css"/>
+    <link href="../css/sb-admin.css" rel="stylesheet">
+    <link href="../css/sb-admin-rtl.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/added.css"/>
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -43,11 +43,15 @@
 
         <div class="container-fluid">
 
-            <div class="col-lg-12">
-                <h3 class="page-header">
-                    مدیریت منابع
-                </h3>
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        مدیریت منابع
+                    </h1>
+                </div>
             </div>
+            <!-- /.row -->
 
             <br/>
 
@@ -79,24 +83,35 @@
                         سیستم</a></h4>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1">
-                    <h4><span class="glyphicon glyphicon-remove text-danger"></span> فایل راهنمای استفاده از
-                        سیستم</h4>
+                    <h4><span class="glyphicon glyphicon-remove text-danger"></span><a> فایل راهنمای استفاده از
+                        سیستم</a></h4>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1">
-                    <h4><span class="glyphicon glyphicon-remove text-danger"></span> فایل راهنمای استفاده از
-                        سیستم</h4>
+                    <h4><span class="glyphicon glyphicon-remove text-danger"></span><a> فایل راهنمای استفاده از
+                        سیستم</a></h4>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1">
-                    <h4><span class="glyphicon glyphicon-remove text-danger"></span> فایل راهنمای استفاده از
-                        سیستم</h4>
+                    <h4><span class="glyphicon glyphicon-remove text-danger"></span><a> فایل راهنمای استفاده از
+                        سیستم</a></h4>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <h4><span class="glyphicon glyphicon-remove text-danger"></span><a> فایل راهنمای استفاده از
+                        سیستم</a></h4>
+                </div>
+            </div>
+
 
         </div>
 
@@ -106,10 +121,10 @@
 <!-- /#wrapper -->
 
 <!-- jQuery -->
-<script src="js/jquery.js"></script>
+<script src="../js/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 
 </body>
 

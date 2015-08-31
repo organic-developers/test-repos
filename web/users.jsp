@@ -62,7 +62,7 @@
 <div id="wrapper">
 
     <!-- Navigation -->
-    <%@ include file="menu.jsp" %>
+    <%@ include file="app/menu.jsp" %>
 
     <div id="page-wrapper">
 
@@ -135,6 +135,7 @@
                                 <img src="/image/avatar.png" alt="عکس" width="110" height="110" id="image">
                             </div>
                             <form role="form" action="/Controller/ServletUsers" method="post" enctype="multipart/form-data">
+                                <%--<input type="text" id="id" name="id" style="display: none;">--%>
                                 <div class="form-group">
                                     <label for="asso">انجمن:</label>
                                     <select class="form-control" id="asso" name="associationNumber">

@@ -74,37 +74,37 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
             <li>
-                <a href="/dashboard-index.jsp"><i class="fa fa-fw fa-dashboard"></i> خانه</a>
+                <a href="/app/dashboard-index.jsp"><i class="fa fa-fw fa-dashboard"></i> خانه</a>
             </li>
             <li>
-                <a href="/report.jsp"><i class="fa fa-fw fa-bar-chart-o"></i> سيستم گزارش گيري</a>
+                <a href="/app/report.jsp"><i class="fa fa-fw fa-bar-chart-o"></i> سيستم گزارش گيري</a>
             </li>
             <li>
-                <a href="/users.jsp"><i class="fa fa-fw fa-users"></i>اعضا</a>
+                <a href="/users.jsp"><i class="fa fa-user"></i> اعضا</a>
             </li>
             <li>
-                <a href="/emialing.jsp"><i class="fa fa-fw fa-envelope"></i> سيستم اطلاع رساني</a>
+                <a href="/app/emialing.jsp"><i class="fa fa-fw fa-envelope"></i>سیستم اطلاع رسانی </a>
             </li>
             <li class="hide">
-                <a href="/evaluation.jsp"><i class="fa fa-fw  fa-tasks"></i> ارزيابي طرح ها </a>
+                <a href="/app/evaluation.jsp"><i class="fa fa-fw  fa-tasks"></i> ارزيابي طرح ها </a>
             </li>
             <li>
-                <a href="/create-plan.jsp"><i class="fa fa-fw fa-file-text"></i> تعريف طرح</a>
+                <a href="/app/create-plan.jsp"><i class="fa fa-fw fa-file-text"></i> تعريف طرح</a>
             </li>
             <li>
-                <a href="/suggested&future-plans.jsp"> طرح های آینده و طرح های پیشنهادی</a>
+                <a href="/app/suggested&future-plans.jsp"><i class="fa fa-calendar-o"></i> طرح های آینده و طرح های پیشنهادی</a>
             </li>
             <li>
-                <a href="/associations-management.jsp"> مدیریت انجمن ها</a>
+                <a href="/app/associations-management.jsp"><i class="fa fa-fw fa-users"></i> مدیریت انجمن ها</a>
             </li>
             <li>
-                <a href="/registeration-verification.jsp"> تایید ثبت نام ها</a>
+                <a href="/app/registeration-verification.jsp"><i class="fa fa-check-square-o"></i> تایید ثبت نام ها</a>
             </li>
             <li>
-                <a href="/resource-management.jsp"><i class="fa fa-sitemap"></i> مديريت منابع</a>
+                <a href="/app/resource-management.jsp"><i class="fa fa-sitemap"></i> مديريت منابع</a>
             </li>
             <li>
-                <a href="test.jsp">test</a>
+                <a href="/app/resource-management2.jsp">test</a>
             </li>
         </ul>
     </div>
