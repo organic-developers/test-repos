@@ -53,7 +53,7 @@ public class Expense {
 
         Expense obj2 = (Expense) obj;
         if ((this.id == obj2.getId()) && (this.name.equals(obj2.getName()))
-                && (this.value == obj2.getValue()) && (this.comment.equals(obj2.getComment()))) {
+                && (this.value.equals(obj2.getValue())) && (this.comment.equals(obj2.getComment()))) {
             return true;
         }
         return false;

@@ -40,6 +40,9 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <script src="/js/jquery-1.11.3.min.js"></script>
+    <script src="/js/added.js"></script>
+
 </head>
 <body class="dashboard-background">
 <div id="wrapper">
@@ -63,14 +66,19 @@
 
             <!-- /.row -->
             <div class="row">
-                <form class="form-horizontal" role="form" method="get" action="/Controller/ServletCreatePlanContest">
-                    <div class="form-group">
-                        <label class="control-label col-sm-2">انجمن علمی دانشجویی:</label>
+                <form class="form-horizontal" role="form" action="/Controller/ServletCreatePlanTrip"
+                      method="post" enctype="multipart/form-data">
+                    <!-- type -->
+                    <!-- text -->
+                    <div class="form-group" style="display: none;">
+                        <label class="control-label col-sm-2">ماهیت:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="association">
+                            <input type="text" class="form-control" name="type" value="مسابقه علمی">
                         </div>
                     </div>
+                    <!-- title -->
+                    <!-- text -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">عنوان طرح:</label>
 
@@ -78,6 +86,8 @@
                             <input type="text" class="form-control" name="title">
                         </div>
                     </div>
+                    <!-- place -->
+                    <!-- text -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">محل برگزاری:</label>
 
@@ -85,19 +95,22 @@
                             <input type="text" class="form-control" name="place">
                         </div>
                     </div>
+                    <!-- date -->
+                    <!-- text -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">تاریخ برگزاری: </label>
-
+                        <!-- beginDate -->
                         <div class="col-sm-3 col-sm-offset-1">
                             <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="beginDate">
                         </div>
-
                         <label class="control-label col-sm-1">لغایت</label>
-
+                        <!-- endDate -->
                         <div class="col-sm-3">
                             <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="endDate">
                         </div>
                     </div>
+                    <!-- time -->
+                    <!-- text -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">ساعت برگزاری:</label>
 
@@ -105,96 +118,325 @@
                             <input type="text" class="form-control" name="time">
                         </div>
                     </div>
+                    <!-- requestedItems -->
+                    <!-- textarea -->
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="needed">موارد درخواستی:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <textarea class="form-control" rows="3" id="needed"></textarea>
+                            <textarea class="form-control" rows="3" id="needed" name="requestedItems"></textarea>
                         </div>
                     </div>
+
+                    <!-- personnel -->
+                    <!-- modal -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">پرسنل اجرایی:</label>
 
-                        <div class="col-sm-7 col-sm-offset-1"><a href="#" data-toggle="modal"
-                                                                 data-target="#personnel"><i
-                                class="fa fa-table fa-2x"></i></a></div>
+                        <div class="col-sm-7 col-sm-offset-1">
+
+                            <div class="line line-top"></div>
+
+                            <div class="row personnel-table">
+
+                                <div class="table-row">
+                                    <div class="form-group col-xs-3">
+                                        <input type="text" class="form-control" name="personnel-fName-0"
+                                               placeholder="نام">
+                                    </div>
+                                    <div class="form-group col-xs-4">
+                                        <input type="text" class="form-control" name="personnel-lName-0"
+                                               placeholder="نام خانوادگی">
+                                    </div>
+                                    <div class="form-group col-xs-4">
+                                        <input type="text" class="form-control" name="personnel-phone-0"
+                                               placeholder="تلفن">
+                                    </div>
+                                    <div class="form-group col-xs-1">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </div>
+                                </div>
+
+                                <div class="table-row">
+                                    <div class="form-group col-xs-3">
+                                        <input type="text" class="form-control" name="personnel-fName-1"
+                                               placeholder="نام">
+                                    </div>
+                                    <div class="form-group col-xs-4">
+                                        <input type="text" class="form-control" name="personnel-lName-1"
+                                               placeholder="نام خانوادگی">
+                                    </div>
+                                    <div class="form-group col-xs-4">
+                                        <input type="text" class="form-control" name="personnel-phone-1"
+                                               placeholder="تلفن">
+                                    </div>
+                                    <div class="form-group col-xs-1">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </div>
+                                </div>
+
+                                <div class="table-row">
+                                    <div class="form-group col-xs-3">
+                                        <input type="text" class="form-control" name="personnel-fName-2"
+                                               placeholder="نام">
+                                    </div>
+                                    <div class="form-group col-xs-4">
+                                        <input type="text" class="form-control" name="personnel-lName-2"
+                                               placeholder="نام خانوادگی">
+                                    </div>
+                                    <div class="form-group col-xs-4">
+                                        <input type="text" class="form-control" name="personnel-phone-2"
+                                               placeholder="تلفن">
+                                    </div>
+                                    <div class="form-group col-xs-1">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="glyphicon glyphicon-plus" id="personnel-plus"></span>
+
+                            <div class="line line-bottom"></div>
+                        </div>
                     </div>
+                    <!-- supervisorAgreement -->
+                    <!-- file -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">موافقت مسئول یا سرپرست (در صورت نیاز):</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="file">
+                            <input type="file" id="agreement" name="supervisorAgreement">
                         </div>
                     </div>
+                    <!-- guidelines -->
+                    <!-- file -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">آیین نامه برگزاری:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="file">
+                            <input type="file" name="guidelines">
                         </div>
                     </div>
+                    <!-- judges -->
+                    <!-- table -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">تیم داوری:</label>
 
-                        <div class="col-sm-7 col-sm-offset-1"><a href="#" data-toggle="modal" data-target="#jury"><i class="fa fa-table fa-2x"></i></a></div>
+                        <div class="col-sm-7 col-sm-offset-1">
+
+                            <div class="line line-top"></div>
+
+                            <div class="row judge-table">
+
+                                <div class="table-row">
+                                    <div class="form-group col-xs-2">
+                                        <input type="text" class="form-control" name="judge-fName-0"
+                                               placeholder="نام">
+                                    </div>
+                                    <div class="form-group col-xs-3">
+                                        <input type="text" class="form-control" name="judge-lName-0"
+                                               placeholder="نام خانوادگی">
+                                    </div>
+                                    <div class="form-group col-xs-3">
+                                        <input type="text" class="form-control" name="judge-fieldOfStudy-0"
+                                               placeholder="گرایش تحصیلی">
+                                    </div>
+                                    <div class="form-group col-xs-3">
+                                        <input type="text" class="form-control" name="judge-grade-0"
+                                               placeholder="مدرک تحصیلی">
+                                    </div>
+                                    <div class="form-group col-xs-1">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </div>
+                                </div>
+
+
+                                <div class="table-row">
+                                    <div class="form-group col-xs-2">
+                                        <input type="text" class="form-control" name="judge-fName-1"
+                                               placeholder="نام">
+                                    </div>
+                                    <div class="form-group col-xs-3">
+                                        <input type="text" class="form-control" name="judge-lName-1"
+                                               placeholder="نام خانوادگی">
+                                    </div>
+                                    <div class="form-group col-xs-3">
+                                        <input type="text" class="form-control" name="judge-fieldOfStudy-1"
+                                               placeholder="گرایش تحصیلی">
+                                    </div>
+                                    <div class="form-group col-xs-3">
+                                        <input type="text" class="form-control" name="judge-grade-1"
+                                               placeholder="مدرک تحصیلی">
+                                    </div>
+                                    <div class="form-group col-xs-1">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </div>
+                                </div>
+
+                                <div class="table-row">
+                                    <div class="form-group col-xs-2">
+                                        <input type="text" class="form-control" name="judge-fName-2"
+                                               placeholder="نام">
+                                    </div>
+                                    <div class="form-group col-xs-3">
+                                        <input type="text" class="form-control" name="judge-lName-2"
+                                               placeholder="نام خانوادگی">
+                                    </div>
+                                    <div class="form-group col-xs-3">
+                                        <input type="text" class="form-control" name="judge-fieldOfStudy-2"
+                                               placeholder="گرایش تحصیلی">
+                                    </div>
+                                    <div class="form-group col-xs-3">
+                                        <input type="text" class="form-control" name="judge-grade-2"
+                                               placeholder="مدرک تحصیلی">
+                                    </div>
+                                    <div class="form-group col-xs-1">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <span class="glyphicon glyphicon-plus" id="judge-plus"></span>
+
+                            <div class="line line-bottom"></div>
+                        </div>
                     </div>
+                    <!-- expenses -->
+                    <!-- modal -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">ریز هزینه ها:</label>
 
-                        <div class="col-sm-7 col-sm-offset-1"><a href="#" data-toggle="modal" data-target="#expenses"><i class="fa fa-table fa-2x"></i></a></div>
+                        <div class="col-sm-7 col-sm-offset-1">
+
+                            <div class="line line-top"></div>
+
+                            <div class="row expenses-table">
+
+                                <div class="table-row">
+                                    <div class="form-group col-xs-2">
+                                        <input type="text" class="form-control" name="expense-name-0"
+                                               placeholder="عنوان">
+                                    </div>
+                                    <div class="form-group col-xs-2">
+                                        <input type="text" class="form-control" name="expense-value-0"
+                                               placeholder="هزینه">
+                                    </div>
+                                    <div class="form-group col-xs-7">
+                                        <input type="text" class="form-control" name="expense-comment-0"
+                                               placeholder="توضیحات">
+                                    </div>
+                                    <div class="form-group col-xs-1">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </div>
+                                </div>
+
+                                <div class="table-row">
+                                    <div class="form-group col-xs-2">
+                                        <input type="text" class="form-control" name="expense-name-1"
+                                               placeholder="عنوان">
+                                    </div>
+                                    <div class="form-group col-xs-2">
+                                        <input type="text" class="form-control" name="expense-value-1"
+                                               placeholder="هزینه">
+                                    </div>
+                                    <div class="form-group col-xs-7">
+                                        <input type="text" class="form-control" name="expense-comment-1"
+                                               placeholder="توضیحات">
+                                    </div>
+                                    <div class="form-group col-xs-1">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </div>
+                                </div>
+
+                                <div class="table-row">
+                                    <div class="form-group col-xs-2">
+                                        <input type="text" class="form-control" name="expense-name-2"
+                                               placeholder="عنوان">
+                                    </div>
+                                    <div class="form-group col-xs-2">
+                                        <input type="text" class="form-control" name="expense-value-2"
+                                               placeholder="هزینه">
+                                    </div>
+                                    <div class="form-group col-xs-7">
+                                        <input type="text" class="form-control" name="expense-comment-2"
+                                               placeholder="توضیحات">
+                                    </div>
+                                    <div class="form-group col-xs-1">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="glyphicon glyphicon-plus" id="expenses-plus"></span>
+
+                            <div class="line line-bottom"></div>
+                        </div>
+
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="needed">نظرات مشاور انجمن:</label>
+                    <!-- advisorComment -->
+                    <!-- textarea -->
+                    <div class="form-group" style="display: none;">
+                        <label class="control-label col-sm-2" for="advisorComment">نظرات مشاور انجمن:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <textarea class="form-control" rows="3" id="needed"></textarea>
+                            <textarea class="form-control" rows="3" id="advisorComment"
+                                      name="advisorComment"></textarea>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="needed">نظرات کارشناس انجمن:</label>
+                    <!-- expertComment -->
+                    <!-- textarea -->
+                    <div class="form-group" style="display: none;">
+                        <label class="control-label col-sm-2" for="expertComment">نظرات کارشناس انجمن:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <textarea class="form-control" rows="3" id="needed"></textarea>
+                            <textarea class="form-control" rows="3" id="expertComment" name="expertComment"></textarea>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="needed">نظر نهایی ریاست انجمن های علمی:</label>
+                    <!-- bossComment -->
+                    <!-- textarea -->
+                    <div class="form-group" style="display: none;">
+                        <label class="control-label col-sm-2" for="bossComment">نظر نهایی ریاست انجمن های علمی:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <textarea class="form-control" rows="3" id="needed"></textarea>
+                            <textarea class="form-control" rows="3" id="bossComment" name="bossComment"></textarea>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <!-- poster file -->
+                    <div class="form-group" style="display: none;">
                         <label class="control-label col-sm-2">پوستر:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="file" >
+                            <input type="file" name="poster">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <!-- enlisted modal -->
+                    <div class="form-group" style="display: none;">
                         <label class="control-label col-sm-2">ثبت نام کنندگان:</label>
 
                         <div class="col-sm-7 col-sm-offset-1"><a href="#" data-toggle="modal" data-target="#enlisted">
                             <i class="fa fa-table fa-2x"></i></a></div>
                     </div>
-                    <div class="form-group">
+                    <!-- studentsMoney number -->
+                    <div class="form-group" style="display: none;">
                         <label class="control-label col-sm-2">مبالغ دریافتی از دانشجویان (ریال)</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="number" class="form-control" >
+                            <input type="number" class="form-control" name="studentMoney">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <!-- sponserMoney number-->
+                    <div class="form-group" style="display: none;">
                         <label class="control-label col-sm-2">مبالغ دریافتی از اسپانسر(ریال)</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="number" class="form-control" >
+                            <input type="number" class="form-control" name="sponsorMoney">
                         </div>
                     </div>
-
+                    <!-- submit button -->
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-10">
-                            <button type="submit" class="btn btn-primary">اعمال تغییرات</button>
+                            <button type="submit" class="btn btn-primary" value="submit">اعمال تغییرات</button>
                         </div>
                     </div>
                 </form>
@@ -203,312 +445,7 @@
         </div>
         <!-- /.container-fluid -->
 
-        <!-- Models.Personnel -->
-        <!-- Modal -->
-        <div class="modal fade" id="personnel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <form action="#">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">پرسنل</h4>
-                        </div>
-                        <div class="modal-body">
 
-                            <table>
-                                <tr>
-                                    <th>نام</th>
-                                    <th>نام خانوادگی</th>
-                                    <th>شماره تلفن</th>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="نام">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="نام خانوادگی">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="تلفن">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="نام">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="نام خانوادگی">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="تلفن">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="نام">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="نام خانوادگی">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="تلفن">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="نام">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="نام خانوادگی">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="تلفن">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="نام">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="نام خانوادگی">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="تلفن">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="نام">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="نام خانوادگی">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="تلفن">
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">اعمال تغییرات</button>
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </form>
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-        <!-- /.modal -->
-
-
-        <!-- expenses -->
-        <!-- Modal -->
-        <div class="modal fade" id="expenses" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <form action="#">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">ریز هزینه ها</h4>
-                        </div>
-                        <div class="modal-body">
-
-                            <table>
-                                <tr>
-                                    <th>عنوان</th>
-                                    <th>هزینه</th>
-                                    <th class="big-comment">توضیحات</th>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="عنوان">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="هزینه">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="توضیحات">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="عنوان">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="هزینه">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="توضیحات">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="عنوان">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="هزینه">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="توضیحات">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="عنوان">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="هزینه">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="توضیحات">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="عنوان">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="هزینه">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="توضیحات">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="عنوان">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="هزینه">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="#"
-                                                   placeholder="توضیحات">
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">اعمال تغییرات</button>
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </form>
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-        <!-- /.modal -->
 
 
         <!-- jury -->

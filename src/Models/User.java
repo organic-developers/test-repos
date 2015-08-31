@@ -10,9 +10,6 @@ import javax.persistence.Id;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * Created by Saied on 8/14/2015.
- */
 @Entity
 public class User {
     private Integer id;

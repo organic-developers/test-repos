@@ -200,6 +200,7 @@
             <generator class="native"/>
         </id>
         <property name="name" column="name" type="string"/>
+        <property name="box" column="box" type="string"/>
         <set name="workflowNavigations" cascade="all">
             <key column="workflow_state_id"/>
             <one-to-many class="Models.WorkflowNavigation"/>

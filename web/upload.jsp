@@ -11,17 +11,17 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>File Upload Example in JSP and Servlet - Java web application</title>
 
-    <script>
-        $(document).ready(function(){
-            $(".submit").click(function(){
-                $.post("/Controller/FileUploadHandler", "#form1",
-                        function(data,status){
-                            alert("Status: " + status);
-                        }
-                );
-            });
-        });
-    </script>
+    <%--<script>--%>
+        <%--$(document).ready(function(){--%>
+            <%--$(".submit").click(function(){--%>
+                <%--$.post("/Controller/FileUploadHandler", "#form1",--%>
+                        <%--function(data,status){--%>
+                            <%--alert("Status: " + status);--%>
+                        <%--}--%>
+                <%--);--%>
+            <%--});--%>
+        <%--});--%>
+    <%--</script>--%>
 </head>
 
 <body>

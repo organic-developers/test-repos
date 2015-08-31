@@ -1,4 +1,5 @@
-﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+﻿<%@ page import="java.util.List" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,6 +36,25 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <script src="/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("tr").each(function(){
+                $(this).click(function(){
+                    var x = $(this).children().last().text();
+                    $.post("/Controller/ServletUsers",
+                            { nationalId: x},
+                            function(responseJson){
+                                $("$lName").val("one's working")
+                                $.on(responseJson, function(product){
+                                    $("#image").attr("src", product.photo);
+                                    $("fName").val("it's working");
+                                });
+                            });
+                });
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -55,7 +75,6 @@
                         اعضا
                         <small></small>
                     </h1>
-
                 </div>
             </div>
 
@@ -75,71 +94,47 @@
                                         <th>نام خانوادگی</th>
                                         <th>سمت</th>
                                         <th>انجمن مربوطه</th>
+                                        <th style="display: none;">شماره شناسایی</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <% List users = (List) request.getAttribute("users"); %>
+                                    <%if (users != null) {%>
+                                    <%! int i = 0; %>
+                                    <%while (i < users.size()) {%>
+                                    <% User user = (User) users.get(i);%>
                                     <tr>
-                                        <td>سعید</td>
-                                        <td>فخرایی</td>
-                                        <td>دبیر</td>
-                                        <td>کامپیوتر و فناوری اطلاعات</td>
+                                        <td><%=user.getfName()%>
+                                        </td>
+                                        <td><%=user.getlName()%>
+                                        </td>
+                                        <td><%=user.getPositionTitle()%>
+                                        </td>
+                                        <td><%=user.getAssociationNumber()%>
+                                        </td>
+                                        <td style="display: none;"><%=user.getNationalId()%>
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <td>3325</td>
-                                        <td>10/21/2013</td>
-                                        <td>3:20 PM</td>
-                                        <td>$234.34</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3324</td>
-                                        <td>10/21/2013</td>
-                                        <td>3:03 PM</td>
-                                        <td>$724.17</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3323</td>
-                                        <td>10/21/2013</td>
-                                        <td>3:00 PM</td>
-                                        <td>$23.71</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3322</td>
-                                        <td>10/21/2013</td>
-                                        <td>2:49 PM</td>
-                                        <td>$8345.23</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3321</td>
-                                        <td>10/21/2013</td>
-                                        <td>2:23 PM</td>
-                                        <td>$245.12</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3320</td>
-                                        <td>10/21/2013</td>
-                                        <td>2:15 PM</td>
-                                        <td>$5663.54</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3319</td>
-                                        <td>10/21/2013</td>
-                                        <td>2:13 PM</td>
-                                        <td>$943.45</td>
-                                    </tr>
+                                    <%i++;%>
+                                    <%}%>
+                                    <%}%>
                                     </tbody>
                                 </table>
                             </div>
-
                         </div>
                     </div>
                 </div>
+
                 <div class="col-lg-4">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title"><i class="fa fa-pencil-square-o"></i> ایجاد / ویرایش کاربر </h3>
                         </div>
                         <div class="panel-body">
-                            <form role="form">
+                            <div style="text-align: center;">
+                                <img src="/image/avatar.png" alt="عکس" width="110" height="110" id="image">
+                            </div>
+                            <form role="form" action="/Controller/ServletUsers" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="asso">انجمن:</label>
                                     <select class="form-control" id="asso" name="associationNumber">
@@ -166,56 +161,58 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="fName">نام:</label>
-                                    <input type="text" class="form-control" id="fName" name="fName">
+                                    <input type="text" class="form-control" id="fName" name="fName" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="lN">نام خانوادگی:</label>
-                                    <input type="text" class="form-control" id="lN" name="lName">
-                                </div>
-                                <div class="form-group">
-                                    <label for="sId">شماره دانشجویی:</label>
-                                    <input type="number" class="form-control" id="sId" name="studentId">
-                                </div>
-                                <div class="form-group">
-                                    <label for="nId">شماره ملی:</label>
-                                    <input type="number" class="form-control" id="nId" name="nationalId">
-                                </div>
-                                <div class="form-group">
-                                    <label for="by">سال تولد:</label>
-                                    <input type="number" class="form-control" id="by" name="birthYear">
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone">شماره تماس:</label>
-                                    <input type="number" class="form-control" id="phone" name="phone">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">ایمیل:</label>
-                                    <input type="email" class="form-control" id="email" name="email">
+                                    <label for="lName">نام خانوادگی:</label>
+                                    <input type="text" class="form-control" id="lName" name="lName" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="title">سمت:</label>
                                     <select class="form-control" id="title" name="positionTitle">
                                         <option value="کارشناس">کارشناس</option>
-                                        <option value="مشاور">مشاور</option>
+                                        <option value="مشاور">مشاور علمی</option>
                                         <option value="دبیر">دبیر</option>
+                                        <option value="دبیر">مسئول روابط عمومی</option>
+                                        <option value="دبیر">مسئول امور مالی</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="user">نام کاربری:</label>
-                                    <input type="text" class="form-control" id="user" name="userName">
+                                    <label for="studentId">شماره دانشجویی:</label>
+                                    <input type="number" class="form-control" id="studentId" name="studentId" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="pwd">رمز عبور:</label>
-                                    <input type="password" class="form-control" id="pwd" name="Password">
+                                    <label for="nationalId">شماره ملی:</label>
+                                    <input type="number" class="form-control" id="nationalId" name="nationalId" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="birthYear">سال تولد:</label>
+                                    <input type="number" class="form-control" id="birthYear" name="birthYear" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">شماره تماس:</label>
+                                    <input type="number" class="form-control" id="phone" name="phone" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">ایمیل:</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="userName">نام کاربری:</label>
+                                    <input type="text" class="form-control" id="userName" name="userName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">رمز عبور:</label>
+                                    <input type="password" class="form-control" id="password" name="password">
                                 </div>
                                 <div class="form-group">
                                     <label for="photo">عکس:</label>
-                                    <input type="file" id="photo">
+                                    <input type="file" id="photo" name="photo">
                                 </div>
 
 
-                                    <button class="btn btn-default" type="reset">انصراف</button>
-                                    <button type="submit" class="btn btn-default pull-left">اعمال تغییرات</button>
+                                <button type="reset" class="btn btn-primary">انصراف</button>
+                                <button type="submit" class="btn btn-primary pull-left">اعمال تغییرات</button>
 
                             </form>
                         </div>

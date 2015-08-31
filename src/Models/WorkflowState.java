@@ -62,4 +62,15 @@ public class WorkflowState {
         tmp = (id + name).hashCode();
         return tmp;
     }
+
+    private String box;
+
+    @Basic
+    public String getBox() {
+        return box;
+    }
+
+    public void setBox(String box) {
+        this.box = box;
+    }
 }

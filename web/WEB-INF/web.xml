@@ -145,5 +145,13 @@
         <servlet-name>ServletMenu</servlet-name>
         <url-pattern>/Controller/ServletMenu</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletUsers</servlet-name>
+        <servlet-class>Controller.ServletUsers</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletUsers</servlet-name>
+        <url-pattern>/Controller/ServletUsers</url-pattern>
+    </servlet-mapping>
 
 </web-app>

@@ -43,62 +43,7 @@
 
 
     <script src="/js/jquery-1.11.3.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $(".line").each(function(){
-                $(this).click(function () {
-                    $(this).siblings(".row, .glyphicon-plus").slideToggle();
-//                $(".personnel-table, #personnel-plus").slideToggle();
-                });
-            })
-            $("#personnel-plus").click(function () {
-                var i = $(".personnel-table .table-row").length;
-                var x = '<div class="table-row">' +
-                        '<div class="form-group col-xs-3">' +
-                        '<input type="text" class="form-control" name="personnel-fName-' + i + '" placeholder="نام">' +
-                        '</div>' +
-                        '<div class="form-group col-xs-4">' +
-                        '<input type="text" class="form-control" name="personnel-lName-' + i + '" placeholder="نام خانوادگی">' +
-                        '</div>' +
-                        '<div class="form-group col-xs-4">' +
-                        '<input type="text" class="form-control" name="personnel-phone-' + i + '" placeholder="تلفن">' +
-                        '</div>' +
-                        '<div class="form-group col-xs-1"><span class="glyphicon glyphicon-remove" ></span></div>' +
-                        '</div>'
-                $(".personnel-table").append(x);
-                makeRemovable();
-            });
-            $("#expenses-plus").click(function () {
-                var i = $(".expenses-table .table-row").length;
-                var x = '<div class="table-row">' +
-                        '<div class="form-group col-xs-2">' +
-                        '<input type="text" class="form-control" name="expense-name-' + i + '" placeholder="عنوان">' +
-                        '</div>' +
-                        '<div class="form-group col-xs-2">' +
-                        '<input type="text" class="form-control" name="expense-value-' + i + '" placeholder="هزینه">' +
-                        '</div>' +
-                        '<div class="form-group col-xs-7">' +
-                        '<input type="text" class="form-control" name="expense-comment-' + i + '" placeholder="توضیحات">' +
-                        '</div>' +
-                        '<div class="form-group col-xs-1"><span class="glyphicon glyphicon-remove" ></span></div>' +
-                        '</div>'
-                $(".expenses-table").append(x);
-                makeRemovable();
-            });
-            makeRemovable();
-        });
-        function makeRemovable() {
-            $(".form-group .glyphicon-remove").each(function () {
-                $(this).click(function () {
-                    $(this).parents(".table-row").remove();
-                    rename();
-                });
-            });
-        }
-        function rename() {
-        }
-
-    </script>
+    <script src="/js/added.js"></script>
 
 
 </head>
@@ -126,7 +71,7 @@
             <!-- /.row -->
             <div class="row">
                 <form class="form-horizontal" role="form" action="/Controller/ServletCreatePlanTrip"
-                      method="post">
+                      method="post" enctype="multipart/form-data">
                     <!-- type -->
                     <!-- text -->
                     <div class="form-group" style="display: none;">
@@ -264,7 +209,7 @@
                         <label class="control-label col-sm-2">موافقت مسئول یا سرپرست (در صورت نیاز):</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="file" oninput="upload()" id="agreement">
+                            <input type="file" id="agreement" name="supervisorAgreement">
                         </div>
                     </div>
                     <!-- expenses -->
