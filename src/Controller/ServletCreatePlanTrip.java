@@ -31,6 +31,9 @@ public class ServletCreatePlanTrip extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
+        System.out.print(request.getRequestURI());
+        System.out.print(request.getContextPath());
+
 
         Plan plan = makePlan(request);
 
@@ -44,11 +47,11 @@ public class ServletCreatePlanTrip extends HttpServlet {
             session.getTransaction().commit();
             session.close();
 
-            request.getRequestDispatcher("/successful.jsp").forward(request, response);
+            request.getRequestDispatcher("/app/successful.jsp").forward(request, response);
 
         } catch (Exception e) {
             e.printStackTrace();
-            request.getRequestDispatcher("/failed.jsp").forward(request, response);
+            request.getRequestDispatcher("/app/failed.jsp").forward(request, response);
         }
 
     }

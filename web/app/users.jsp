@@ -38,19 +38,40 @@
 
     <script src="/js/jquery-1.11.3.min.js"></script>
     <script>
-        $(document).ready(function(){
-            $("tr").each(function(){
-                $(this).click(function(){
+        $(document).ready(function () {
+            $("tr").each(function () {
+                $(this).click(function () {
                     var x = $(this).children().last().text();
+                    $("#testp").text(x);
                     $.post("/Controller/ServletUsers",
-                            { nationalId: x},
-                            function(responseJson){
-                                $("$lName").val("one's working")
-                                $.on(responseJson, function(product){
-                                    $("#image").attr("src", product.photo);
-                                    $("fName").val("it's working");
-                                });
+                            {
+                                nationalId: x,
+                            },
+                            function (data, status) {
+//                                alert("Data: " + data + "\nStatus: " + status);
+//                                $("#testp").text(data.birthYear);
+                                $("#fName").val(data.fName);
+                                $("#lName").val(data.lName);
+                                $("#userName").val(data.userName);
+                                $("#password").val(data.password);
+                                $("#associationNumber").val(data.associationNumber);
+                                $("#positionTitle").val(data.positionTitle);
+                                $("#birthYear").val(data.birthYear);
+                                $("#email").val(data.email);
+                                $("#nationalId").val(data.nationalId);
+                                $("#phone").val(data.phone);
+                                $("#image").attr("src", data.photo);
+                                $("#studentId").val(data.studentId);
                             });
+//                    $.post("/Controller/ServletUsers",
+//                            { nationalId: x},
+//                            function(responseJson){
+//                                $("$lName").val("one's working")
+//                                $.on(responseJson, function(product){
+//                                    $("#image").attr("src", product.photo);
+//                                    $("fName").val("it's working");
+//                                });
+//                            });
                 });
             });
         });
@@ -62,7 +83,7 @@
 <div id="wrapper">
 
     <!-- Navigation -->
-    <%@ include file="app/menu.jsp" %>
+    <%@ include file="menu.jsp" %>
 
     <div id="page-wrapper">
 
@@ -104,25 +125,42 @@
                                     <%while (i < users.size()) {%>
                                     <% User user = (User) users.get(i);%>
                                     <tr>
-                                        <td><%=user.getfName()%>
-                                        </td>
-                                        <td><%=user.getlName()%>
-                                        </td>
-                                        <td><%=user.getPositionTitle()%>
-                                        </td>
-                                        <td><%=user.getAssociationNumber()%>
-                                        </td>
-                                        <td style="display: none;"><%=user.getNationalId()%>
-                                        </td>
+                                    <td><%=user.getfName()%>
+                                    </td>
+                                    <td><%=user.getlName()%>
+                                    </td>
+                                    <td><%=user.getPositionTitle()%>
+                                    </td>
+                                    <td><%=user.getAssociationNumber()%>
+                                    </td>
+                                    <td style="display: none;"><%=user.getNationalId()%>
+                                    </td>
                                     </tr>
                                     <%i++;%>
                                     <%}%>
                                     <%}%>
+                                    <%--<c:forEach var="user" items="${userList}">--%>
+                                        <%--<tr>--%>
+                                            <%--<td class="td-highlighted-2">--%>
+                                                <%--<div align="left">${user.fName}</div>--%>
+                                            <%--</td>--%>
+                                            <%--<td class="td-highlighted-2">--%>
+                                                <%--<div align="left">${user.lName}</div>--%>
+                                            <%--</td>--%>
+                                            <%--<td class="td-highlighted-2">--%>
+                                                <%--<div align="left">${user.positionTitle}</div>--%>
+                                            <%--</td>--%>
+                                            <%--<td class="td-highlighted-2">--%>
+                                                <%--<div align="left">${user.associationNumber}</div>--%>
+                                            <%--</td>--%>
+                                        <%--</tr>--%>
+                                    <%--</c:forEach>--%>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
+                    <p id="testp">gggg</p>
                 </div>
 
                 <div class="col-lg-4">
@@ -132,13 +170,14 @@
                         </div>
                         <div class="panel-body">
                             <div style="text-align: center;">
-                                <img src="/image/avatar.png" alt="عکس" width="110" height="110" id="image">
+                                <img src="/image/avatar.png" alt="عکس" width="125" height="125" id="image">
                             </div>
-                            <form role="form" action="/Controller/ServletUsers" method="post" enctype="multipart/form-data">
+                            <form role="form" action="/Controller/ServletUsers" method="post"
+                                  enctype="multipart/form-data">
                                 <%--<input type="text" id="id" name="id" style="display: none;">--%>
                                 <div class="form-group">
-                                    <label for="asso">انجمن:</label>
-                                    <select class="form-control" id="asso" name="associationNumber">
+                                    <label for="associationNumber">انجمن:</label>
+                                    <select class="form-control" id="associationNumber" name="associationNumber">
                                         <option value="1">برق</option>
                                         <option value="2">پدافند غیر عامل</option>
                                         <option value="3">تربیت بدنی</option>
@@ -184,7 +223,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="nationalId">شماره ملی:</label>
-                                    <input type="number" class="form-control" id="nationalId" name="nationalId" required>
+                                    <input type="number" class="form-control" id="nationalId" name="nationalId"
+                                           required>
                                 </div>
                                 <div class="form-group">
                                     <label for="birthYear">سال تولد:</label>

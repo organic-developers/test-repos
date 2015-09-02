@@ -25,16 +25,36 @@ public class UserDAO {
     }
 
     public User getUser(String nationalId){
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
 
-        User user = (User) session.createCriteria("User.class")
-                .add(Restrictions.eq("nationalId", nationalId)).list().get(0);
+        User user = null;
+        try {
+            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+            Session session = sessionFactory.openSession();
+            session.beginTransaction();
 
-        session.getTransaction().commit();
-        session.close();
+            String qry = "select e from User e " +
+                    " where e.nationalId like " + nationalId;
+            System.out.println(nationalId);
+            System.out.println(nationalId);
+            System.out.println(nationalId);
+            System.out.println(nationalId);
+            System.out.println(nationalId);
+            user  = (User) session.createQuery(qry )
+//                    .setParameter( "nationalId", nationalId)
+                    .uniqueResult();
 
+//            List users = session.createCriteria(User.class)
+//                    .add(Restrictions.eq("nationalId", nationalId)).list();
+
+//            if (users.size()>0){
+//                user = (User) users.get(0);
+//            }
+
+            session.getTransaction().commit();
+            session.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return user;
     }
 

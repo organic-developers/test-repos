@@ -32,10 +32,18 @@ public class ServletUsers extends HttpServlet {
 
         boolean ajax = "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
 
+
         UserDAO userDAO = new UserDAO();
         if (ajax) {
             // Handle ajax (JSON) response.
+            System.out.println(ajax);
+//            request.getRequestDispatcher("/app/successful.jsp").forward(request, response);
+            System.out.println("and this");
+
+            System.out.println(request.getParameter("nationalId"));
+            System.out.println();
             User user = userDAO.getUser(request.getParameter("nationalId"));
+            System.out.println(user.getlName());
             System.out.println("wooooooooooooha!!!!!!!!!!!!!!!!!!!!!!");
             System.out.println(request.getParameter("nationalId"));
 
@@ -47,19 +55,35 @@ public class ServletUsers extends HttpServlet {
 
         } else {
             // Handle regular (JSP) response.
-            User user = makeUser(request);
+            if(request.getAttribute("initiated") != null && request.getAttribute("initiated").equals("menu")){
 
-            try {
-                userDAO.addUser(user);
-            } catch (Exception e){
-                e.printStackTrace();
-                request.getRequestDispatcher("/failed.jsp").forward(request, response);
+                fillTable(request, response, userDAO);
+            } else {
+                User user = makeUser(request);
+
+                try {
+                    userDAO.addUser(user);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    request.getRequestDispatcher("/app/failed.jsp").forward(request, response);
+                }
+                fillTable(request, response, userDAO);
             }
-
-            List users = userDAO.getAllUsers();
-            request.setAttribute("users", users);
-            request.getRequestDispatcher("/users.jsp").forward(request, response);
         }
+    }
+
+    public void fillTable(HttpServletRequest request, HttpServletResponse response, UserDAO userDAO) throws ServletException, IOException{
+
+        List users = userDAO.getAllUsers();
+        for(int i = 0; i < users.size(); i++){
+            System.out.println(((User) users.get(i)).getfName());
+        }
+        request.setAttribute("users", users);
+        users = (List) request.getAttribute("users");
+        for(int i = 0; i < users.size(); i++){
+            System.out.println(((User) users.get(i)).getfName());
+        }
+        request.getRequestDispatcher("/app/users.jsp").forward(request, response);
     }
 
     public User makeUser(HttpServletRequest request) throws IOException, ServletException{

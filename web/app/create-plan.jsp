@@ -66,10 +66,10 @@
             <div>
                 <div class="row">
                     <div class="col-md-3">
-                        <a class="btn btn-type btn-primary" href="${pageContext.request.contextPath}/app/create-plan-contest.jsp.jsp"><p>مسابقات علمی</p></a>
+                        <a class="btn btn-type btn-primary" href="${pageContext.request.contextPath}/app/create-plan-contest.jsp"><p>مسابقات علمی</p></a>
                     </div>
                     <div class="col-md-3">
-                        <a class="btn btn-type btn-primary" href="/app/create-plan-trip.jsp."><p>بازدید عملی</p></a>
+                        <a class="btn btn-type btn-primary" href="${pageContext.request.contextPath}/app/create-plan-trip.jsp"><p>بازدید عملی</p></a>
                     </div>
                     <div class="col-md-3">
                         <a class="btn btn-type btn-primary" href="/app/create-plan-exhibition.jsp"><p>برگزاری نمایشگاه</p></a>

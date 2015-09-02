@@ -80,7 +80,7 @@
                 <a href="/app/report.jsp"><i class="fa fa-fw fa-bar-chart-o"></i> سيستم گزارش گيري</a>
             </li>
             <li>
-                <a href="/users.jsp"><i class="fa fa-user"></i> اعضا</a>
+                <a href="${pageContext.request.contextPath}/Controller/ServletMenu"><i class="fa fa-fw fa-users"></i> اعضا</a>
             </li>
             <li>
                 <a href="/app/emialing.jsp"><i class="fa fa-fw fa-envelope"></i>سیستم اطلاع رسانی </a>
@@ -95,7 +95,7 @@
                 <a href="/app/suggested&future-plans.jsp"><i class="fa fa-calendar-o"></i> طرح های آینده و طرح های پیشنهادی</a>
             </li>
             <li>
-                <a href="/app/associations-management.jsp"><i class="fa fa-fw fa-users"></i> مدیریت انجمن ها</a>
+                <a href="/app/associations-management.jsp"> مدیریت انجمن ها</a>
             </li>
             <li>
                 <a href="/app/registeration-verification.jsp"><i class="fa fa-check-square-o"></i> تایید ثبت نام ها</a>

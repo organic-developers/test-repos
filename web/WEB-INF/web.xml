@@ -129,6 +129,7 @@
         <servlet-name>ServletLogin</servlet-name>
         <url-pattern>/Controller/ServletLogin</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>ServletLogout</servlet-name>
         <servlet-class>Controller.ServletLogout</servlet-class>
@@ -137,6 +138,7 @@
         <servlet-name>ServletLogout</servlet-name>
         <url-pattern>/Controller/ServletLogout</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>ServletMenu</servlet-name>
         <servlet-class>Controller.ServletMenu</servlet-class>
@@ -145,6 +147,7 @@
         <servlet-name>ServletMenu</servlet-name>
         <url-pattern>/Controller/ServletMenu</url-pattern>
     </servlet-mapping>
+
     <filter>
         <filter-name>FilterCheckLoggedin</filter-name>
         <filter-class>Filter.FilterCheckLoggedin</filter-class>
@@ -153,6 +156,15 @@
         <filter-name>FilterCheckLoggedin</filter-name>
         <url-pattern>/app/*</url-pattern>
     </filter-mapping>
+
+    <servlet>
+        <servlet-name>ServletUsers</servlet-name>
+        <servlet-class>Controller.ServletUsers</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletUsers</servlet-name>
+        <url-pattern>/Controller/ServletUsers</url-pattern>
+    </servlet-mapping>
 
 
 </web-app>
