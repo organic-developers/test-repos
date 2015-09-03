@@ -198,8 +198,9 @@ public class User {
                 .list();
         session.getTransaction().commit();
         //session.close();
-        User user = (User) modifiedUser.get(0);
+        System.out.println(modifiedUser.size());
         if (!modifiedUser.isEmpty()) {
+            User user = (User) modifiedUser.get(0);
             return user;
         } else {
             return null;

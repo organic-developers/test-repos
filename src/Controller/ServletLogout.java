@@ -26,7 +26,7 @@ public class ServletLogout extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        request.getRequestDispatcher("/login.jsp").include(request,response);
+        request.getRequestDispatcher(request.getContextPath() + "/login.jsp").include(request, response);
         HttpSession session = request.getSession();
         session.invalidate();
     }

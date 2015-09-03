@@ -35,11 +35,11 @@ public class ServletLogin extends HttpServlet {
         if (user.isValid() != null) {
             HttpSession session = request.getSession();
             session.setAttribute("name", name);
-            session.setAttribute("user",user.isValid());
-            request.getRequestDispatcher("/app/dashboard-index.jsp").include(request, response);
+            session.setAttribute("user", user.isValid());
+            request.getRequestDispatcher(request.getContextPath() + "/app/dashboard-index.jsp").include(request, response);
         } else {
             //PrintWriter out = response.getWriter();
-            request.getRequestDispatcher("/login.jsp").include(request, response);
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
             /*out.println("<script type=\"text/javascript\">");
             out.println("document.getElementById('login-form').innerHTML = ;");
             out.println("<div class=\"alert alert-danger\" role=\"alert\">Login Failed </div>");*/

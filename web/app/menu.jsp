@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"
-        import="Models.User" %>
+         import="Models.User" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,20 +13,20 @@
     <title>سامانه انجمن های علمی</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="./Stylesheet">
 
     <!-- Bootstrap Core CSS RTL-->
-    <link href="/css/bootstrap-rtl.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-rtl.min.css" rel="./Stylesheet">
 
     <!-- Custom CSS -->
-    <link href="/css/sb-admin.css" rel="stylesheet">
-    <link href="/css/sb-admin-rtl.css" rel="stylesheet">
+    <link href="../css/sb-admin.css" rel="./Stylesheet">
+    <link href="../css/sb-admin-rtl.css" rel="./Stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="/css/plugins/morris.css" rel="stylesheet">
+    <link href="../css/plugins/morris.css" rel="./Stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../font-awesome/css/font-awesome.min.css" rel="./Stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -44,7 +44,7 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-            <span class="sr-only">Toggle navigation</span>
+            <span class="./Sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -60,11 +60,11 @@
                 <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-gear" ></i> تنظيمات</a>
+                    <a href="#"><i class="fa fa-fw fa-gear"></i> تنظيمات</a>
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/Controller/ServletLogout"><i class="fa fa-fw fa-power-off"></i>خروج</a>
+                    <a href="../Controller/ServletLogout"><i class="fa fa-fw fa-power-off"></i>خروج</a>
                 </li>
             </ul>
         </li>
@@ -74,37 +74,38 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
             <li>
-                <a href="${pageContext.request.contextPath}/dashboard-index.jsp"><i class="fa fa-fw fa-dashboard"></i> خانه</a>
+                <a href="../Controller/ServletDashboardIndex"><i class="fa fa-fw fa-dashboard"></i> خانه</a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/report.jsp"><i class="fa fa-fw fa-bar-chart-o"></i> سيستم گزارش گيري</a>
+                <a href="../Controller/ServletReport"><i class="fa fa-fw fa-bar-chart-o"></i> سيستم گزارش گيري</a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/ServletMenu"><i class="fa fa-fw fa-users"></i> اعضا</a>
+                <a href="../Controller/ServletMenu"><i class="fa fa-fw fa-users"></i> اعضا</a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/emialing.jsp"><i class="fa fa-fw fa-envelope"></i>سیستم اطلاع رسانی </a>
+                <a href="../Controller/ServletEmailing"><i class="fa fa-fw fa-envelope"></i>سیستم اطلاع رسانی </a>
             </li>
             <li class="hide">
-                <a href="${pageContext.request.contextPath}/evaluation.jsp"><i class="fa fa-fw  fa-tasks"></i> ارزيابي طرح ها </a>
+                <a href="../Controller/ServletEvaluation"><i class="fa fa-fw  fa-tasks"></i> ارزيابي طرح ها </a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/create-plan.jsp"><i class="fa fa-fw fa-file-text"></i> تعريف طرح</a>
+                <a href="../Controller/ServletCreateplan"><i class="fa fa-fw fa-file-text"></i> تعريف طرح</a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/suggested&future-plans.jsp"><i class="fa fa-calendar-o"></i> طرح های آینده و طرح های پیشنهادی</a>
+                <a href="Suggested&future-plans.jsp"><i class="fa fa-calendar-o"></i> طرح های آینده و طرح های
+                    پیشنهادی</a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/associations-management.jsp"> مدیریت انجمن ها</a>
+                <a href="../Controller/ServletAssociationManager"> مدیریت انجمن ها</a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/registeration-verification.jsp"><i class="fa fa-check-square-o"></i> تایید ثبت نام ها</a>
+                <a href="registeration-verification.jsp"><i class="fa fa-check-square-o"></i> تایید ثبت نام ها</a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/resource-management.jsp"><i class="fa fa-sitemap"></i> مديريت منابع</a>
+                <a href="resource-management.jsp"><i class="fa fa-sitemap"></i> مديريت منابع</a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/resource-management2.jsp">test</a>
+                <a href="/app/resource-management2.jsp">test</a>
             </li>
         </ul>
     </div>

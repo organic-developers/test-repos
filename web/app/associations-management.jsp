@@ -23,8 +23,8 @@
 
   <!-- Custom CSS -->
   <link href="../css/sb-admin.css" rel="stylesheet">
-  <link href="/css/sb-admin-rtl.css" rel="stylesheet">
-  <link href="/css/added.css" rel="stylesheet"/>
+  <link href="../css/sb-admin-rtl.css" rel="stylesheet">
+  <link href="../css/added.css" rel="stylesheet"/>
 
   <!-- Custom Fonts -->
   <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -117,7 +117,7 @@
 
           <div class="col-sm-6 col-md-3">
             <div class="thumbnail">
-              <img src="\image\sport4.jpg" alt="..." style="height: 200px; width: 100%; display: block;">
+              <img src="/image/sport4.jpg" alt="..." style="height: 200px; width: 100%; display: block;">
               <div class="caption">
                 <h4>انجمن علمی دانشجویی برق</h4>
                 <p><a href="#" class="btn btn-primary" role="button">ویرایش</a> <a href="#" class="btn btn-default" role="button">غیر فعال</a></p>

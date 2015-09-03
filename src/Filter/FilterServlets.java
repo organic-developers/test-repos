@@ -8,14 +8,13 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * This is Created by Amir on 8/31/2015.
+ * This is Created by Amir on 09/03/2015.
  */
-@WebFilter(filterName = "FilterCheckLoggedin", urlPatterns = "/app/*")
-public class FilterCheckLoggedin implements Filter {
+@WebFilter(filterName = "FilterServlets")
+public class FilterServlets implements Filter {
     public void destroy() {
     }
 
-    @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;

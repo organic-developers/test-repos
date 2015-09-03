@@ -13,10 +13,10 @@ import java.io.IOException;
 @WebServlet(name = "ServletEmailing")
 public class ServletEmailing extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doGet(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        response.sendRedirect("/app/emailing.jsp");
     }
 }

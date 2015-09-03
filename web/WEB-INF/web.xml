@@ -156,6 +156,14 @@
         <filter-name>FilterCheckLoggedin</filter-name>
         <url-pattern>/app/*</url-pattern>
     </filter-mapping>
+<filter>
+        <filter-name>FilterServlets</filter-name>
+        <filter-class>Filter.FilterServlets</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterServlets</filter-name>
+        <url-pattern>/Secured/*</url-pattern>
+    </filter-mapping>
 
     <servlet>
         <servlet-name>ServletUsers</servlet-name>
@@ -165,6 +173,21 @@
         <servlet-name>ServletUsers</servlet-name>
         <url-pattern>/Controller/ServletUsers</url-pattern>
     </servlet-mapping>
-
+    <servlet>
+        <servlet-name>ServletReport</servlet-name>
+        <servlet-class>Controller.ServletReport</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletReport</servlet-name>
+        <url-pattern>/Controller/ServletReport</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletAssociationManager</servlet-name>
+        <servlet-class>Controller.ServletAssociationManager</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletAssociationManager</servlet-name>
+        <url-pattern>/Controller/ServletAssociationManager</url-pattern>
+    </servlet-mapping>
 
 </web-app>
