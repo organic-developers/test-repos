@@ -1,4 +1,6 @@
-﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+﻿﻿﻿
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -347,20 +349,29 @@
                                             <table class="table table-bordered table-hover table-striped">
                                                 <thead>
                                                 <tr>
-                                                    <th>نام و نام خانوادگی</th>
+                                                    <th>شناسه</th>
+                                                    <th>نام</th>
+                                                    <th>نام خانوادگی</th>
                                                     <th>سمت</th>
                                                     <th>انجمن</th>
 
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <td>3326</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>3:29 PM</td>
-
-                                                </tr>
-                                                <tr>
+                                                <%--@elvariable id="allUser" type="java.util.List"--%>
+                                                <c:forEach items="${allUser}" var="current">
+                                                    <tr>
+                                                        <td><c:out value="${current.id}"/></td>
+                                                        <td><c:out value="${current.fName}"/></td>
+                                                        <td><c:out value="${current.lName}"/></td>
+                                                        <td><c:out value="${current.positionTitle}"/></td>
+                                                        <td><c:out value="${current.associationNumber}"/></td>
+                                                            <%--<td>10/21/2013</td>
+                                                            <td>3:29 PM</td>
+                                                            <td>$321.33</td>--%>
+                                                    </tr>
+                                                </c:forEach>
+                                                <%--<tr>
                                                     <td>3325</td>
                                                     <td>10/21/2013</td>
                                                     <td>3:20 PM</td>
@@ -401,7 +412,7 @@
                                                     <td>10/21/2013</td>
                                                     <td>2:13 PM</td>
 
-                                                </tr>
+                                                </tr>--%>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -729,13 +740,19 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <td>3326</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>3:29 PM</td>
-                                                    <td>$321.33</td>
-                                                </tr>
-                                                <tr>
+                                                <%--@elvariable id="allPlan" type="java.util.List"--%>
+                                                <c:forEach items="${allPlan}" var="current">
+                                                    <tr>
+                                                        <td><c:out value="${current.id}"/></td>
+                                                        <td><c:out value="${current.title}"/></td>
+                                                        <td><c:out value="${current.beginDate}"/></td>
+                                                        <td><c:out value="${current.type}"/></td>
+                                                            <%--<td>10/21/2013</td>
+                                                            <td>3:29 PM</td>
+                                                            <td>$321.33</td>--%>
+                                                    </tr>
+                                                </c:forEach>
+                                                <%--<tr>
                                                     <td>3325</td>
                                                     <td>10/21/2013</td>
                                                     <td>3:20 PM</td>
@@ -776,7 +793,7 @@
                                                     <td>10/21/2013</td>
                                                     <td>2:13 PM</td>
                                                     <td>$943.45</td>
-                                                </tr>
+                                                </tr>--%>
                                                 </tbody>
                                             </table>
                                         </div>

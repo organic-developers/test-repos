@@ -1,5 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java"
-         import="Models.User" %>
+<%@ page import="Models.User" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,7 +45,7 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-            <span class="./Sr-only">Toggle navigation</span>
+            <span class="./Sr-only">لیست گزینه ها</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -56,7 +57,8 @@
     <ul class="nav navbar-left top-nav">
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>
-                <%= session.getAttribute("name")%>
+                <%--@elvariable id="user" type=""--%>
+                <c:out value="${user.fName}"/>
                 <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>

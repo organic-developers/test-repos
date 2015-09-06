@@ -34,7 +34,7 @@ public class ServletLogin extends HttpServlet {
         user.setPassword(pass);
         if (user.isValid() != null) {
             HttpSession session = request.getSession();
-            session.setAttribute("name", name);
+            //session.setAttribute("name", name);
             session.setAttribute("user", user.isValid());
             request.getRequestDispatcher(request.getContextPath() + "/app/dashboard-index.jsp").include(request, response);
         } else {
