@@ -7,10 +7,9 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="connection.url">jdbc:mysql://localhost/sc</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.username">root</property>
-        <property name="connection.password"/>
+        <property name="connection.username">saeed</property>
+        <property name="connection.password">123</property>
         <property name="hibernate.current_session_context_class">thread</property>
-        <!--<property name="hibernate.current_session_context_class">thread</property>-->
         <mapping resource="plan-trip.hbm.xml"/>
         <mapping class="Models.Enlisted" />
         <mapping class="Models.Expense" />
@@ -18,9 +17,13 @@
         <mapping class="Models.Plan" />
         <mapping class="Models.Judge"/>
         <mapping class="Models.Guest"/>
-        <!--<mapping class="Models.Member"/>-->
         <mapping class="Models.User"/>
         <mapping class="Models.Association"/>
+        <mapping class="Models.WorkflowState"/>
+        <mapping class="Models.Workflow"/>
+        <mapping class="Models.WorkflowNavigation"/>
+        <mapping class="Models.PlanStateHistory"/>
+        <mapping class="Models.Change"/>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
     </session-factory>

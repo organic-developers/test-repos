@@ -24,6 +24,7 @@ public class UserDAO {
         return users;
     }
 
+
     public User getUserById(int id){
 
         User user = null;
@@ -37,21 +38,6 @@ public class UserDAO {
             user = (User) session.createQuery( qry )
                     .setParameter( "id", id )
                     .uniqueResult();
-
-            System.out.println(id);
-            System.out.println(id);
-            System.out.println(id);
-            System.out.println(id);
-            System.out.println(id);
-//            user  = (User) session.createQuery(qry )
-//                    .uniqueResult();
-
-//            List users = session.createCriteria(User.class)
-//                    .add(Restrictions.eq("id", id)).list();
-
-//            if (users.size()>0){
-//                user = (User) users.get(0);
-//            }
 
             session.getTransaction().commit();
             session.close();
@@ -77,7 +63,6 @@ public class UserDAO {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-//        User user = session.createCriteria("User.class")
         session.update(user);
 
         session.getTransaction().commit();

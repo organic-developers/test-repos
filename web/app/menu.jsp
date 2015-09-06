@@ -94,20 +94,20 @@
                 <a href="../Controller/ServletCreateplan"><i class="fa fa-fw fa-file-text"></i> تعريف طرح</a>
             </li>
             <li>
-                <a href="Suggested&future-plans.jsp"><i class="fa fa-calendar-o"></i> طرح های آینده و طرح های
+                <a href="../app/suggested&future-plans.jsp"><i class="fa fa-calendar-o"></i> طرح های آینده و طرح های
                     پیشنهادی</a>
             </li>
             <li>
                 <a href="../Controller/ServletAssociationManager"> مدیریت انجمن ها</a>
             </li>
             <li>
-                <a href="registeration-verification.jsp"><i class="fa fa-check-square-o"></i> تایید ثبت نام ها</a>
+                <a href="../app/registeration-verification.jsp"><i class="fa fa-check-square-o"></i> تایید ثبت نام ها</a>
             </li>
             <li>
-                <a href="resource-management.jsp"><i class="fa fa-sitemap"></i> مديريت منابع</a>
+                <a href="../app/resource-management.jsp"><i class="fa fa-sitemap"></i> مديريت منابع</a>
             </li>
             <li>
-                <a href="/app/resource-management2.jsp">test</a>
+                <a href="../app/resource-management2.jsp">test</a>
             </li>
         </ul>
     </div>

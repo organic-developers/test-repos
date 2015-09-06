@@ -21,6 +21,9 @@
   <!-- Bootstrap Core CSS -->
   <link href="../css/bootstrap.min.css" rel="stylesheet">
 
+  <!-- Bootstrap Core CSS RTL-->
+  <link href="../css/bootstrap-rtl.min.css" rel="stylesheet">
+
   <!-- Custom CSS -->
   <link href="../css/sb-admin.css" rel="stylesheet">
   <link href="../css/sb-admin-rtl.css" rel="stylesheet">

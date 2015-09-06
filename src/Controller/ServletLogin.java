@@ -1,5 +1,7 @@
 package Controller;
 
+import Logic.PlanDAO;
+import Logic.UserDAO;
 import Models.User;
 
 import javax.servlet.ServletException;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 
 @WebServlet(name = "ServletLogin")
@@ -36,7 +39,11 @@ public class ServletLogin extends HttpServlet {
             HttpSession session = request.getSession();
             //session.setAttribute("name", name);
             session.setAttribute("user", user.isValid());
+            PlanDAO planDAO = new PlanDAO();
+            List plans = planDAO.getPlansByAssociationNumber(user.isValid().getAssociationNumber());
+            request.setAttribute("plans", plans);
             request.getRequestDispatcher(request.getContextPath() + "/app/dashboard-index.jsp").include(request, response);
+
         } else {
             //PrintWriter out = response.getWriter();
             response.sendRedirect(request.getContextPath() + "/login.jsp");

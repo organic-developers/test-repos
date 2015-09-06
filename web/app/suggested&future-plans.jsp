@@ -45,7 +45,7 @@
     <%@ include file="menu.jsp" %>
 
     <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="myMdal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div aria-hidden="false" style="display: block;" class="modal fade in" id="myModal" tabindex="-1" role="dialog"
              aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">

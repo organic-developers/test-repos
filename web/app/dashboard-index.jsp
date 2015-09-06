@@ -54,20 +54,19 @@
             <br/>
             <br/>
 
+            <!-- Filters Section -->
             <div class="row">
                 <div class="row col-lg-10 col-lg-offset-1">
+
+                    <!-- type filter -->
                     <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-
-
                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                             <div class="panel panel-default">
                                 <div class="panel-heading" role="tab" id="headingOne">
                                     <h4 class="panel-title">
                                         <a class="collapsed" role="button" data-toggle="collapse"
                                            data-parent="#accordion"
-                                           href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                            ماهیت
-                                        </a>
+                                           href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">ماهیت</a>
                                     </h4>
                                 </div>
                                 <div style="height: 0px;" aria-expanded="false" id="collapseOne"
@@ -113,12 +112,11 @@
 
 
                         </div>
-
-
                     </div>
+                    <!-- /type filter -->
+
+                    <!-- association filter -->
                     <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-
-
                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                             <div class="panel panel-default">
                                 <div class="panel-heading" role="tab" id="headingTwo">
@@ -237,12 +235,11 @@
 
 
                         </div>
-
-
                     </div>
+                    <!-- /association filter -->
+
+                    <!-- date filter -->
                     <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 ">
-
-
                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                             <div class="panel panel-default">
                                 <div class="panel-heading" role="tab" id="accordion">
@@ -289,20 +286,25 @@
 
 
                         </div>
-
-
                     </div>
+                    <!-- /date filter -->
+
+                    <!-- filter button -->
                     <div class="col-lg-1 col-lg-offset-2">
                         <button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal">نمایش
                         </button>
                     </div>
+                    <!-- /filter button -->
+
                 </div>
             </div>
-
-
+            <!-- /Filters Section -->
         </div>
 
+        <!-- box section -->
         <div class="row">
+
+            <!-- confirmed plans box -->
             <div class="col-lg-2 col-lg-offset-1 col-md-6 col-xs-6">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -339,7 +341,9 @@
                     </a></div>
                 </div>
             </div>
+            <!-- /confirmed plans box -->
 
+            <!-- boss box -->
             <div class="col-lg-2 col-md-6 col-xs-6">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -376,6 +380,9 @@
                     </a></div>
                 </div>
             </div>
+            <!-- /boss box -->
+
+            <!-- expert box -->
             <div class="col-lg-2 col-md-6 col-xs-6">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -412,6 +419,9 @@
                     </a></div>
                 </div>
             </div>
+            <!-- /expert box -->
+
+            <!-- advisor box -->
             <div class="col-lg-2 col-md-6 col-xs-6">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -448,6 +458,9 @@
                     </a></div>
                 </div>
             </div>
+            <!-- /advisor box -->
+
+            <!-- clerk box -->
             <div class="col-lg-2 col-md-6 col-xs-6">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -487,383 +500,81 @@
                     </a></div>
                 </div>
             </div>
-        </div>
+            <!-- /clerk box -->
 
+        </div>
+        <!-- /box section -->
+
+        <!-- tab pane -->
         <div class="tab-content ">
 
+            <!-- confirmed plans box contents -->
             <div id="menu1" class="tab-pane fade  in active">
                 <h3 class="page-header">محتویات صندوق طرح های تصویب شده</h3>
 
-                <div class="well well-lg" >
-                    <div style="direction: rtl">
+                <div class="well well-lg">
                         <div class="row">
                             <div class="col-lg-8">
-                                <h5 class="page-header">جلسه معارفه ورودی های 93 / انجمن علمی کامپیوتر و آی تی</h5>
+                                <h5 class="page-header"> معارفه ورودی های 93 / انجمن علمی کامپیوتر و فناوری اطلاعات</h5>
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <button type="button" class="btn btn-info" data-toggle="modal"
-                                                data-target="#">ویرایش
-                                        </button>
+                                                data-target="#">ویرایش</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
-                <div class="well well-lg" >
-                    <div style="direction: rtl">
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <h5 class="page-header">جلسه معارفه ورودی های 93 / انجمن علمی کامپیوتر و آی تی</h5>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <button type="button" class="btn btn-info" data-toggle="modal"
-                                                data-target="#">ویرایش
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="well well-lg" >
-                    <div style="direction: rtl">
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <h5 class="page-header">جلسه معارفه ورودی های 93 / انجمن علمی کامپیوتر و آی تی</h5>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <button type="button" class="btn btn-info" data-toggle="modal"
-                                                data-target="#">ویرایش
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="well well-lg" >
-                    <div style="direction: rtl">
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <h5 class="page-header">جلسه معارفه ورودی های 93 / انجمن علمی کامپیوتر و آی تی</h5>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <button type="button" class="btn btn-info" data-toggle="modal"
-                                                data-target="#">ویرایش
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="well well-lg" style="border: 2px solid #337AB7;min-height:140px">
-                    <div class="row">
-                        <div style="direction: rtl;" class="col-lg-8">
-
-                            <h5 style="margin-top: 0px; font-size: 17px;" class="page-header" data-toggle="modal"
-                                data-target="#myModal">عنوان: دوره آموزشی حفاظت</h5>
-
-                            ماهیت: دوره آموزشی
-                            / محل برگزاری: تالار شقایق
-                            / تاریخ برگزاری: 1394/3/3
-
-                            <div class="row">
-                                <div class="col-lg-12"><br>
-
-                                    <button type="button" class="btn btn-info " data-toggle="modal"
-                                            data-target="#myModal">جزییات
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-lg-offset-0"><img style="width: 50%; float: left; margin-top: 7px;"
-                                                                   src="../image/pic1.jpg" class=""
-                                                                   alt="Generic placeholder image"></div>
-
-                    </div>
-                </div>
-
 
             </div>
+            <!-- /confirmed plans box contents -->
+
+            <!-- boss box contents -->
             <div id="menu2" class="tab-pane fade">
                 <h3 class="page-header">محتویات صندوق ریاست انجمن ها</h3>
 
                 <div class="well well-lg" style="border: 2px solid #F0AD4E;min-height:140px">
                     Look, I'm in a large well!
                 </div>
-                <div class="well well-lg" style="border: 2px solid #F0AD4E;min-height:140px">
-                    Look, I'm in a large well!
-                </div>
-                <div class="well well-lg" style="border: 2px solid #F0AD4E;min-height:140px">
-                    Look, I'm in a large well!
-                </div>
-                <div class="well well-lg" style="border: 2px solid #F0AD4E;min-height:140px">
-                    Look, I'm in a large well!
-                </div>
-                <div class="well well-lg" style="border: 2px solid #F0AD4E;min-height:140px">
-                    Look, I'm in a large well!
-                </div>
             </div>
+            <!-- /boss box contents -->
+
+            <!-- expert box contents -->
             <div id="menu3" class="tab-pane fade">
                 <h3 class="page-header"> محتویات صندوق کارشناس انجمن ها</h3>
 
                 <div class="well well-lg" style="border: 2px solid #D9534F;min-height:140px">
                     Look, I'm in a large well!
                 </div>
-                <div class="well well-lg" style="border: 2px solid #D9534F;min-height:140px">
-                    Look, I'm in a large well!
-                </div>
-                <div class="well well-lg" style="border: 2px solid #D9534F;min-height:140px">
-                    Look, I'm in a large well!
-                </div>
-                <div class="well well-lg" style="border: 2px solid #D9534F;min-height:140px">
-                    Look, I'm in a large well!
-                </div>
-                <div class="well well-lg" style="border: 2px solid #D9534F;min-height:140px">
-                    Look, I'm in a large well!
-                </div>
             </div>
+            <!-- /expert box contents -->
+
+            <!-- advisor box contents -->
             <div id="menu4" class="tab-pane fade">
                 <h3 class="page-header">محتویات صندوق مشاور علمی</h3>
 
                 <div class="well well-lg" style="border: 2px solid #D9534F;min-height:140px">
                     Look, I'm in a large well!
                 </div>
-                <div class="well well-lg" style="border: 2px solid #D9534F;min-height:140px">
-                    Look, I'm in a large well!
-                </div>
-                <div class="well well-lg" style="border: 2px solid #D9534F;min-height:140px">
-                    Look, I'm in a large well!
-                </div>
-                <div class="well well-lg" style="border: 2px solid #D9534F;min-height:140px">
-                    Look, I'm in a large well!
-                </div>
-                <div class="well well-lg" style="border: 2px solid #D9534F;min-height:140px">
-                    Look, I'm in a large well!
-                </div>
             </div>
+            <!-- /advisor box contents -->
+
+            <!-- clerk box contents -->
             <div id="menu5" class="tab-pane fade">
                 <h3 class="page-header">محتویات صندوق دبیر</h3>
 
                 <div class="well well-lg" style="border: 2px solid #D9534F;min-height:140px">
                     Look, I'm in a large well!
                 </div>
-                <div class="well well-lg" style="border: 2px solid #D9534F;min-height:140px">
-                    Look, I'm in a large well!
-                </div>
-                <div class="well well-lg" style="border: 2px solid #D9534F;min-height:140px">
-                    Look, I'm in a large well!
-                </div>
-                <div class="well well-lg" style="border: 2px solid #D9534F;min-height:140px">
-                    Look, I'm in a large well!
-                </div>
-                <div class="well well-lg" style="border: 2px solid #D9534F;min-height:140px">
-                    Look, I'm in a large well!
-                </div>
             </div>
+            <!-- /clerk box contents -->
+
         </div>
+        <!-- /tab pane -->
 
 
     </div>
     <!-- /.container-fluid -->
-
-
-    <!-- Modal -->
-    <div id="myModal" class="modal fade hide" role="dialog">
-        <div class="modal-dialog modal-lg">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Some text in the modal.</p>
-
-                    <p>Some text in the modal.</p>
-
-                    <p>Some text in the modal.</p>
-
-                    <p>Some text in the modal.</p>
-
-                    <p>Some text in the modal.</p>
-
-                    <p>Some text in the modal.</p>
-
-                    <p>Some text in the modal.</p>
-
-                    <p>Some text in the modal.</p>
-
-                    <p>Some text in the modal.</p>
-
-                    <p>Some text in the modal.</p>
-
-                    <p>Some text in the modal.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" id="details-plan-table" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">جزییات طرح</h4>
-                </div>
-                <div class="modal-body">
-
-                    <div class="row"><br>
-
-                        <div
-                                class="col-lg-12">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>عنوان</th>
-                                        <th>دبیر</th>
-                                        <th>ویرایش شده توسط کارشناس</th>
-                                        <th>ویرایش شده توسط مدیر</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>نام طرح</td>
-                                        <td>جسله معارف ورودی های 93 دانشکده کامپیوتر</td>
-                                        <td>جسله معارف ورودی های 93 دانشکده کامپیوتر</td>
-                                        <td>جسله معارف ورودی های 93 دانشکده کامپیوتر</td>
-                                    </tr>
-                                    <tr>
-                                        <td>محل برگزاری</td>
-                                        <td>تالار شقایق</td>
-                                        <td>تالار شقایق</td>
-                                        <td>تالار شقایق</td>
-                                    </tr>
-                                    <tr>
-                                        <td>ماهیت طرح</td>
-                                        <td>دوره آموزشی</td>
-                                        <td>دوره آموزشی</td>
-                                        <td>دوره آموزشی</td>
-                                    </tr>
-                                    <tr>
-                                        <td>تاریخ برگزاری</td>
-                                        <td>1394/4/5</td>
-                                        <td>1394/4/5</td>
-                                        <td>1394/4/5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>تاریخ پایان برگزاری</td>
-                                        <td>1394/4/5</td>
-                                        <td>1394/4/5</td>
-                                        <td>1394/4/5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>ساعت برگزاری</td>
-                                        <td>13:30</td>
-                                        <td>13:30</td>
-                                        <td>13:30</td>
-                                    </tr>
-                                    <tr>
-                                        <td>موارد درخواستی از گروه انجمن های علمی دانشجویی</td>
-                                        <td>--</td>
-                                        <td>--</td>
-                                        <td>--</td>
-                                    </tr>
-                                    <tr>
-                                        <td>پرسنل اجرایی(تعداد و نام + شماره تماس دو مسئول اصلی)</td>
-                                        <td>مدیریت انجمن ها(دکتر برادران)،رئیس دانشکده کامپیوتر(دکتر حسن پور)،معاونت
-                                            پزوهشی دانشگاه(دکتر پویان)
-                                        </td>
-                                        <td>مدیریت انجمن ها(دکتر برادران)،رئیس دانشکده کامپیوتر(دکتر حسن پور)،معاونت
-                                            پزوهشی دانشگاه(دکتر پویان)
-                                        </td>
-                                        <td>مدیریت انجمن ها(دکتر برادران)،رئیس دانشکده کامپیوتر(دکتر حسن پور)،معاونت
-                                            پزوهشی دانشگاه(دکتر پویان)
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>زیر هزینه ها</td>
-
-
-                                    </tr>
-                                    <tr>
-                                        <td>هزینه استاد</td>
-                                        <td>۲۲۰ هزار تومان</td>
-
-                                        <td>
-                                            200 هزار تومان
-                                        </td>
-                                        <td>100 هزار تومان</td>
-                                    </tr>
-                                    <tr>
-                                        <td>هزینه تبلیغات</td>
-                                        <td>۲۲۰ هزار تومان</td>
-
-                                        <td>
-                                            200 هزار تومان
-                                        </td>
-                                        <td>100 هزار تومان</td>
-                                    </tr>
-                                    <tr>
-                                        <td>هزینه کتاب</td>
-                                        <td>۲۲۰ هزار تومان</td>
-
-                                        <td>
-                                            200 هزار تومان
-                                        </td>
-                                        <td>100 هزار تومان</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">نظر مشاورعلمی</h3>
-                                </div>
-                                <div class="panel-body">طرح خوبیه فقط زمانش بیشتر بشه بهتره</div>
-                            </div>
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">نظر کارشناس</h3>
-                                </div>
-                                <div class="panel-body">مدرس باید تغییر پیدا کنه</div>
-                            </div>
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">نظر مدیر</h3>
-                                </div>
-                                <div class="panel-body"> مدرس به آقای دکتر بابایی تغییر پیدا کردن و طرح تصویب شد.</div>
-                            </div>
-
-                        </div>
-
-
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">تایید طرح</button>
-                    <button class="btn btn-warning" type="submit">برگشت برای بازبینی</button>
-                    <button class="btn btn-danger" type="submit">رد طرح</button>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
 
 
 </div>

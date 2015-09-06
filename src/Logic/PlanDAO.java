@@ -45,6 +45,23 @@ public class PlanDAO {
         return plan;
     }
 
+    public List<Plan> getPlansByAssociationNumber(int associationNumber){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        String qry = "select e from Plan e " +
+                " where e.associationNumber = :associationNumber";
+        List plans = session.createQuery( qry )
+                .setParameter( "associationNumber", associationNumber )
+                .list();
+
+        session.getTransaction().commit();
+        session.close();
+
+        return plans;
+    }
+
     public void addPlan(Plan plan) throws HibernateException {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();

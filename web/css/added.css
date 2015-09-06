@@ -29,8 +29,9 @@ div.well-lg .page-header {
 
 div.tab-pane .well-lg {
 	padding: 16px;
-	border: 1px solid #587086;
-	min-height:100px
+	border: 2px solid #337AB7;
+	min-height:100px;
+	direction: rtl;
 }
 
 div.tab-pane {
