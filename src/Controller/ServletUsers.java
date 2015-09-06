@@ -36,16 +36,8 @@ public class ServletUsers extends HttpServlet {
         UserDAO userDAO = new UserDAO();
         if (ajax) {
             // Handle ajax (JSON) response.
-            System.out.println(ajax);
-//            request.getRequestDispatcher("/app/successful.jsp").forward(request, response);
-            System.out.println("and this");
 
-            System.out.println(request.getParameter("nationalId"));
-            System.out.println();
-            User user = userDAO.getUser(request.getParameter("nationalId"));
-            System.out.println(user.getlName());
-            System.out.println("wooooooooooooha!!!!!!!!!!!!!!!!!!!!!!");
-            System.out.println(request.getParameter("nationalId"));
+            User user = userDAO.getUserById(Integer.parseInt(request.getParameter("id").trim()));
 
             String json = new Gson().toJson(user);
 
@@ -58,7 +50,7 @@ public class ServletUsers extends HttpServlet {
             if(request.getAttribute("initiated") != null && request.getAttribute("initiated").equals("menu")){
 
                 fillTable(request, response, userDAO);
-            } else {
+            } else if (request.getParameter("id") == null || request.getParameter("id").equals("")){
                 User user = makeUser(request);
 
                 try {
@@ -67,6 +59,11 @@ public class ServletUsers extends HttpServlet {
                     e.printStackTrace();
                     request.getRequestDispatcher("/app/failed.jsp").forward(request, response);
                 }
+                fillTable(request, response, userDAO);
+            } else {
+                User user = makeUser(request);
+                user.setId(Integer.parseInt(request.getParameter("id").trim()));
+                userDAO.updateUser(user);
                 fillTable(request, response, userDAO);
             }
         }
@@ -100,12 +97,18 @@ public class ServletUsers extends HttpServlet {
         user.setNationalId(request.getParameter("nationalId"));
         user.setPhone(request.getParameter("phone"));
 
-        String directory = "/uploaded-files/";
-        Part photo = request.getPart("photo");
-        if(photo != null){
-            photo.write(photo.getSubmittedFileName());
-            user.setPhoto(directory + photo.getSubmittedFileName());
+
+        try{
+            String directory = "/uploaded-files/";
+            Part photo = request.getPart("photo");
+            if (photo != null) {
+                photo.write(photo.getSubmittedFileName());
+                user.setPhoto(directory + photo.getSubmittedFileName());
+            }
+        } catch (Exception e){
+            user.setPhoto(request.getParameter("image2"));
         }
+
         return user;
     }
 }

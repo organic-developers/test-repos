@@ -1,5 +1,6 @@
 ﻿<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,11 +46,11 @@
                     $("#testp").text(x);
                     $.post("/Controller/ServletUsers",
                             {
-                                nationalId: x,
+                                id: x,
                             },
                             function (data, status) {
 //                                alert("Data: " + data + "\nStatus: " + status);
-//                                $("#testp").text(data.birthYear);
+                                $("#id").val(data.id);
                                 $("#fName").val(data.fName);
                                 $("#lName").val(data.lName);
                                 $("#userName").val(data.userName);
@@ -60,19 +61,17 @@
                                 $("#email").val(data.email);
                                 $("#nationalId").val(data.nationalId);
                                 $("#phone").val(data.phone);
-                                $("#image").attr("src", data.photo);
                                 $("#studentId").val(data.studentId);
+                                $("#image").attr("src", data.photo);
+                                $("#image2").val(data.photo);
+                                $("#photo").attr("required", false);
                             });
-//                    $.post("/Controller/ServletUsers",
-//                            { nationalId: x},
-//                            function(responseJson){
-//                                $("$lName").val("one's working")
-//                                $.on(responseJson, function(product){
-//                                    $("#image").attr("src", product.photo);
-//                                    $("fName").val("it's working");
-//                                });
-//                            });
                 });
+            });
+        });
+        $(document).ready(function(){
+            $("#reset").onclick(function(){
+                $("#photo").attr("required", "true");
             });
         });
     </script>
@@ -115,52 +114,24 @@
                                         <th>نام خانوادگی</th>
                                         <th>سمت</th>
                                         <th>انجمن مربوطه</th>
-                                        <th style="display: none;">شماره شناسایی</th>
+                                        <th style="display: none;">id</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <% List users = (List) request.getAttribute("users"); %>
-                                    <%if (users != null) {%>
-                                    <%! int i = 0; %>
-                                    <%while (i < users.size()) {%>
-                                    <% User user = (User) users.get(i);%>
-                                    <tr>
-                                    <td><%=user.getfName()%>
-                                    </td>
-                                    <td><%=user.getlName()%>
-                                    </td>
-                                    <td><%=user.getPositionTitle()%>
-                                    </td>
-                                    <td><%=user.getAssociationNumber()%>
-                                    </td>
-                                    <td style="display: none;"><%=user.getNationalId()%>
-                                    </td>
-                                    </tr>
-                                    <%i++;%>
-                                    <%}%>
-                                    <%}%>
-                                    <%--<c:forEach var="user" items="${userList}">--%>
-                                        <%--<tr>--%>
-                                            <%--<td class="td-highlighted-2">--%>
-                                                <%--<div align="left">${user.fName}</div>--%>
-                                            <%--</td>--%>
-                                            <%--<td class="td-highlighted-2">--%>
-                                                <%--<div align="left">${user.lName}</div>--%>
-                                            <%--</td>--%>
-                                            <%--<td class="td-highlighted-2">--%>
-                                                <%--<div align="left">${user.positionTitle}</div>--%>
-                                            <%--</td>--%>
-                                            <%--<td class="td-highlighted-2">--%>
-                                                <%--<div align="left">${user.associationNumber}</div>--%>
-                                            <%--</td>--%>
-                                        <%--</tr>--%>
-                                    <%--</c:forEach>--%>
+                                    <c:forEach var="user" items="${users}">
+                                        <tr>
+                                            <td>${user.fName}</td>
+                                            <td>${user.lName}</td>
+                                            <td>${user.positionTitle}</td>
+                                            <td>${user.associationNumber}</td>
+                                            <td style="display: none;">${user.id}</td>
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    <p id="testp">gggg</p>
                 </div>
 
                 <div class="col-lg-4">
@@ -174,7 +145,9 @@
                             </div>
                             <form role="form" action="/Controller/ServletUsers" method="post"
                                   enctype="multipart/form-data">
-                                <%--<input type="text" id="id" name="id" style="display: none;">--%>
+                                <input type="text" id="image2" name="image2" style="display: none;">
+                                <input type="text" id="id" name="id" style="display: none;">
+                                <%--<label id="id" name="id"></label>--%>
                                 <div class="form-group">
                                     <label for="associationNumber">انجمن:</label>
                                     <select class="form-control" id="associationNumber" name="associationNumber">
@@ -208,13 +181,13 @@
                                     <input type="text" class="form-control" id="lName" name="lName" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="title">سمت:</label>
-                                    <select class="form-control" id="title" name="positionTitle">
+                                    <label for="positionTitle">سمت:</label>
+                                    <select class="form-control" id="positionTitle" name="positionTitle">
                                         <option value="کارشناس">کارشناس</option>
                                         <option value="مشاور">مشاور علمی</option>
                                         <option value="دبیر">دبیر</option>
-                                        <option value="دبیر">مسئول روابط عمومی</option>
-                                        <option value="دبیر">مسئول امور مالی</option>
+                                        <option value="مسئول روابط عمومی">مسئول روابط عمومی</option>
+                                        <option value="مسئول امور مالی">مسئول امور مالی</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -248,11 +221,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="photo">عکس:</label>
-                                    <input type="file" id="photo" name="photo">
+                                    <input type="file" id="photo" name="photo" required="true">
                                 </div>
 
 
-                                <button type="reset" class="btn btn-primary">انصراف</button>
+                                <button type="reset" class="btn btn-primary" id="reset">انصراف</button>
                                 <button type="submit" class="btn btn-primary pull-left">اعمال تغییرات</button>
 
                             </form>
