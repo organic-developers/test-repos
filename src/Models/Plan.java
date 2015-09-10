@@ -1,6 +1,8 @@
 package Models;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import java.util.Date;
 import java.util.Set;
@@ -202,7 +204,7 @@ public class Plan {
 
     private WorkflowState workflowState;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     public WorkflowState getWorkflowState() {
         return workflowState;
     }

@@ -14,6 +14,105 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>ServletUploadSupervisorAgreement</servlet-name>
+        <servlet-class>Controller.ServletUploadSupervisorAgreement</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletUploadSupervisorAgreement</servlet-name>
+        <url-pattern>/Controller/ServletUploadSupervisorAgreement</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletUploadPoster</servlet-name>
+        <servlet-class>Controller.ServletUploadPoster</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletUploadPoster</servlet-name>
+        <url-pattern>/Controller/ServletUploadPoster</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletExpertConfirmPoster</servlet-name>
+        <servlet-class>Controller.ServletExpertConfirmPoster</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletExpertConfirmPoster</servlet-name>
+        <url-pattern>/Controller/ServletExpertConfirmPoster</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletBossConfirmPoster</servlet-name>
+        <servlet-class>Controller.ServletBossConfirmPoster</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletBossConfirmPoster</servlet-name>
+        <url-pattern>/Controller/ServletBossConfirmPoster</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletAdvisorConfirmPlan</servlet-name>
+        <servlet-class>Controller.ServletAdvisorConfirmPlan</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletAdvisorConfirmPlan</servlet-name>
+        <url-pattern>/Controller/ServletAdvisorConfirmPlan</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletEnterRegistrations</servlet-name>
+        <servlet-class>Controller.ServletEnterRegistrations</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletEnterRegistrations</servlet-name>
+        <url-pattern>/Controller/ServletEnterRegistrations</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletExpertConfirmRegistrations</servlet-name>
+        <servlet-class>Controller.ServletExpertConfirmRegistrations</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletExpertConfirmRegistrations</servlet-name>
+        <url-pattern>/Controller/ServletExpertConfirmRegistrations</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletBossConfirmRegistrations</servlet-name>
+        <servlet-class>Controller.ServletBossConfirmRegistrations</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletBossConfirmRegistrations</servlet-name>
+        <url-pattern>/Controller/ServletBossConfirmRegistrations</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletBossConfirmPlan</servlet-name>
+        <servlet-class>Controller.ServletBossConfirmPlan</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletBossConfirmPlan</servlet-name>
+        <url-pattern>/Controller/ServletBossConfirmPlan</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletExpertConfirmPlan</servlet-name>
+        <servlet-class>Controller.ServletExpertConfirmPlan</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletExpertConfirmPlan</servlet-name>
+        <url-pattern>/Controller/ServletExpertConfirmPlan</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletDashboardSwitch</servlet-name>
+        <servlet-class>Controller.ServletDashboardSwitch</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletDashboardSwitch</servlet-name>
+        <url-pattern>/Controller/ServletDashboardSwitch</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>ServletCreateplan</servlet-name>
         <servlet-class>Controller.ServletCreateplan</servlet-class>
     </servlet>
@@ -86,12 +185,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>ServletDashboardIndex</servlet-name>
-        <servlet-class>Controller.ServletDashboarIndex</servlet-class>
+        <servlet-name>ServletDashboardInitializer</servlet-name>
+        <servlet-class>Controller.ServletDashboardInitializer</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ServletDashboardIndex</servlet-name>
-        <url-pattern>/Controller/ServletDashboardIndex</url-pattern>
+        <servlet-name>ServletDashboardInitializer</servlet-name>
+        <url-pattern>/Controller/ServletDashboardInitializer</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -156,7 +255,7 @@
         <filter-name>FilterCheckLoggedin</filter-name>
         <url-pattern>/app/*</url-pattern>
     </filter-mapping>
-<filter>
+    <filter>
         <filter-name>FilterServlets</filter-name>
         <filter-class>Filter.FilterServlets</filter-class>
     </filter>

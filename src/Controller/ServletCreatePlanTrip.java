@@ -10,6 +10,8 @@ import javax.servlet.http.Part;
 import java.io.IOException;
 import java.util.HashSet;
 
+import Logic.PlanDAO;
+import Logic.WorkflowStateDAO;
 import Models.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -31,21 +33,13 @@ public class ServletCreatePlanTrip extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        System.out.print(request.getRequestURI());
-        System.out.print(request.getContextPath());
-
+        PlanDAO planDAO = new PlanDAO();
 
         Plan plan = makePlan(request);
 
         try {
-            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-            Session session = sessionFactory.openSession();
-            session.beginTransaction();
 
-            session.save(plan);
-
-            session.getTransaction().commit();
-            session.close();
+            planDAO.addPlan(plan);
 
             request.getRequestDispatcher("/app/successful.jsp").forward(request, response);
 
@@ -60,7 +54,7 @@ public class ServletCreatePlanTrip extends HttpServlet {
     public Plan makePlan(HttpServletRequest request) throws IOException, ServletException {
         Plan plan = new Plan();
 
-//        plan.setAssociationNumber((Integer) request.getSession().getAttribute("user").getAssociationNumber());
+        plan.setAssociationNumber(((User) request.getSession().getAttribute("user")).getAssociationNumber());
         plan.setTitle(request.getParameter("title"));
         plan.setPlace(request.getParameter("place"));
         plan.setBeginDate(request.getParameter("beginDate"));
@@ -73,8 +67,6 @@ public class ServletCreatePlanTrip extends HttpServlet {
         plan.setStudentMoney(request.getParameter("studentMoney"));
         plan.setSponsorMoney(request.getParameter("sponsorMoney"));
         plan.setSidePrograms(request.getParameter("sidePrograms"));
-        plan.setType(request.getParameter("type"));
-
 
 
         String directory = "/uploaded-files/";
@@ -113,8 +105,27 @@ public class ServletCreatePlanTrip extends HttpServlet {
         plan.setGuests(makeGuests(request));
         plan.setJudges(makeJudges(request));
 
+
+        WorkflowStateDAO workflowStateDAO = new WorkflowStateDAO();
+
+        switch (request.getParameter("type").trim()){
+            case "planTrip":
+                plan.setType("»«“œ?œ ⁄·„?");
+                plan.setWorkflowState(workflowStateDAO.getWorkflowStateById(1));
+                break;
+//            case "„”«»ﬁÂ ⁄·„?":
+//                workflowState.setId();
+//                break;
+//            .
+//            .
+//            .
+//            default:
+//                workflowState.setId();
+        }
+
         return plan;
     }
+
 
     public HashSet makeEnlisted(HttpServletRequest request) {
         int i = 0;
@@ -157,6 +168,7 @@ public class ServletCreatePlanTrip extends HttpServlet {
         return null;
     }
 
+
     public HashSet makePersonnel(HttpServletRequest request) {
         int i = 0;
         if (!(request.getParameter("personnel-fName-" + i) == null || request.getParameter("personnel-fName-" + i).equals(""))) {
@@ -174,6 +186,7 @@ public class ServletCreatePlanTrip extends HttpServlet {
         return null;
     }
 
+
     public HashSet makeGuests(HttpServletRequest request) {
         int i = 0;
         if (!(request.getParameter("guest-fName-" + i) == null || request.getParameter("guest-fName-" + i).equals(""))) {
@@ -189,6 +202,7 @@ public class ServletCreatePlanTrip extends HttpServlet {
         }
         return null;
     }
+
 
     public HashSet makeJudges(HttpServletRequest request) {
         int i = 0;
@@ -207,7 +221,6 @@ public class ServletCreatePlanTrip extends HttpServlet {
         }
         return null;
     }
-
 
 }
 

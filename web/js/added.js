@@ -58,6 +58,43 @@
                 $(".judge-table").append(x);
                 makeRemovable();
             });
+            $("#enlisted-plus").click(function () {
+                var i = $(".enlisted-table .table-row").length;
+                var x = '<div class="table-row">' +
+                        '<div class="form-group col-xs-2">' +
+                        '<input type="text" class="form-control" name="enlisted-fName-' + i + '" placeholder="نام">' +
+                        '</div>' +
+                        '<div class="form-group col-xs-2">' +
+                        '<input type="text" class="form-control" name="enlisted-lName-' + i + '" placeholder="نام خانوادگی">' +
+                        '</div>' +
+                        '<div class="form-group col-xs-2">' +
+                        '<input type="text" class="form-control" name="enlisted-studentId-' + i + '" placeholder="شماره دانشجویی">' +
+                        '</div>' +
+                        '<div class="form-group col-xs-2">' +
+                        '<input type="text" class="form-control" name="enlisted-phone-' + i + '" placeholder="تلفن همراه">' +
+                        '</div>' +
+                        '<div class="form-group col-xs-3">' +
+                        '<input type="text" class="form-control" name="enlisted-email-' + i + '" placeholder="ایمیل">' +
+                        '</div>' +
+                        '<div class="form-group col-xs-1"><span class="glyphicon glyphicon-remove" ></span></div>' +
+                        '</div>'
+                $(".enlisted-table").append(x);
+                makeRemovable();
+            });
+            $("#guest-plus").click(function () {
+                var i = $(".guest-table .table-row").length;
+                var x = '<div class="table-row">' +
+                        '<div class="form-group col-xs-2">' +
+                        '<input type="text" class="form-control" name="guest-fName-' + i + '" placeholder="نام">' +
+                        '</div>' +
+                        '<div class="form-group col-xs-3">' +
+                        '<input type="text" class="form-control" name="guest-lName-' + i + '" placeholder="نام خانوادگی">' +
+                        '</div>' +
+                        '<div class="form-group col-xs-1"><span class="glyphicon glyphicon-remove" ></span></div>' +
+                        '</div>'
+                $(".guest-table").append(x);
+                makeRemovable();
+            });
 
             makeRemovable();
         });
@@ -71,3 +108,7 @@
         }
         function rename() {
         }
+
+        $(document).ready(function(){
+            $(".readonly").find("input").attr("readonly", "readonly");
+        });

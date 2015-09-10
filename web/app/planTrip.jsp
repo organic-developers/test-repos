@@ -1,8 +1,8 @@
-<%-- :)
+<%--
   Created by IntelliJ IDEA.
   User: Saied
-  Date: 8/8/2015
-  Time: 4:22 PM
+  Date: 9/9/2015
+  Time: 12:44 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -45,9 +45,9 @@
     <script src="/js/jquery-1.11.3.min.js"></script>
     <script src="/js/added.js"></script>
 
-
 </head>
 <body class="dashboard-background">
+
 <div id="wrapper">
 
     <!-- Navigation -->
@@ -60,9 +60,7 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">
-                        ایجاد طرح (بازدید علمی)
-                    </h1>
+                    <h1 class="page-header">مشاهده طرح</h1>
                 </div>
             </div>
             <!-- /.row -->
@@ -74,11 +72,19 @@
                       method="post" enctype="multipart/form-data">
                     <!-- type -->
                     <!-- text -->
-                    <div class="form-group" style="display: none;">
+                    <div class="form-group">
                         <label class="control-label col-sm-2">ماهیت:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="type" value="trip">
+                            <select name="type" id="type">
+                                <option value="trip">بازدید علمی</option>
+                                <option value="contest">مسابقات علمی</option>
+                                <option value="exhibition">ترگزاری نمایشگاه</option>
+                                <option value="educational">کلاس ها و دوره های آموزشی</option>
+                                <option value="conference">همایش ها و کنفرانس</option>
+                                <option value="magazine">چاپ نشریه</option>
+                                <option value="other">سایر موارد</option>
+                            </select>
                         </div>
                     </div>
                     <!-- title -->
@@ -87,7 +93,7 @@
                         <label class="control-label col-sm-2">عنوان طرح:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="title">
+                            <input type="text" class="form-control" name="title" value="${plan.title}" readonly>
                         </div>
                     </div>
                     <!-- place -->
@@ -96,7 +102,7 @@
                         <label class="control-label col-sm-2">محل برگزاری:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="place">
+                            <input type="text" class="form-control" name="place" value="${plan.place}" readonly>
                         </div>
                     </div>
                     <!-- date -->
@@ -105,12 +111,12 @@
                         <label class="control-label col-sm-2">تاریخ برگزاری: </label>
                         <!-- beginDate -->
                         <div class="col-sm-3 col-sm-offset-1">
-                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="beginDate">
+                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="beginDate" value="${plan.beginDate}" readonly>
                         </div>
                         <label class="control-label col-sm-1">لغایت</label>
                         <!-- endDate -->
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="endDate">
+                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="endDate" value="${plan.endDate}" readonly>
                         </div>
                     </div>
                     <!-- time -->
@@ -119,7 +125,7 @@
                         <label class="control-label col-sm-2">ساعت برگزاری:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="time">
+                            <input type="text" class="form-control" name="time" value="${plan.time}" readonly>
                         </div>
                     </div>
                     <!-- requestedItems -->
@@ -128,13 +134,12 @@
                         <label class="control-label col-sm-2" for="needed">موارد درخواستی:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <textarea class="form-control" rows="3" id="needed" name="requestedItems"></textarea>
+                            <textarea class="form-control" rows="3" id="needed" name="requestedItems" value="${plan.requestedItems}" readonly></textarea>
                         </div>
                     </div>
-
                     <!-- personnel -->
                     <!-- modal -->
-                    <div class="form-group">
+                    <div class="form-group readonly">
                         <label class="control-label col-sm-2">پرسنل اجرایی:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
@@ -209,12 +214,13 @@
                         <label class="control-label col-sm-2">موافقت مسئول یا سرپرست (در صورت نیاز):</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="file" id="agreement" name="supervisorAgreement">
+                            <a href="${plan.supervisorAgreement}" target="_blank"><img src="${plan.supervisorAgreement}" alt="اشکال در فرایند نمایش"
+                                                                      style="width: 50%; margin-bottom: 30px;"></a>
                         </div>
                     </div>
                     <!-- expenses -->
                     <!-- modal -->
-                    <div class="form-group">
+                    <div class="form-group readonly">
                         <label class="control-label col-sm-2">ریز هزینه ها:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
@@ -291,7 +297,7 @@
 
                         <div class="col-sm-7 col-sm-offset-1">
                             <textarea class="form-control" rows="3" id="advisorComment"
-                                      name="advisorComment"></textarea>
+                                      name="advisorComment" readonly>${plan.advisorComment}</textarea>
                         </div>
                     </div>
                     <!-- expertComment -->
@@ -300,7 +306,7 @@
                         <label class="control-label col-sm-2" for="expertComment">نظرات کارشناس انجمن:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <textarea class="form-control" rows="3" id="expertComment" name="expertComment"></textarea>
+                            <textarea class="form-control" rows="3" id="expertComment" name="expertComment" readonly>${plan.expertComment}</textarea>
                         </div>
                     </div>
                     <!-- bossComment -->
@@ -309,46 +315,132 @@
                         <label class="control-label col-sm-2" for="bossComment">نظر نهایی ریاست انجمن های علمی:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <textarea class="form-control" rows="3" id="bossComment" name="bossComment"></textarea>
+                            <textarea class="form-control" rows="3" id="bossComment" name="bossComment" readonly>${plan.bossComment}</textarea>
                         </div>
                     </div>
-                    <!-- poster file -->
-                    <div class="form-group" style="display: none;">
-                        <label class="control-label col-sm-2">پوستر:</label>
+                    <!-- poster -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">موافقت مسئول یا سرپرست (در صورت نیاز):</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="file">
+                            <a href="${plan.poster}" target="_blank"><img src="${plan.poster}" alt="اشکال در فرایند نمایش"
+                                                                                       style="width: 50%; margin-bottom: 30px;"></a>
                         </div>
                     </div>
-                    <!-- enlisted modal -->
-                    <div class="form-group" style="display: none;">
-                        <label class="control-label col-sm-2">ثبت نام کنندگان:</label>
+                    <!-- enlisted list -->
+                    <div class="form-group readonly">
+                        <label class="control-label col-sm-2">لیست ثبت نام کنندگان:</label>
 
-                        <div class="col-sm-7 col-sm-offset-1"><a href="#" data-toggle="modal" data-target="#enlisted">
-                            <i class="fa fa-table fa-2x"></i></a></div>
+                        <div class="col-sm-7 col-sm-offset-1">
+
+                            <div class="line line-top"></div>
+
+                            <div class="row enlisted-table">
+
+                                <%--<c:forEach var="enlisted" items="${plan.enlisted}">--%>
+                                <%--<div class="table-row">--%>
+                                <%--<div class="form-group col-xs-2">--%>
+                                <%--<input type="text" class="form-control" name="enlisted-fName-0"--%>
+                                <%--placeholder="نام" value="${enlisted.fName}">--%>
+                                <%--</div>--%>
+                                <%--<div class="form-group col-xs-2">--%>
+                                <%--<input type="text" class="form-control" name="enlisted-lName-0"--%>
+                                <%--placeholder="نام خانوادگی" value="${enlisted.lName}">--%>
+                                <%--</div>--%>
+                                <%--<div class="form-group col-xs-2">--%>
+                                <%--<input type="text" class="form-control" name="enlisted-studentId-0"--%>
+                                <%--placeholder="شماره دانشجویی" value="${enlisted.studentId}">--%>
+                                <%--</div>--%>
+                                <%--<div class="form-group col-xs-2">--%>
+                                <%--<input type="text" class="form-control" name="enlisted-phone-0"--%>
+                                <%--placeholder="تلفن همراه" value="${enlisted.phone}">--%>
+                                <%--</div>--%>
+                                <%--<div class="form-group col-xs-3">--%>
+                                <%--<input type="text" class="form-control" name="enlisted-email-0"--%>
+                                <%--placeholder="ایمیل" value="${enlisted.email}">--%>
+                                <%--</div>--%>
+                                <%--<div class="form-group col-xs-1">--%>
+                                <%--<span class="glyphicon glyphicon-remove"></span>--%>
+                                <%--</div>--%>
+                                <%--</div>--%>
+                                <%--</c:forEach>--%>
+                                <div class="table-row">
+                                    <div class="form-group col-xs-2">
+                                        <input type="text" class="form-control" name="enlisted-fName-1"
+                                               placeholder="نام">
+                                    </div>
+                                    <div class="form-group col-xs-2">
+                                        <input type="text" class="form-control" name="enlisted-lName-1"
+                                               placeholder="نام خانوادگی">
+                                    </div>
+                                    <div class="form-group col-xs-2">
+                                        <input type="text" class="form-control" name="enlisted-studentId-1"
+                                               placeholder="شماره دانشجویی">
+                                    </div>
+                                    <div class="form-group col-xs-2">
+                                        <input type="text" class="form-control" name="enlisted-phone-1"
+                                               placeholder="تلفن همراه">
+                                    </div>
+                                    <div class="form-group col-xs-3">
+                                        <input type="text" class="form-control" name="enlisted-email-1"
+                                               placeholder="ایمیل">
+                                    </div>
+                                    <div class="form-group col-xs-1">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </div>
+                                </div>
+
+                                <div class="table-row">
+                                    <div class="form-group col-xs-2">
+                                        <input type="text" class="form-control" name="enlisted-fName-2"
+                                               placeholder="نام">
+                                    </div>
+                                    <div class="form-group col-xs-2">
+                                        <input type="text" class="form-control" name="enlisted-lName-2"
+                                               placeholder="نام خانوادگی">
+                                    </div>
+                                    <div class="form-group col-xs-2">
+                                        <input type="text" class="form-control" name="enlisted-studentId-2"
+                                               placeholder="شماره دانشجویی">
+                                    </div>
+                                    <div class="form-group col-xs-2">
+                                        <input type="text" class="form-control" name="enlisted-phone-2"
+                                               placeholder="تلفن همراه">
+                                    </div>
+                                    <div class="form-group col-xs-3">
+                                        <input type="text" class="form-control" name="enlisted-email-2"
+                                               placeholder="ایمیل">
+                                    </div>
+                                    <div class="form-group col-xs-1">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="glyphicon glyphicon-plus" id="enlisted-plus"></span>
+
+                            <div class="line line-bottom"></div>
+                        </div>
+
                     </div>
                     <!-- studentsMoney number -->
-                    <div class="form-group" style="display: none;">
+                    <div class="form-group">
                         <label class="control-label col-sm-2">مبالغ دریافتی از دانشجویان (ریال)</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="number" class="form-control" name="studentMoney">
+                            <input type="number" class="form-control" name="studentMoney" value="${plan.studentMoney}" readonly>
                         </div>
                     </div>
                     <!-- sponserMoney number-->
-                    <div class="form-group" style="display: none;">
+                    <div class="form-group">
                         <label class="control-label col-sm-2">مبالغ دریافتی از اسپانسر(ریال)</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="number" class="form-control" name="sponsorMoney">
+                            <input type="number" class="form-control" name="sponsorMoney" value="${plan.sponsorMoney}" readonly>
                         </div>
                     </div>
-                    <!-- submit button -->
-                    <div class="form-group">
-                        <div class="col-sm-offset-3 col-sm-10">
-                            <button type="submit" class="btn btn-primary" value="submit">اعمال تغییرات</button>
-                        </div>
-                    </div>
+                    <br/>
+                    <br/>
                 </form>
             </div>
 
@@ -363,7 +455,6 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="/js/bootstrap.min.js"></script>
-
 
 </body>
 </html>

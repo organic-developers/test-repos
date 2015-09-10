@@ -60,7 +60,7 @@ public class ServletUsers extends HttpServlet {
                     request.getRequestDispatcher("/app/failed.jsp").forward(request, response);
                 }
                 fillTable(request, response, userDAO);
-            } else {
+            } else  {
                 User user = makeUser(request);
                 user.setId(Integer.parseInt(request.getParameter("id").trim()));
                 userDAO.updateUser(user);

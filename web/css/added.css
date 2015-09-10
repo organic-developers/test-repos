@@ -30,7 +30,6 @@ div.well-lg .page-header {
 div.tab-pane .well-lg {
 	padding: 16px;
 	border: 2px solid #337AB7;
-	min-height:100px;
 	direction: rtl;
 }
 
@@ -59,4 +58,8 @@ div.tab-pane {
 .line-bottom {
 	margin:10px 0px 20px 0px;
 	border-bottom: 3px #337AB7 dotted;
+}
+
+.form-control[readonly] {
+    background-color: #FAFAFA;
 }

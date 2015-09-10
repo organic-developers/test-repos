@@ -1,5 +1,6 @@
 package Models;
 
+import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -48,5 +49,16 @@ public class WorkflowNavigation {
         int tmp = 0;
         tmp = (id + "").hashCode();
         return tmp;
+    }
+
+    private String name;
+
+    @Basic
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

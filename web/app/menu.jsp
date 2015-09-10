@@ -45,7 +45,7 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-            <span class="./Sr-only">لیست گزینه ها</span>
+            <span class=".Sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -76,7 +76,7 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
             <li>
-                <a href="../Controller/ServletDashboardIndex"><i class="fa fa-fw fa-dashboard"></i> خانه</a>
+                <a href="../Controller/ServletDashboardInitializer"><i class="fa fa-fw fa-dashboard"></i> خانه</a>
             </li>
             <li>
                 <a href="../Controller/ServletReport"><i class="fa fa-fw fa-bar-chart-o"></i> سيستم گزارش گيري</a>

@@ -65,15 +65,22 @@
                                 $("#image").attr("src", data.photo);
                                 $("#image2").val(data.photo);
                                 $("#photo").attr("required", false);
+                                if (typeof data.photo === 'undefined') {
+                                    resetImage();
+                                }
                             });
                 });
             });
         });
-        $(document).ready(function(){
-            $("#reset").onclick(function(){
+        $(document).ready(function () {
+            $("#reset").click(function () {
                 $("#photo").attr("required", "true");
+                resetImage();
             });
         });
+        function resetImage() {
+            $("#image").attr("src", "/image/avatar.png");
+        }
     </script>
 </head>
 
@@ -183,11 +190,11 @@
                                 <div class="form-group">
                                     <label for="positionTitle">سمت:</label>
                                     <select class="form-control" id="positionTitle" name="positionTitle">
-                                        <option value="کارشناس">کارشناس</option>
-                                        <option value="مشاور">مشاور علمی</option>
-                                        <option value="دبیر">دبیر</option>
-                                        <option value="مسئول روابط عمومی">مسئول روابط عمومی</option>
-                                        <option value="مسئول امور مالی">مسئول امور مالی</option>
+                                        <option value="expert">کارشناس</option>
+                                        <option value="advisor">مشاور علمی</option>
+                                        <option value="clerk">دبیر</option>
+                                        <option value="publicRelationsManager">مدیر روابط عمومی</option>
+                                        <option value="financialAffairsManager">مدیر امور مالی</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
