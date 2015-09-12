@@ -109,7 +109,7 @@ public class ServletCreatePlanTrip extends HttpServlet {
         WorkflowStateDAO workflowStateDAO = new WorkflowStateDAO();
 
         switch (request.getParameter("type").trim()){
-            case "planTrip":
+            case "trip":
                 plan.setType("»«“œ?œ ⁄·„?");
                 plan.setWorkflowState(workflowStateDAO.getWorkflowStateById(1));
                 break;
