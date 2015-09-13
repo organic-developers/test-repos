@@ -104,6 +104,24 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>ServletAssociationsManagement</servlet-name>
+        <servlet-class>Controller.ServletAssociationsManagement</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletAssociationsManagement</servlet-name>
+        <url-pattern>/Controller/ServletAssociationsManagement</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletCreateAssociation</servlet-name>
+        <servlet-class>Controller.ServletCreateAssociation</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletCreateAssociation</servlet-name>
+        <url-pattern>/Controller/ServletCreateAssociation</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>ServletDashboardSwitch</servlet-name>
         <servlet-class>Controller.ServletDashboardSwitch</servlet-class>
     </servlet>

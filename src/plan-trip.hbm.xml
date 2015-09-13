@@ -30,7 +30,7 @@
         <property name="guidelines" column="guidelines" type="string"/>
         <property name="sidePrograms" column="side_programs" type="string"/>
         <property name="resume" column="resume" type="string"/>
-        <many-to-one name="workflowState" column="workflow_state_id" class="Models.WorkflowState"/>
+        <many-to-one name="workflowState" column="workflow_state_id" cascade="all" class="Models.WorkflowState"/>
         <set name="personnel" cascade="all">
             <key column="plan_id"/>
             <one-to-many class="Models.Personnel"/>
@@ -141,6 +141,7 @@
     <property name="number" column="number" type="int"/>
     <property name="name" column="name" type="string"/>
     <property name="logo" column="logo" type="string" />
+    <property name="active" />
     <set name="users" cascade="all">
         <key column="association_number" />
         <one-to-many class="Models.User"/>
@@ -216,6 +217,7 @@
         <id name="id" column="id" type="int">
             <generator class="native"/>
         </id>
+        <property name="name"/>
         <many-to-one name="nextWorkflowState" column="next_workflow_State_id" class="Models.WorkflowState"/>
     </class>
     <!-- /workflowNavigation -->
