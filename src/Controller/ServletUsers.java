@@ -10,6 +10,7 @@ import javax.servlet.http.Part;
 import java.io.IOException;
 import java.util.List;
 
+import Logic.AssociationDAO;
 import Logic.UserDAO;
 import Models.*;
 
@@ -76,6 +77,9 @@ public class ServletUsers extends HttpServlet {
             System.out.println(((User) users.get(i)).getfName());
         }
         request.setAttribute("users", users);
+
+        AssociationDAO associationDAO = new AssociationDAO();
+        request.setAttribute("associations", associationDAO.getAllActiveAssociations());
         users = (List) request.getAttribute("users");
         for(int i = 0; i < users.size(); i++){
             System.out.println(((User) users.get(i)).getfName());

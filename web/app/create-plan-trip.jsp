@@ -131,7 +131,6 @@
                             <textarea class="form-control" rows="3" id="needed" name="requestedItems"></textarea>
                         </div>
                     </div>
-
                     <!-- personnel -->
                     <!-- modal -->
                     <div class="form-group">

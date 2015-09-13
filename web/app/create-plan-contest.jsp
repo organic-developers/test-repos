@@ -74,7 +74,7 @@
                         <label class="control-label col-sm-2">ماهیت:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="type" value="مسابقه علمی">
+                            <input type="text" class="form-control" name="type" value="contest">
                         </div>
                     </div>
                     <!-- title -->

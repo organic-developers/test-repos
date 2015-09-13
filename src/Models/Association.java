@@ -55,6 +55,17 @@ public class Association {
         this.logo = logo;
     }
 
+    private String active;
+
+    @Basic
+    public String getActive() {
+        return active;
+    }
+
+    public void setActive(String active) {
+        this.active = active;
+    }
+
 
     private Set<User> users;
 

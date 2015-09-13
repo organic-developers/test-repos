@@ -98,7 +98,7 @@
                     پیشنهادی</a>
             </li>
             <li>
-                <a href="../Controller/ServletAssociationManager"> مدیریت انجمن ها</a>
+                <a href="../Controller/ServletAssociationsManagement"> مدیریت انجمن ها</a>
             </li>
             <li>
                 <a href="../app/registeration-verification.jsp"><i class="fa fa-check-square-o"></i> تایید ثبت نام ها</a>

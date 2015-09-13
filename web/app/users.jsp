@@ -158,25 +158,9 @@
                                 <div class="form-group">
                                     <label for="associationNumber">انجمن:</label>
                                     <select class="form-control" id="associationNumber" name="associationNumber">
-                                        <option value="1">برق</option>
-                                        <option value="2">پدافند غیر عامل</option>
-                                        <option value="3">تربیت بدنی</option>
-                                        <option value="4">حسابداری</option>
-                                        <option value="5">رباتیک</option>
-                                        <option value="6">ریاضی</option>
-                                        <option value="7">زبان</option>
-                                        <option value="8">زمین شناسی</option>
-                                        <option value="9">شیمی</option>
-                                        <option value="10">عمران</option>
-                                        <option value="11">فیزیک و نجوم</option>
-                                        <option value="12">کارآفرینی</option>
-                                        <option value="13">کامپیوتر و فناوری اطلاعات</option>
-                                        <option value="14">کشاورزی</option>
-                                        <option value="15">مدیریت</option>
-                                        <option value="16">دبیر</option>
-                                        <option value="17">ژئوفیزیک</option>
-                                        <option value="18">معماری</option>
-                                        <option value="19">مکانیک</option>
+                                        <c:forEach var="association" items="${associations}">
+                                            <option value="${association.id}">${association.name}</option>
+                                        </c:forEach>
                                     </select>
                                 </div>
                                 <div class="form-group">
