@@ -44,7 +44,19 @@
 
     <script src="/js/jquery-1.11.3.min.js"></script>
     <script src="/js/added.js"></script>
+<%--<style>--%>
+    <%--.custom-file-upload {--%>
+        <%--border: 1px solid #ccc;--%>
+        <%--display: inline-block;--%>
+        <%--padding: 6px 12px;--%>
+        <%--cursor: pointer;--%>
+    <%--}--%>
+    <%--input[type="file"] {--%>
+        <%--display: none;--%>
+    <%--}--%>
+<%--</style>--%>
 </head>
+
 <body class="dashboard-background">
 
 
@@ -60,20 +72,28 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">بررسی طرح:</h1>
+                    <h1 class="page-header">ویرایش انجمن:</h1>
                 </div>
             </div>
             <!-- /.row -->
 
             <!-- /.row -->
             <div class="row">
+                <%--<label class="custom-file-upload">--%>
+                    <%--<input type="file"/>--%>
+                    <%--Custom Upload--%>
+                <%--</label>--%>
+
                 <div style="text-align: center;">
-                    <img src="${association.logo}" alt="لوگوی انجمن" width="125" height="125" id="image">
+                    <img src="${association.logo}" alt="لوگوی انجمن" width="250" height="250" id="image">
                 </div>
-                <form class="form-horizontal" role="form" action="/Controller/ServletCreateAssociation"
+                <br/>
+                <br/>
+                <form class="form-horizontal" role="form" action="/Controller/ServletEditAssociation"
                       method="post" enctype="multipart/form-data">
                     <!-- id -->
                     <input type="text" id="id" name="id" value="${association.id}" style="display: none;">
+                    <input type="text" id="image2" name="image2" value="${association.logo}" style="display: none;">
                     <!-- name -->
                     <!-- text -->
                     <div class="form-group">
@@ -83,13 +103,22 @@
                             <input type="text" class="form-control" name="name" value="${association.name}" required>
                         </div>
                     </div>
+                    <!-- number -->
+                    <!-- number -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">شماره انجمن:</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="number" class="form-control" name="number" value="${association.number}" required>
+                        </div>
+                    </div>
                     <!-- logo -->
                     <!-- file -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">لوگوی انجمن:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="file" id="logo" name="logo" value="${association.logo}" required>
+                            <input type="file" id="logo" name="logo">
                         </div>
                     </div>
                     <!-- submit buttons -->

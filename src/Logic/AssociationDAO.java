@@ -15,7 +15,7 @@ public class AssociationDAO {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        String qry = "select e from Association e" +
+        String qry = "select e from Association e " +
                 "where e.id = :id";
         Association association = (Association)session.createQuery(qry)
                 .setParameter("id", id)
@@ -47,7 +47,7 @@ public class AssociationDAO {
         session.beginTransaction();
 
         String qry = "select e from Association e " +
-                "where e.active like 'active'";
+                "where e.active like 'true'";
         List associations = session.createQuery(qry)
                 .list();
 
@@ -67,10 +67,10 @@ public class AssociationDAO {
         Association association = (Association) session.createQuery(qry)
                 .setParameter("id", id)
                 .uniqueResult();
-        if(association.getActive().equals("active")) {
-            association.setActive("inactive");
+        if(association.getActive().equals("true")) {
+            association.setActive("false");
         } else {
-            association.setActive("active");
+            association.setActive("true");
         }
         session.update(association);
 

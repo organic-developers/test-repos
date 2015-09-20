@@ -4,16 +4,16 @@ public class Enlisted {
     private int id;
     private String fName;
     private String lName;
-    private String studentID;
+    private String studentId;
     private String email;
     private String phone;
 
     public Enlisted() {
     }
-    public Enlisted(String fName, String lName, String studentID, String email, String phone) {
+    public Enlisted(String fName, String lName, String studentId, String email, String phone) {
         this.fName = fName;
         this.lName = lName;
-        this.studentID = studentID;
+        this.studentId = studentId;
         this.email = email;
         this.phone = phone;
     }
@@ -42,12 +42,12 @@ public class Enlisted {
         this.lName = lName;
     }
 
-    public String getStudentID() {
-        return studentID;
+    public String getStudentId() {
+        return studentId;
     }
 
-    public void setStudentID(String studentID) {
-        this.studentID = studentID;
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 
     public String getEmail() {
@@ -73,7 +73,7 @@ public class Enlisted {
 
         Enlisted obj2 = (Enlisted) obj;
         if ((this.id == obj2.getId()) && (this.fName.equals(obj2.getfName()))
-                && (this.lName.equals(obj2.getlName())) && (this.studentID.equals(obj2.getStudentID()))
+                && (this.lName.equals(obj2.getlName())) && (this.studentId.equals(obj2.getStudentId()))
                 && (this.email.equals(obj2.getEmail())) && (this.phone.equals(obj2.getPhone()))) {
             return true;
         }

@@ -78,6 +78,15 @@
                             <input type="text" class="form-control" name="name" required>
                         </div>
                     </div>
+                    <!-- number -->
+                    <!-- number -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">شماره انجمن:</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="number" class="form-control" name="number" required>
+                        </div>
+                    </div>
                     <!-- logo -->
                     <!-- file -->
                     <div class="form-group">

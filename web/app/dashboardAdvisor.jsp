@@ -519,7 +519,7 @@
                         <div class="well well-lg">
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <h5 class="page-header">${plan.title}/${plan.associationNumber}</h5>
+                                    <h5 class="page-header">${plan.title}/${plan.association.name}</h5>
 
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -547,7 +547,7 @@
                         <div class="well well-lg">
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <h5 class="page-header">${plan.title}/${plan.associationNumber}</h5>
+                                    <h5 class="page-header">${plan.title}/${plan.association.name}</h5>
 
                                 </div>
                             </div>
@@ -567,7 +567,7 @@
                         <div class="well well-lg">
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <h5 class="page-header">${plan.title}/${plan.associationNumber}</h5>
+                                    <h5 class="page-header">${plan.title}/${plan.association.name}</h5>
 
                                 </div>
                             </div>
@@ -587,7 +587,7 @@
                         <div class="well well-lg">
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <h5 class="page-header">${plan.title}/${plan.associationNumber}</h5>
+                                    <h5 class="page-header">${plan.title}/${plan.association.name}</h5>
 
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -615,7 +615,7 @@
                         <div class="well well-lg">
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <h5 class="page-header">${plan.title}/${plan.associationNumber}</h5>
+                                    <h5 class="page-header">${plan.title}/${plan.association.name}</h5>
 
                                 </div>
                             </div>

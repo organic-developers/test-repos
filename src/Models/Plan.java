@@ -1,17 +1,13 @@
 package Models;
 
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
 
 public class Plan {
     private Integer id;
-    private String type;
-    private Integer associationNumber;
+//    private String type;
     private String title;
     private String place;
     private String beginDate;
@@ -40,14 +36,6 @@ public class Plan {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getAssociationNumber() {
-        return associationNumber;
-    }
-
-    public void setAssociationNumber(Integer association) {
-        this.associationNumber = association;
     }
 
     public String getTitle() {
@@ -154,14 +142,16 @@ public class Plan {
         this.sponsorMoney = sponsorMoney;
     }
 
+//    @OneToMany(fetch = FetchType.EAGER)
     public Set getPersonnel() {
         return personnel;
     }
 
-    public void setPersonnel(Set personnels) {
-        this.personnel = personnels;
+    public void setPersonnel(Set personnel) {
+        this.personnel = personnel;
     }
 
+//    @OneToMany(fetch = FetchType.EAGER)
     public Set getExpenses() {
         return expenses;
     }
@@ -170,6 +160,7 @@ public class Plan {
         this.expenses = expenses;
     }
 
+//    @OneToMany(fetch = FetchType.EAGER)
     public Set getEnlisted() {
         return enlisted;
     }
@@ -178,6 +169,7 @@ public class Plan {
         this.enlisted = muster;
     }
 
+//    @OneToMany(fetch = FetchType.EAGER)
     public Set getGuests() {
         return guests;
     }
@@ -186,6 +178,7 @@ public class Plan {
         this.guests = guests;
     }
 
+//    @OneToMany(fetch = FetchType.EAGER)
     public Set getJudges() {
         return judges;
     }
@@ -194,13 +187,13 @@ public class Plan {
         this.judges = judges;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
+//    public String getType() {
+//        return type;
+//    }
+//
+//    public void setType(String type) {
+//        this.type = type;
+//}
 
     private WorkflowState workflowState;
 
@@ -254,5 +247,71 @@ public class Plan {
 
     public void setResume(String resume) {
         this.resume = resume;
+    }
+
+    private Association association;
+
+    @ManyToOne
+    public Association getAssociation() {
+        return association;
+    }
+
+    public void setAssociation(Association association) {
+        this.association = association;
+    }
+
+    private Workflow workflow;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    public Workflow getWorkflow() {
+        return workflow;
+    }
+
+    public void setWorkflow(Workflow workflow) {
+        this.workflow = workflow;
+    }
+
+    private String registrationBeginDate;
+
+    @Basic
+    public String getRegistrationBeginDate() {
+        return registrationBeginDate;
+    }
+
+    public void setRegistrationBeginDate(String registrationBeginDate) {
+        this.registrationBeginDate = registrationBeginDate;
+    }
+
+    private String registrationEndDate;
+
+    @Basic
+    public String getRegistrationEndDate() {
+        return registrationEndDate;
+    }
+
+    public void setRegistrationEndDate(String registrationEndDate) {
+        this.registrationEndDate = registrationEndDate;
+    }
+
+    private String advertisementBeginDate;
+
+    @Basic
+    public String getAdvertisementBeginDate() {
+        return advertisementBeginDate;
+    }
+
+    public void setAdvertisementBeginDate(String advertisementBeginDate) {
+        this.advertisementBeginDate = advertisementBeginDate;
+    }
+
+    private String advertisementEndDate;
+
+    @Basic
+    public String getAdvertisementEndDate() {
+        return advertisementEndDate;
+    }
+
+    public void setAdvertisementEndDate(String advertisementEndDate) {
+        this.advertisementEndDate = advertisementEndDate;
     }
 }

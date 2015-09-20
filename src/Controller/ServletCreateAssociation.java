@@ -34,12 +34,13 @@ public class ServletCreateAssociation extends HttpServlet {
         Association association = new Association();
 
         association.setName(request.getParameter("name"));
+        association.setNumber(request.getParameter("number"));
 
         Part logo = request.getPart("logo");
         logo.write(logo.getSubmittedFileName());
         association.setLogo("/uploaded-files/" + logo.getSubmittedFileName());
 
-        association.setActive("active");
+        association.setActive("true");
 
         associationDAO.addAssociation(association);
 

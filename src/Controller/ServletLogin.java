@@ -30,24 +30,30 @@ public class ServletLogin extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        User user = new User();
-        String name = request.getParameter("user_name");
-        String pass = request.getParameter("password");
-        user.setUserName(name);
-        user.setPassword(pass);
-        if (user.isValid() != null) {
-            HttpSession session = request.getSession();
-            //session.setAttribute("name", name);
-            session.setAttribute("user", user.isValid());
-            request.getRequestDispatcher(request.getContextPath() + "../Controller/ServletDashboardInitializer").include(request, response);
+//        User user = new User();
+//        String name = request.getParameter("user_name");
+//        String pass = request.getParameter("password");
+//        user.setUserName(name);
+//        user.setPassword(pass);
+//        if (user.isValid() != null) {
+//            HttpSession session = request.getSession();
+//            //session.setAttribute("name", name);
+//            session.setAttribute("user", user.isValid());
 
-        } else {
-            //PrintWriter out = response.getWriter();
+        UserDAO userDAO = new UserDAO();
+        User user = userDAO.getUserByUsernameAndPassword(request.getParameter("user_name"), request.getParameter("password"));
+        if (user != null) {
+            request.getSession().setAttribute("user", user);
+
+            request.getRequestDispatcher(request.getContextPath() + "../Controller/ServletDashboardInitializer").include(request, response);
+        }
+//        } else {
+        //PrintWriter out = response.getWriter();
             response.sendRedirect(request.getContextPath() + "/login.jsp");
             /*out.println("<script type=\"text/javascript\">");
             out.println("document.getElementById('login-form').innerHTML = ;");
             out.println("<div class=\"alert alert-danger\" role=\"alert\">Login Failed </div>");*/
-        }
+//        }
 
 
     }

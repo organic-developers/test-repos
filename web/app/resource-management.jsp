@@ -34,9 +34,60 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <script src="/js/jquery-1.11.3.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#resource-form").submit(function (e) {
+                $.ajax({
+                    url: $(this).attr("action") + "?method=methodA",
+                    type: $(this).attr("method"),
+                    data: new FormData(this),
+                    mimeType: $(this).attr("enctype"),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    dataType: "json",
+                    success: function (data) {
+                        document.getElementById("resource-form").reset();
+                        var x = '<div class="col-lg-10 col-lg-offset-1 uploaded-file">' +
+                                '<h4>' +
+                                '<span class="glyphicon glyphicon-remove text-danger"></span>' +
+                                '<a href="' + data.path + '" target="_blank">' + data.name + '</a>' +
+                                '</h4>' +
+                                '</div>';
+                        $("#uploaded-files").append(x);
+                    }
+                });
+                e.preventDefault(); //Prevent Default action.
+//                e.unbind();
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            $("#uploaded-files").find(".glyphicon-remove").each(function(){
+                $(this).click(function(){
+                    var p = $(this).next("a").attr("id");
+
+                    $.ajax({
+                        url: "/Controller/ServletResourceManagement?method=methodB",
+                        type: "POST",
+                        data: {"id": p},
+                        success: function(){
+//                            alert("success");
+                        }
+                    })
+                    $(this).parents(".uploaded-file").remove();
+                })
+            })
+        })
+    </script>
+
 </head>
 
-<body>
+<body class="dashboard-background">
 
 <div id="wrapper">
 
@@ -45,6 +96,7 @@
 
     <div id="page-wrapper">
 
+        <!-- .container-fluid -->
         <div class="container-fluid">
 
             <!-- Page Heading -->
@@ -59,67 +111,53 @@
 
             <br/>
 
+            <!-- upload section -->
             <div class="row">
                 <div class=" col-lg-10 col-lg-offset-1">
                     <div class="row">
-                        <form role="form">
-                            <div class="form-group col-lg-8" style="padding-top: 10px">
-                                <input type="text" class="form-control" id="exampleInputPassword1"
-                                       placeholder="عنوان منبع">
+                        <form role="form" id="resource-form" action="/Controller/ServletResourceManagement"
+                              method="POST" enctype="multipart/form-data">
+                            <div class="form-group col-lg-8">
+                                <input type="text" class="form-control" id="name"
+                                       placeholder="عنوان منبع" name="name" required>
                             </div>
-                            <div class="form-group col-lg-4">
-                                <label for="exampleInputFile">انتخاب فایل مورد نظر </label>
-                                <input type="file" id="exampleInputFile">
+
+                            <div class="form-group col-lg-8">
+                                <input type="file" id="resource" name="resource" required>
+                            </div>
+
+                            <div class="form-group col-lg-8">
+                                <button type="submit" class="btn btn-primary"> تایید</button>
                             </div>
                         </form>
                     </div>
-                    <div class="clearfix"></div>
-                    <button type="button" class="btn btn-primary" style=""> تایید</button>
                 </div>
             </div>
+            <!-- /upload section -->
 
             <br/>
             <br/>
 
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1">
-                    <h4><span class="glyphicon glyphicon-remove text-danger"></span><a> فایل راهنمای استفاده از
-                        سیستم</a></h4>
-                </div>
+            <!-- uploaded files -->
+            <div class="row" id="uploaded-files">
+                <c:forEach var="resource" items="${resources}">
+                    <div class="col-lg-10 col-lg-offset-1 uploaded-file">
+                        <h4>
+                            <span class="glyphicon glyphicon-remove text-danger"></span>
+                            <a href="${resource.path}" target="_blank" id="${resource.id}">${resource.name}</a>
+                        </h4>
+                    </div>
+                </c:forEach>
             </div>
 
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1">
-                    <h4><span class="glyphicon glyphicon-remove text-danger"></span><a> فایل راهنمای استفاده از
-                        سیستم</a></h4>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1">
-                    <h4><span class="glyphicon glyphicon-remove text-danger"></span><a> فایل راهنمای استفاده از
-                        سیستم</a></h4>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1">
-                    <h4><span class="glyphicon glyphicon-remove text-danger"></span><a> فایل راهنمای استفاده از
-                        سیستم</a></h4>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1">
-                    <h4><span class="glyphicon glyphicon-remove text-danger"></span><a> فایل راهنمای استفاده از
-                        سیستم</a></h4>
-                </div>
-            </div>
-
+            <!-- /uploaded files -->
 
         </div>
+        <!-- /.container-fluid -->
 
     </div>
+    <!-- /#page-wrapper -->
 
 </div>
 <!-- /#wrapper -->

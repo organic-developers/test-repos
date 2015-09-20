@@ -67,7 +67,7 @@
 
             <!-- .row -->
             <div class="row">
-                <form class="form-horizontal" role="form" action="/Controller/ServletExpertConfirmRegistrations"
+                <form class="form-horizontal" role="form" action="/Controller/ServletBossConfirmRegistrations"
                       method="post">
                     <!-- hidden id -->
                     <input type="text" id="id" name="id" value="${plan.id}" style="display: none;">
@@ -77,100 +77,43 @@
                         <label class="control-label col-sm-2">عنوان طرح:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="title" value="${plan.title}" readonly>
+                            <input type="text" class="form-control" name="title" value="${plan.title}" disabled>
                         </div>
                     </div>
                     <!-- enlisted list -->
-                    <div class="form-group readonly">
+                    <div class="form-group disabled">
                         <label class="control-label col-sm-2">لیست ثبت نام کنندگان:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
 
                             <div class="line line-top"></div>
 
-                            <div class="row enlisted-table">
-
-                                <%--<c:forEach var="enlisted" items="${plan.enlisted}">--%>
-                                <%--<div class="table-row">--%>
-                                <%--<div class="form-group col-xs-2">--%>
-                                <%--<input type="text" class="form-control" name="enlisted-fName-0"--%>
-                                <%--placeholder="نام" value="${enlisted.fName}">--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group col-xs-2">--%>
-                                <%--<input type="text" class="form-control" name="enlisted-lName-0"--%>
-                                <%--placeholder="نام خانوادگی" value="${enlisted.lName}">--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group col-xs-2">--%>
-                                <%--<input type="text" class="form-control" name="enlisted-studentId-0"--%>
-                                <%--placeholder="شماره دانشجویی" value="${enlisted.studentId}">--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group col-xs-2">--%>
-                                <%--<input type="text" class="form-control" name="enlisted-phone-0"--%>
-                                <%--placeholder="تلفن همراه" value="${enlisted.phone}">--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group col-xs-3">--%>
-                                <%--<input type="text" class="form-control" name="enlisted-email-0"--%>
-                                <%--placeholder="ایمیل" value="${enlisted.email}">--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group col-xs-1">--%>
-                                <%--<span class="glyphicon glyphicon-remove"></span>--%>
-                                <%--</div>--%>
-                                <%--</div>--%>
-                                <%--</c:forEach>--%>
-                                <div class="table-row">
-                                    <div class="form-group col-xs-2">
-                                        <input type="text" class="form-control" name="enlisted-fName-1"
-                                               placeholder="نام">
+                            <div class="row plan-table enlisted-table pure-table">
+                                <c:forEach var="enlisted" items="${plan.enlisted}">
+                                    <div class="table-row">
+                                        <div class="form-group col-xs-2">
+                                            <input type="text" class="form-control" name="enlisted-fName-"
+                                                   placeholder="نام" value="${enlisted.fName}">
+                                        </div>
+                                        <div class="form-group col-xs-2">
+                                            <input type="text" class="form-control" name="enlisted-lName-"
+                                                   placeholder="نام خانوادگی" value="${enlisted.lName}">
+                                        </div>
+                                        <div class="form-group col-xs-2">
+                                            <input type="text" class="form-control" name="enlisted-studentId-"
+                                                   placeholder="شماره دانشجویی" value="${enlisted.studentId}">
+                                        </div>
+                                        <div class="form-group col-xs-3">
+                                            <input type="text" class="form-control" name="enlisted-phone-"
+                                                   placeholder="تلفن همراه" value="${enlisted.phone}">
+                                        </div>
+                                        <div class="form-group col-xs-3">
+                                            <input type="text" class="form-control" name="enlisted-email-"
+                                                   placeholder="ایمیل" value="${enlisted.email}">
+                                        </div>
                                     </div>
-                                    <div class="form-group col-xs-2">
-                                        <input type="text" class="form-control" name="enlisted-lName-1"
-                                               placeholder="نام خانوادگی">
-                                    </div>
-                                    <div class="form-group col-xs-2">
-                                        <input type="text" class="form-control" name="enlisted-studentId-1"
-                                               placeholder="شماره دانشجویی">
-                                    </div>
-                                    <div class="form-group col-xs-2">
-                                        <input type="text" class="form-control" name="enlisted-phone-1"
-                                               placeholder="تلفن همراه">
-                                    </div>
-                                    <div class="form-group col-xs-3">
-                                        <input type="text" class="form-control" name="enlisted-email-1"
-                                               placeholder="ایمیل">
-                                    </div>
-                                    <div class="form-group col-xs-1">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                    </div>
-                                </div>
-
-                                <div class="table-row">
-                                    <div class="form-group col-xs-2">
-                                        <input type="text" class="form-control" name="enlisted-fName-2"
-                                               placeholder="نام">
-                                    </div>
-                                    <div class="form-group col-xs-2">
-                                        <input type="text" class="form-control" name="enlisted-lName-2"
-                                               placeholder="نام خانوادگی">
-                                    </div>
-                                    <div class="form-group col-xs-2">
-                                        <input type="text" class="form-control" name="enlisted-studentId-2"
-                                               placeholder="شماره دانشجویی">
-                                    </div>
-                                    <div class="form-group col-xs-2">
-                                        <input type="text" class="form-control" name="enlisted-phone-2"
-                                               placeholder="تلفن همراه">
-                                    </div>
-                                    <div class="form-group col-xs-3">
-                                        <input type="text" class="form-control" name="enlisted-email-2"
-                                               placeholder="ایمیل">
-                                    </div>
-                                    <div class="form-group col-xs-1">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                    </div>
-                                </div>
+                                </c:forEach>
                             </div>
-
-                            <span class="glyphicon glyphicon-plus" id="enlisted-plus"></span>
 
                             <div class="line line-bottom"></div>
                         </div>
@@ -182,7 +125,8 @@
                             (ریال)</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="number" class="form-control" id="studentMoney" name="studentMoney" value="${plan.studentMoney}" readonly>
+                            <input type="number" class="form-control" id="studentMoney" name="studentMoney"
+                                   value="${plan.studentMoney}" disabled>
                         </div>
                     </div>
                     <!-- sponserMoney number-->
@@ -190,7 +134,8 @@
                         <label class="control-label col-sm-2" for="sponsorMoney">مبالغ دریافتی از اسپانسر(ریال)</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="number" class="form-control" id="sponsorMoney" name="sponsorMoney" value="${plan.sponsorMoney}" readonly>
+                            <input type="number" class="form-control" id="sponsorMoney" name="sponsorMoney"
+                                   value="${plan.sponsorMoney}" disabled>
                         </div>
                     </div>
                     <!-- expertComment -->
@@ -199,7 +144,8 @@
                         <label class="control-label col-sm-2" for="expertComment">نظرات کارشناس انجمن:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <textarea class="form-control" rows="3" id="expertComment" name="expertComment" readonly>${plan.expertComment}</textarea>
+                            <textarea class="form-control" rows="3" id="expertComment" name="expertComment"
+                                      disabled>${plan.expertComment}</textarea>
                         </div>
                     </div>
                     <!-- bossComment -->
@@ -215,7 +161,8 @@
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-10">
                             <button type="submit" class="btn btn-primary" name="submit" value="confirm">تایید</button>
-                            <button type="submit" class="btn btn-info" name="submit" value="correct">ارسال برای اصلاح</button>
+                            <button type="submit" class="btn btn-info" name="submit" value="correct">ارسال برای اصلاح
+                            </button>
                             <button type="submit" class="btn btn-danger" name="submit" value="reject">رد</button>
                         </div>
                     </div>

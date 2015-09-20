@@ -30,6 +30,11 @@ public class ServletExpertConfirmPoster extends HttpServlet {
 
         plan.setExpertComment(request.getParameter("expertComment"));
 
+        plan.setRegistrationBeginDate(request.getParameter("registrationBeginDate"));
+        plan.setRegistrationEndDate(request.getParameter("registrationEndDate"));
+        plan.setAdvertisementBeginDate(request.getParameter("advertisementBeginDate"));
+        plan.setAdvertisementEndDate(request.getParameter("advertisementEndDate"));
+
         planDAO.updatePlan(plan);
 
         planDAO.workflowForward(plan.getId());

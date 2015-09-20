@@ -1,14 +1,11 @@
 package Models;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import org.hibernate.annotations.Fetch;
+
+import javax.persistence.*;
 import java.util.Set;
 
-/**
- * Created by Saied on 8/14/2015.
- */
+
 @Entity
 public class Association {
     private int id;
@@ -33,14 +30,14 @@ public class Association {
         this.name = name;
     }
 
-    private int number;
+    private String number;
 
     @Basic
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 

@@ -72,13 +72,14 @@
             <div class="row">
                 <form class="form-horizontal" role="form" action="/Controller/ServletCreatePlanTrip"
                       method="post" enctype="multipart/form-data">
+                    <input type="text" name="id" value="${plan.id}" style="display: none;"/>
                     <!-- type -->
                     <!-- text -->
                     <div class="form-group" style="display: none;">
                         <label class="control-label col-sm-2">ماهیت:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="type" value="trip">
+                            <input type="text" class="form-control" name="type" value="1">
                         </div>
                     </div>
                     <!-- title -->
@@ -87,7 +88,7 @@
                         <label class="control-label col-sm-2">عنوان طرح:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="title">
+                            <input type="text" class="form-control" name="title" value="${plan.title}">
                         </div>
                     </div>
                     <!-- place -->
@@ -96,7 +97,7 @@
                         <label class="control-label col-sm-2">محل برگزاری:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="place">
+                            <input type="text" class="form-control" name="place" value="${plan.place}">
                         </div>
                     </div>
                     <!-- date -->
@@ -105,12 +106,12 @@
                         <label class="control-label col-sm-2">تاریخ برگزاری: </label>
                         <!-- beginDate -->
                         <div class="col-sm-3 col-sm-offset-1">
-                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="beginDate">
+                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="beginDate" value="${plan.beginDate}">
                         </div>
                         <label class="control-label col-sm-1">لغایت</label>
                         <!-- endDate -->
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="endDate">
+                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="endDate" value="${plan.endDate}">
                         </div>
                     </div>
                     <!-- time -->
@@ -119,7 +120,7 @@
                         <label class="control-label col-sm-2">ساعت برگزاری:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="time">
+                            <input type="text" class="form-control" name="time" value="${plan.time}">
                         </div>
                     </div>
                     <!-- requestedItems -->
@@ -128,7 +129,7 @@
                         <label class="control-label col-sm-2" for="needed">موارد درخواستی:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <textarea class="form-control" rows="3" id="needed" name="requestedItems"></textarea>
+                            <textarea class="form-control" rows="3" id="needed" name="requestedItems">${plan.requestedItems}</textarea>
                         </div>
                     </div>
                     <!-- personnel -->
@@ -140,19 +141,19 @@
 
                             <div class="line line-top"></div>
 
-                            <div class="row personnel-table">
+                            <div class="row plan-table personnel-table">
 
                                 <div class="table-row">
                                     <div class="form-group col-xs-3">
-                                        <input type="text" class="form-control" name="personnel-fName-0"
+                                        <input type="text" class="form-control" id="as" name="personnel-fName-"
                                                placeholder="نام">
                                     </div>
                                     <div class="form-group col-xs-4">
-                                        <input type="text" class="form-control" name="personnel-lName-0"
+                                        <input type="text" class="form-control" name="personnel-lName-"
                                                placeholder="نام خانوادگی">
                                     </div>
                                     <div class="form-group col-xs-4">
-                                        <input type="text" class="form-control" name="personnel-phone-0"
+                                        <input type="text" class="form-control" name="personnel-phone-"
                                                placeholder="تلفن">
                                     </div>
                                     <div class="form-group col-xs-1">
@@ -162,15 +163,15 @@
 
                                 <div class="table-row">
                                     <div class="form-group col-xs-3">
-                                        <input type="text" class="form-control" name="personnel-fName-1"
+                                        <input type="text" class="form-control" name="personnel-fName-"
                                                placeholder="نام">
                                     </div>
                                     <div class="form-group col-xs-4">
-                                        <input type="text" class="form-control" name="personnel-lName-1"
+                                        <input type="text" class="form-control" name="personnel-lName-"
                                                placeholder="نام خانوادگی">
                                     </div>
                                     <div class="form-group col-xs-4">
-                                        <input type="text" class="form-control" name="personnel-phone-1"
+                                        <input type="text" class="form-control" name="personnel-phone-"
                                                placeholder="تلفن">
                                     </div>
                                     <div class="form-group col-xs-1">
@@ -180,15 +181,15 @@
 
                                 <div class="table-row">
                                     <div class="form-group col-xs-3">
-                                        <input type="text" class="form-control" name="personnel-fName-2"
+                                        <input type="text" class="form-control" name="personnel-fName-"
                                                placeholder="نام">
                                     </div>
                                     <div class="form-group col-xs-4">
-                                        <input type="text" class="form-control" name="personnel-lName-2"
+                                        <input type="text" class="form-control" name="personnel-lName-"
                                                placeholder="نام خانوادگی">
                                     </div>
                                     <div class="form-group col-xs-4">
-                                        <input type="text" class="form-control" name="personnel-phone-2"
+                                        <input type="text" class="form-control" name="personnel-phone-"
                                                placeholder="تلفن">
                                     </div>
                                     <div class="form-group col-xs-1">
@@ -202,15 +203,15 @@
                             <div class="line line-bottom"></div>
                         </div>
                     </div>
-                    <!-- supervisorAgreement -->
-                    <!-- file -->
-                    <div class="form-group">
-                        <label class="control-label col-sm-2">موافقت مسئول یا سرپرست (در صورت نیاز):</label>
+                    <%--<!-- supervisorAgreement -->--%>
+                    <%--<!-- file -->--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label class="control-label col-sm-2">موافقت مسئول یا سرپرست (در صورت نیاز):</label>--%>
 
-                        <div class="col-sm-7 col-sm-offset-1">
-                            <input type="file" id="agreement" name="supervisorAgreement">
-                        </div>
-                    </div>
+                        <%--<div class="col-sm-7 col-sm-offset-1">--%>
+                            <%--<input type="file" id="agreement" name="supervisorAgreement">--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                     <!-- expenses -->
                     <!-- modal -->
                     <div class="form-group">
@@ -220,19 +221,19 @@
 
                             <div class="line line-top"></div>
 
-                            <div class="row expenses-table">
+                            <div class="row plan-table expenses-table">
 
                                 <div class="table-row">
                                     <div class="form-group col-xs-2">
-                                        <input type="text" class="form-control" name="expense-name-0"
+                                        <input type="text" class="form-control" name="expense-name-"
                                                placeholder="عنوان">
                                     </div>
                                     <div class="form-group col-xs-2">
-                                        <input type="text" class="form-control" name="expense-value-0"
+                                        <input type="text" class="form-control" name="expense-value-"
                                                placeholder="هزینه">
                                     </div>
                                     <div class="form-group col-xs-7">
-                                        <input type="text" class="form-control" name="expense-comment-0"
+                                        <input type="text" class="form-control" name="expense-comment-"
                                                placeholder="توضیحات">
                                     </div>
                                     <div class="form-group col-xs-1">
@@ -242,15 +243,15 @@
 
                                 <div class="table-row">
                                     <div class="form-group col-xs-2">
-                                        <input type="text" class="form-control" name="expense-name-1"
+                                        <input type="text" class="form-control" name="expense-name-"
                                                placeholder="عنوان">
                                     </div>
                                     <div class="form-group col-xs-2">
-                                        <input type="text" class="form-control" name="expense-value-1"
+                                        <input type="text" class="form-control" name="expense-value-"
                                                placeholder="هزینه">
                                     </div>
                                     <div class="form-group col-xs-7">
-                                        <input type="text" class="form-control" name="expense-comment-1"
+                                        <input type="text" class="form-control" name="expense-comment-"
                                                placeholder="توضیحات">
                                     </div>
                                     <div class="form-group col-xs-1">
@@ -260,15 +261,15 @@
 
                                 <div class="table-row">
                                     <div class="form-group col-xs-2">
-                                        <input type="text" class="form-control" name="expense-name-2"
+                                        <input type="text" class="form-control" name="expense-name-"
                                                placeholder="عنوان">
                                     </div>
                                     <div class="form-group col-xs-2">
-                                        <input type="text" class="form-control" name="expense-value-2"
+                                        <input type="text" class="form-control" name="expense-value-"
                                                placeholder="هزینه">
                                     </div>
                                     <div class="form-group col-xs-7">
-                                        <input type="text" class="form-control" name="expense-comment-2"
+                                        <input type="text" class="form-control" name="expense-comment-"
                                                placeholder="توضیحات">
                                     </div>
                                     <div class="form-group col-xs-1">
@@ -345,7 +346,8 @@
                     <!-- submit button -->
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-10">
-                            <button type="submit" class="btn btn-primary" value="submit">اعمال تغییرات</button>
+                            <button type="submit" class="btn btn-primary" name="submit" value="send">ارسال</button>
+                            <button type="submit" class="btn btn-info" name="submit" value="tentative">ذخیره موقت</button>
                         </div>
                     </div>
                 </form>

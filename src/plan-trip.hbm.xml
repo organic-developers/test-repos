@@ -12,8 +12,6 @@
         <id name="id" type="int" column="id">
             <generator class="native"/>
         </id>
-        <property name="type" column="type" type="string"/>
-        <property name="associationNumber" column="association_number" type="int"/>
         <property name="title" column="title" type="string"/>
         <property name="place" column="place" type="string"/>
         <property name="beginDate" column="begin_date" type="string"/>
@@ -30,8 +28,14 @@
         <property name="guidelines" column="guidelines" type="string"/>
         <property name="sidePrograms" column="side_programs" type="string"/>
         <property name="resume" column="resume" type="string"/>
+        <property name="registrationBeginDate" column="registration_begin_date" type="string"/>
+        <property name="registrationEndDate" column="registration_end_date" type="string"/>
+        <property name="advertisementBeginDate" column="advertisement_begin_date" type="string"/>
+        <property name="advertisementEndDate" column="advertisement_end_date" type="string"/>
         <many-to-one name="workflowState" column="workflow_state_id" cascade="all" class="Models.WorkflowState"/>
-        <set name="personnel" cascade="all">
+        <many-to-one name="association" column="association_id" cascade="all" class="Models.Association"/>
+        <many-to-one name="workflow" column="workflow_id" class="Models.Workflow"/>
+        <set name="personnel" cascade="all" fetch="join">
             <key column="plan_id"/>
             <one-to-many class="Models.Personnel"/>
         </set>
@@ -96,7 +100,7 @@
         </id>
         <property name="fName" column="f_name" type="string"/>
         <property name="lName" column="l_name" type="string"/>
-        <property name="studentID" column="student_id" type="string"/>
+        <property name="studentId" column="student_id" type="string"/>
         <property name="email" column="email" type="string"/>
         <property name="phone" column="phone" type="string"/>
     </class>
@@ -138,16 +142,16 @@
     <id name="id" column="id" type="int">
         <generator class="native"/>
     </id>
-    <property name="number" column="number" type="int"/>
+    <property name="number" column="number" type="string"/>
     <property name="name" column="name" type="string"/>
     <property name="logo" column="logo" type="string" />
     <property name="active" />
     <set name="users" cascade="all">
-        <key column="association_number" />
+        <key column="association_id" />
         <one-to-many class="Models.User"/>
     </set>
     <set name="plans" cascade="all">
-        <key column="association_number"/>
+        <key column="association_id"/>
         <one-to-many class="Models.Plan"/>
     </set>
 </class>
@@ -165,7 +169,6 @@
         <property name="lName" column="l_name" type="string"/>
         <property name="userName" column="user_name" type="string"/>
         <property name="password" column="password" type="string"/>
-        <property name="associationNumber" column="association_number" type="int"/>
         <property name="positionTitle" column="position_title" type="string"/>
         <property name="birthYear" column="birth_year" type="string"/>
         <property name="email" column="email" type="string"/>
@@ -173,6 +176,7 @@
         <property name="phone" column="phone" type="string"/>
         <property name="photo" column="photo" type="string"/>
         <property name="studentId" column="student_id" type="string"/>
+        <many-to-one name="association" class="Models.Association" column="association_id" cascade="all"/>
     </class>
     <!-- /users -->
 
@@ -252,5 +256,18 @@
         <property name="fieldValue" column="field_value" type="string"/>
     </class>
     <!-- /changes -->
+
+    <!-- resource -->
+    <class name="Models.Resource" table="resource">
+        <meta attribute="class-description">
+            This class contains tha detail of resources.
+        </meta>
+        <id name="id" column="id" type="int">
+            <generator class="native"/>
+        </id>
+        <property name="name" column="name" type="string"/>
+        <property name="path" column="path" type="string"/>
+    </class>
+    <!-- /resource -->
 
 </hibernate-mapping>

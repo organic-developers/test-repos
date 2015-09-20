@@ -77,7 +77,7 @@
                         <label class="control-label col-sm-2">ماهیت:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="type" value=${plan.type} readonly>
+                            <input type="text" class="form-control" name="type" value="${plan.workflow.name}" disabled>
                         </div>
                     </div>
                     <!-- title -->
@@ -86,7 +86,7 @@
                         <label class="control-label col-sm-2">عنوان طرح:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="title" value="${plan.title}" readonly>
+                            <input type="text" class="form-control" name="title" value="${plan.title}" disabled>
                         </div>
                     </div>
                     <!-- place -->
@@ -95,7 +95,7 @@
                         <label class="control-label col-sm-2">محل برگزاری:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="place" value="${plan.place}" readonly>
+                            <input type="text" class="form-control" name="place" value="${plan.place}" disabled>
                         </div>
                     </div>
                     <!-- date -->
@@ -105,13 +105,13 @@
                         <!-- beginDate -->
                         <div class="col-sm-3 col-sm-offset-1">
                             <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="beginDate"
-                                   value="${plan.beginDate}" readonly>
+                                   value="${plan.beginDate}" disabled>
                         </div>
                         <label class="control-label col-sm-1">لغایت</label>
                         <!-- endDate -->
                         <div class="col-sm-3">
                             <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="endDate"
-                                   value="${plan.endDate}" readonly>
+                                   value="${plan.endDate}" disabled>
                         </div>
                     </div>
                     <!-- time -->
@@ -120,7 +120,7 @@
                         <label class="control-label col-sm-2">ساعت برگزاری:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="time" value="${plan.time}" readonly>
+                            <input type="text" class="form-control" name="time" value="${plan.time}" disabled>
                         </div>
                     </div>
                     <!-- requestedItems -->
@@ -130,156 +130,76 @@
 
                         <div class="col-sm-7 col-sm-offset-1">
                             <textarea class="form-control" rows="3" id="needed"
-                                      name="requestedItems" readonly>${plan.requestedItems}"</textarea>
+                                      name="requestedItems" disabled>${plan.requestedItems}"</textarea>
                         </div>
                     </div>
                     <!-- personnel -->
                     <!-- modal -->
-                    <div class="form-group readonly">
+                    <div class="form-group disabled">
                         <label class="control-label col-sm-2">پرسنل اجرایی:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
 
                             <div class="line line-top"></div>
 
-                            <div class="row personnel-table">
-
-                                <div class="table-row">
-                                    <div class="form-group col-xs-3">
-                                        <input type="text" class="form-control" name="personnel-fName-0"
-                                               placeholder="نام">
+                            <div class="row plan-table personnel-table pure-table">
+                                <c:forEach var="personnel" items="${plan.personnel}">
+                                    <div class="table-row">
+                                        <div class="form-group col-xs-4">
+                                            <input type="text" class="form-control" name="personnel-fName-0"
+                                                   placeholder="نام" value="${personnel.fName}">
+                                        </div>
+                                        <div class="form-group col-xs-4">
+                                            <input type="text" class="form-control" name="personnel-lName-0"
+                                                   placeholder="نام خانوادگی" value="${personnel.lName}">
+                                        </div>
+                                        <div class="form-group col-xs-4">
+                                            <input type="text" class="form-control" name="personnel-phone-0"
+                                                   placeholder="تلفن" value="${personnel.phone}">
+                                        </div>
                                     </div>
-                                    <div class="form-group col-xs-4">
-                                        <input type="text" class="form-control" name="personnel-lName-0"
-                                               placeholder="نام خانوادگی">
-                                    </div>
-                                    <div class="form-group col-xs-4">
-                                        <input type="text" class="form-control" name="personnel-phone-0"
-                                               placeholder="تلفن">
-                                    </div>
-                                    <div class="form-group col-xs-1">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                    </div>
-                                </div>
-
-                                <div class="table-row">
-                                    <div class="form-group col-xs-3">
-                                        <input type="text" class="form-control" name="personnel-fName-1"
-                                               placeholder="نام">
-                                    </div>
-                                    <div class="form-group col-xs-4">
-                                        <input type="text" class="form-control" name="personnel-lName-1"
-                                               placeholder="نام خانوادگی">
-                                    </div>
-                                    <div class="form-group col-xs-4">
-                                        <input type="text" class="form-control" name="personnel-phone-1"
-                                               placeholder="تلفن">
-                                    </div>
-                                    <div class="form-group col-xs-1">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                    </div>
-                                </div>
-
-                                <div class="table-row">
-                                    <div class="form-group col-xs-3">
-                                        <input type="text" class="form-control" name="personnel-fName-2"
-                                               placeholder="نام">
-                                    </div>
-                                    <div class="form-group col-xs-4">
-                                        <input type="text" class="form-control" name="personnel-lName-2"
-                                               placeholder="نام خانوادگی">
-                                    </div>
-                                    <div class="form-group col-xs-4">
-                                        <input type="text" class="form-control" name="personnel-phone-2"
-                                               placeholder="تلفن">
-                                    </div>
-                                    <div class="form-group col-xs-1">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                    </div>
-                                </div>
+                                </c:forEach>
                             </div>
-
-                            <span class="glyphicon glyphicon-plus" id="personnel-plus"></span>
 
                             <div class="line line-bottom"></div>
                         </div>
                     </div>
-                    <!-- supervisorAgreement -->
-                    <!-- file -->
-                    <div class="form-group">
-                        <label class="control-label col-sm-2">موافقت مسئول یا سرپرست (در صورت نیاز):</label>
+                    <%--<!-- supervisorAgreement -->--%>
+                    <%--<!-- file -->--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label class="control-label col-sm-2">موافقت مسئول یا سرپرست (در صورت نیاز):</label>--%>
 
-                        <div class="col-sm-7 col-sm-offset-1">
-                            <a href="${plan.supervisorAgreement}" target="_blank">موافقت نامه مسئول یا سرپرست</a>
-                        </div>
-                    </div>
+                        <%--<div class="col-sm-7 col-sm-offset-1">--%>
+                            <%--<a href="${plan.supervisorAgreement}" target="_blank">موافقت نامه مسئول یا سرپرست</a>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                     <!-- expenses -->
                     <!-- modal -->
-                    <div class="form-group readonly" >
+                    <div class="form-group disabled">
                         <label class="control-label col-sm-2">ریز هزینه ها:</label>
 
-                        <div class="col-sm-7 col-sm-offset-1" >
+                        <div class="col-sm-7 col-sm-offset-1">
 
-                            <div class="line line-top" ></div>
+                            <div class="line line-top"></div>
 
-                            <div class="row expenses-table" >
-
-                                <div class="table-row" >
-                                    <div class="form-group col-xs-2">
-                                        <input type="text" class="form-control" name="expense-name-0"
-                                               placeholder="عنوان">
+                            <div class="row plan-table expenses-table pure-table">
+                                <c:forEach var="expense" items="${plan.expenses}">
+                                    <div class="table-row">
+                                        <div class="form-group col-xs-2">
+                                            <input type="text" class="form-control" name="expense-name-"
+                                                   placeholder="عنوان" value="${expense.name}">
+                                        </div>
+                                        <div class="form-group col-xs-2">
+                                            <input type="text" class="form-control" name="expense-value-"
+                                                   placeholder="هزینه" value="${expense.value}">
+                                        </div>
+                                        <div class="form-group col-xs-8">
+                                            <input type="text" class="form-control" name="expense-comment-"
+                                                   placeholder="توضیحات" value="${expense.comment}">
+                                        </div>
                                     </div>
-                                    <div class="form-group col-xs-2">
-                                        <input type="text" class="form-control" name="expense-value-0"
-                                               placeholder="هزینه">
-                                    </div>
-                                    <div class="form-group col-xs-7">
-                                        <input type="text" class="form-control" name="expense-comment-0"
-                                               placeholder="توضیحات">
-                                    </div>
-                                    <div class="form-group col-xs-1">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                    </div>
-                                </div>
-
-                                <div class="table-row">
-                                    <div class="form-group col-xs-2">
-                                        <input type="text" class="form-control" name="expense-name-1"
-                                               placeholder="عنوان">
-                                    </div>
-                                    <div class="form-group col-xs-2">
-                                        <input type="text" class="form-control" name="expense-value-1"
-                                               placeholder="هزینه">
-                                    </div>
-                                    <div class="form-group col-xs-7">
-                                        <input type="text" class="form-control" name="expense-comment-1"
-                                               placeholder="توضیحات">
-                                    </div>
-                                    <div class="form-group col-xs-1">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                    </div>
-                                </div>
-
-                                <div class="table-row">
-                                    <div class="form-group col-xs-2">
-                                        <input type="text" class="form-control" name="expense-name-2"
-                                               placeholder="عنوان">
-                                    </div>
-                                    <div class="form-group col-xs-2">
-                                        <input type="text" class="form-control" name="expense-value-2"
-                                               placeholder="هزینه">
-                                    </div>
-                                    <div class="form-group col-xs-7">
-                                        <input type="text" class="form-control" name="expense-comment-2"
-                                               placeholder="توضیحات">
-                                    </div>
-                                    <div class="form-group col-xs-1">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                    </div>
-                                </div>
+                                </c:forEach>
                             </div>
-
-                            <span class="glyphicon glyphicon-plus" id="expenses-plus"></span>
 
                             <div class="line line-bottom"></div>
                         </div>
@@ -298,7 +218,8 @@
                     <!-- submit button -->
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-10">
-                            <button type="submit" class="btn btn-primary" name="submit" value="confirm">تایید طرح</button>
+                            <button type="submit" class="btn btn-primary" name="submit" value="confirm">تایید طرح
+                            </button>
                             <button type="submit" class="btn btn-danger" name="submit" value="reject">رد طرح</button>
                         </div>
                     </div>

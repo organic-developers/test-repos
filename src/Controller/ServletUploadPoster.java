@@ -40,6 +40,11 @@ public class ServletUploadPoster extends HttpServlet {
             e.printStackTrace();
         }
 
+        plan.setRegistrationBeginDate(request.getParameter("registrationBeginDate"));
+        plan.setRegistrationEndDate(request.getParameter("registrationEndDate"));
+        plan.setAdvertisementBeginDate(request.getParameter("advertisementBeginDate"));
+        plan.setAdvertisementEndDate(request.getParameter("advertisementEndDate"));
+
         planDAO.updatePlan(plan);
 
         planDAO.workflowForward(plan.getId());

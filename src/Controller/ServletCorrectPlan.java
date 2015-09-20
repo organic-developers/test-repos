@@ -14,8 +14,8 @@ import java.io.IOException;
 import java.util.HashSet;
 
 
-@WebServlet(name = "ServletExpertConfirmPlan", urlPatterns = {"/ServletExpertConfirmPlan"})
-public class ServletExpertConfirmPlan extends HttpServlet {
+@WebServlet(name = "ServletCorrectPlan", urlPatterns = "/ServletCorrectPlan")
+public class ServletCorrectPlan extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -24,11 +24,11 @@ public class ServletExpertConfirmPlan extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         request.setCharacterEncoding("UTF-8");
 
         PlanDAO planDAO = new PlanDAO();
-        Plan plan = planDAO.getPlanById(Integer.parseInt(request.getParameter("id")));
+
+        Plan plan = planDAO.getPlanById(Integer.parseInt(request.getParameter("id").trim()));
 
         plan.setTitle(request.getParameter("title"));
         plan.setPlace(request.getParameter("place"));
@@ -37,19 +37,13 @@ public class ServletExpertConfirmPlan extends HttpServlet {
         plan.setTime(request.getParameter("time"));
         plan.setRequestedItems(request.getParameter("requestedItems"));
 
-        plan.setExpertComment(request.getParameter("expertComment"));
-
         plan.setEnlisted(makeEnlisted(request));
         plan.setExpenses(makeExpenses(request));
 
         planDAO.updatePlan(plan);
-        try {
-            planDAO.workflowForward(plan.getId());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        request.getRequestDispatcher("../Controller/ServletDashboardInitializer").forward(request, response);
+        planDAO.workflowForward(plan.getId());
 
+        request.getRequestDispatcher("/Controller/ServletDashboardInitializer").forward(request, response);
     }
 
     public HashSet makeEnlisted(HttpServletRequest request) {

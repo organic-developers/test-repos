@@ -56,30 +56,13 @@
             <br/>
             <br/>
 
+            <c:forEach var="resource" items="${resources}">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1">
-                    <h4><a> فایل راهنمای استفاده از
-                        سیستم</a></h4>
+                    <h4><a href="${resource.path}" target="_blank">${resource.name}</a></h4>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1">
-                    <h4><a> فایل راهنمای استفاده از
-                        سیستم</a></h4>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1">
-                    <h4><a> فایل راهنمای استفاده از
-                        سیستم</a></h4>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1">
-                    <h4><a> فایل راهنمای استفاده از
-                        سیستم</a></h4>
-                </div>
-            </div>
+            </c:forEach>
 
         </div>
 

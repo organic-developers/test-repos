@@ -1,11 +1,14 @@
 package Controller;
 
 
+import Logic.WorkflowDAO;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 //import javax.servlet.annotation.WebServlet;
 
@@ -14,29 +17,16 @@ import java.io.IOException;
 public class ServletCreateplan extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);
-//        response.setContentType("text/html");
-//        PrintWriter out = response.getWriter();
-//        createPlan(request, response);
-
-
     }
 
-//    private void createPlan(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-//        session.beginTransaction();
-//
-//        Plan plan = new Plan();
-//        plan.setTitle(request.getParameter("title"));
-//        plan.setPlace(request.getParameter("place"));
-//        session.save(plan);
-//
-//        session.getTransaction().commit();
-//
-//        RequestDispatcher rd = request.getRequestDispatcher("success.jsp");
-//        rd.forward(request, response);
-//    }
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("/app/create-plan.jsp");
+        request.setCharacterEncoding("UTF-8");
+
+//        WorkflowDAO workflowDAO = new WorkflowDAO();
+//        List workflows = workflowDAO.getAllWorkflows();
+//
+//        request.setAttribute("workflows", workflows);
+
+        request.getRequestDispatcher("/app/create-plan.jsp").forward(request, response);
     }
 }

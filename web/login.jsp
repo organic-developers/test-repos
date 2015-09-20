@@ -13,26 +13,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <c:set var="root" value="${pageContext.request.contextPath}"/>
-
     <title>صفحه ورود</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="${root}/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Bootstrap Core CSS RTL-->
-    <link href="${root}/css/bootstrap-rtl.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-rtl.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="${root}/css/sb-admin.css" rel="stylesheet">
-    <link href="${root}/css/sb-admin-rtl.css" rel="stylesheet">
-    <link rel="stylesheet" href="${root}/css/added.css"/>
-
-    <!-- Morris Charts CSS -->
-    <link href="${root}/css/plugins/morris.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="${root}/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/added.css"/>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -84,14 +74,24 @@
             padding: 10px;
             font-size: 16px;
         }
-
     </style>
 
 </head>
-<body style="border-bottom-width: thin">
+<body style="height: 100%;">
+
+<!-- .navbar -->
+<div class="navbar navbar-inverse navbar-index" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/index">سامانه انجمن های علمی<span
+                    class="hidden-lg hidden-md  glyphicon glyphicon-phone pull-left"
+                    style="padding-right:    17px;"></span></a>
+        </div>
+    </div>
+</div>
+<!-- /.navbar -->
 
 <div class="container">
-
     <form class="form-signin" id="login-form" action="/Controller/ServletLogin" method="post">
         <h2 class="form-signin-heading">اطلاعات خود را وارد کنید</h2>
         <label for="id" class="sr-only">نام کاربری</label>
@@ -111,8 +111,8 @@
 <!-- /container -->
 
 
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+<%--<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->--%>
+<%--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>--%>
 
 
 </body>

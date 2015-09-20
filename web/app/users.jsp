@@ -42,20 +42,21 @@
         $(document).ready(function () {
             $("tr").each(function () {
                 $(this).click(function () {
+
                     var x = $(this).children().last().text();
-                    $("#testp").text(x);
+//                    alert(x);
                     $.post("/Controller/ServletUsers",
                             {
                                 id: x,
                             },
                             function (data, status) {
-//                                alert("Data: " + data + "\nStatus: " + status);
+//                                alert("Data: " + data.id + "\nStatus: " + status);
                                 $("#id").val(data.id);
                                 $("#fName").val(data.fName);
                                 $("#lName").val(data.lName);
                                 $("#userName").val(data.userName);
                                 $("#password").val(data.password);
-                                $("#associationNumber").val(data.associationNumber);
+                                $("#associationId").val(data.association.id);
                                 $("#positionTitle").val(data.positionTitle);
                                 $("#birthYear").val(data.birthYear);
                                 $("#email").val(data.email);
@@ -130,7 +131,7 @@
                                             <td>${user.fName}</td>
                                             <td>${user.lName}</td>
                                             <td>${user.positionTitle}</td>
-                                            <td>${user.associationNumber}</td>
+                                            <td>${user.association.name}</td>
                                             <td style="display: none;">${user.id}</td>
                                         </tr>
                                     </c:forEach>
@@ -142,7 +143,7 @@
                 </div>
 
                 <div class="col-lg-4">
-                    <div class="panel panel-default">
+                    <div class="panel panel-default"  id="test">
                         <div class="panel-heading">
                             <h3 class="panel-title"><i class="fa fa-pencil-square-o"></i> ایجاد / ویرایش کاربر </h3>
                         </div>
@@ -154,10 +155,10 @@
                                   enctype="multipart/form-data">
                                 <input type="text" id="image2" name="image2" style="display: none;">
                                 <input type="text" id="id" name="id" style="display: none;">
-                                <%--<label id="id" name="id"></label>--%>
+
                                 <div class="form-group">
-                                    <label for="associationNumber">انجمن:</label>
-                                    <select class="form-control" id="associationNumber" name="associationNumber">
+                                    <label for="associationId">انجمن:</label>
+                                    <select class="form-control" id="associationId" name="associationId">
                                         <c:forEach var="association" items="${associations}">
                                             <option value="${association.id}">${association.name}</option>
                                         </c:forEach>

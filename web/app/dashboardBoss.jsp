@@ -519,7 +519,7 @@
                         <div class="well well-lg">
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <h5 class="page-header">${plan.title}/${plan.associationNumber}</h5>
+                                    <h5 class="page-header">${plan.title}/${plan.association.name}</h5>
 
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -539,7 +539,7 @@
             <!-- /confirmed plans box contents -->
 
             <!-- boss box contents -->
-            <div id="menu2" class="tab-pane fade">
+            <div id="menu2" class="tab-pane fade in active">
                 <h3 class="page-header">محتویات صندوق ریاست انجمن ها</h3>
 
                 <c:forEach var="plan" items="${plans}">
@@ -547,7 +547,7 @@
                         <div class="well well-lg">
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <h5 class="page-header">${plan.title}/${plan.associationNumber}</h5>
+                                    <h5 class="page-header">${plan.title}/${plan.association.name}</h5>
 
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -575,7 +575,7 @@
                         <div class="well well-lg">
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <h5 class="page-header">${plan.title}/${plan.associationNumber}</h5>
+                                    <h5 class="page-header">${plan.title}/${plan.association.name}</h5>
 
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -595,7 +595,7 @@
             <!-- /expert box contents -->
 
             <!-- advisor box contents -->
-            <div id="menu4" class="tab-pane fade in active">
+            <div id="menu4" class="tab-pane fade">
                 <h3 class="page-header">محتویات صندوق مشاور علمی</h3>
 
                 <c:forEach var="plan" items="${plans}">
@@ -603,7 +603,7 @@
                         <div class="well well-lg">
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <h5 class="page-header">${plan.title}/${plan.associationNumber}</h5>
+                                    <h5 class="page-header">${plan.title}/${plan.association.name}</h5>
 
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -631,7 +631,7 @@
                         <div class="well well-lg">
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <h5 class="page-header">${plan.title}/${plan.associationNumber}</h5>
+                                    <h5 class="page-header">${plan.title}/${plan.association.name}</h5>
 
                                     <div class="row">
                                         <div class="col-lg-12">

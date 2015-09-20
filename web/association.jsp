@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="position: relative; min-height: 100%;">
 
 <head>
 
@@ -19,11 +19,7 @@
     <link href="css/bootstrap-rtl.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/sb-admin.css" rel="stylesheet">
-    <link href="css/sb-admin-rtl.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="css/plugins/morris.css" rel="stylesheet">
+    <link href="/css/added.css" rel="stylesheet"/>
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -34,27 +30,19 @@
 </head>
 
 
-<body id="index" style='background: url("image/bg1.png") no-repeat fixed center transparent ;height:1200px;'>
+<body id="index" style="background: url('image/bg1.png') repeat fixed center transparent; margin-bottom: 60px;">
 
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<!-- .navbar -->
+<div class="navbar navbar-inverse navbar-index" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.jsp">سامانه انجمن های علمی<span
+            <a class="navbar-brand" href="/index">سامانه انجمن های علمی<span
                     class="hidden-lg hidden-md  glyphicon glyphicon-phone pull-left"
-                    style="padding-right:    17px;"></span></a>
+                    style="padding-right: 17px;"></span></a>
         </div>
-        <div class="navbar-collapse collapse" id="navbar-collapse">
-
-        </div>
-        <!--/.navbar-collapse -->
     </div>
 </div>
+<!-- /.navbar -->
 
 
 <!-- Modal - details -->
@@ -207,21 +195,27 @@
     </div>
 </div>
 
-
+<!-- .container -->
 <div class="container">
-    <h2>انجمن علمی کامپيوتر و فناوری اطلاعات </h2>
-    <ul class="nav nav-pills anjoman-menu">
+
+    <!-- page header -->
+    <h2>${association.name}</h2>
+
+    <!-- .nav-pills -->
+    <ul class="nav nav-pills" style="font-size: larger" >
         <li class="active"><a data-toggle="pill" href="#home">طرح های در حال ثبت نام</a></li>
         <li><a data-toggle="pill" href="#menu1">طرح های آینده</a></li>
         <li><a data-toggle="pill" href="#menu3">پیشنهاد طرح</a></li>
         <li><a data-toggle="pill" href="#menu2">طرح های برگزار شده</a></li>
+        <li><a data-toggle="pill" href="#menu4">اعضای انجمن</a></li>
     </ul>
+    <!-- /.nav-pills -->
 
+    <br/>
+    <br/>
 
-    <!--/tab contents -->
+    <!-- .tab-contents -->
     <div class="tab-content">
-        <br/>
-        <br/>
 
         <div id="home" class="tab-pane fade in active">
 
@@ -277,13 +271,11 @@
             </div>
         </div>
 
-
         <div id="menu1" class="tab-pane fade">
             <div>
                 <h4>-جسله معارف ورودی های 93 دانشکده کامپیوتر / تاریخ برگزاری: 1394/3/3</h4>
             </div>
         </div>
-
 
         <div id="menu2" class="tab-pane fade">
             <div class="well well-lg" style="border: 2px solid #337AB7;min-height:140px">
@@ -334,7 +326,6 @@
                 </div>
             </div>
         </div>
-
 
         <div id="menu3" class="tab-pane fade">
             <a href="#new-plan" class="fix-position-link btn" id="create-plan-fixed">پیشنهاد طرح</a>
@@ -477,16 +468,23 @@
 
         </div>
 
+        <div id="menu4" class="tab-pane fade">
+            <h3>${association.}</h3>
+        </div>
+
     </div>
-</div>
-</div>
+    <!--/.tab-contents -->
 
+</div>
+<!-- /.container -->
 
-<div class="navbar navbar-default navbar-fixed-bottom" style="background: #222222;">
+<!-- Bottom Navbar -->
+<div class="navbar navbar-default navbar-index" style="background: #222222; width: 100%; position: absolute; bottom: 0;">
     <div class="container">
         <p class="navbar-text pull-left englishFont">About us </p>
-
     </div>
 </div>
+<!-- /Bottom Navbar -->
+
 </body>
 </html>

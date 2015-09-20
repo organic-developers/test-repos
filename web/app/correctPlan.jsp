@@ -1,14 +1,12 @@
 <%--
   Created by IntelliJ IDEA.
   User: Saied
-  Date: 9/7/2015
-  Time: 11:37 PM
+  Date: 9/16/2015
+  Time: 11:49 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-<head>
+<html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,8 +43,10 @@
 
     <script src="/js/jquery-1.11.3.min.js"></script>
     <script src="/js/added.js"></script>
+
+
 </head>
-<body>
+<body class="dashboard-background">
 <div id="wrapper">
 
     <!-- Navigation -->
@@ -59,16 +59,16 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">بررسی طرح:</h1>
+                    <h1 class="page-header">اصلاح طرح (بازدید علمی)</h1>
                 </div>
             </div>
             <!-- /.row -->
 
+
             <!-- /.row -->
             <div class="row">
-                <form class="form-horizontal" role="form" action="/Controller/ServletExpertConfirmPlan"
+                <form class="form-horizontal" role="form" action="/Controller/ServletCorrectPlan"
                       method="post">
-                    <!-- hidden id -->
                     <input type="text" id="id" name="id" value="${plan.id}" style="display: none;">
                     <!-- type -->
                     <!-- text -->
@@ -76,7 +76,7 @@
                         <label class="control-label col-sm-2">ماهیت:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="type" value="${plan.workflow.name}" disabled >
+                            <input type="text" class="form-control" name="type" value="${plan.workflow.name}" disabled/>
                         </div>
                     </div>
                     <!-- title -->
@@ -85,7 +85,7 @@
                         <label class="control-label col-sm-2">عنوان طرح:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="title" value="${plan.title}" >
+                            <input type="text" class="form-control" name="title" value="${plan.title}">
                         </div>
                     </div>
                     <!-- place -->
@@ -94,7 +94,7 @@
                         <label class="control-label col-sm-2">محل برگزاری:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="place" value="${plan.place}" >
+                            <input type="text" class="form-control" name="place" value="${plan.place}">
                         </div>
                     </div>
                     <!-- date -->
@@ -103,14 +103,12 @@
                         <label class="control-label col-sm-2">تاریخ برگزاری: </label>
                         <!-- beginDate -->
                         <div class="col-sm-3 col-sm-offset-1">
-                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="beginDate"
-                                   value="${plan.beginDate}" >
+                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="beginDate" value="${plan.beginDate}">
                         </div>
                         <label class="control-label col-sm-1">لغایت</label>
                         <!-- endDate -->
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="endDate"
-                                   value="${plan.endDate}" >
+                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="endDate" value="${plan.endDate}">
                         </div>
                     </div>
                     <!-- time -->
@@ -119,7 +117,7 @@
                         <label class="control-label col-sm-2">ساعت برگزاری:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="time" value="${plan.time}" >
+                            <input type="text" class="form-control" name="time" value="${plan.time}">
                         </div>
                     </div>
                     <!-- requestedItems -->
@@ -128,11 +126,11 @@
                         <label class="control-label col-sm-2" for="needed">موارد درخواستی:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <textarea class="form-control" rows="3" id="needed"
-                                      name="requestedItems" >${plan.requestedItems}"</textarea>
+                            <textarea class="form-control" rows="3" id="needed" name="requestedItems">${plan.requestedItems}</textarea>
                         </div>
                     </div>
                     <!-- personnel -->
+                    <!-- modal -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">پرسنل اجرایی:</label>
 
@@ -167,16 +165,8 @@
                             <div class="line line-bottom"></div>
                         </div>
                     </div>
-                    <%--<!-- supervisorAgreement -->--%>
-                    <%--<!-- file -->--%>
-                    <%--<div class="form-group">--%>
-                        <%--<label class="control-label col-sm-2">موافقت مسئول یا سرپرست (در صورت نیاز):</label>--%>
-
-                        <%--<div class="col-sm-7 col-sm-offset-1">--%>
-                            <%--<a href="${plan.supervisorAgreement}" target="_blank">موافقت نامه مسئول یا سرپرست</a>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
                     <!-- expenses -->
+                    <!-- modal -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">ریز هزینه ها:</label>
 
@@ -212,29 +202,20 @@
                         </div>
 
                     </div>
-                    <!-- advisorComment -->
+                    <!-- bossComment -->
                     <!-- textarea -->
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="advisorComment">نظرات مشاور انجمن:</label>
+                        <label class="control-label col-sm-2" for="bossComment">نظر نهایی ریاست انجمن های علمی:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <textarea class="form-control" rows="3" id="advisorComment"
-                                      name="advisorComment" disabled>${plan.advisorComment}</textarea>
-                        </div>
-                    </div>
-                    <!-- expertComment -->
-                    <!-- textarea -->
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="expertComment">نظرات کارشناس انجمن:</label>
-
-                        <div class="col-sm-7 col-sm-offset-1">
-                            <textarea class="form-control" rows="3" id="expertComment" name="expertComment"></textarea>
+                            <textarea class="form-control" rows="3" id="bossComment" name="bossComment" disabled>${plan.bossComment}</textarea>
                         </div>
                     </div>
                     <!-- submit button -->
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-10">
-                            <button type="submit" class="btn btn-primary" name="submit" value="confirm">تایید طرح</button>
+                            <button type="submit" class="btn btn-primary" name="submit" value="send">ارسال</button>
+                            <%--<button type="submit" class="btn btn-info" name="submit" value="tentative">ذخیره موقت</button>--%>
                         </div>
                     </div>
                 </form>
@@ -248,7 +229,6 @@
 
 </div>
 <!-- /#wrapper -->
-
 
 <!-- Bootstrap Core JavaScript -->
 <script src="/js/bootstrap.min.js"></script>

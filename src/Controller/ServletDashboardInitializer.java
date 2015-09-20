@@ -31,27 +31,28 @@ public class ServletDashboardInitializer extends HttpServlet {
 
         User user = (User) request.getSession().getAttribute("user");
 
-        if(user.getAssociationNumber() == 100){
-            plans = planDAO.getAllPlans();
+        if(user.getAssociation().getId() == 8){
+
+                plans = planDAO.getAllPlans();
+
         } else {
-            plans = planDAO.getPlansByAssociationNumber(user.getAssociationNumber());
+            plans = planDAO.getPlansByAssociationId(user.getAssociation().getId());
         }
 
-        System.out.println(user.getAssociationNumber());
+            request.setAttribute("plans", plans);
 
-        request.setAttribute("plans", plans);
+            String positionTitle = user.getPositionTitle().trim();
 
-        String positionTitle = user.getPositionTitle().trim();
 
-        if (positionTitle.equals("clerk")) {
-            request.getRequestDispatcher("/app/dashboardClerk.jsp").forward(request, response);
-        } else if (positionTitle.equals("boss")) {
-            request.getRequestDispatcher("/app/dashboardBoss.jsp").forward(request, response);
-        } else if (positionTitle.equals("expert")) {
-            request.getRequestDispatcher("/app/dashboardExpert.jsp").forward(request, response);
-        } else if (positionTitle.equals("advisor")) {
-            request.getRequestDispatcher("/app/dashboardAdvisor.jsp").forward(request, response);
-        }
+            if (positionTitle.equals("clerk")) {
+                request.getRequestDispatcher("/app/dashboardClerk.jsp").forward(request, response);
+            } else if (positionTitle.equals("boss")) {
+                request.getRequestDispatcher("/app/dashboardBoss.jsp").forward(request, response);
+            } else if (positionTitle.equals("expert")) {
+                request.getRequestDispatcher("/app/dashboardExpert.jsp").forward(request, response);
+            } else if (positionTitle.equals("advisor")) {
+                request.getRequestDispatcher("/app/dashboardAdvisor.jsp").forward(request, response);
+            }
 
 //        request.getRequestDispatcher("/app/dashboard-index.jsp").forward(request, response);
     }

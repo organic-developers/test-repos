@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
 
 <head>
@@ -43,8 +44,38 @@
     <script src="/js/added.js"></script>
 
     <script>
-        $(document).ready(function(){
-            $()
+        $(document).ready(function () {
+            $(".btn-toggle-active").each(function () {
+                $(this).click(function () {
+                    i = $(this);
+                    var x = i.val();
+                    window.alert(x);
+                    $.ajax({
+                        url: "ServletAssociationsManagement",
+                        type: "POST",
+                        data: {id: x},
+//                        beforeSend: function (before) {
+//                        },
+                        success: function () {
+                            i.parents(".thumbnail").toggleClass("thumbnail-gray");
+                        },
+//                        error: function (error) {
+//                        }
+                    })
+                })
+            })
+            $(".btn-edit").each(function(){
+                $(this).click(function(){
+                    var x = $(this).val();
+                    window.alert(x);
+                    $.ajax({
+                        url:"ServletEditAssociation",
+                        type: "POST",
+                        data: {"id": x},
+//                        success: function(){}
+                    })
+                })
+            })
         })
     </script>
 
@@ -80,7 +111,9 @@
                 <div class="row">
                     <c:forEach var="association" items="${associations}">
                         <div class="col-sm-6 col-md-3">
-                            <div class="thumbnail">
+                            <c:choose>
+                            <c:when test="${association.active eq 'false'}">
+                            <div class="thumbnail thumbnail-gray">
                                 <img src="${association.logo}" alt="مشکل در بارگزاری لوگو"
                                      style="height: 200px; width: 100%; display: block;">
 
@@ -88,10 +121,33 @@
                                     <h4>${association.name}</h4>
                                 </div>
                                 <div class="caption caption-botton">
-                                    <a href="#" class="btn btn-primary" role="button">ویرایش</a>
-                                    <a href="#" class="btn btn-default" role="button">غیر فعال</a>
+                                    <form action="ServletEditAssociationInitializer" style="display: inline;">
+                                        <input type="text" value="${association.id}" name="id" style="display: none;"/>
+                                        <button type="submit" class="btn btn-primary btn-edit">ویرایش</button>
+                                    </form>
+                                    <button class="btn btn-info btn-toggle-active" value="${association.id}">فعال/غیر فعال</button>
                                 </div>
                             </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="thumbnail">
+                                    <img src="${association.logo}" alt="مشکل در بارگزاری لوگو"
+                                         style="height: 200px; width: 100%; display: block;">
+
+                                    <div class="caption">
+                                        <h4>${association.name}</h4>
+                                    </div>
+                                    <div class="caption caption-botton">
+                                        <form action="ServletEditAssociationInitializer" style="display: inline;">
+                                            <input type="text" value="${association.id}" name="id" style="display: none;"/>
+                                            <button type="submit" class="btn btn-primary btn-edit">ویرایش</button>
+                                        </form>
+                                        <button class="btn btn-info btn-toggle-active" value="${association.id}">فعال/غیر فعال</button>
+                                    </div>
+                                </div>
+                            </c:otherwise>
+                            </c:choose>
+
                         </div>
                     </c:forEach>
                 </div>

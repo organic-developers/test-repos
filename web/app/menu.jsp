@@ -45,12 +45,12 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-            <span class=".Sr-only">Toggle navigation</span>
+            <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/index.jsp">سامانه انجمن هاي علمي</a>
+        <a class="navbar-brand" href="/index">سامانه انجمن هاي علمي</a>
     </div>
 
     <!-- Top Menu Items -->
@@ -104,10 +104,10 @@
                 <a href="../app/registeration-verification.jsp"><i class="fa fa-check-square-o"></i> تایید ثبت نام ها</a>
             </li>
             <li>
-                <a href="../app/resource-management.jsp"><i class="fa fa-sitemap"></i> مديريت منابع</a>
+                <a href="/Controller/ServletResourceManagement"><i class="fa fa-sitemap"></i> مديريت منابع</a>
             </li>
             <li>
-                <a href="../app/resource-management2.jsp">test</a>
+                <a href="/Controller/ServletResources">منابع</a>
             </li>
         </ul>
     </div>

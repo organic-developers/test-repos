@@ -44,6 +44,7 @@
 
     <script src="/js/jquery-1.11.3.min.js"></script>
     <script src="/js/added.js"></script>
+
 </head>
 <body class="dashboard-background">
 
@@ -76,7 +77,7 @@
                         <label class="control-label col-sm-2">عنوان طرح:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="title" value="${plan.title}"  readonly>
+                            <input type="text" class="form-control" name="title" value="${plan.title}"  disabled>
                         </div>
                     </div>
                     <!-- enlisted list -->

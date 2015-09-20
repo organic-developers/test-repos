@@ -49,7 +49,7 @@ public class ServletEnterRegistrations extends HttpServlet {
                 Enlisted enlisted = new Enlisted();
                 enlisted.setfName(request.getParameter("enlisted-fName-" + i));
                 enlisted.setlName(request.getParameter("enlisted-lName-" + i));
-                enlisted.setStudentID(request.getParameter("enlisted-studentId-" + i));
+                enlisted.setStudentId(request.getParameter("enlisted-studentId-" + i));
                 enlisted.setPhone(request.getParameter("enlisted-phone-" + i));
                 enlisted.setEmail(request.getParameter("enlisted-email-" + i));
                 enlisteds.add(enlisted);

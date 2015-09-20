@@ -28,7 +28,7 @@ public class ServletBossConfirmRegistrations extends HttpServlet {
 
         Plan plan = planDAO.getPlanById(Integer.parseInt(request.getParameter("id")));
 
-        plan.setBossComment(request.getParameter("BossComment"));
+        plan.setBossComment(request.getParameter("bossComment"));
 
         planDAO.updatePlan(plan);
 

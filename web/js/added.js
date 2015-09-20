@@ -5,16 +5,16 @@
                 });
             })
             $("#personnel-plus").click(function () {
-                var i = $(".personnel-table .table-row").length;
+                //var i = $(".personnel-table .table-row").length;
                 var x = '<div class="table-row">' +
                         '<div class="form-group col-xs-3">' +
-                        '<input type="text" class="form-control" name="personnel-fName-' + i + '" placeholder="نام">' +
+                        '<input type="text" class="form-control" name="personnel-fName-" placeholder="نام">' +
                         '</div>' +
                         '<div class="form-group col-xs-4">' +
-                        '<input type="text" class="form-control" name="personnel-lName-' + i + '" placeholder="نام خانوادگی">' +
+                        '<input type="text" class="form-control" name="personnel-lName-" placeholder="نام خانوادگی">' +
                         '</div>' +
                         '<div class="form-group col-xs-4">' +
-                        '<input type="text" class="form-control" name="personnel-phone-' + i + '" placeholder="تلفن">' +
+                        '<input type="text" class="form-control" name="personnel-phone-" placeholder="تلفن">' +
                         '</div>' +
                         '<div class="form-group col-xs-1"><span class="glyphicon glyphicon-remove" ></span></div>' +
                         '</div>'
@@ -22,16 +22,16 @@
                 makeRemovable();
             });
             $("#expenses-plus").click(function () {
-                var i = $(".expenses-table .table-row").length;
+                //var i = $(".expenses-table .table-row").length;
                 var x = '<div class="table-row">' +
                         '<div class="form-group col-xs-2">' +
-                        '<input type="text" class="form-control" name="expense-name-' + i + '" placeholder="عنوان">' +
+                        '<input type="text" class="form-control" name="expense-name-" placeholder="عنوان">' +
                         '</div>' +
                         '<div class="form-group col-xs-2">' +
-                        '<input type="text" class="form-control" name="expense-value-' + i + '" placeholder="هزینه">' +
+                        '<input type="text" class="form-control" name="expense-value-" placeholder="هزینه">' +
                         '</div>' +
                         '<div class="form-group col-xs-7">' +
-                        '<input type="text" class="form-control" name="expense-comment-' + i + '" placeholder="توضیحات">' +
+                        '<input type="text" class="form-control" name="expense-comment-" placeholder="توضیحات">' +
                         '</div>' +
                         '<div class="form-group col-xs-1"><span class="glyphicon glyphicon-remove" ></span></div>' +
                         '</div>'
@@ -42,16 +42,16 @@
                 var i = $(".judge-table .table-row").length;
                 var x = '<div class="table-row">' +
                         '<div class="form-group col-xs-2">' +
-                        '<input type="text" class="form-control" name="judge-fName-' + i + '" placeholder="نام">' +
+                        '<input type="text" class="form-control" name="judge-fName-" placeholder="نام">' +
                         '</div>' +
                         '<div class="form-group col-xs-3">' +
-                        '<input type="text" class="form-control" name="judge-lName-' + i + '" placeholder="نام خانوادگی">' +
+                        '<input type="text" class="form-control" name="judge-lName-" placeholder="نام خانوادگی">' +
                         '</div>' +
                         '<div class="form-group col-xs-3">' +
-                        '<input type="text" class="form-control" name="judge-fieldOfStudy-' + i + '" placeholder="گرایش تحصیلی">' +
+                        '<input type="text" class="form-control" name="judge-fieldOfStudy-" placeholder="گرایش تحصیلی">' +
                         '</div>' +
                         '<div class="form-group col-xs-3">' +
-                        '<input type="text" class="form-control" name="judge-grade-' + i + '" placeholder="مدرک تحصیلی">' +
+                        '<input type="text" class="form-control" name="judge-grade-" placeholder="مدرک تحصیلی">' +
                         '</div>' +
                         '<div class="form-group col-xs-1"><span class="glyphicon glyphicon-remove" ></span></div>' +
                         '</div>'
@@ -62,19 +62,19 @@
                 var i = $(".enlisted-table .table-row").length;
                 var x = '<div class="table-row">' +
                         '<div class="form-group col-xs-2">' +
-                        '<input type="text" class="form-control" name="enlisted-fName-' + i + '" placeholder="نام">' +
+                        '<input type="text" class="form-control" name="enlisted-fName-" placeholder="نام">' +
                         '</div>' +
                         '<div class="form-group col-xs-2">' +
-                        '<input type="text" class="form-control" name="enlisted-lName-' + i + '" placeholder="نام خانوادگی">' +
+                        '<input type="text" class="form-control" name="enlisted-lName-" placeholder="نام خانوادگی">' +
                         '</div>' +
                         '<div class="form-group col-xs-2">' +
-                        '<input type="text" class="form-control" name="enlisted-studentId-' + i + '" placeholder="شماره دانشجویی">' +
+                        '<input type="text" class="form-control" name="enlisted-studentId-" placeholder="شماره دانشجویی">' +
                         '</div>' +
                         '<div class="form-group col-xs-2">' +
-                        '<input type="text" class="form-control" name="enlisted-phone-' + i + '" placeholder="تلفن همراه">' +
+                        '<input type="text" class="form-control" name="enlisted-phone-" placeholder="تلفن همراه">' +
                         '</div>' +
                         '<div class="form-group col-xs-3">' +
-                        '<input type="text" class="form-control" name="enlisted-email-' + i + '" placeholder="ایمیل">' +
+                        '<input type="text" class="form-control" name="enlisted-email-" placeholder="ایمیل">' +
                         '</div>' +
                         '<div class="form-group col-xs-1"><span class="glyphicon glyphicon-remove" ></span></div>' +
                         '</div>'
@@ -85,10 +85,10 @@
                 var i = $(".guest-table .table-row").length;
                 var x = '<div class="table-row">' +
                         '<div class="form-group col-xs-2">' +
-                        '<input type="text" class="form-control" name="guest-fName-' + i + '" placeholder="نام">' +
+                        '<input type="text" class="form-control" name="guest-fName-" placeholder="نام">' +
                         '</div>' +
                         '<div class="form-group col-xs-3">' +
-                        '<input type="text" class="form-control" name="guest-lName-' + i + '" placeholder="نام خانوادگی">' +
+                        '<input type="text" class="form-control" name="guest-lName-" placeholder="نام خانوادگی">' +
                         '</div>' +
                         '<div class="form-group col-xs-1"><span class="glyphicon glyphicon-remove" ></span></div>' +
                         '</div>'
@@ -110,5 +110,24 @@
         }
 
         $(document).ready(function(){
-            $(".readonly").find("input").attr("readonly", "readonly");
+            $(".disabled").find("input").attr("disabled", "disabled");
+        });
+
+        $(document).ready(function(){
+            $("form").submit(function(){
+//            $("#test").click(function(){
+                var tables = document.getElementsByClassName("plan-table");
+                for (var t = 0; t < tables.length; t++){
+                    var rows = tables[t].children;
+                    for (var i = 0; i < rows.length; i++){
+                        var row = rows[i];
+                        var inputs = row.children;
+                        for(var j = 0; j < inputs.length-1; j++){
+                            var inpu = inputs[j];
+                            var inpufield = inpu.children[0];
+                            inpufield.setAttribute("name", inpufield.getAttribute("name") + i);
+                        }
+                    }
+                }
+            });
         });

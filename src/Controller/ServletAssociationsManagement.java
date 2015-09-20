@@ -3,6 +3,7 @@ package Controller;
 
 import Logic.AssociationDAO;
 import Models.Association;
+import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,7 +33,13 @@ public class ServletAssociationsManagement extends HttpServlet {
         if (ajax) {
             // Handle ajax (JSON) response.
 
+            associationDAO.activeInactiveToggle(Integer.parseInt(request.getParameter("id").trim()));
 
+//            String json = new Gson().toJson(association);
+//
+//            response.setContentType("application/json");  // Set content type of the response so that jQuery knows what it can expect.
+//            response.setCharacterEncoding("UTF-8"); // You want world domination, huh?
+//            response.getWriter().write(json);       // Write response body.
         } else {
             // Handle regular (JSP) response.
 

@@ -122,6 +122,24 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>ServletEditAssociation</servlet-name>
+        <servlet-class>Controller.ServletEditAssociation</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletEditAssociation</servlet-name>
+        <url-pattern>/Controller/ServletEditAssociation</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletEditAssociationInitializer</servlet-name>
+        <servlet-class>Controller.ServletEditAssociationInitializer</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletEditAssociationInitializer</servlet-name>
+        <url-pattern>/Controller/ServletEditAssociationInitializer</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>ServletDashboardSwitch</servlet-name>
         <servlet-class>Controller.ServletDashboardSwitch</servlet-class>
     </servlet>
@@ -230,15 +248,6 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>ServletIndex</servlet-name>
-        <servlet-class>Controller.ServletIndex</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletIndex</servlet-name>
-        <url-pattern>/Controller/ServletIndex</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>ServletLogin</servlet-name>
         <servlet-class>Controller.ServletLogin</servlet-class>
     </servlet>
@@ -290,6 +299,34 @@
         <servlet-name>ServletUsers</servlet-name>
         <url-pattern>/Controller/ServletUsers</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletCorrectPlan</servlet-name>
+        <servlet-class>Controller.ServletCorrectPlan</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletCorrectPlan</servlet-name>
+        <url-pattern>/Controller/ServletCorrectPlan</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletCorrectPoster</servlet-name>
+        <servlet-class>Controller.ServletCorrectPoster</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletCorrectPoster</servlet-name>
+        <url-pattern>/Controller/ServletCorrectPoster</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletCorrectRegistrations</servlet-name>
+        <servlet-class>Controller.ServletCorrectRegistrations</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletCorrectRegistrations</servlet-name>
+        <url-pattern>/Controller/ServletCorrectRegistrations</url-pattern>
+    </servlet-mapping>
+
     <servlet>
         <servlet-name>ServletReport</servlet-name>
         <servlet-class>Controller.ServletReport</servlet-class>
@@ -298,13 +335,36 @@
         <servlet-name>ServletReport</servlet-name>
         <url-pattern>/Controller/ServletReport</url-pattern>
     </servlet-mapping>
+
     <servlet>
-        <servlet-name>ServletAssociationManager</servlet-name>
-        <servlet-class>Controller.ServletAssociationManager</servlet-class>
+        <servlet-name>ServletResourceManagement</servlet-name>
+        <servlet-class>Controller.ServletResourceManagement</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ServletAssociationManager</servlet-name>
-        <url-pattern>/Controller/ServletAssociationManager</url-pattern>
+        <servlet-name>ServletResourceManagement</servlet-name>
+        <url-pattern>/Controller/ServletResourceManagement</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletResources</servlet-name>
+        <servlet-class>Controller.ServletResources</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletResources</servlet-name>
+        <url-pattern>/Controller/ServletResources</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletIndex</servlet-name>
+        <servlet-class>Controller.ServletIndex</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletIndex</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index</welcome-file>
+    </welcome-file-list>
 
 </web-app>

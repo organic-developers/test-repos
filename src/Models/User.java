@@ -6,6 +6,7 @@ import org.hibernate.criterion.Restrictions;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import java.io.IOException;
 import java.util.List;
@@ -208,4 +209,15 @@ public class User {
 
     }
 
+    private Association association;
+
+
+    @javax.persistence.ManyToOne(fetch= FetchType.EAGER)
+    public Association getAssociation() {
+        return association;
+    }
+
+    public void setAssociation(Association association) {
+        this.association = association;
+    }
 }

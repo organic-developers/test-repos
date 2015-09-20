@@ -11,7 +11,7 @@ a.btn-type, button.btn-type {
 	font-size: large;
 }
 
-button {
+button.btn, a.btn {
 	min-width: 80px;
 }
 div.modal-footer {
@@ -60,6 +60,20 @@ div.tab-pane {
 	border-bottom: 3px #337AB7 dotted;
 }
 
-.form-control[readonly] {
+.form-control[disabled] {
     background-color: #FAFAFA;
+}
+.thumbnail-gray {
+    background-color: gainsboro;
+}
+
+.navbar-index {
+    margin: 0px;
+    border-radius: 0px;
+    background: #222222;
+    border: black;
+}
+
+.pure-table {
+    margin-left: 0px;
 }

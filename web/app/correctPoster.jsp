@@ -1,13 +1,14 @@
 <%--
   Created by IntelliJ IDEA.
   User: Saied
-  Date: 9/8/2015
-  Time: 5:01 PM
+  Date: 9/16/2015
+  Time: 11:50 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,9 +45,9 @@
 
     <script src="/js/jquery-1.11.3.min.js"></script>
     <script src="/js/added.js"></script>
-
 </head>
 <body class="dashboard-background">
+
 
 <div id="wrapper">
 
@@ -60,71 +61,88 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">بررسی طرح تبلیغاتی</h1>
+                    <h1 class="page-header">بارگزاری طرح تبلیغاتی اصلاح شده:</h1>
                 </div>
             </div>
             <!-- /.row -->
 
+            <br/>
+            <br/>
 
+            <!-- /.row -->
             <div class="row">
-                <form class="form-horizontal" role="form" action="/Controller/ServletExpertConfirmPoster" method="post">
+                <form class="form-horizontal" role="form" action="/Controller/ServletCorrectPoster"
+                      method="post" enctype="multipart/form-data">
+                    <!-- hidden id -->
                     <input type="text" id="id" name="id" value="${plan.id}" style="display: none;">
-                    <!-- poster -->
-                    <div class="col-lg-offset-3 col-lg-7">
-                        <a href="${plan.poster}" target="_blank"><img src="${plan.poster}" alt="اشکال در فرایند نمایش"
-                                                                      style="width: 100%; margin-bottom: 30px;"></a>
+                    <!-- title -->
+                    <!-- text -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">عنوان طرح:</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="text" class="form-control" name="title" value="${plan.title}" disabled>
+                        </div>
                     </div>
-                    <div class="clearfix"></div>
+                    <!-- supervisorAgreement -->
+                    <!-- file -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">پوستر:</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="file" id="poster" name="poster" required>
+                        </div>
+                    </div>
+                    <!-- bossComment -->
+                    <!-- textarea -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="bossComment">نظر نهایی ریاست انجمن های علمی:</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <textarea class="form-control" rows="3" id="bossComment" name="bossComment" disabled>${plan.bossComment}</textarea>
+                        </div>
+                    </div>
+                    <!-- warning -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-3"></label>
+                        <div class="col-sm-7">
+                            <h5 class="text-danger">در طرح تبليغاتي استفاده از لوگوي مديريت انجمن هاي علمي دانشجويي، لوگوي انجمن مربوطه و ذكر مبلغ، مكان، زمان و مهلت ثبت نام ضروري مي باشد. ريز مشخصات بازديد نيز ذكر گردد.</h5>
+                        </div>
+                    </div>
                     <!-- registration period -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">مهلت ثبت نام:</label>
                         <!-- beginDate -->
                         <div class="col-sm-3 col-sm-offset-1">
-                            <input type="text" class="form-control" placeholder="yyyy/mm/dd"
-                                   name="registrationBeginDate" value="${plan.registrationBeginDate}">
+                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="registrationBeginDate" value="${plan.beginDate}">
                         </div>
                         <label class="control-label col-sm-1">لغایت</label>
                         <!-- endDate -->
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="registrationEndDate"
-                                   value="${plan.registrationEndDate}">
+                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="registrationEndDate" value="${plan.endDate}">
                         </div>
                     </div>
-
                     <!-- advertisement period -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">بازه زمانی نمایش تبلیغات در سایت:</label>
                         <!-- beginDate -->
                         <div class="col-sm-3 col-sm-offset-1">
-                            <input type="text" class="form-control" placeholder="yyyy/mm/dd"
-                                   name="advertisementBeginDate" value="${plan.advertisementBeginDate}">
+                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="advertisementBeginDate" value="${plan.beginDate}">
                         </div>
                         <label class="control-label col-sm-1">لغایت</label>
                         <!-- endDate -->
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="advertisementEndDate"
-                                   value="${plan.advertisementEndDate}">
+                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="advertisementEndDate" value="${plan.endDate}">
                         </div>
                     </div>
-                    <!-- expertComment -->
-                    <!-- textarea -->
+                    <!-- submit button -->
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="expertComment">نظرات کارشناس انجمن:</label>
-
-                        <div class="col-sm-7 col-sm-offset-1">
-                            <textarea class="form-control" rows="3" id="expertComment" name="expertComment"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-lg-offset-3 col-lg-7">
-                            <button type="submit" class="btn btn-primary">تایید</button>
+                        <div class="col-sm-offset-3 col-sm-10">
+                            <button type="submit" class="btn btn-primary">آپلود</button>
                         </div>
                     </div>
                 </form>
             </div>
-
-            <br/>
-            <br/>
 
         </div>
 
@@ -135,5 +153,6 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="../js/bootstrap.min.js"></script>
+
 </body>
 </html>

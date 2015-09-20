@@ -4,16 +4,18 @@ import Logic.PlanDAO;
 import Models.Plan;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import java.io.IOException;
 
-
-@WebServlet(name = "ServletBossConfirmPoster", urlPatterns = {"/ServletBossConfirmPoster"})
-public class ServletBossConfirmPoster extends HttpServlet {
-
+@MultipartConfig(location = "C:\\Users\\Saied\\IdeaProjects\\scientific-associations\\web\\uploaded-files", fileSizeThreshold = 1024 * 1024,
+        maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
+@WebServlet(name = "ServletCorrectPoster", urlPatterns = "/ServletCorrectPoster")
+public class ServletCorrectPoster extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
@@ -21,23 +23,20 @@ public class ServletBossConfirmPoster extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         request.setCharacterEncoding("UTF-8");
 
         PlanDAO planDAO = new PlanDAO();
-
         Plan plan = planDAO.getPlanById(Integer.parseInt(request.getParameter("id")));
 
-        plan.setBossComment(request.getParameter("bossComment"));
 
-        planDAO.updatePlan(plan);
-
-        if(request.getParameter("submit").equals("confirm")){
-            planDAO.workflowForward(plan.getId());
-        } else if (request.getParameter("submit").equals("correct")){
-            planDAO.workflowToBeCorrected(plan.getId());
-        } else {
-            planDAO.workflowRejected(plan.getId());
+        try {
+            Part poster = request.getPart("poster");
+            if (poster != null) {
+                poster.write("poster");
+                plan.setPoster("/uploaded-files/" + poster.getSubmittedFileName());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         plan.setRegistrationBeginDate(request.getParameter("registrationBeginDate"));
@@ -45,6 +44,9 @@ public class ServletBossConfirmPoster extends HttpServlet {
         plan.setAdvertisementBeginDate(request.getParameter("advertisementBeginDate"));
         plan.setAdvertisementEndDate(request.getParameter("advertisementEndDate"));
 
-        request.getRequestDispatcher("../Controller/ServletDashboardInitializer").forward(request, response);
+        planDAO.updatePlan(plan);
+        planDAO.workflowForward(plan.getId());
+
+        request.getRequestDispatcher("/Controller/ServletDashboardInitializer").forward(request, response);
     }
 }

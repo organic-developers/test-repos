@@ -1,6 +1,7 @@
 package Logic;
 
 import Controller.HibernateUtil;
+import Models.Association;
 import Models.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -16,7 +17,9 @@ public class UserDAO {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        List users = session.createCriteria(User.class).list();
+        String qry = "select e from User e join fetch e.association";
+
+        List users = session.createQuery(qry).list();
 
         session.getTransaction().commit();
         session.close();
@@ -33,11 +36,15 @@ public class UserDAO {
             Session session = sessionFactory.openSession();
             session.beginTransaction();
 
-            String qry = "select e from User e " +
-                    " where e.id = :id";
+            String qry = "select e from User e join fetch e.association " +
+                    "where e.id = :id";
             user = (User) session.createQuery( qry )
                     .setParameter( "id", id )
                     .uniqueResult();
+//            Association association = user.getAssociation();
+//            System.out.println("" + association.getNumber() + association.getName() + association.getId());
+
+//            user.getAssociation().setUsers(null);
 
             session.getTransaction().commit();
             session.close();
@@ -67,5 +74,31 @@ public class UserDAO {
 
         session.getTransaction().commit();
         session.close();
+    }
+
+    public User getUserByUsernameAndPassword(String userName, String password) throws HibernateException{
+        User user = null;
+
+        try {
+            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+            if(sessionFactory == null){
+                System.out.println("null");
+            }
+            Session session = sessionFactory.openSession();
+            session.beginTransaction();
+
+            String qry = "select e from User e join fetch e.association" +
+                    " where e.userName like :userName and e.password like :password";
+            user = (User) session.createQuery(qry)
+                    .setParameter("userName", userName)
+                    .setParameter("password", password)
+                    .uniqueResult();
+
+            session.getTransaction().commit();
+            session.close();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return user;
     }
 }

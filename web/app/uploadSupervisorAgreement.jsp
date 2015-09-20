@@ -82,7 +82,7 @@
                         <label class="control-label col-sm-2">عنوان طرح:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="title" value="${plan.title}" readonly>
+                            <input type="text" class="form-control" name="title" value="${plan.title}" disabled>
                         </div>
                     </div>
                     <!-- supervisorAgreement -->

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -10,11 +11,18 @@
     <script type="text/javascript" src="index_1.jsp_files/docs.js"></script>
     <script src="index_1.jsp_files/bootstrap.js"></script>
     <style type="text/css" id="holderjs-style"></style>
-</head>
-<body id="index" class="jumbotron "
-      style="background: url('image/bg1.png') no-repeat fixed center center / cover  transparent;">
 
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <!-- Bootstrap Core CSS RTL-->
+    <link href="css/bootstrap-rtl.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/css/added.css" rel="stylesheet"/>
+
+</head>
+<body id="index" style="background: url('image/bg1.png') no-repeat fixed center center / cover  transparent;">
+
+<!-- .navbar -->
+<div class="navbar navbar-inverse navbar-index" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
@@ -23,148 +31,99 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">سامانه انجمن های علمی<span
+            <a class="navbar-brand" href="/index">سامانه انجمن های علمی<span
                     class="hidden-lg hidden-md  glyphicon glyphicon-phone pull-left"
                     style="padding-right:    17px;"></span></a>
         </div>
         <div class="navbar-collapse collapse" id="navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="${pageContext.request.contextPath}/login.jsp"><span class="glyphicon glyphicon-log-in"></span>  ورود اعضا</a></li>
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="/login.jsp"><span class="glyphicon glyphicon-log-in"></span> ورود</a></li>
             </ul>
         </div>
         <!--/.navbar-collapse -->
     </div>
 </div>
+<!-- /.navbar -->
 
 
-<div class="row">
-    <div class="col-lg-1"></div>
-    <div class="col-lg-10 ">
+<!-- .container -->
+<div class="container">
 
-        <!-- Carousel -->
-        <div id="Carousel" class="carousel slide hidden-xs ">
-            <!-- Indicators -->
-            <ol class="carousel-indicators ">
-                <li data-target="#Carousel" data-slide-to="0" class="active"></li>
-                <li data-target="#Carousel" data-slide-to="1"></li>
-                <li data-target="#Carousel" data-slide-to="2"></li>
+    <!-- Carousel -->
+    <div id="myCarousel" class="carousel slide hidden-xs ">
 
-            </ol>
+        <!-- Indicators -->
+        <ol class="carousel-indicators ">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
 
-            <div class="carousel-inner">
-                <div class="item active">
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
 
-                    <img src="index_1.jsp_files/006.jpg">
-
-                    <div class="carousel-caption carousel-inner">
-                        <h4>انجمن دانشکده آی تی و کامییوتر</h4>
-
-                        <p>ورک شاپ طراحی صفحات وب</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="index_1.jsp_files/007.jpg">
-
-                    <div class="carousel-caption  nav-fade ">
-                        <h4>انجمن دانشکده آی تی و کامییوتر</h4>
-
-                        <p>سمینار معرفی مدارک شبکه</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="index_1.jsp_files/003.jpg">
-
-                    <div class=" ">
-                        <div class="carousel-caption carousel-inner">
-                            <h4>انجمن های هنر و موسیقی </h4>
-
-                            <p>نمایشگاه هنری های دستی و کوزه گری</p>
-                        </div>
-                    </div>
+            <div class="item active">
+                <img src="index_1.jsp_files/iran3.jpg">
+                <div class="carousel-caption  nav-fade ">
+                    <h4>سامانه انجمن های علمی دانشجویی دانشگاه شاهرود</h4>
+                    <%--<p>سمینار معرفی مدارک شبکه</p>--%>
                 </div>
             </div>
 
-            <a class="left carousel-control" href="#Carousel" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-            </a>
-            <a class="right carousel-control" href="#Carousel" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-            </a>
+            <c:forEach var="plan" items="${plans}">
+            <div class="item">
+                <img src="${plan.poster}">
+                <div class="carousel-caption carousel-inner">
+                    <h4>${plan.association.name}</h4>
+                    <p>${plan.name}</p>
+                </div>
+            </div>
+            </c:forEach>
+
         </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
-    <div class="col-lg-1"></div>
+    <!-- /Carousel -->
 
+    <br/>
+    <br/>
+    <br/>
+    <div class="row" style="border-bottom: 1px white solid"></div>
+    <br/>
+    <br/>
 
-    <!-- Marketing messaging and featurettes
-          ================================================== -->
-
-
-    <div class="row ">
-    </div>
-
-    <!-- Three columns of text below the carousel -->
-    <div class="container marketing  ">
-        <div class="row"><h1></h1></div>
-
-        <div class="row" style="margin: 30px 30px 30px 30px;">
-            <hr class="exampleone">
-            <div class="col-lg-3  col-md-4 col-xs-6 col-sm-6 college ">
-                <a href="anjoman.IT.jsp">
-                    <img class="img-circle" alt="Generic placeholder image" src="index_1.jsp_files/IT4.jpg">
-
-                    <h2 class="fade">انجمن کامییوتر</h2>
+    <!-- Associations -->
+    <div class="row">
+        <c:forEach var="association" items="${associations}">
+            <div class="col-lg-3" style="margin-bottom: 30px;">
+                <a href="/association.jsp">
+                    <img src="${association.logo}" alt="لوگو" class="img-circle"/>
+                    <h4 style="text-align: center;">${association.name}</h4>
                 </a>
             </div>
-            <div class="col-lg-3 col-md-4 col-xs-12 col-sm-6 college ">
-                <img class="img-circle" alt="Generic placeholder image" src="index_1.jsp_files/math5.jpg">
-
-                <h2 class="fade">انجمن ریاضی</h2>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-12 col-sm-6 college ">
-                <img class="img-circle" alt="Generic placeholder image" src="index_1.jsp_files/p4.jpg">
-
-                <h2 class="fade">انجمن فیزیک</h2>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-12 col-sm-6 college ">
-                <img class="img-circle" alt="Generic placeholder image" src="index_1.jsp_files/chemistry.gif">
-
-                <h2 class="fade">انجمن شیمی</h2>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-12 col-sm-6 college ">
-                <img class="img-circle" alt="Generic placeholder image" src="index_1.jsp_files/language3.jpg">
-
-                <h2 class="fade">انجمن زبان</h2>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-12 col-sm-6 college ">
-                <img class="img-circle" alt="Generic placeholder image" src="index_1.jsp_files/art4.jpg">
-
-                <h2 class="fade">انجمن هنر</h2>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-12 col-sm-6 college ">
-                <img class="img-circle" alt="Generic placeholder image" src="index_1.jsp_files/sport4.jpg">
-
-                <h2 class="fade">انجمن برق</h2>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-12 col-sm-6 college ">
-                <img class="img-circle" alt="Generic placeholder image" src="index_1.jsp_files/civil2.jpg">
-
-                <h2 class="fade">انجمن مکانیک</h2>
-            </div>
-        </div>
-        <!-- /.row -->
-
-
+        </c:forEach>
     </div>
-
+    <!-- /Associations -->
 </div>
+<!-- /.container -->
 
-<div class="navbar navbar-default navbar-fixed-bottom" style="background: #222222;">
+
+<!-- Bottom Navbar -->
+<div class="navbar navbar-default navbar-index" style="background: #222222;">
     <div class="container">
         <p class="navbar-text pull-left englishFont">About us </p>
-
     </div>
 </div>
-
+<!-- /Bottom Navbar -->
 
 </body>
 </html>

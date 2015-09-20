@@ -11,10 +11,9 @@ import java.io.IOException;
 import java.util.HashSet;
 
 import Logic.PlanDAO;
+import Logic.WorkflowDAO;
 import Logic.WorkflowStateDAO;
 import Models.*;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 
 @WebServlet(name = "ServletCreatePlanTrip", urlPatterns = {"/ServletCreatePlanTrip"})
@@ -22,6 +21,7 @@ import org.hibernate.SessionFactory;
         maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
 public class ServletCreatePlanTrip extends HttpServlet {
 
+    private PlanDAO planDAO = new PlanDAO();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,14 +33,10 @@ public class ServletCreatePlanTrip extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        PlanDAO planDAO = new PlanDAO();
-
         Plan plan = makePlan(request);
 
         try {
-
             planDAO.addPlan(plan);
-
             request.getRequestDispatcher("/app/successful.jsp").forward(request, response);
 
         } catch (Exception e) {
@@ -54,7 +50,10 @@ public class ServletCreatePlanTrip extends HttpServlet {
     public Plan makePlan(HttpServletRequest request) throws IOException, ServletException {
         Plan plan = new Plan();
 
-        plan.setAssociationNumber(((User) request.getSession().getAttribute("user")).getAssociationNumber());
+        plan.setAssociation(((User) request.getSession().getAttribute("user")).getAssociation());
+        if (request.getParameter("id") != null && !request.getParameter("id").equals("")) {
+            plan.setId(Integer.parseInt(request.getParameter("id")));
+        }
         plan.setTitle(request.getParameter("title"));
         plan.setPlace(request.getParameter("place"));
         plan.setBeginDate(request.getParameter("beginDate"));
@@ -71,31 +70,46 @@ public class ServletCreatePlanTrip extends HttpServlet {
 
         String directory = "/uploaded-files/";
 
-        Part sa = request.getPart("supervisorAgreement");
-        if (sa != null) {
-            sa.write(sa.getSubmittedFileName());
-            plan.setSupervisorAgreement(directory + sa.getSubmittedFileName());
+        try {
+            Part sa = request.getPart("supervisorAgreement");
+            if (sa != null) {
+                sa.write(sa.getSubmittedFileName());
+                plan.setSupervisorAgreement(directory + sa.getSubmittedFileName());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Part guidelines = request.getPart("guidelines");
+            if (guidelines != null) {
+                guidelines.write(guidelines.getSubmittedFileName());
+                plan.setGuidelines(directory + guidelines.getSubmittedFileName());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
 
-        Part guidelines = request.getPart("guidelines");
-        if (guidelines != null) {
-            guidelines.write(guidelines.getSubmittedFileName());
-            plan.setGuidelines(directory + guidelines.getSubmittedFileName());
+        try {
+            Part resume = request.getPart("resume");
+            if (resume != null) {
+                resume.write(resume.getSubmittedFileName());
+                plan.setResume(directory + resume.getSubmittedFileName());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
 
-        Part resume = request.getPart("resume");
-        if (resume != null) {
-            resume.write(resume.getSubmittedFileName());
-            plan.setResume(directory + resume.getSubmittedFileName());
-        }
-
-
-        Part poster = request.getPart("poster");
-        if (poster != null) {
-            poster.write("poster");
-            plan.setPoster(directory + poster.getSubmittedFileName());
+        try {
+            Part poster = request.getPart("poster");
+            if (poster != null) {
+                poster.write("poster");
+                plan.setPoster(directory + poster.getSubmittedFileName());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
 
@@ -107,11 +121,16 @@ public class ServletCreatePlanTrip extends HttpServlet {
 
 
         WorkflowStateDAO workflowStateDAO = new WorkflowStateDAO();
+        WorkflowDAO workflowDAO = new WorkflowDAO();
 
-        switch (request.getParameter("type").trim()){
-            case "trip":
-                plan.setType("»«“œ?œ ⁄·„?");
-                plan.setWorkflowState(workflowStateDAO.getWorkflowStateById(1));
+        switch (request.getParameter("type").trim()) {
+            case "1":
+                plan.setWorkflow(workflowDAO.getWorkflowById(Integer.parseInt(request.getParameter("type").trim())));
+                if (request.getParameter("submit").equals("tentative")) {
+                    plan.setWorkflowState(workflowStateDAO.getWorkflowStateById(16));
+                } else if (request.getParameter("submit").equals("send")) {
+                    plan.setWorkflowState(workflowStateDAO.getWorkflowStateById(1));
+                }
                 break;
 //            case "„”«»ﬁÂ ⁄·„?":
 //                workflowState.setId();
@@ -135,7 +154,7 @@ public class ServletCreatePlanTrip extends HttpServlet {
                 Enlisted enlisted = new Enlisted();
                 enlisted.setfName(request.getParameter("enlisted-fName-" + i));
                 enlisted.setlName(request.getParameter("enlisted-lName-" + i));
-                enlisted.setStudentID(request.getParameter("enlisted-StudentId-" + i));
+                enlisted.setStudentId(request.getParameter("enlisted-StudentId-" + i));
                 enlisted.setPhone(request.getParameter("enlisted-phone-" + i));
                 enlisted.setEmail(request.getParameter("enlisted-email-" + i));
                 enlisteds.add(enlisted);

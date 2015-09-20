@@ -67,30 +67,69 @@
             <!-- /.row -->
 
             <div class="row">
-                <form role="form" action="/Controller/ServletBossConfirmPoster" method="post">
+                <form class="form-horizontal" role="form" action="/Controller/ServletBossConfirmPoster" method="post">
                     <input type="text" id="id" name="id" value="${plan.id}" style="display: none;">
                     <!-- poster -->
-                    <div class="col-lg-offset-2 col-lg-7">
+                    <div class="col-lg-offset-3 col-lg-7">
                         <a href="${plan.poster}" target="_blank"><img src="${plan.poster}" alt="اشکال در فرایند نمایش"
                                                                       style="width: 100%; margin-bottom: 30px;"></a>
                     </div>
+                    <div class="clearfix"></div>
+                    <!-- registration period -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">مهلت ثبت نام:</label>
+                        <!-- beginDate -->
+                        <div class="col-sm-3 col-sm-offset-1">
+                            <input type="text" class="form-control" placeholder="yyyy/mm/dd"
+                                   name="registrationBeginDate" value="${plan.registrationBeginDate}">
+                        </div>
+                        <label class="control-label col-sm-1">لغایت</label>
+                        <!-- endDate -->
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="registrationEndDate"
+                                   value="${plan.registrationEndDate}">
+                        </div>
+                    </div>
+                    <!-- advertisement period -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">بازه زمانی نمایش تبلیغات در سایت:</label>
+                        <!-- beginDate -->
+                        <div class="col-sm-3 col-sm-offset-1">
+                            <input type="text" class="form-control" placeholder="yyyy/mm/dd"
+                                   name="advertisementBeginDate" value="${plan.advertisementBeginDate}">
+                        </div>
+                        <label class="control-label col-sm-1">لغایت</label>
+                        <!-- endDate -->
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="advertisementEndDate"
+                                   value="${plan.advertisementEndDate}">
+                        </div>
+                    </div>
                     <!-- expertComment -->
                     <!-- textarea -->
-                    <div class="form-group col-lg-offset-2 col-lg-7">
-                        <label for="expertComment">نظرات کارشناس انجمن:</label>
-                        <textarea class="form-control" rows="3" id="expertComment" name="expertComment" readonly>${plan.expertComment}</textarea>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="expertComment">نظرات کارشناس انجمن:</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <textarea class="form-control" rows="3" id="expertComment" name="expertComment"
+                                      disabled>${plan.expertComment}</textarea>
+                        </div>
                     </div>
                     <!-- bossComment -->
                     <!-- textarea -->
-                    <div class="form-group col-lg-offset-2 col-lg-7">
-                        <label for="bossComment">نظر نهایی ریاست انجمن های علمی:</label>
-                        <textarea class="form-control" rows="3" id="bossComment" name="bossComment"></textarea>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="bossComment">نظر نهایی ریاست انجمن های علمی:</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <textarea class="form-control" rows="3" id="bossComment" name="bossComment"></textarea>
+                        </div>
                     </div>
                     <!-- buttons -->
                     <div class="form-group">
-                        <div class="col-lg-offset-2 col-lg-7">
+                        <div class="col-lg-offset-3 col-lg-7">
                             <button type="submit" name="submit" value="confirm" class="btn btn-primary">تایید</button>
-                            <button type="submit" name="submit" value="correct" class="btn btn-info">ارسال برای اصلاح</button>
+                            <button type="submit" name="submit" value="correct" class="btn btn-info">ارسال برای اصلاح
+                            </button>
                             <button type="submit" name="submit" value="reject" class="btn btn-danger">رد طرح</button>
                         </div>
                     </div>

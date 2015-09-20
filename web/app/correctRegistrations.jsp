@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Saied
-  Date: 9/9/2015
-  Time: 8:37 AM
+  Date: 9/16/2015
+  Time: 11:49 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -41,10 +41,12 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+
     <script src="/js/jquery-1.11.3.min.js"></script>
     <script src="/js/added.js"></script>
+
 </head>
-<body>
+<body class="dashboard-background">
 
 <div id="wrapper">
 
@@ -58,14 +60,14 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">بررسی لیست ثبت نام کنندگان:</h1>
+                    <h1 class="page-header">اصلاح لیست ثبت نام کنندگان:</h1>
                 </div>
             </div>
             <!-- /.row -->
 
             <!-- .row -->
             <div class="row">
-                <form class="form-horizontal" role="form" action="/Controller/ServletExpertConfirmRegistrations"
+                <form class="form-horizontal" role="form" action="/Controller/ServletCorrectRegistrations"
                       method="post">
                     <!-- hidden id -->
                     <input type="text" id="id" name="id" value="${plan.id}" style="display: none;">
@@ -75,18 +77,19 @@
                         <label class="control-label col-sm-2">عنوان طرح:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="title" value="${plan.title}" disabled>
+                            <input type="text" class="form-control" name="title" value="${plan.title}"  disabled>
                         </div>
                     </div>
                     <!-- enlisted list -->
-                    <div class="form-group disabled">
+                    <div class="form-group">
                         <label class="control-label col-sm-2">لیست ثبت نام کنندگان:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
 
                             <div class="line line-top"></div>
 
-                            <div class="row plan-table enlisted-table pure-table">
+                            <div class="row plan-table enlisted-table">
+
                                 <c:forEach var="enlisted" items="${plan.enlisted}">
                                     <div class="table-row">
                                         <div class="form-group col-xs-2">
@@ -101,7 +104,7 @@
                                             <input type="text" class="form-control" name="enlisted-studentId-"
                                                    placeholder="شماره دانشجویی" value="${enlisted.studentId}">
                                         </div>
-                                        <div class="form-group col-xs-3">
+                                        <div class="form-group col-xs-2">
                                             <input type="text" class="form-control" name="enlisted-phone-"
                                                    placeholder="تلفن همراه" value="${enlisted.phone}">
                                         </div>
@@ -109,9 +112,15 @@
                                             <input type="text" class="form-control" name="enlisted-email-"
                                                    placeholder="ایمیل" value="${enlisted.email}">
                                         </div>
+                                        <div class="form-group col-xs-1">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </div>
                                     </div>
                                 </c:forEach>
+
                             </div>
+
+                            <span class="glyphicon glyphicon-plus" id="enlisted-plus"></span>
 
                             <div class="line line-bottom"></div>
                         </div>
@@ -123,7 +132,7 @@
                             (ریال)</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="number" class="form-control" id="studentMoney" name="studentMoney" value="${plan.studentMoney}" disabled>
+                            <input type="number" class="form-control" id="studentMoney" name="studentMoney" value="${plan.studentMoney}">
                         </div>
                     </div>
                     <!-- sponserMoney number-->
@@ -131,22 +140,22 @@
                         <label class="control-label col-sm-2" for="sponsorMoney">مبالغ دریافتی از اسپانسر(ریال)</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="number" class="form-control" id="sponsorMoney" name="sponsorMoney" value="${plan.sponsorMoney}" disabled>
+                            <input type="number" class="form-control" id="sponsorMoney" name="sponsorMoney" value="${plan.sponsorMoney}">
                         </div>
                     </div>
-                    <!-- expertComment -->
+                    <!-- bossComment -->
                     <!-- textarea -->
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="expertComment">نظرات کارشناس انجمن:</label>
+                        <label class="control-label col-sm-2" for="bossComment">نظر نهایی ریاست انجمن های علمی:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <textarea class="form-control" rows="3" id="expertComment" name="expertComment"></textarea>
+                            <textarea class="form-control" rows="3" id="bossComment" name="bossComment" disabled>${plan.bossComment}</textarea>
                         </div>
                     </div>
                     <!-- submit button -->
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-10">
-                            <button type="submit" class="btn btn-primary" value="submit">تایید</button>
+                            <button type="submit" class="btn btn-primary" value="submit">اعمال تغییرات</button>
                         </div>
                     </div>
                 </form>
@@ -164,6 +173,7 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="/js/bootstrap.min.js"></script>
+
 
 </body>
 </html>
