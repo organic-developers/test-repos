@@ -17,21 +17,21 @@
     <title>سامانه انجمن های علمی</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Bootstrap Core CSS RTL-->
-    <link href="${pageContext.request.contextPath}/css/bootstrap-rtl.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-rtl.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="${pageContext.request.contextPath}/css/sb-admin.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/css/sb-admin-rtl.css" rel="stylesheet">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/added.css"/>
+    <link href="/css/sb-admin.css" rel="stylesheet">
+    <link href="/css/sb-admin-rtl.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/added.css"/>
 
     <!-- Morris Charts CSS -->
-    <link href="${pageContext.request.contextPath}/css/plugins/morris.css" rel="stylesheet">
+    <link href="/css/plugins/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="${pageContext.request.contextPath}/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -65,31 +65,13 @@
             <!-- plan type buttons -->
             <div>
                 <div class="row">
-                    <div class="col-md-3">
-                        <a class="btn btn-type btn-primary" href="${pageContext.request.contextPath}/app/create-plan-contest.jsp"><p>مسابقات علمی</p></a>
+                    <c:forEach var="workflow" items="${workflows}">
+                    <div class="col-md-3" style="margin-bottom: 30px;">
+                        <a class="btn btn-type btn-primary" href="/Controller/ServletCreatePlan?type=${workflow.id}">
+                            <p style="margin-top: 75px;">${workflow.name}</p>
+                        </a>
                     </div>
-                    <div class="col-md-3">
-                        <a class="btn btn-type btn-primary" href="${pageContext.request.contextPath}/app/create-plan-trip.jsp"><p>بازدید عملی</p></a>
-                    </div>
-                    <div class="col-md-3">
-                        <a class="btn btn-type btn-primary" href="/app/create-plan-exhibition.jsp"><p>برگزاری نمایشگاه</p></a>
-                    </div>
-                    <div class="col-md-3">
-                        <a class="btn btn-type btn-primary" href="/app/create-plan-conference.jsp"><p>همایش ها و کنفرانس</p></a>
-                    </div>
-                </div>
-                <br/>
-                <br/>
-                <div class="row">
-                    <div class="col-md-3">
-                        <a class="btn btn-type btn-primary" href="/app/create-plan-educational.jsp"><p>کلاس ها و دوره های آموزشی</p></a>
-                    </div>
-                    <div class="col-md-3">
-                        <a class="btn btn-type btn-primary" href="/app/create-plan-magazine.jsp"><p>چاپ نشریه</p></a>
-                    </div>
-                    <div class="col-md-3">
-                        <a class="btn btn-type btn-primary" href="/app/create-plan-else.jsp"><p>سایر موارد</p></a>
-                    </div>
+                    </c:forEach>
                 </div>
             </div>
             <!-- buttons -->
@@ -104,15 +86,11 @@
 <!-- /#wrapper -->
 
 <!-- jQuery -->
-<script src="${pageContext.request.contextPath}/js/jquery.js"></script>
+<script src="/js/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 
-<!-- Morris Charts JavaScript -->
-<script src="${pageContext.request.contextPath}/js/plugins/morris/raphael.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/plugins/morris/morris.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/plugins/morris/morris-data.js"></script>
 
 </body>
 </html>

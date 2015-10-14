@@ -1,18 +1,14 @@
 package Controller;
 
 import Logic.PlanDAO;
-import Logic.WorkflowStateDAO;
 import Models.*;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 import java.io.IOException;
-import java.util.HashSet;
 
 
 @WebServlet(name = "ServletAdvisorConfirmPlan", urlPatterns = {"/ServletAdvisorConfirmPlan"})
@@ -29,15 +25,20 @@ public class ServletAdvisorConfirmPlan extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         PlanDAO planDAO = new PlanDAO();
-        Plan plan = planDAO.getPlanById(Integer.parseInt(request.getParameter("id")));
+        Plan plan = planDAO.getCompletePlanById(Integer.parseInt(request.getParameter("id")));
         plan.setAdvisorComment(request.getParameter("advisorComment"));
-        planDAO.updatePlan(plan);
 
         if(request.getParameter("submit").equals("confirm")){
-                planDAO.workflowForward(plan.getId());
+            plan.setWorkflowState(planDAO.getWorkflowForward(plan.getId()));
         } else {
-            planDAO.workflowRejected(plan.getId());
+            plan.setWorkflowState(planDAO.getWorkflowRejected(plan.getId()));
         }
+
+        plan.setSeen("false");
+
+        plan.getPlanStateHistories().add(planDAO.getPlanStateHistory((User) request.getSession().getAttribute("currentUser"), plan));
+
+        planDAO.updatePlan(plan);
 
         request.getRequestDispatcher("../Controller/ServletDashboardInitializer").forward(request, response);
 

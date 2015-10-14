@@ -17,6 +17,6 @@ public class ServletEmailing extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("/app/emailing.jsp");
+        request.getRequestDispatcher("/app/emailing.jsp").forward(request, response);
     }
 }

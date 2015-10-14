@@ -14,15 +14,6 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>ServletUploadSupervisorAgreement</servlet-name>
-        <servlet-class>Controller.ServletUploadSupervisorAgreement</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletUploadSupervisorAgreement</servlet-name>
-        <url-pattern>/Controller/ServletUploadSupervisorAgreement</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>ServletUploadPoster</servlet-name>
         <servlet-class>Controller.ServletUploadPoster</servlet-class>
     </servlet>
@@ -149,12 +140,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>ServletCreateplan</servlet-name>
-        <servlet-class>Controller.ServletCreateplan</servlet-class>
+        <servlet-name>ServletCreatePlan</servlet-name>
+        <servlet-class>Controller.ServletCreatePlan</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ServletCreateplan</servlet-name>
-        <url-pattern>/Controller/ServletCreateplan</url-pattern>
+        <servlet-name>ServletCreatePlan</servlet-name>
+        <url-pattern>/Controller/ServletCreatePlan</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -292,12 +283,111 @@
     </filter-mapping>
 
     <servlet>
-        <servlet-name>ServletUsers</servlet-name>
-        <servlet-class>Controller.ServletUsers</servlet-class>
+        <servlet-name>ServletUsersActive</servlet-name>
+        <servlet-class>Controller.ServletUsersActive</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ServletUsers</servlet-name>
-        <url-pattern>/Controller/ServletUsers</url-pattern>
+        <servlet-name>ServletUsersActive</servlet-name>
+        <url-pattern>/Controller/ServletUsersActive</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletUsersNotActive</servlet-name>
+        <servlet-class>Controller.ServletUsersNotActive</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletUsersNotActive</servlet-name>
+        <url-pattern>/Controller/ServletUsersNotActive</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletUsersActiveInitialize</servlet-name>
+        <servlet-class>Controller.ServletUsersActiveInitialize</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletUsersActiveInitialize</servlet-name>
+        <url-pattern>/Controller/ServletUsersActiveInitialize</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletUsersNotActiveInitialize</servlet-name>
+        <servlet-class>Controller.ServletUsersNotActiveInitialize</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletUsersNotActiveInitialize</servlet-name>
+        <url-pattern>/Controller/ServletUsersNotActiveInitialize</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletCreatePlanInitializer</servlet-name>
+        <servlet-class>Controller.ServletCreatePlanInitializer</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletCreatePlanInitializer</servlet-name>
+        <url-pattern>/Controller/ServletCreatePlanInitializer</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletSuggestedPlans</servlet-name>
+        <servlet-class>Controller.ServletSuggestedPlans</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletSuggestedPlans</servlet-name>
+        <url-pattern>/Controller/ServletSuggestedPlans</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletRegistrationVerification</servlet-name>
+        <servlet-class>Controller.ServletRegistrationVerification</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletRegistrationVerification</servlet-name>
+        <url-pattern>/Controller/ServletRegistrationVerification</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletSuggestedPlansClerk</servlet-name>
+        <servlet-class>Controller.ServletSuggestedPlansClerk</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletSuggestedPlansClerk</servlet-name>
+        <url-pattern>/Controller/ServletSuggestedPlansClerk</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletAssociationPage</servlet-name>
+        <servlet-class>Controller.ServletAssociationPage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletAssociationPage</servlet-name>
+        <url-pattern>/Controller/ServletAssociationPage</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletUsersClerk</servlet-name>
+        <servlet-class>Controller.ServletUsersClerk</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletUsersClerk</servlet-name>
+        <url-pattern>/Controller/ServletUsersClerk</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletUsersClerkInitialize</servlet-name>
+        <servlet-class>Controller.ServletUsersClerkInitialize</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletUsersClerkInitialize</servlet-name>
+        <url-pattern>/Controller/ServletUsersClerkInitialize</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletChooseAssociation</servlet-name>
+        <servlet-class>Controller.ServletChooseAssociation</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletChooseAssociation</servlet-name>
+        <url-pattern>/Controller/ServletChooseAssociation</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -352,6 +442,24 @@
     <servlet-mapping>
         <servlet-name>ServletResources</servlet-name>
         <url-pattern>/Controller/ServletResources</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletShowChanges</servlet-name>
+        <servlet-class>Controller.ServletShowChanges</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletShowChanges</servlet-name>
+        <url-pattern>/Controller/ServletShowChanges</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletShowPlanDetails</servlet-name>
+        <servlet-class>Controller.ServletShowPlanDetails</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletShowPlanDetails</servlet-name>
+        <url-pattern>/Controller/ServletShowPlanDetails</url-pattern>
     </servlet-mapping>
 
     <servlet>

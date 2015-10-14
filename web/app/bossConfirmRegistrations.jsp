@@ -81,14 +81,14 @@
                         </div>
                     </div>
                     <!-- enlisted list -->
-                    <div class="form-group disabled">
+                    <div class="form-group">
                         <label class="control-label col-sm-2">لیست ثبت نام کنندگان:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
 
                             <div class="line line-top"></div>
 
-                            <div class="row plan-table enlisted-table pure-table">
+                            <div class="row plan-table enlisted-table">
                                 <c:forEach var="enlisted" items="${plan.enlisted}">
                                     <div class="table-row">
                                         <div class="form-group col-xs-2">
@@ -103,7 +103,7 @@
                                             <input type="text" class="form-control" name="enlisted-studentId-"
                                                    placeholder="شماره دانشجویی" value="${enlisted.studentId}">
                                         </div>
-                                        <div class="form-group col-xs-3">
+                                        <div class="form-group col-xs-2">
                                             <input type="text" class="form-control" name="enlisted-phone-"
                                                    placeholder="تلفن همراه" value="${enlisted.phone}">
                                         </div>
@@ -111,33 +111,36 @@
                                             <input type="text" class="form-control" name="enlisted-email-"
                                                    placeholder="ایمیل" value="${enlisted.email}">
                                         </div>
+                                        <div class="form-group col-xs-1">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </div>
                                     </div>
                                 </c:forEach>
                             </div>
-
+                            <span class="glyphicon glyphicon-plus" id="enlisted-plus"></span>
                             <div class="line line-bottom"></div>
                         </div>
 
                     </div>
-                    <!-- studentsMoney number -->
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="studentMoney">مبالغ دریافتی از دانشجویان
-                            (ریال)</label>
+                    <%--<!-- studentsMoney number -->--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label class="control-label col-sm-2" for="studentMoney">مبالغ دریافتی از دانشجویان--%>
+                            <%--(ریال)</label>--%>
 
-                        <div class="col-sm-7 col-sm-offset-1">
-                            <input type="number" class="form-control" id="studentMoney" name="studentMoney"
-                                   value="${plan.studentMoney}" disabled>
-                        </div>
-                    </div>
-                    <!-- sponserMoney number-->
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="sponsorMoney">مبالغ دریافتی از اسپانسر(ریال)</label>
+                        <%--<div class="col-sm-7 col-sm-offset-1">--%>
+                            <%--<input type="number" class="form-control" id="studentMoney" name="studentMoney"--%>
+                                   <%--value="${plan.studentMoney}" disabled>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<!-- sponserMoney number-->--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label class="control-label col-sm-2" for="sponsorMoney">مبالغ دریافتی از اسپانسر(ریال)</label>--%>
 
-                        <div class="col-sm-7 col-sm-offset-1">
-                            <input type="number" class="form-control" id="sponsorMoney" name="sponsorMoney"
-                                   value="${plan.sponsorMoney}" disabled>
-                        </div>
-                    </div>
+                        <%--<div class="col-sm-7 col-sm-offset-1">--%>
+                            <%--<input type="number" class="form-control" id="sponsorMoney" name="sponsorMoney"--%>
+                                   <%--value="${plan.sponsorMoney}" disabled>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                     <!-- expertComment -->
                     <!-- textarea -->
                     <div class="form-group">
@@ -169,6 +172,10 @@
                 </form>
             </div>
             <!-- /.row -->
+
+
+            <!-- table of changes -->
+            <%@ include file="table-of-changes.jsp" %>
 
         </div>
         <!-- /.container-fluid -->

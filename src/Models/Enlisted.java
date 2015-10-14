@@ -86,4 +86,15 @@ public class Enlisted {
         tmp = (id + fName + lName + phone).hashCode();
         return tmp;
     }
+
+    private String confirmed;
+
+    @javax.persistence.Basic
+    public String getConfirmed() {
+        return confirmed;
+    }
+
+    public void setConfirmed(String confirmed) {
+        this.confirmed = confirmed;
+    }
 }

@@ -25,7 +25,12 @@ public class ServletMenu extends HttpServlet {
 //        response.setContentType("text/html;charset=UTF-8");
 ////        request.setCharacterEncoding("UTF-8");
 //        request.setAttribute("users", users);
-        request.setAttribute("initiated", "menu");
-        request.getRequestDispatcher("/Controller/ServletUsers").forward(request, response);
+        try{
+            request.setAttribute("initiated", "menu");
+            request.getRequestDispatcher("/Controller/ServletUsersActive").forward(request, response);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }

@@ -3,6 +3,7 @@ package Logic;
 import Controller.HibernateUtil;
 import Models.Association;
 import Models.User;
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -27,6 +28,122 @@ public class UserDAO {
         return users;
     }
 
+    public List<User> getAllNotActiveUsers(){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        String qry = "select e from User e join fetch e.association join fetch e.position" +
+                " where e.active like 'false'";
+
+        List users = session.createQuery(qry).list();
+
+        session.getTransaction().commit();
+        session.close();
+
+        return users;
+    }
+
+
+    public List<User> getAllActiveUsers(){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        String qry = "select e from User e join fetch e.association join fetch e.position" +
+                " where e.active like 'true'";
+
+        List users = session.createQuery(qry).list();
+
+        session.getTransaction().commit();
+        session.close();
+
+        return users;
+    }
+
+    public List<User> getAllActiveMembersByAssociationId(int id){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        String qry = "select e from User e join fetch e.association join fetch e.position" +
+                " where e.active like 'true'" +
+                " and e.position.id != 3" +
+                " and e.association.id = :id";
+
+        List users = session.createQuery(qry)
+                .setParameter("id", id)
+                .list();
+
+        session.getTransaction().commit();
+        session.close();
+
+        return users;
+    }
+
+    public List<User> getAllActiveMembersExceptClerkByAssociationId(int id){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        String qry = "select e from User e join fetch e.association join fetch e.position" +
+                " where e.active like 'true'" +
+                " and e.position.id != 3" +
+                " and e.position.id != 4" +
+                " and e.association.id = :id";
+
+        List users = session.createQuery(qry)
+                .setParameter("id", id)
+                .list();
+
+        session.getTransaction().commit();
+        session.close();
+
+        return users;
+    }
+
+    public void deactiveAllActiveMembers(){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        String qry = "select e from User e" +
+                " where e.active like 'true'" +
+                " and e.position.id != 1" +
+                " and e.position.id != 2" +
+                " and e.position.id != 3";
+
+        List<User> users = session.createQuery(qry)
+                .list();
+
+        for(User user: users){
+            user.setActive("false");
+            session.update(user);
+        }
+
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    public List getAllActiveUsersExceptExpertAndBoss(){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        String qry = "select e from User e join fetch e.position join fetch e.association" +
+                " where e.active like 'true'" +
+                " and e.position.id != 1" +
+                " and e.position.id != 2";
+
+        List<User> users = session.createQuery(qry)
+                .list();
+
+
+        session.getTransaction().commit();
+        session.close();
+
+        return users;
+    }
 
     public User getUserById(int id){
 
@@ -36,7 +153,7 @@ public class UserDAO {
             Session session = sessionFactory.openSession();
             session.beginTransaction();
 
-            String qry = "select e from User e join fetch e.association " +
+            String qry = "select e from User e join fetch e.association join fetch e.position " +
                     "where e.id = :id";
             user = (User) session.createQuery( qry )
                     .setParameter( "id", id )
@@ -93,6 +210,8 @@ public class UserDAO {
                     .setParameter("userName", userName)
                     .setParameter("password", password)
                     .uniqueResult();
+
+            Hibernate.initialize(user.getPosition());
 
             session.getTransaction().commit();
             session.close();

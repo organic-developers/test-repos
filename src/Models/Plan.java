@@ -1,10 +1,11 @@
 package Models;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 
+//@Audited
 public class Plan {
     private Integer id;
 //    private String type;
@@ -14,18 +15,18 @@ public class Plan {
     private String endDate;
     private String time;
     private String requestedItems;
-    private String supervisorAgreement;
     private String advisorComment;
     private String expertComment;
     private String bossComment;
     private String poster;
     private String studentMoney;
     private String sponsorMoney;
-    private Set personnel;
-    private Set expenses;
-    private Set enlisted;
-    private Set guests;
-    private Set judges;
+    private List personnel;
+    private List expenses;
+    private List enlisted;
+    private List guests;
+    private List judges;
+
 
     public Plan() {
     }
@@ -86,14 +87,6 @@ public class Plan {
         this.requestedItems = requestedItems;
     }
 
-    public String getSupervisorAgreement() {
-        return supervisorAgreement;
-    }
-
-    public void setSupervisorAgreement(String supervisorAgreement) {
-        this.supervisorAgreement = supervisorAgreement;
-    }
-
     public String getAdvisorComment() {
         return advisorComment;
     }
@@ -142,58 +135,50 @@ public class Plan {
         this.sponsorMoney = sponsorMoney;
     }
 
-//    @OneToMany(fetch = FetchType.EAGER)
-    public Set getPersonnel() {
+    @OneToMany(orphanRemoval=true)
+    public List getPersonnel() {
         return personnel;
     }
 
-    public void setPersonnel(Set personnel) {
+    public void setPersonnel(List personnel) {
         this.personnel = personnel;
     }
 
 //    @OneToMany(fetch = FetchType.EAGER)
-    public Set getExpenses() {
+    public List getExpenses() {
         return expenses;
     }
 
-    public void setExpenses(Set expenses) {
+    public void setExpenses(List expenses) {
         this.expenses = expenses;
     }
 
 //    @OneToMany(fetch = FetchType.EAGER)
-    public Set getEnlisted() {
+    public List getEnlisted() {
         return enlisted;
     }
 
-    public void setEnlisted(Set muster) {
+    public void setEnlisted(List muster) {
         this.enlisted = muster;
     }
 
 //    @OneToMany(fetch = FetchType.EAGER)
-    public Set getGuests() {
+    public List getGuests() {
         return guests;
     }
 
-    public void setGuests(Set guests) {
+    public void setGuests(List guests) {
         this.guests = guests;
     }
 
 //    @OneToMany(fetch = FetchType.EAGER)
-    public Set getJudges() {
+    public List getJudges() {
         return judges;
     }
 
-    public void setJudges(Set judges) {
+    public void setJudges(List judges) {
         this.judges = judges;
     }
-
-//    public String getType() {
-//        return type;
-//    }
-//
-//    public void setType(String type) {
-//        this.type = type;
-//}
 
     private WorkflowState workflowState;
 
@@ -204,17 +189,6 @@ public class Plan {
 
     public void setWorkflowState(WorkflowState workFlowState) {
         this.workflowState = workFlowState;
-    }
-
-    private Set<PlanStateHistory> planStateHistory;
-
-    @javax.persistence.OneToMany
-    public Set<PlanStateHistory> getPlanStateHistory() {
-        return planStateHistory;
-    }
-
-    public void setPlanStateHistory(Set<PlanStateHistory> planStateHistory) {
-        this.planStateHistory = planStateHistory;
     }
 
     private String guidelines;
@@ -313,5 +287,170 @@ public class Plan {
 
     public void setAdvertisementEndDate(String advertisementEndDate) {
         this.advertisementEndDate = advertisementEndDate;
+    }
+
+    private String seen;
+
+    @Basic
+    public String getSeen() {
+        return seen;
+    }
+
+    public void setSeen(String seen) {
+        this.seen = seen;
+    }
+
+    private List<PlanStateHistory> planStateHistories;
+
+    @OneToMany
+    public List<PlanStateHistory> getPlanStateHistories() {
+        return planStateHistories;
+    }
+
+    public void setPlanStateHistories(List<PlanStateHistory> planStateHistories) {
+        this.planStateHistories = planStateHistories;
+    }
+
+    private String attachment;
+
+    @Basic
+    public String getAttachment() {
+        return attachment;
+    }
+
+    public void setAttachment(String attachment) {
+        this.attachment = attachment;
+    }
+
+    private String registrationMin;
+
+    @Basic
+    public String getRegistrationMin() {
+        return registrationMin;
+    }
+
+    public void setRegistrationMin(String registrationMin) {
+        this.registrationMin = registrationMin;
+    }
+
+    private String registrationMax;
+
+    @Basic
+    public String getRegistrationMax() {
+        return registrationMax;
+    }
+
+    public void setRegistrationMax(String registrationMax) {
+        this.registrationMax = registrationMax;
+    }
+
+    private String supervisorFName;
+
+    @Basic
+    public String getSupervisorFName() {
+        return supervisorFName;
+    }
+
+    public void setSupervisorFName(String supervisorFName) {
+        this.supervisorFName = supervisorFName;
+    }
+
+    private String supervisorLName;
+
+    @Basic
+    public String getSupervisorLName() {
+        return supervisorLName;
+    }
+
+    public void setSupervisorLName(String supervisorLName) {
+        this.supervisorLName = supervisorLName;
+    }
+
+    private String supervisorPosition;
+
+    @Basic
+    public String getSupervisorPosition() {
+        return supervisorPosition;
+    }
+
+    public void setSupervisorPosition(String supervisorPosition) {
+        this.supervisorPosition = supervisorPosition;
+    }
+
+    private String supervisorPhone;
+
+    @Basic
+    public String getSupervisorPhone() {
+        return supervisorPhone;
+    }
+
+    public void setSupervisorPhone(String supervisorPhone) {
+        this.supervisorPhone = supervisorPhone;
+    }
+
+    private String otherIncome;
+
+    @Basic
+    public String getOtherIncome() {
+        return otherIncome;
+    }
+
+    public void setOtherIncome(String otherIncome) {
+        this.otherIncome = otherIncome;
+    }
+
+    private String expenseSum;
+
+    @Basic
+    public String getExpenseSum() {
+        return expenseSum;
+    }
+
+    public void setExpenseSum(String expenseSum) {
+        this.expenseSum = expenseSum;
+    }
+
+    private String incomeSum;
+
+    @Basic
+    public String getIncomeSum() {
+        return incomeSum;
+    }
+
+    public void setIncomeSum(String incomeSum) {
+        this.incomeSum = incomeSum;
+    }
+
+    private String moneySum;
+
+    @Basic
+    public String getMoneySum() {
+        return moneySum;
+    }
+
+    public void setMoneySum(String moneySum) {
+        this.moneySum = moneySum;
+    }
+
+    private String registrationFee;
+
+    @Basic
+    public String getRegistrationFee() {
+        return registrationFee;
+    }
+
+    public void setRegistrationFee(String registrationFee) {
+        this.registrationFee = registrationFee;
+    }
+
+    private String registrationPlace;
+
+    @Basic
+    public String getRegistrationPlace() {
+        return registrationPlace;
+    }
+
+    public void setRegistrationPlace(String registrationPlace) {
+        this.registrationPlace = registrationPlace;
     }
 }

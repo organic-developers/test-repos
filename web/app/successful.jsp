@@ -62,11 +62,11 @@
                 }
             </style>
 
-            <script>
-                function goBack() {
-                    window.history.back();
-                }
-            </script>
+            <%--<script>--%>
+                <%--function goBack() {--%>
+                    <%--window.history.back();--%>
+                <%--}--%>
+            <%--</script>--%>
 
             <!-- well -->
             <div class="well well-large">
@@ -74,8 +74,8 @@
                     <div class="row" style="margin: auto">
                         <div class="col-xs-7">طرح با موفقیت ثبت شد!</div>
                         <div class="col-xs-5">
-                            <button class="btn btn-lg btn-primary" onclick="goBack()" style="float: left; margin: auto;">بازگشت
-                            </button>
+                            <a href="/Controller/ServletCreatePlanInitializer" class="btn btn-lg btn-primary" style="float: left; margin: auto;">بازگشت
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -2,6 +2,7 @@ package Controller;
 
 import Logic.PlanDAO;
 import Models.Plan;
+import Models.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,24 +27,30 @@ public class ServletBossConfirmPoster extends HttpServlet {
 
         PlanDAO planDAO = new PlanDAO();
 
-        Plan plan = planDAO.getPlanById(Integer.parseInt(request.getParameter("id")));
+        Plan plan = planDAO.getCompletePlanById(Integer.parseInt(request.getParameter("id")));
 
         plan.setBossComment(request.getParameter("bossComment"));
-
-        planDAO.updatePlan(plan);
-
-        if(request.getParameter("submit").equals("confirm")){
-            planDAO.workflowForward(plan.getId());
-        } else if (request.getParameter("submit").equals("correct")){
-            planDAO.workflowToBeCorrected(plan.getId());
-        } else {
-            planDAO.workflowRejected(plan.getId());
-        }
 
         plan.setRegistrationBeginDate(request.getParameter("registrationBeginDate"));
         plan.setRegistrationEndDate(request.getParameter("registrationEndDate"));
         plan.setAdvertisementBeginDate(request.getParameter("advertisementBeginDate"));
         plan.setAdvertisementEndDate(request.getParameter("advertisementEndDate"));
+        plan.setRegistrationFee(request.getParameter("registrationFee"));
+        plan.setRegistrationPlace(request.getParameter("registrationPlace"));
+
+        if(request.getParameter("submit").equals("confirm")){
+            plan.setWorkflowState(planDAO.getWorkflowForward(plan.getId()));
+        } else if (request.getParameter("submit").equals("correct")){
+            plan.setWorkflowState(planDAO.getWorkflowToBeCorrected(plan.getId()));
+        } else {
+            plan.setWorkflowState(planDAO.getWorkflowRejected(plan.getId()));
+        }
+
+        plan.getPlanStateHistories().add(planDAO.getPlanStateHistory((User) request.getSession().getAttribute("currentUser"), plan));
+
+        plan.setSeen("false");
+
+        planDAO.updatePlan(plan);
 
         request.getRequestDispatcher("../Controller/ServletDashboardInitializer").forward(request, response);
     }

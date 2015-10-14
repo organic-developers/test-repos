@@ -27,9 +27,6 @@
     <link href="/css/sb-admin-rtl.css" rel="stylesheet">
     <link href="/css/added.css" rel="stylesheet"/>
 
-    <!-- Morris Charts CSS -->
-    <link href="/css/plugins/morris.css" rel="stylesheet">
-
     <!-- Custom Fonts -->
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -43,8 +40,43 @@
 
 
     <script src="/js/jquery-1.11.3.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="/css/persianDatepicker-default.css"/>
+    <script src="/js/persianDatepicker.min.js"></script>
+
     <script src="/js/added.js"></script>
 
+
+    <script>
+        $(document).ready(function () {
+            $("#studentMoney, #sponsorMoney, #otherIncome").change(function () {
+                var sum = Number($("#studentMoney").val()) + Number($("#sponsorMoney").val()) +
+                        Number($("#otherIncome").val());
+                $("#incomeSum").val(sum);
+            })
+        });
+
+        $(document).ready(function () {
+            $("[name='expense-value-']").change(function () {
+                var sum = 0;
+                var expenses = $("[name='expense-value-']");
+                for (var i = 0; i < expenses.length; i++) {
+                    sum += Number(expenses[i].value);
+                }
+                $("#expenseSum").val(sum);
+            })
+        });
+
+        $(document).ready(function () {
+            $("#studentMoney, #sponsorMoney, #otherIncome, [name='expense-value-']").change(function () {
+                var sum = Number($("#incomeSum").val()) - Number($("#expenseSum").val());
+                $("#moneySum").val(sum);
+            })
+        });
+    </script>
 
 </head>
 <body class="dashboard-background">
@@ -106,12 +138,14 @@
                         <label class="control-label col-sm-2">تاریخ برگزاری: </label>
                         <!-- beginDate -->
                         <div class="col-sm-3 col-sm-offset-1">
-                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="beginDate" value="${plan.beginDate}">
+                            <input type="text" class="form-control pdp" placeholder="yyyy/mm/dd" name="beginDate"
+                                   value="${plan.beginDate}">
                         </div>
                         <label class="control-label col-sm-1">لغایت</label>
                         <!-- endDate -->
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="endDate" value="${plan.endDate}">
+                            <input type="text" class="form-control pdp" placeholder="yyyy/mm/dd" name="endDate"
+                                   value="${plan.endDate}">
                         </div>
                     </div>
                     <!-- time -->
@@ -129,7 +163,26 @@
                         <label class="control-label col-sm-2" for="needed">موارد درخواستی:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <textarea class="form-control" rows="3" id="needed" name="requestedItems">${plan.requestedItems}</textarea>
+                            <textarea class="form-control" rows="3" id="needed"
+                                      name="requestedItems">${plan.requestedItems}</textarea>
+                        </div>
+                    </div>
+                    <!-- alowed number -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">تعداد نفرات شرکت کننده:</label>
+                        <!-- minimum -->
+                        <label class="control-label col-sm-1 col-sm-offset-1">حد اقل</label>
+
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" name="registrationMin"
+                                   value="${plan.registrationMin}">
+                        </div>
+                        <!-- maximum -->
+                        <label class="control-label col-sm-1 col-sm-offset-1">حد اکثر</label>
+
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" name="registrationMax"
+                                   value="${plan.registrationMax}">
                         </div>
                     </div>
                     <!-- personnel -->
@@ -153,7 +206,7 @@
                                                placeholder="نام خانوادگی">
                                     </div>
                                     <div class="form-group col-xs-4">
-                                        <input type="text" class="form-control" name="personnel-phone-"
+                                        <input type="number" class="form-control" name="personnel-phone-"
                                                placeholder="تلفن">
                                     </div>
                                     <div class="form-group col-xs-1">
@@ -171,7 +224,7 @@
                                                placeholder="نام خانوادگی">
                                     </div>
                                     <div class="form-group col-xs-4">
-                                        <input type="text" class="form-control" name="personnel-phone-"
+                                        <input type="number" class="form-control" name="personnel-phone-"
                                                placeholder="تلفن">
                                     </div>
                                     <div class="form-group col-xs-1">
@@ -189,7 +242,7 @@
                                                placeholder="نام خانوادگی">
                                     </div>
                                     <div class="form-group col-xs-4">
-                                        <input type="text" class="form-control" name="personnel-phone-"
+                                        <input type="number" class="form-control" name="personnel-phone-"
                                                placeholder="تلفن">
                                     </div>
                                     <div class="form-group col-xs-1">
@@ -203,19 +256,37 @@
                             <div class="line line-bottom"></div>
                         </div>
                     </div>
-                    <%--<!-- supervisorAgreement -->--%>
-                    <%--<!-- file -->--%>
-                    <%--<div class="form-group">--%>
-                        <%--<label class="control-label col-sm-2">موافقت مسئول یا سرپرست (در صورت نیاز):</label>--%>
+                    <!-- supervisor -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">استاد یا کارشناس مربوطه جهت حضور در بازدید:</label>
 
-                        <%--<div class="col-sm-7 col-sm-offset-1">--%>
-                            <%--<input type="file" id="agreement" name="supervisorAgreement">--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <div class="row pure-table">
+                                <div class="form-group col-sm-3">
+                                    <input type="text" class="form-control" id="supervisorFName" name="supervisorFName"
+                                           placeholder="نام" value="${plan.supervisorFName}">
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <input type="text" class="form-control" id="supervisorLName" name="supervisorLName"
+                                           placeholder="نام خانوادگی" value="${plan.supervisorLName}">
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <input type="text" class="form-control" id="supervisorPosition"
+                                           name="supervisorPosition"
+                                           placeholder="سمت" value="${plan.supervisorPosition}">
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <input type="number" class="form-control" id="supervisorPhone"
+                                           name="supervisorPhone"
+                                           placeholder="شماره تماس" value="${plan.supervisorPhone}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!-- expenses -->
                     <!-- modal -->
                     <div class="form-group">
-                        <label class="control-label col-sm-2">ریز هزینه ها:</label>
+                        <label class="control-label col-sm-2">ریز هزینه ها (ریال)</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
 
@@ -229,7 +300,7 @@
                                                placeholder="عنوان">
                                     </div>
                                     <div class="form-group col-xs-2">
-                                        <input type="text" class="form-control" name="expense-value-"
+                                        <input type="number" class="form-control" name="expense-value-"
                                                placeholder="هزینه">
                                     </div>
                                     <div class="form-group col-xs-7">
@@ -247,7 +318,7 @@
                                                placeholder="عنوان">
                                     </div>
                                     <div class="form-group col-xs-2">
-                                        <input type="text" class="form-control" name="expense-value-"
+                                        <input type="number" class="form-control" name="expense-value-"
                                                placeholder="هزینه">
                                     </div>
                                     <div class="form-group col-xs-7">
@@ -265,7 +336,7 @@
                                                placeholder="عنوان">
                                     </div>
                                     <div class="form-group col-xs-2">
-                                        <input type="text" class="form-control" name="expense-value-"
+                                        <input type="number" class="form-control" name="expense-value-"
                                                placeholder="هزینه">
                                     </div>
                                     <div class="form-group col-xs-7">
@@ -284,6 +355,71 @@
                         </div>
 
                     </div>
+                    <!-- studentsMoney number -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="studentMoney">مبالغ دریافتی از دانشجویان
+                            (ریال)</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="number" class="form-control" id="studentMoney"
+                                   name="studentMoney" value="${plan.studentMoney}">
+                        </div>
+                    </div>
+                    <!-- sponserMoney number-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="sponsorMoney">مبالغ دریافتی از اسپانسر(ریال)</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="number" class="form-control" id="sponsorMoney"
+                                   name="sponsorMoney" value="${plan.sponsorMoney}">
+                        </div>
+                    </div>
+                    <!-- otherIncome number-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="otherIncome">سایر درآمدها (ریال):</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="number" class="form-control" id="otherIncome"
+                                   name="otherIncome" value="${plan.otherIncome}">
+                        </div>
+                    </div>
+                    <!-- expenseSum number-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="expenseSum">جمع هزینه ها (ریال):</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="number" class="form-control" id="expenseSum" name="expenseSum"
+                                   value="${plan.expenseSum}" disabled>
+                        </div>
+                    </div>
+                    <!-- incomeSum number-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="incomeSum">جمع درآمدها (ریال):</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="number" class="form-control" id="incomeSum" name="incomeSum"
+                                   value="${plan.incomeSum}" disabled>
+                        </div>
+                    </div>
+                    <!-- moneySum number-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="moneySum">مبلغ پرداختی (ریال)</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="number" class="form-control" id="moneySum" name="moneySum"
+                                   value="${plan.moneySum}" disabled>
+                        </div>
+                    </div>
+                    <!-- attachment file-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="attachment">پیوست:</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="file" id="attachment" name="attachment">
+                        </div>
+                    </div>
+
+
                     <!-- advisorComment -->
                     <!-- textarea -->
                     <div class="form-group" style="display: none;">
@@ -347,7 +483,8 @@
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-10">
                             <button type="submit" class="btn btn-primary" name="submit" value="send">ارسال</button>
-                            <button type="submit" class="btn btn-info" name="submit" value="tentative">ذخیره موقت</button>
+                            <button type="submit" class="btn btn-info" name="submit" value="tentative">ذخیره موقت
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -361,9 +498,6 @@
 
 </div>
 <!-- /#wrapper -->
-
-<!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js"></script>
 
 
 </body>

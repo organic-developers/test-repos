@@ -3,6 +3,7 @@ package Controller;
 import Logic.PlanDAO;
 import Logic.UserDAO;
 import Models.User;
+import com.ghasemkiani.util.icu.PersianCalendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 
@@ -43,7 +47,8 @@ public class ServletLogin extends HttpServlet {
         UserDAO userDAO = new UserDAO();
         User user = userDAO.getUserByUsernameAndPassword(request.getParameter("user_name"), request.getParameter("password"));
         if (user != null) {
-            request.getSession().setAttribute("user", user);
+            request.getSession().setAttribute("currentUser", user);
+
 
             request.getRequestDispatcher(request.getContextPath() + "../Controller/ServletDashboardInitializer").include(request, response);
         }

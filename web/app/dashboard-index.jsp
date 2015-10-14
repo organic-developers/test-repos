@@ -43,7 +43,7 @@
     <%--<script>--%>
         <%--$(document).ready(function(){--%>
 <%--//            window.open("../app/AdvisorConfirmPlan.jsp","_self");--%>
-            <%--window.open("../Controller/ServletUsers","_self");--%>
+            <%--window.open("../Controller/ServletUsersActive","_self");--%>
         <%--});--%>
     <%--</script>--%>
 

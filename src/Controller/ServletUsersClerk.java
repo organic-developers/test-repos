@@ -1,5 +1,12 @@
 package Controller;
 
+import Logic.AssociationDAO;
+import Logic.PositionDAO;
+import Logic.UserDAO;
+import Models.Association;
+import Models.User;
+import com.google.gson.Gson;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -10,19 +17,16 @@ import javax.servlet.http.Part;
 import java.io.IOException;
 import java.util.List;
 
-import Logic.AssociationDAO;
-import Logic.UserDAO;
-import Models.*;
 
-import com.google.gson.Gson;
 
-@WebServlet(name = "ServletUsers", urlPatterns = {"/ServletUsers"})
-@MultipartConfig (location = "C:\\Users\\Saied\\IdeaProjects\\scientific-associations\\web\\uploaded-files", fileSizeThreshold = 1024 * 1024,
+@WebServlet(name = "ServletUsersClerk", urlPatterns = {"/ServletUsersClerk"})
+@MultipartConfig(location = "C:\\Users\\Saied\\IdeaProjects\\scientific-associations\\web\\uploaded-files", fileSizeThreshold = 1024 * 1024,
         maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 *5)
-public class ServletUsers extends HttpServlet {
+public class ServletUsersClerk extends HttpServlet {
 
     UserDAO userDAO = new UserDAO();
     AssociationDAO associationDAO = new AssociationDAO();
+    PositionDAO positionDAO = new PositionDAO();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -52,60 +56,41 @@ public class ServletUsers extends HttpServlet {
 
         } else {
             // Handle regular (JSP) response.
-                if (request.getAttribute("initiated") != null && request.getAttribute("initiated").equals("menu")) {
 
-                    fillTable(request, response);
+            if (request.getParameter("id") == null || request.getParameter("id").equals("")) {
+                User user = makeUser(request);
 
-                } else if (request.getParameter("id") == null || request.getParameter("id").equals("")) {
-                    User user = makeUser(request);
-
-                    try {
-                        userDAO.addUser(user);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        request.getRequestDispatcher("/app/failed.jsp").forward(request, response);
-                    }
-                    fillTable(request, response);
-                } else {
-                    User user = makeUser(request);
-                    user.setId(Integer.parseInt(request.getParameter("id").trim()));
-                    userDAO.updateUser(user);
-                    fillTable(request, response);
+                try {
+                    userDAO.addUser(user);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    request.getRequestDispatcher("/app/failed.jsp").forward(request, response);
                 }
+                request.getRequestDispatcher("/Controller/ServletUsersClerkInitialize").forward(request, response);
+            } else {
+                User user = makeUser(request);
+                user.setId(Integer.parseInt(request.getParameter("id").trim()));
+                userDAO.updateUser(user);
+                request.getRequestDispatcher("/Controller/ServletUsersClerkInitialize").forward(request, response);
+
+            }
         }
-    }
-
-    public void fillTable(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-
-        List users = userDAO.getAllUsers();
-//        for(int i = 0; i < users.size(); i++){
-//            System.out.println(((User) users.get(i)).getfName());
-//        }
-        request.setAttribute("users", users);
-
-        request.setAttribute("associations", associationDAO.getAllActiveAssociations());
-//        users = (List) request.getAttribute("users");
-//        for(int i = 0; i < users.size(); i++){
-//            System.out.println(((User) users.get(i)).getfName());
-//        }
-        request.getRequestDispatcher("/app/users.jsp").forward(request, response);
     }
 
     public User makeUser(HttpServletRequest request) throws IOException, ServletException{
         User user = new User();
         user.setfName(request.getParameter("fName"));
         user.setlName(request.getParameter("lName"));
-        user.setUserName(request.getParameter("userName"));
-        user.setPassword(request.getParameter("password"));
         user.setBirthYear(request.getParameter("birthYear"));
-        user.setPositionTitle(request.getParameter("positionTitle"));
         user.setEmail(request.getParameter("email"));
         user.setStudentId(request.getParameter("studentId"));
         user.setNationalId(request.getParameter("nationalId"));
         user.setPhone(request.getParameter("phone"));
+        user.setActive("true");
 
-        Association association = associationDAO.getAssociationById(Integer.parseInt(request.getParameter("associationId")));
-        user.setAssociation(association);
+        user.setPosition(positionDAO.getPositionById(Integer.parseInt(request.getParameter("positionTitle").trim())));
+
+        user.setAssociation(((User) request.getSession().getAttribute("currentUser")).getAssociation());
 
         try{
             String directory = "/uploaded-files/";

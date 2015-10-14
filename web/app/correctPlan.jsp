@@ -42,6 +42,10 @@
 
 
     <script src="/js/jquery-1.11.3.min.js"></script>
+
+    <link rel="stylesheet" href="/css/persianDatepicker-default.css" />
+    <script src="/js/persianDatepicker.min.js"></script>
+
     <script src="/js/added.js"></script>
 
 
@@ -103,12 +107,12 @@
                         <label class="control-label col-sm-2">تاریخ برگزاری: </label>
                         <!-- beginDate -->
                         <div class="col-sm-3 col-sm-offset-1">
-                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="beginDate" value="${plan.beginDate}">
+                            <input type="text" class="form-control pdp" placeholder="yyyy/mm/dd" name="beginDate" value="${plan.beginDate}">
                         </div>
                         <label class="control-label col-sm-1">لغایت</label>
                         <!-- endDate -->
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="endDate" value="${plan.endDate}">
+                            <input type="text" class="form-control pdp" placeholder="yyyy/mm/dd" name="endDate" value="${plan.endDate}">
                         </div>
                     </div>
                     <!-- time -->
@@ -220,6 +224,10 @@
                     </div>
                 </form>
             </div>
+
+
+            <!-- table of changes -->
+            <%@ include file="table-of-changes.jsp" %>
 
         </div>
         <!-- /.container-fluid -->

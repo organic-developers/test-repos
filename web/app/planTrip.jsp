@@ -76,7 +76,7 @@
                         <label class="control-label col-sm-2">ماهیت:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" value="${plan.workflow.name}"/>
+                            <input type="text" class="form-control" value="${plan.workflow.name}" disabled/>
                         </div>
                     </div>
                     <!-- title -->
@@ -103,12 +103,14 @@
                         <label class="control-label col-sm-2">تاریخ برگزاری: </label>
                         <!-- beginDate -->
                         <div class="col-sm-3 col-sm-offset-1">
-                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="beginDate" value="${plan.beginDate}" disabled>
+                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="beginDate"
+                                   value="${plan.beginDate}" disabled>
                         </div>
                         <label class="control-label col-sm-1">لغایت</label>
                         <!-- endDate -->
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="endDate" value="${plan.endDate}" disabled>
+                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="endDate"
+                                   value="${plan.endDate}" disabled>
                         </div>
                     </div>
                     <!-- time -->
@@ -126,7 +128,26 @@
                         <label class="control-label col-sm-2" for="needed">موارد درخواستی:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <textarea class="form-control" rows="3" id="needed" name="requestedItems" value="${plan.requestedItems}" disabled></textarea>
+                            <textarea class="form-control" rows="3" id="needed" name="requestedItems"
+                                      value="${plan.requestedItems}" disabled></textarea>
+                        </div>
+                    </div>
+                    <!-- alowed number -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">تعداد نفرات شرکت کننده:</label>
+                        <!-- minimum -->
+                        <label class="control-label col-sm-1 col-sm-offset-1">حد اقل</label>
+
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" name="registrationMin"
+                                   value="${plan.registrationMin}" disabled>
+                        </div>
+                        <!-- maximum -->
+                        <label class="control-label col-sm-1 col-sm-offset-1">حد اکثر</label>
+
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" name="registrationMax"
+                                   value="${plan.registrationMax}" disabled>
                         </div>
                     </div>
                     <!-- personnel -->
@@ -208,7 +229,8 @@
                         <label class="control-label col-sm-2" for="expertComment">نظرات کارشناس انجمن:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <textarea class="form-control" rows="3" id="expertComment" name="expertComment" disabled>${plan.expertComment}</textarea>
+                            <textarea class="form-control" rows="3" id="expertComment" name="expertComment"
+                                      disabled>${plan.expertComment}</textarea>
                         </div>
                     </div>
                     <!-- bossComment -->
@@ -217,17 +239,35 @@
                         <label class="control-label col-sm-2" for="bossComment">نظر نهایی ریاست انجمن های علمی:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <textarea class="form-control" rows="3" id="bossComment" name="bossComment" disabled>${plan.bossComment}</textarea>
+                            <textarea class="form-control" rows="3" id="bossComment" name="bossComment"
+                                      disabled>${plan.bossComment}</textarea>
                         </div>
                     </div>
-                    <!-- supervisorAgreement -->
-                    <!-- file -->
+                    <!-- supervisor -->
                     <div class="form-group">
-                        <label class="control-label col-sm-2">موافقت مسئول یا سرپرست:</label>
+                        <label class="control-label col-sm-2">استاد یا کارشناس مربوطه جهت حضور در بازدید:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <a href="${plan.supervisorAgreement}" target="_blank"><img src="${plan.supervisorAgreement}" alt="اشکال در فرایند نمایش"
-                                                                                       style="width: 50%; margin-bottom: 30px;"></a>
+                            <div class="row pure-table">
+                                <div class="form-group col-sm-3">
+                                    <input type="text" class="form-control" id="supervisorFName" name="supervisorFName"
+                                           placeholder="نام" value="${plan.supervisorFName}" disabled>
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <input type="text" class="form-control" id="supervisorLName" name="supervisorLName"
+                                           placeholder="نام خانوادگی" value="${plan.supervisorLName}" disabled>
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <input type="text" class="form-control" id="supervisorPosition"
+                                           name="supervisorPosition"
+                                           placeholder="سمت" value="${plan.supervisorPosition}" disabled>
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <input type="number" class="form-control" id="supervisorPhone"
+                                           name="supervisorPhone"
+                                           placeholder="شماره تماس" value="${plan.supervisorPhone}" disabled>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!-- poster -->
@@ -235,8 +275,9 @@
                         <label class="control-label col-sm-2">پوستر:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <a href="${plan.poster}" target="_blank"><img src="${plan.poster}" alt="اشکال در فرایند نمایش"
-                                                                                       style="width: 50%; margin-bottom: 30px;"></a>
+                            <a href="${plan.poster}" target="_blank"><img src="${plan.poster}"
+                                                                          alt="اشکال در فرایند نمایش"
+                                                                          style="width: 50%; margin-bottom: 30px;"></a>
                         </div>
                     </div>
                     <!-- enlisted list -->
@@ -283,7 +324,8 @@
                         <label class="control-label col-sm-2">مبالغ دریافتی از دانشجویان (ریال)</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="number" class="form-control" name="studentMoney" value="${plan.studentMoney}" disabled>
+                            <input type="number" class="form-control" name="studentMoney" id="studentMoney" value="${plan.studentMoney}"
+                                   disabled>
                         </div>
                     </div>
                     <!-- sponserMoney number-->
@@ -291,9 +333,56 @@
                         <label class="control-label col-sm-2">مبالغ دریافتی از اسپانسر(ریال)</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="number" class="form-control" name="sponsorMoney" value="${plan.sponsorMoney}" disabled>
+                            <input type="number" class="form-control" name="sponsorMoney" id="sponsorMoney" value="${plan.sponsorMoney}"
+                                   disabled>
                         </div>
                     </div>
+                    <!-- otherIncome number-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="otherIncome">سایر درآمدها (ریال):</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="number" class="form-control" id="otherIncome" name="otherIncome"
+                                   value="${plan.otherIncome}" disabled>
+                        </div>
+                    </div>
+                    <!-- expenseSum number-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="expenseSum">جمع هزینه ها (ریال):</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="number" class="form-control" id="expenseSum" name="expenseSum"
+                                   value="${plan.expenseSum}" disabled>
+                        </div>
+                    </div>
+                    <!-- incomeSum number-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="incomeSum">جمع درآمدها (ریال):</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="number" class="form-control" id="incomeSum" name="incomeSum"
+                                   value="${plan.incomeSum}" disabled>
+                        </div>
+                    </div>
+                    <!-- moneySum number-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="moneySum">مبلغ پرداختی (ریال)</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="number" class="form-control" id="moneySum" name="moneySum"
+                                   value="${plan.moneySum}" disabled>
+                        </div>
+                    </div>
+                    <c:if test="${plan.attachment != null}">
+                        <!-- attachment file-->
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">پیوست:</label>
+
+                            <div class="col-sm-7 col-sm-offset-1">
+                                <a href="${plan.attachment}" target="_blank">فایل پیوست</a>
+                            </div>
+                        </div>
+                    </c:if>
                     <br/>
                     <br/>
                 </form>

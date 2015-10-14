@@ -1,4 +1,3 @@
-<%@ page import="Models.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -58,7 +57,7 @@
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>
                 <%--@elvariable id="user" type=""--%>
-                <c:out value="${user.fName}"/>
+                <c:out value="${currentUser.fName} ${currentUser.lName}"/>
                 <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>
@@ -75,44 +74,121 @@
     <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
-            <li>
-                <a href="../Controller/ServletDashboardInitializer"><i class="fa fa-fw fa-dashboard"></i> خانه</a>
-            </li>
-            <li>
-                <a href="../Controller/ServletReport"><i class="fa fa-fw fa-bar-chart-o"></i> سيستم گزارش گيري</a>
-            </li>
-            <li>
-                <a href="../Controller/ServletMenu"><i class="fa fa-fw fa-users"></i> اعضا</a>
-            </li>
-            <li>
-                <a href="../Controller/ServletEmailing"><i class="fa fa-fw fa-envelope"></i>سیستم اطلاع رسانی </a>
-            </li>
-            <li class="hide">
-                <a href="../Controller/ServletEvaluation"><i class="fa fa-fw  fa-tasks"></i> ارزيابي طرح ها </a>
-            </li>
-            <li>
-                <a href="../Controller/ServletCreateplan"><i class="fa fa-fw fa-file-text"></i> تعريف طرح</a>
-            </li>
-            <li>
-                <a href="../app/suggested&future-plans.jsp"><i class="fa fa-calendar-o"></i> طرح های آینده و طرح های
-                    پیشنهادی</a>
-            </li>
-            <li>
-                <a href="../Controller/ServletAssociationsManagement"> مدیریت انجمن ها</a>
-            </li>
-            <li>
-                <a href="../app/registeration-verification.jsp"><i class="fa fa-check-square-o"></i> تایید ثبت نام ها</a>
-            </li>
-            <li>
-                <a href="/Controller/ServletResourceManagement"><i class="fa fa-sitemap"></i> مديريت منابع</a>
-            </li>
-            <li>
-                <a href="/Controller/ServletResources">منابع</a>
-            </li>
+            <c:choose>
+                <c:when test="${currentUser.position.id == 1}">
+                    <li>
+                        <a href="/Controller/ServletDashboardInitializer"><i class="fa fa-fw fa-dashboard"></i> خانه</a>
+                    </li>
+                    <li>
+                        <a href="/Controller/ServletReport"><i class="fa fa-fw fa-bar-chart-o"></i> سيستم گزارش گيري</a>
+                    </li>
+                    <li>
+                        <a href="/Controller/ServletUsersActiveInitialize"><i class="fa fa-fw fa-users"></i> اعضا</a>
+                    </li>
+                    <li>
+                        <a href="/Controller/ServletEmailing"><i class="fa fa-fw fa-envelope"></i>سیستم اطلاع رسانی </a>
+                    </li>
+                    <li class="hide">
+                        <a href="/Controller/ServletEvaluation"><i class="fa fa-fw  fa-tasks"></i> ارزيابي طرح ها </a>
+                    </li>
+                    <li>
+                        <a href="/Controller/ServletCreatePlanInitializer"><i class="fa fa-fw fa-file-text"></i> تعريف طرح</a>
+                    </li>
+                    <li>
+                        <a href="/Controller/ServletSuggestedPlans"><i class="fa fa-calendar-o"></i> طرح های پیشنهادی</a>
+                    </li>
+                    <li>
+                        <a href="/Controller/ServletAssociationsManagement"><i class="fa fa-slideshare"></i>  مدیریت انجمن ها</a>
+                    </li>
+                    <li>
+                        <a href="/Controller/ServletRegistrationVerification"><i class="fa fa-check-square-o"></i> تایید ثبت نام ها</a>
+                    </li>
+                    <li>
+                        <a href="/Controller/ServletResourceManagement"><i class="fa fa-sitemap"></i> مديريت منابع</a>
+                    </li>
+
+                </c:when>
+                <c:when test="${currentUser.position.id == 2}">
+
+                    <li>
+                        <a href="/Controller/ServletDashboardInitializer"><i class="fa fa-fw fa-dashboard"></i> خانه</a>
+                    </li>
+                    <li>
+                        <a href="/Controller/ServletReport"><i class="fa fa-fw fa-bar-chart-o"></i> سيستم گزارش گيري</a>
+                    </li>
+                    <li>
+                        <a href="/Controller/ServletUsersActiveInitialize"><i class="fa fa-fw fa-users"></i> اعضا</a>
+                    </li>
+                    <li>
+                        <a href="/Controller/ServletEmailing"><i class="fa fa-fw fa-envelope"></i>سیستم اطلاع رسانی </a>
+                    </li>
+                    <li>
+                        <a href="/Controller/ServletCreateplan"><i class="fa fa-fw fa-file-text"></i> تعريف طرح</a>
+                    </li>
+                    <li>
+                        <a href="/Controller/ServletSuggestedPlans"><i class="fa fa-calendar-o"></i> طرح های آینده و طرح های
+                            پیشنهادی</a>
+                    </li>
+                    <li>
+                        <a href="/Controller/ServletAssociationsManagement"><i class="fa fa-slideshare"></i> مدیریت انجمن ها</a>
+                    </li>
+                    <li>
+                        <a href="/Controller/ServletRegistrationVerification"><i class="fa fa-check-square-o"></i> تایید ثبت نام ها</a>
+                    </li>
+                    <li>
+                        <a href="/Controller/ServletResourceManagement"><i class="fa fa-sitemap"></i> مديريت منابع</a>
+                    </li>
+
+                </c:when>
+                <c:when test="${currentUser.position.id == 3}">
+
+                    <li>
+                        <a href="/Controller/ServletDashboardInitializer"><i class="fa fa-fw fa-dashboard"></i> خانه</a>
+                    </li>
+                    <li>
+                        <a href="/Controller/ServletReport"><i class="fa fa-fw fa-bar-chart-o"></i> سيستم گزارش گيري</a>
+                    </li>
+                    <%--<li>--%>
+                        <%--<a href="/Controller/ServletSuggestedAndFuturePlans"><i class="fa fa-calendar-o"></i> طرح های آینده و طرح های--%>
+                            <%--پیشنهادی</a>--%>
+                    <%--</li>--%>
+                    <li>
+                        <a href="/Controller/ServletResources">منابع</a>
+                    </li>
+                </c:when>
+                <c:when test="${currentUser.position.id == 4}">
+
+                    <li>
+                        <a href="/Controller/ServletDashboardInitializer"><i class="fa fa-fw fa-dashboard"></i> خانه</a>
+                    </li>
+                    <li>
+                        <a href="/Controller/ServletReport"><i class="fa fa-fw fa-bar-chart-o"></i> سيستم گزارش گيري</a>
+                    </li>
+                    <li>
+                        <a href="/Controller/ServletUsersClerkInitialize"><i class="fa fa-fw fa-users"></i> اعضا</a>
+                    </li>
+                    <li>
+                        <a href="/Controller/ServletEmailing"><i class="fa fa-fw fa-envelope"></i>سیستم اطلاع رسانی </a>
+                    </li>
+                    <li>
+                        <a href="/Controller/ServletCreateplan"><i class="fa fa-fw fa-file-text"></i> تعريف طرح</a>
+                    </li>
+                    <li>
+                        <a href="/Controller/ServletSuggestedPlansClerk"><i class="fa fa-calendar-o"></i> طرح های آینده و طرح های
+                            پیشنهادی</a>
+                    </li>
+                    <li>
+                        <a href="/Controller/ServletRegistrationVerification"><i class="fa fa-check-square-o"></i> تایید ثبت نام ها</a>
+                    </li>
+                    <li>
+                        <a href="/Controller/ServletResources">منابع</a>
+                    </li>
+
+                </c:when>
+            </c:choose>
         </ul>
     </div>
     <!-- /.navbar-collapse -->
-
 
 </nav>
 </body>

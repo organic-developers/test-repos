@@ -18,7 +18,6 @@
         <property name="endDate" column="end_date" type="string"/>
         <property name="time" column="time" type="string"/>
         <property name="requestedItems" column="requested_items" type="string"/>
-        <property name="supervisorAgreement" column="supervisor_agreement" type="string"/>
         <property name="advisorComment" column="advisor_comment" type="string"/>
         <property name="expertComment" column="expert_comment" type="string"/>
         <property name="bossComment" column="boss_comment" type="string"/>
@@ -32,33 +31,47 @@
         <property name="registrationEndDate" column="registration_end_date" type="string"/>
         <property name="advertisementBeginDate" column="advertisement_begin_date" type="string"/>
         <property name="advertisementEndDate" column="advertisement_end_date" type="string"/>
+        <property name="seen"/>
+        <property name="attachment"/>
+        <property name="registrationMin" column="registration_min" type="string"/>
+        <property name="registrationMax" column="registration_max" type="string"/>
+        <property name="supervisorFName" column="supervisor_f_name" type="string"/>
+        <property name="supervisorLName" column="supervisor_l_name" type="string"/>
+        <property name="supervisorPosition" column="supervisor_position" type="string"/>
+        <property name="supervisorPhone" column="supervisor_phone" type="string"/>
+        <property name="otherIncome" column="other_income" type="string"/>
+        <property name="expenseSum" column="expense_sum" type="string"/>
+        <property name="incomeSum" column="income_sum" type="string"/>
+        <property name="moneySum" column="money_sum" type="string"/>
+        <property name="registrationFee" column="registration_fee" type="string"/>
+        <property name="registrationPlace" column="registration_place" type="string"/>
         <many-to-one name="workflowState" column="workflow_state_id" cascade="all" class="Models.WorkflowState"/>
         <many-to-one name="association" column="association_id" cascade="all" class="Models.Association"/>
         <many-to-one name="workflow" column="workflow_id" class="Models.Workflow"/>
-        <set name="personnel" cascade="all" fetch="join">
+        <bag name="personnel" cascade="all-delete-orphan" order-by="id">
             <key column="plan_id"/>
             <one-to-many class="Models.Personnel"/>
-        </set>
-        <set name="expenses" cascade="all">
+        </bag>
+        <bag name="expenses" cascade="all-delete-orphan" order-by="id">
             <key column="plan_id"/>
             <one-to-many class="Models.Expense"/>
-        </set>
-        <set name="enlisted" cascade="all">
+        </bag>
+        <bag name="enlisted" cascade="all-delete-orphan" order-by="id">
             <key column="plan_id"/>
             <one-to-many class="Models.Enlisted"/>
-        </set>
-        <set name="guests" cascade="all">
+        </bag>
+        <bag name="guests" cascade="all-delete-orphan" order-by="id">
             <key column="plan_id"/>
             <one-to-many class="Models.Guest"/>
-        </set>
-        <set name="judges" cascade="all">
+        </bag>
+        <bag name="judges" cascade="all-delete-orphan" order-by="id">
             <key column="plan_id"/>
             <one-to-many class="Models.Judge"/>
-        </set>
-        <set name="planStateHistory" cascade="all">
+        </bag>
+        <bag name="planStateHistories" cascade="all-delete-orphan" order-by="id desc">
             <key column="plan_id"/>
             <one-to-many class="Models.PlanStateHistory"/>
-        </set>
+        </bag>
     </class>
     <!-- /Models.Plan -->
 
@@ -103,6 +116,7 @@
         <property name="studentId" column="student_id" type="string"/>
         <property name="email" column="email" type="string"/>
         <property name="phone" column="phone" type="string"/>
+        <property name="confirmed"/>
     </class>
     <!-- /Models.Enlisted -->
 
@@ -169,14 +183,19 @@
         <property name="lName" column="l_name" type="string"/>
         <property name="userName" column="user_name" type="string"/>
         <property name="password" column="password" type="string"/>
-        <property name="positionTitle" column="position_title" type="string"/>
         <property name="birthYear" column="birth_year" type="string"/>
         <property name="email" column="email" type="string"/>
         <property name="nationalId" column="national_id" type="string"/>
         <property name="phone" column="phone" type="string"/>
         <property name="photo" column="photo" type="string"/>
         <property name="studentId" column="student_id" type="string"/>
+        <property name="active"/>
         <many-to-one name="association" class="Models.Association" column="association_id" cascade="all"/>
+        <many-to-one name="position" class="Models.Position" column="position_id"/>
+        <!--<set name="inOffice" cascade="all">-->
+            <!--<key column="user_id"/>-->
+            <!--<one-to-many class="Models.InOffice"/>-->
+        <!--</set>-->
     </class>
     <!-- /users -->
 
@@ -226,26 +245,8 @@
     </class>
     <!-- /workflowNavigation -->
 
-    <!-- planStateHistory -->
-    <class name="Models.PlanStateHistory" table="plan_state_history">
-        <meta attribute="class-description">
-            This class contains the detail of planStateHistory.
-        </meta>
-        <id name="id" column="id" type="int">
-            <generator class="native"/>
-        </id>
-        <property name="createdTimeStamp" column="created_timestamp" type="int"/>
-        <many-to-one name="workflowState" column="workflow_state_id" class="Models.WorkflowState"/>
-        <many-to-one name="user" column="user_id" class="Models.User"/>
-        <set name="changes" cascade="all">
-            <key column="plan_state_history_id"/>
-            <one-to-many class="Models.Change"/>
-        </set>
-    </class>
-    <!-- /planStateHistory -->
-
     <!-- changes -->
-    <class name="Models.Change" table="change">
+    <class name="Models.Change" table="changed">
         <meta attribute="class-description">
             This class contains the detail of changes.
         </meta>
@@ -253,14 +254,16 @@
             <generator class="native"/>
         </id>
         <property name="fieldName" column="field_name" type="string"/>
-        <property name="fieldValue" column="field_value" type="string"/>
+        <property name="modifiedTo" column="modified_to" type="string"/>
+        <property name="modifiedFrom" column="modified_from" type="string"/>
+        <property name="json"/>
     </class>
     <!-- /changes -->
 
     <!-- resource -->
     <class name="Models.Resource" table="resource">
         <meta attribute="class-description">
-            This class contains tha detail of resources.
+            This class contains the detail of resources.
         </meta>
         <id name="id" column="id" type="int">
             <generator class="native"/>
@@ -269,5 +272,65 @@
         <property name="path" column="path" type="string"/>
     </class>
     <!-- /resource -->
+
+    <!-- in_office -->
+    <class name="Models.InOffice" table="in_office">
+        <meta attribute="class-description">
+            This class contains the time period someone is or has been in office.
+        </meta>
+        <id name="id" column="id" type="int">
+            <generator class="native"/>
+        </id>
+        <property name="fromDate" column="from_date" type="string"/>
+        <property name="toDate" column="to_date" type="string"/>
+    </class>
+    <!-- /in_office -->
+
+    <!-- position -->
+    <class name="Models.Position" table="position">
+        <meta attribute="class-description">
+            This class contains position of a user is system.
+        </meta>
+        <id name="id" column="id" type="int">
+            <generator class="native"/>
+        </id>
+        <property name="name" column="name" type="string"/>
+    </class>
+    <!-- /position -->
+
+    <!-- suggested plan -->
+    <class name="Models.SuggestedPlan" table="suggested_plan">
+        <meta attribute="class-description">
+            This class contains details about suggested plans.
+        </meta>
+        <id name="id" column="id" type="int">
+            <generator class="native"/>
+        </id>
+        <property name="title"/>
+        <property name="description"/>
+        <property name="likeNumber" column="like_number"/>
+        <property name="inView" column="in_view" type="string"/>
+        <many-to-one name="association" class="Models.Association" column="association_id"/>
+    </class>
+    <!-- /suggested plan -->
+
+    <!-- planStateHistory -->
+    <class name="Models.PlanStateHistory" table="plan_state_history">
+        <meta attribute="class-description">
+            This class contains details about planStateHistories happened to plans.
+        </meta>
+        <id name="id" column="id" type="int">
+            <generator class="native"/>
+        </id>
+        <property name="timestamp" column="time_stamp" type="string"/>
+        <property name="name"/>
+        <many-to-one name="user" class="Models.User" column="user_id"/>
+        <many-to-one name="workflowState" class="Models.WorkflowState" column="workflow_state_id"/>
+        <set name="changes" cascade="all">
+            <key column="plan_state_history_id"/>
+            <one-to-many class="Models.Change"/>
+        </set>
+    </class>
+    <!-- /planStateHistory -->
 
 </hibernate-mapping>

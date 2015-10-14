@@ -45,6 +45,9 @@
     <script src="/js/jquery-1.11.3.min.js"></script>
     <script src="/js/added.js"></script>
 
+    <link rel="stylesheet" href="/css/persianDatepicker-default.css" />
+    <script src="/js/persianDatepicker.min.js"></script>
+
 </head>
 <body class="dashboard-background">
 
@@ -101,15 +104,15 @@
                                                    placeholder="نام خانوادگی" value="${enlisted.lName}">
                                         </div>
                                         <div class="form-group col-xs-2">
-                                            <input type="text" class="form-control" name="enlisted-studentId-"
+                                            <input type="number" class="form-control" name="enlisted-studentId-"
                                                    placeholder="شماره دانشجویی" value="${enlisted.studentId}">
                                         </div>
                                         <div class="form-group col-xs-2">
-                                            <input type="text" class="form-control" name="enlisted-phone-"
+                                            <input type="number" class="form-control" name="enlisted-phone-"
                                                    placeholder="تلفن همراه" value="${enlisted.phone}">
                                         </div>
                                         <div class="form-group col-xs-3">
-                                            <input type="text" class="form-control" name="enlisted-email-"
+                                            <input type="email" class="form-control" name="enlisted-email-"
                                                    placeholder="ایمیل" value="${enlisted.email}">
                                         </div>
                                         <div class="form-group col-xs-1">
@@ -126,23 +129,23 @@
                         </div>
 
                     </div>
-                    <!-- studentsMoney number -->
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="studentMoney">مبالغ دریافتی از دانشجویان
-                            (ریال)</label>
+                    <%--<!-- studentsMoney number -->--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label class="control-label col-sm-2" for="studentMoney">مبالغ دریافتی از دانشجویان--%>
+                            <%--(ریال)</label>--%>
 
-                        <div class="col-sm-7 col-sm-offset-1">
-                            <input type="number" class="form-control" id="studentMoney" name="studentMoney" value="${plan.studentMoney}">
-                        </div>
-                    </div>
-                    <!-- sponserMoney number-->
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="sponsorMoney">مبالغ دریافتی از اسپانسر(ریال)</label>
+                        <%--<div class="col-sm-7 col-sm-offset-1">--%>
+                            <%--<input type="number" class="form-control" id="studentMoney" name="studentMoney" value="${plan.studentMoney}">--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<!-- sponserMoney number-->--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label class="control-label col-sm-2" for="sponsorMoney">مبالغ دریافتی از اسپانسر(ریال)</label>--%>
 
-                        <div class="col-sm-7 col-sm-offset-1">
-                            <input type="number" class="form-control" id="sponsorMoney" name="sponsorMoney" value="${plan.sponsorMoney}">
-                        </div>
-                    </div>
+                        <%--<div class="col-sm-7 col-sm-offset-1">--%>
+                            <%--<input type="number" class="form-control" id="sponsorMoney" name="sponsorMoney" value="${plan.sponsorMoney}">--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                     <!-- bossComment -->
                     <!-- textarea -->
                     <div class="form-group">
@@ -161,6 +164,10 @@
                 </form>
             </div>
             <!-- /.row -->
+
+
+            <!-- table of changes -->
+            <%@ include file="table-of-changes.jsp" %>
 
         </div>
         <!-- /.container-fluid -->

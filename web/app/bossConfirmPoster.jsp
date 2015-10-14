@@ -8,7 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,11 +43,14 @@
 
 
     <script src="/js/jquery-1.11.3.min.js"></script>
+
+    <link rel="stylesheet" href="/css/persianDatepicker-default.css" />
+    <script src="/js/persianDatepicker.min.js"></script>
+
     <script src="/js/added.js"></script>
 
 </head>
 <body>
-
 <div id="wrapper">
 
     <!-- Navigation -->
@@ -80,13 +82,13 @@
                         <label class="control-label col-sm-2">مهلت ثبت نام:</label>
                         <!-- beginDate -->
                         <div class="col-sm-3 col-sm-offset-1">
-                            <input type="text" class="form-control" placeholder="yyyy/mm/dd"
+                            <input type="text" class="form-control pdp" placeholder="yyyy/mm/dd"
                                    name="registrationBeginDate" value="${plan.registrationBeginDate}">
                         </div>
                         <label class="control-label col-sm-1">لغایت</label>
                         <!-- endDate -->
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="registrationEndDate"
+                            <input type="text" class="form-control pdp" placeholder="yyyy/mm/dd" name="registrationEndDate"
                                    value="${plan.registrationEndDate}">
                         </div>
                     </div>
@@ -95,14 +97,32 @@
                         <label class="control-label col-sm-2">بازه زمانی نمایش تبلیغات در سایت:</label>
                         <!-- beginDate -->
                         <div class="col-sm-3 col-sm-offset-1">
-                            <input type="text" class="form-control" placeholder="yyyy/mm/dd"
+                            <input type="text" class="form-control pdp" placeholder="yyyy/mm/dd"
                                    name="advertisementBeginDate" value="${plan.advertisementBeginDate}">
                         </div>
                         <label class="control-label col-sm-1">لغایت</label>
                         <!-- endDate -->
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="advertisementEndDate"
+                            <input type="text" class="form-control pdp" placeholder="yyyy/mm/dd" name="advertisementEndDate"
                                    value="${plan.advertisementEndDate}">
+                        </div>
+                    </div>
+                    <!-- registration fee -->
+                    <!-- number -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">هزینه ثبت نام (ریال):</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="number" class="form-control" name="registrationFee" value="${plan.registrationFee}">
+                        </div>
+                    </div>
+                    <!-- registration place -->
+                    <!-- text -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">مکان ثبت نام:</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="text" class="form-control" name="registrationPlace" value="${plan.registrationPlace}">
                         </div>
                     </div>
                     <!-- expertComment -->
@@ -136,8 +156,8 @@
                 </form>
             </div>
 
-            <br/>
-            <br/>
+            <!-- table of changes -->
+            <%@ include file="table-of-changes.jsp" %>
 
         </div>
 

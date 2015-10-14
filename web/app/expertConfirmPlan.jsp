@@ -44,6 +44,10 @@
 
 
     <script src="/js/jquery-1.11.3.min.js"></script>
+
+    <link rel="stylesheet" href="/css/persianDatepicker-default.css"/>
+    <script src="/js/persianDatepicker.min.js"></script>
+
     <script src="/js/added.js"></script>
 </head>
 <body>
@@ -64,7 +68,7 @@
             </div>
             <!-- /.row -->
 
-            <!-- /.row -->
+            <!-- .row -->
             <div class="row">
                 <form class="form-horizontal" role="form" action="/Controller/ServletExpertConfirmPlan"
                       method="post">
@@ -76,7 +80,7 @@
                         <label class="control-label col-sm-2">ماهیت:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="type" value="${plan.workflow.name}" disabled >
+                            <input type="text" class="form-control" name="type" value="${plan.workflow.name}" disabled>
                         </div>
                     </div>
                     <!-- title -->
@@ -85,7 +89,7 @@
                         <label class="control-label col-sm-2">عنوان طرح:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="title" value="${plan.title}" >
+                            <input type="text" class="form-control" name="title" value="${plan.title}">
                         </div>
                     </div>
                     <!-- place -->
@@ -94,7 +98,7 @@
                         <label class="control-label col-sm-2">محل برگزاری:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="place" value="${plan.place}" >
+                            <input type="text" class="form-control" name="place" value="${plan.place}">
                         </div>
                     </div>
                     <!-- date -->
@@ -103,14 +107,14 @@
                         <label class="control-label col-sm-2">تاریخ برگزاری: </label>
                         <!-- beginDate -->
                         <div class="col-sm-3 col-sm-offset-1">
-                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="beginDate"
-                                   value="${plan.beginDate}" >
+                            <input type="text" class="form-control pdp" placeholder="yyyy/mm/dd" name="beginDate"
+                                   value="${plan.beginDate}">
                         </div>
                         <label class="control-label col-sm-1">لغایت</label>
                         <!-- endDate -->
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="endDate"
-                                   value="${plan.endDate}" >
+                            <input type="text" class="form-control pdp" placeholder="yyyy/mm/dd" name="endDate"
+                                   value="${plan.endDate}">
                         </div>
                     </div>
                     <!-- time -->
@@ -119,7 +123,7 @@
                         <label class="control-label col-sm-2">ساعت برگزاری:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="time" value="${plan.time}" >
+                            <input type="text" class="form-control" name="time" value="${plan.time}">
                         </div>
                     </div>
                     <!-- requestedItems -->
@@ -129,7 +133,25 @@
 
                         <div class="col-sm-7 col-sm-offset-1">
                             <textarea class="form-control" rows="3" id="needed"
-                                      name="requestedItems" >${plan.requestedItems}"</textarea>
+                                      name="requestedItems">${plan.requestedItems}</textarea>
+                        </div>
+                    </div>
+                    <!-- alowed number -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">تعداد نفرات شرکت کننده:</label>
+                        <!-- minimum -->
+                        <label class="control-label col-sm-1 col-sm-offset-1">حد اقل</label>
+
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" name="registrationMin"
+                                   value="${plan.registrationMin}">
+                        </div>
+                        <!-- maximum -->
+                        <label class="control-label col-sm-1 col-sm-offset-1">حد اکثر</label>
+
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" name="registrationMax"
+                                   value="${plan.registrationMax}">
                         </div>
                     </div>
                     <!-- personnel -->
@@ -144,15 +166,15 @@
                                 <c:forEach var="personnel" items="${plan.personnel}">
                                     <div class="table-row">
                                         <div class="form-group col-xs-3">
-                                            <input type="text" class="form-control" name="personnel-fName-0"
+                                            <input type="text" class="form-control" name="personnel-fName-"
                                                    placeholder="نام" value="${personnel.fName}">
                                         </div>
                                         <div class="form-group col-xs-4">
-                                            <input type="text" class="form-control" name="personnel-lName-0"
+                                            <input type="text" class="form-control" name="personnel-lName-"
                                                    placeholder="نام خانوادگی" value="${personnel.lName}">
                                         </div>
                                         <div class="form-group col-xs-4">
-                                            <input type="text" class="form-control" name="personnel-phone-0"
+                                            <input type="text" class="form-control" name="personnel-phone-"
                                                    placeholder="تلفن" value="${personnel.phone}">
                                         </div>
                                         <div class="form-group col-xs-1">
@@ -167,15 +189,33 @@
                             <div class="line line-bottom"></div>
                         </div>
                     </div>
-                    <%--<!-- supervisorAgreement -->--%>
-                    <%--<!-- file -->--%>
-                    <%--<div class="form-group">--%>
-                        <%--<label class="control-label col-sm-2">موافقت مسئول یا سرپرست (در صورت نیاز):</label>--%>
+                    <!-- supervisor -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">استاد یا کارشناس مربوطه جهت حضور در بازدید:</label>
 
-                        <%--<div class="col-sm-7 col-sm-offset-1">--%>
-                            <%--<a href="${plan.supervisorAgreement}" target="_blank">موافقت نامه مسئول یا سرپرست</a>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <div class="row pure-table">
+                                <div class="form-group col-sm-3">
+                                    <input type="text" class="form-control" id="supervisorFName" name="supervisorFName"
+                                           placeholder="نام" value="${plan.supervisorFName}">
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <input type="text" class="form-control" id="supervisorLName" name="supervisorLName"
+                                           placeholder="نام خانوادگی" value="${plan.supervisorLName}">
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <input type="text" class="form-control" id="supervisorPosition"
+                                           name="supervisorPosition"
+                                           placeholder="سمت" value="${plan.supervisorPosition}">
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <input type="number" class="form-control" id="supervisorPhone"
+                                           name="supervisorPhone"
+                                           placeholder="شماره تماس" value="${plan.supervisorPhone}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!-- expenses -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">ریز هزینه ها:</label>
@@ -210,8 +250,72 @@
 
                             <div class="line line-bottom"></div>
                         </div>
-
                     </div>
+                    <!-- studentsMoney number -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="studentMoney">مبالغ دریافتی از دانشجویان
+                            (ریال)</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="number" class="form-control" id="studentMoney" name="studentMoney"
+                                   value="${plan.studentMoney}">
+                        </div>
+                    </div>
+                    <!-- sponserMoney number-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="sponsorMoney">مبالغ دریافتی از اسپانسر(ریال)</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="number" class="form-control" id="sponsorMoney" name="sponsorMoney"
+                                   value="${plan.sponsorMoney}">
+                        </div>
+                    </div>
+                    <!-- otherIncome number-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="otherIncome">سایر درآمدها (ریال):</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="number" class="form-control" id="otherIncome" name="otherIncome"
+                                   value="${plan.otherIncome}">
+                        </div>
+                    </div>
+                    <!-- expenseSum number-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="expenseSum">جمع هزینه ها (ریال):</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="number" class="form-control" id="expenseSum" name="expenseSum"
+                                   value="${plan.expenseSum}" disabled>
+                        </div>
+                    </div>
+                    <!-- incomeSum number-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="incomeSum">جمع درآمدها (ریال):</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="number" class="form-control" id="incomeSum" name="incomeSum"
+                                   value="${plan.incomeSum}" disabled>
+                        </div>
+                    </div>
+                    <!-- moneySum number-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="moneySum">مبلغ پرداختی (ریال)</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="number" class="form-control" id="moneySum" name="moneySum"
+                                   value="${plan.moneySum}" disabled>
+                        </div>
+                    </div>
+                    <!-- attachment file-->
+                    <c:if test="${plan.attachment != null}">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">پیوست:</label>
+
+                            <div class="col-sm-7 col-sm-offset-1">
+                                <a href="${plan.attachment}" target="_blank">فایل پیوست</a>
+                            </div>
+                        </div>
+                    </c:if>
                     <!-- advisorComment -->
                     <!-- textarea -->
                     <div class="form-group">
@@ -234,11 +338,109 @@
                     <!-- submit button -->
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-10">
-                            <button type="submit" class="btn btn-primary" name="submit" value="confirm">تایید طرح</button>
+                            <button type="submit" class="btn btn-primary" name="submit" value="confirm">ارسال</button>
                         </div>
                     </div>
                 </form>
             </div>
+            <!-- /.row -->
+
+            <!-- .row -->
+            <div class="row planStateHistories">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <!-- .panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-calendar"></i> رویداد ها</h3>
+                        </div>
+                        <div class="panel-body">
+                            <!-- .table -->
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>تاریخ</th>
+                                        <th>کاربر</th>
+                                        <th>رویداد</th>
+                                        <th>تغییرات</th>
+                                        <%--<th style="display: none;">id</th>--%>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach var="planStateHistory" items="${plan.planStateHistories}">
+                                        <tr>
+                                            <td>${planStateHistory.timestamp}</td>
+                                            <td>${planStateHistory.user.position.name}</td>
+                                            <c:choose>
+                                                <c:when test="${planStateHistory.name != null}">
+                                                    <td>${planStateHistory.name}</td>
+                                                    <td></td>
+                                                </c:when>
+                                                <c:when test="${planStateHistory.name == null}">
+                                                    <td>${planStateHistory.workflowState.name}</td>
+                                                    <td>
+                                                        <button class="btn btn-primary btn-planStateHistories"
+                                                                id="${planStateHistory.id}"
+                                                                data-toggle="modal" data-target="#changesModal">مشاهده
+                                                        </button>
+                                                    </td>
+                                                </c:when>
+                                            </c:choose>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table -->
+                        </div>
+                    </div>
+                    <!-- /.panel -->
+                </div>
+            </div>
+            <!-- /.row -->
+
+            <!-- Modal - changes -->
+            <div class="modal fade" id="changesModal" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"></h4>
+                            <br/>
+                        </div>
+                        <div class="modal-body">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title"><i class="fa fa-calendar"></i> تغییرات</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <!-- .table -->
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>نام فیلد</th>
+                                                <th>از</th>
+                                                <th>به</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="changes">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.table -->
+                                </div>
+                            </div>
+                            <!-- /.panel -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.Modal -->
+
 
         </div>
         <!-- /.container-fluid -->

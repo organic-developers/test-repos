@@ -2,6 +2,7 @@ package Controller;
 
 import Logic.PlanDAO;
 import Models.Plan;
+import Models.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -26,7 +27,7 @@ public class ServletCorrectPoster extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         PlanDAO planDAO = new PlanDAO();
-        Plan plan = planDAO.getPlanById(Integer.parseInt(request.getParameter("id")));
+        Plan plan = planDAO.getCompletePlanById(Integer.parseInt(request.getParameter("id")));
 
 
         try {
@@ -44,8 +45,13 @@ public class ServletCorrectPoster extends HttpServlet {
         plan.setAdvertisementBeginDate(request.getParameter("advertisementBeginDate"));
         plan.setAdvertisementEndDate(request.getParameter("advertisementEndDate"));
 
+        planDAO.getWorkflowForward(plan.getId());
+
+        plan.getPlanStateHistories().add(planDAO.getPlanStateHistory((User) request.getSession().getAttribute("currentUser"), plan));
+
+        plan.setSeen("false");
+
         planDAO.updatePlan(plan);
-        planDAO.workflowForward(plan.getId());
 
         request.getRequestDispatcher("/Controller/ServletDashboardInitializer").forward(request, response);
     }

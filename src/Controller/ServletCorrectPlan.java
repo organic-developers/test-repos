@@ -4,6 +4,7 @@ import Logic.PlanDAO;
 import Models.Enlisted;
 import Models.Expense;
 import Models.Plan;
+import Models.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 
 @WebServlet(name = "ServletCorrectPlan", urlPatterns = "/ServletCorrectPlan")
@@ -28,7 +31,7 @@ public class ServletCorrectPlan extends HttpServlet {
 
         PlanDAO planDAO = new PlanDAO();
 
-        Plan plan = planDAO.getPlanById(Integer.parseInt(request.getParameter("id").trim()));
+        Plan plan = planDAO.getCompletePlanById(Integer.parseInt(request.getParameter("id").trim()));
 
         plan.setTitle(request.getParameter("title"));
         plan.setPlace(request.getParameter("place"));
@@ -40,16 +43,22 @@ public class ServletCorrectPlan extends HttpServlet {
         plan.setEnlisted(makeEnlisted(request));
         plan.setExpenses(makeExpenses(request));
 
+
+        plan.setWorkflowState(planDAO.getWorkflowForward(plan.getId()));
+
+        plan.getPlanStateHistories().add(planDAO.getPlanStateHistory((User) request.getSession().getAttribute("currentUser"), plan));
+
+        plan.setSeen("false");
+
         planDAO.updatePlan(plan);
-        planDAO.workflowForward(plan.getId());
 
         request.getRequestDispatcher("/Controller/ServletDashboardInitializer").forward(request, response);
     }
 
-    public HashSet makeEnlisted(HttpServletRequest request) {
+    public List makeEnlisted(HttpServletRequest request) {
         int i = 0;
         if (!(request.getParameter("enlisted-fName-" + i) == null || request.getParameter("enlisted-fName-" + i).equals(""))) {
-            HashSet<Enlisted> enlisteds = new HashSet<>();
+            List enlisteds = new ArrayList<>();
             while (!(request.getParameter("enlisted-fName-" + i) == null || request.getParameter("enlisted-fName-" + i).equals(""))) {
                 Enlisted enlisted = new Enlisted();
                 enlisted.setfName(request.getParameter("enlisted-fName-" + i));
@@ -66,11 +75,11 @@ public class ServletCorrectPlan extends HttpServlet {
     }
 
 
-    public HashSet makeExpenses(HttpServletRequest request) {
+    public List makeExpenses(HttpServletRequest request) {
         int i = 0;
         if (!(request.getParameter("expense-name-" + i) == null)) {
             if (!(request.getParameter("expense-name-" + i).equals(""))) {
-                HashSet<Expense> expenses = new HashSet<>();
+                List expenses = new ArrayList<>();
                 while (!(request.getParameter("expense-name-" + i) == null)) {
                     if (!(request.getParameter("expense-name-" + i).equals(""))) {
                         Expense expense = new Expense();

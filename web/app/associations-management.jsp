@@ -41,7 +41,10 @@
     <![endif]-->
 
     <script src="/js/jquery-1.11.3.min.js"></script>
-    <script src="/js/added.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../js/bootstrap.min.js"></script>
+
+    <%--<script src="/js/added.js"></script>--%>
 
     <script>
         $(document).ready(function () {
@@ -54,29 +57,27 @@
                         url: "ServletAssociationsManagement",
                         type: "POST",
                         data: {id: x},
-//                        beforeSend: function (before) {
-//                        },
                         success: function () {
                             i.parents(".thumbnail").toggleClass("thumbnail-gray");
-                        },
-//                        error: function (error) {
-//                        }
-                    })
-                })
-            })
-            $(".btn-edit").each(function(){
-                $(this).click(function(){
-                    var x = $(this).val();
-                    window.alert(x);
-                    $.ajax({
-                        url:"ServletEditAssociation",
-                        type: "POST",
-                        data: {"id": x},
-//                        success: function(){}
+                        }
                     })
                 })
             })
         })
+//        $(document).ready(function(){
+//            $(".btn-edit").each(function(){
+//                $(this).click(function(){
+//                    var x = $(this).val();
+//                    window.alert(x);
+//                    $.ajax({
+//                        url:"ServletEditAssociation",
+//                        type: "POST",
+//                        data: {"id": x},
+////                        success: function(){}
+//                    })
+//                })
+//            })
+//        })
     </script>
 
 </head>
@@ -161,12 +162,6 @@
 
     </div>
     <!-- /#wrapper -->
-
-    <!-- jQuery -->
-    <script src="../js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../js/bootstrap.min.js"></script>
 
 </body>
 

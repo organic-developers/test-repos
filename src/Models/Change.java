@@ -31,15 +31,15 @@ public class Change {
         this.fieldName = fieldName;
     }
 
-    private String fieldValue;
+    private String modifiedTo;
 
     @Basic
-    public String getFieldValue() {
-        return fieldValue;
+    public String getModifiedTo() {
+        return modifiedTo;
     }
 
-    public void setFieldValue(String fieldValue) {
-        this.fieldValue = fieldValue;
+    public void setModifiedTo(String fieldValue) {
+        this.modifiedTo = fieldValue;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class Change {
 
         Change obj2 = (Change) obj;
         if ((this.id == obj2.getId()) && (this.fieldName.equals(obj2.getFieldName()))
-                && (this.fieldValue.equals(obj2.getFieldValue()))) {
+                && (this.modifiedTo.equals(obj2.getModifiedTo()))) {
             return true;
         }
         return false;
@@ -58,7 +58,29 @@ public class Change {
     @Override
     public int hashCode() {
         int tmp = 0;
-        tmp = (id + fieldName + fieldValue ).hashCode();
+        tmp = (id + fieldName + modifiedTo).hashCode();
         return tmp;
+    }
+
+    private String modifiedFrom;
+
+    @Basic
+    public String getModifiedFrom() {
+        return modifiedFrom;
+    }
+
+    public void setModifiedFrom(String modified_from) {
+        this.modifiedFrom = modified_from;
+    }
+
+    private String json;
+
+    @Basic
+    public String getJson() {
+        return json;
+    }
+
+    public void setJson(String json) {
+        this.json = json;
     }
 }

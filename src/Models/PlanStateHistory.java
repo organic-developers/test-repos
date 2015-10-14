@@ -1,10 +1,13 @@
 package Models;
 
-import javax.persistence.*;
-import java.security.Timestamp;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.sql.Timestamp;
 import java.util.Set;
 
-
+/**
+ * Created by Saied on 9/25/2015.
+ */
 @Entity
 public class PlanStateHistory {
     private int id;
@@ -18,20 +21,30 @@ public class PlanStateHistory {
         this.id = id;
     }
 
-    private Set<Change> changes;
+    private String name;
 
-    @OneToMany
-    public Set<Change> getChanges() {
-        return changes;
+    @javax.persistence.Basic
+    public String getName() {
+        return name;
     }
 
-    public void setChanges(Set<Change> changes) {
-        this.changes = changes;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    private String timestamp;
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 
     private User user;
 
-    @ManyToOne
+    @javax.persistence.ManyToOne
     public User getUser() {
         return user;
     }
@@ -42,7 +55,7 @@ public class PlanStateHistory {
 
     private WorkflowState workflowState;
 
-    @ManyToOne
+    @javax.persistence.ManyToOne
     public WorkflowState getWorkflowState() {
         return workflowState;
     }
@@ -51,35 +64,14 @@ public class PlanStateHistory {
         this.workflowState = workflowState;
     }
 
-    private int createdTimeStamp;
+    private Set<Change> changes;
 
-    @Basic
-    public int getCreatedTimeStamp() {
-        return createdTimeStamp;
+    @javax.persistence.OneToMany
+    public Set<Change> getChanges() {
+        return changes;
     }
 
-    public void setCreatedTimeStamp(int createdTimeStamp) {
-        this.createdTimeStamp = createdTimeStamp;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) return false;
-        if (!this.getClass().equals(obj.getClass())) return false;
-
-        PlanStateHistory obj2 = (PlanStateHistory) obj;
-        if ((this.id == obj2.getId()) && (this.createdTimeStamp == obj2.getCreatedTimeStamp())
-                && (this.changes.equals(obj2.getChanges())) && (this.user.equals(obj2.getUser()))
-                && (this.workflowState.equals(obj2.getWorkflowState()))) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        int tmp = 0;
-        tmp = (id + createdTimeStamp + "" ).hashCode();
-        return tmp;
+    public void setChanges(Set<Change> changes) {
+        this.changes = changes;
     }
 }

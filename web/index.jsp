@@ -18,6 +18,20 @@
     <!-- Custom CSS -->
     <link href="/css/added.css" rel="stylesheet"/>
 
+    <script src="/js/jquery-1.11.3.min.js"></script>
+
+    <script>
+        $(document).ready(function(ev){
+            $("a.association").each(function(e){
+                $(this).click(function(ec){
+                    $(this).next().submit();
+                    ec.preventDefault();
+                })
+            })
+
+        })
+    </script>
+
 </head>
 <body id="index" style="background: url('image/bg1.png') no-repeat fixed center center / cover  transparent;">
 
@@ -101,14 +115,18 @@
     <br/>
     <br/>
 
+
     <!-- Associations -->
     <div class="row">
         <c:forEach var="association" items="${associations}">
-            <div class="col-lg-3" style="margin-bottom: 30px;">
-                <a href="/association.jsp">
+            <div class="col-lg-3 col-sm-4" style="margin-bottom: 33px; height: 284px; text-align: center;">
+                <a class="association" href="#">
                     <img src="${association.logo}" alt="لوگو" class="img-circle"/>
                     <h4 style="text-align: center;">${association.name}</h4>
                 </a>
+                <form action="/ServletAssociationPageInitializer" style="display: none;">
+                    <input type="text" name="association" value="${association.id}"/>
+                </form>
             </div>
         </c:forEach>
     </div>

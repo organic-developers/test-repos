@@ -65,7 +65,7 @@
             <!-- /.row -->
 
 
-            <!-- /.row -->
+            <!-- .row -->
             <div class="row">
                 <form class="form-horizontal" role="form" action="/Controller/ServletAdvisorConfirmPlan"
                       method="post">
@@ -130,7 +130,25 @@
 
                         <div class="col-sm-7 col-sm-offset-1">
                             <textarea class="form-control" rows="3" id="needed"
-                                      name="requestedItems" disabled>${plan.requestedItems}"</textarea>
+                                      name="requestedItems" disabled>${plan.requestedItems}</textarea>
+                        </div>
+                    </div>
+                    <!-- alowed number -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">تعداد نفرات شرکت کننده:</label>
+                        <!-- minimum -->
+                        <label class="control-label col-sm-1 col-sm-offset-1">حد اقل</label>
+
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" name="registrationMin"
+                                   value="${plan.registrationMin}" disabled>
+                        </div>
+                        <!-- maximum -->
+                        <label class="control-label col-sm-1 col-sm-offset-1">حد اکثر</label>
+
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" name="registrationMax"
+                                   value="${plan.registrationMax}" disabled>
                         </div>
                     </div>
                     <!-- personnel -->
@@ -164,15 +182,33 @@
                             <div class="line line-bottom"></div>
                         </div>
                     </div>
-                    <%--<!-- supervisorAgreement -->--%>
-                    <%--<!-- file -->--%>
-                    <%--<div class="form-group">--%>
-                        <%--<label class="control-label col-sm-2">موافقت مسئول یا سرپرست (در صورت نیاز):</label>--%>
+                    <!-- supervisor -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">استاد یا کارشناس مربوطه جهت حضور در بازدید:</label>
 
-                        <%--<div class="col-sm-7 col-sm-offset-1">--%>
-                            <%--<a href="${plan.supervisorAgreement}" target="_blank">موافقت نامه مسئول یا سرپرست</a>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <div class="row pure-table">
+                                <div class="form-group col-sm-3">
+                                    <input type="text" class="form-control" id="supervisorFName" name="supervisorFName"
+                                           placeholder="نام" value="${plan.supervisorFName}" disabled>
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <input type="text" class="form-control" id="supervisorLName" name="supervisorLName"
+                                           placeholder="نام خانوادگی" value="${plan.supervisorLName}" disabled>
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <input type="text" class="form-control" id="supervisorPosition"
+                                           name="supervisorPosition"
+                                           placeholder="سمت" value="${plan.supervisorPosition}" disabled>
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <input type="number" class="form-control" id="supervisorPhone"
+                                           name="supervisorPhone"
+                                           placeholder="شماره تماس" value="${plan.supervisorPhone}" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!-- expenses -->
                     <!-- modal -->
                     <div class="form-group disabled">
@@ -225,6 +261,55 @@
                     </div>
                 </form>
             </div>
+            <!-- /.row -->
+
+
+            <!-- .row -->
+            <div class="row planStateHistories">
+                <div class="col-sm-10 col-sm-offset-1">
+                <!-- .panel -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-calendar"></i> رویداد ها</h3>
+                    </div>
+                    <div class="panel-body">
+                        <!-- .table -->
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-striped">
+                                <thead>
+                                <tr>
+                                    <th>تاریخ</th>
+                                    <th>کاربر</th>
+                                    <th>رویداد</th>
+                                    <%--<th style="display: none;">id</th>--%>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach var="planStateHistory" items="${plan.planStateHistories}">
+                                <tr>
+                                    <td>${planStateHistory.timestamp}</td>
+                                    <td>${planStateHistory.user.position.name}</td>
+                                    <c:choose>
+                                        <c:when test="${planStateHistory.name != null}">
+                                            <td>${planStateHistory.name}</td>
+                                        </c:when>
+                                        <c:when test="${planStateHistory.name == null}">
+                                            <td>${planStateHistory.workflowState.name}</td>
+                                        </c:when>
+                                    </c:choose>
+                                </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table -->
+                    </div>
+                </div>
+                <!-- /.panel -->
+                </div>
+            </div>
+            <!-- /.row -->
+
 
         </div>
         <!-- /.container-fluid -->

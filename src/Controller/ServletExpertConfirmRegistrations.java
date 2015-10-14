@@ -1,7 +1,9 @@
 package Controller;
 
 import Logic.PlanDAO;
+import Logic.TableMaker;
 import Models.Plan;
+import Models.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,13 +28,19 @@ public class ServletExpertConfirmRegistrations extends HttpServlet {
 
         PlanDAO planDAO = new PlanDAO();
 
-        Plan plan = planDAO.getPlanById(Integer.parseInt(request.getParameter("id")));
+        Plan plan = planDAO.getCompletePlanById(Integer.parseInt(request.getParameter("id")));
+
+        plan.setEnlisted(new TableMaker().makeEnlisted(request));
 
         plan.setExpertComment(request.getParameter("expertComment"));
 
-        planDAO.updatePlan(plan);
+        plan.setWorkflowState(planDAO.getWorkflowForward(plan.getId()));
 
-        planDAO.workflowForward(plan.getId());
+        plan.getPlanStateHistories().add(planDAO.getPlanStateHistory((User) request.getSession().getAttribute("currentUser"), plan));
+
+        plan.setSeen("false");
+
+        planDAO.updatePlan(plan);
 
         request.getRequestDispatcher("../Controller/ServletDashboardInitializer").forward(request, response);
     }

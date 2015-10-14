@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -29,30 +31,32 @@ public class ServletDashboardInitializer extends HttpServlet {
 
         List<Plan> plans = null;
 
-        User user = (User) request.getSession().getAttribute("user");
+        User user = (User) request.getSession().getAttribute("currentUser");
 
-        if(user.getAssociation().getId() == 8){
+        if (user.getAssociation().getId() == 8) {
 
-                plans = planDAO.getAllPlans();
+            plans = planDAO.getAllPlans();
+            Collections.reverse(plans);
 
         } else {
             plans = planDAO.getPlansByAssociationId(user.getAssociation().getId());
+            Collections.reverse(plans);
         }
 
-            request.setAttribute("plans", plans);
+        request.setAttribute("plans", plans);
 
-            String positionTitle = user.getPositionTitle().trim();
+        int positionId = user.getPosition().getId();
 
 
-            if (positionTitle.equals("clerk")) {
-                request.getRequestDispatcher("/app/dashboardClerk.jsp").forward(request, response);
-            } else if (positionTitle.equals("boss")) {
-                request.getRequestDispatcher("/app/dashboardBoss.jsp").forward(request, response);
-            } else if (positionTitle.equals("expert")) {
-                request.getRequestDispatcher("/app/dashboardExpert.jsp").forward(request, response);
-            } else if (positionTitle.equals("advisor")) {
-                request.getRequestDispatcher("/app/dashboardAdvisor.jsp").forward(request, response);
-            }
+        if (positionId == 4) {
+            request.getRequestDispatcher("/app/dashboardClerk.jsp").forward(request, response);
+        } else if (positionId == 1) {
+            request.getRequestDispatcher("/app/dashboardBoss.jsp").forward(request, response);
+        } else if (positionId == 2) {
+            request.getRequestDispatcher("/app/dashboardExpert.jsp").forward(request, response);
+        } else if (positionId == 3) {
+            request.getRequestDispatcher("/app/dashboardAdvisor.jsp").forward(request, response);
+        }
 
 //        request.getRequestDispatcher("/app/dashboard-index.jsp").forward(request, response);
     }

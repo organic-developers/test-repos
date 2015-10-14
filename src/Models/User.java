@@ -4,10 +4,8 @@ import Controller.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.List;
 
@@ -79,17 +77,6 @@ public class User {
         this.associationNumber = associationNumber;
     }
 
-    private String positionTitle;
-
-    @Basic
-    public String getPositionTitle() {
-        return positionTitle;
-    }
-
-    public void setPositionTitle(String positionTitle) {
-        this.positionTitle = positionTitle;
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (obj == null) return false;
@@ -102,7 +89,6 @@ public class User {
                 && (this.userName.equals(obj2.getUserName()))
                 && (this.password.equals(obj2.getPassword()))
                 && (this.associationNumber == obj2.getAssociationNumber())
-                && (this.positionTitle.equals(obj2.getPositionTitle()))
                 && (this.birthYear.equals(obj2.getBirthYear()))
                 && (this.email.equals(obj2.getEmail()))
                 && (this.nationalId.equals(obj2.getNationalId()))
@@ -117,7 +103,7 @@ public class User {
     @Override
     public int hashCode() {
         int tmp = 0;
-        tmp = (id + fName + lName + userName + password + associationNumber + positionTitle + birthYear + email +
+        tmp = (id + fName + lName + userName + password + associationNumber + birthYear + email +
         nationalId + phone + photo + studentId).hashCode();
         return tmp;
     }
@@ -219,5 +205,38 @@ public class User {
 
     public void setAssociation(Association association) {
         this.association = association;
+    }
+
+    private List<InOffice> inOffice;
+
+    @javax.persistence.OneToMany
+    public List<InOffice> getInOffice() {
+        return inOffice;
+    }
+
+    public void setInOffice(List<InOffice> inOffice) {
+        this.inOffice = inOffice;
+    }
+
+    private String active;
+
+    @Basic
+    public String getActive() {
+        return active;
+    }
+
+    public void setActive(String active) {
+        this.active = active;
+    }
+
+    private Position position;
+
+    @ManyToOne
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
     }
 }

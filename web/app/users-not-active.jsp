@@ -1,4 +1,4 @@
-﻿<%@ page import="java.util.List" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -24,9 +24,6 @@
     <link href="../css/sb-admin.css" rel="stylesheet">
     <link href="../css/sb-admin-rtl.css" rel="stylesheet">
 
-    <!-- Morris Charts CSS -->
-    <link href="../css/plugins/morris.css" rel="stylesheet">
-
     <!-- Custom Fonts -->
     <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -37,6 +34,9 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../js/bootstrap.min.js"></script>
+
     <script src="/js/jquery-1.11.3.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -45,7 +45,7 @@
 
                     var x = $(this).children().last().text();
 //                    alert(x);
-                    $.post("/Controller/ServletUsers",
+                    $.post("/Controller/ServletUsersNotActive",
                             {
                                 id: x,
                             },
@@ -57,11 +57,12 @@
                                 $("#userName").val(data.userName);
                                 $("#password").val(data.password);
                                 $("#associationId").val(data.association.id);
-                                $("#positionTitle").val(data.positionTitle);
+                                $("#positionTitle").val(data.position.id);
                                 $("#birthYear").val(data.birthYear);
                                 $("#email").val(data.email);
                                 $("#nationalId").val(data.nationalId);
                                 $("#phone").val(data.phone);
+                                $("#active").val(data.active);
                                 $("#studentId").val(data.studentId);
                                 $("#image").attr("src", data.photo);
                                 $("#image2").val(data.photo);
@@ -73,12 +74,12 @@
                 });
             });
         });
-        $(document).ready(function () {
-            $("#reset").click(function () {
-                $("#photo").attr("required", "true");
-                resetImage();
-            });
-        });
+//        $(document).ready(function () {
+//            $("#reset").click(function () {
+//                $("#photo").attr("required", "true");
+//                resetImage();
+//            });
+//        });
         function resetImage() {
             $("#image").attr("src", "/image/avatar.png");
         }
@@ -106,12 +107,13 @@
                 </div>
             </div>
 
-
             <div class="row">
                 <div class="col-lg-8">
+                    <a href="/Controller/ServletUsersActiveInitialize" class="btn btn-default" style="margin: 20px">کاربران فعال</a>
+
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-users"></i> کاربران سامانه</h3>
+                            <h3 class="panel-title"><i class="fa fa-users"></i>اعضای غیر فعال</h3>
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -130,7 +132,7 @@
                                         <tr>
                                             <td>${user.fName}</td>
                                             <td>${user.lName}</td>
-                                            <td>${user.positionTitle}</td>
+                                            <td>${user.position.name}</td>
                                             <td>${user.association.name}</td>
                                             <td style="display: none;">${user.id}</td>
                                         </tr>
@@ -143,7 +145,7 @@
                 </div>
 
                 <div class="col-lg-4">
-                    <div class="panel panel-default"  id="test">
+                    <div class="panel panel-default" id="test">
                         <div class="panel-heading">
                             <h3 class="panel-title"><i class="fa fa-pencil-square-o"></i> ایجاد / ویرایش کاربر </h3>
                         </div>
@@ -151,7 +153,7 @@
                             <div style="text-align: center;">
                                 <img src="/image/avatar.png" alt="عکس" width="125" height="125" id="image">
                             </div>
-                            <form role="form" action="/Controller/ServletUsers" method="post"
+                            <form role="form" action="/Controller/ServletUsersNotActive" method="post"
                                   enctype="multipart/form-data">
                                 <input type="text" id="image2" name="image2" style="display: none;">
                                 <input type="text" id="id" name="id" style="display: none;">
@@ -175,33 +177,30 @@
                                 <div class="form-group">
                                     <label for="positionTitle">سمت:</label>
                                     <select class="form-control" id="positionTitle" name="positionTitle">
-                                        <option value="expert">کارشناس</option>
-                                        <option value="advisor">مشاور علمی</option>
-                                        <option value="clerk">دبیر</option>
-                                        <option value="publicRelationsManager">مدیر روابط عمومی</option>
-                                        <option value="financialAffairsManager">مدیر امور مالی</option>
+                                        <c:forEach var="position" items="${positions}">
+                                            <option value="${position.id}">${position.name}</option>
+                                        </c:forEach>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="studentId">شماره دانشجویی:</label>
-                                    <input type="number" class="form-control" id="studentId" name="studentId" required>
+                                    <input type="number" class="form-control" id="studentId" name="studentId">
                                 </div>
                                 <div class="form-group">
                                     <label for="nationalId">شماره ملی:</label>
-                                    <input type="number" class="form-control" id="nationalId" name="nationalId"
-                                           required>
+                                    <input type="number" class="form-control" id="nationalId" name="nationalId">
                                 </div>
                                 <div class="form-group">
                                     <label for="birthYear">سال تولد:</label>
-                                    <input type="number" class="form-control" id="birthYear" name="birthYear" required>
+                                    <input type="number" class="form-control" id="birthYear" name="birthYear">
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">شماره تماس:</label>
-                                    <input type="number" class="form-control" id="phone" name="phone" required>
+                                    <input type="number" class="form-control" id="phone" name="phone">
                                 </div>
                                 <div class="form-group">
                                     <label for="email">ایمیل:</label>
-                                    <input type="email" class="form-control" id="email" name="email" required>
+                                    <input type="email" class="form-control" id="email" name="email">
                                 </div>
                                 <div class="form-group">
                                     <label for="userName">نام کاربری:</label>
@@ -212,14 +211,20 @@
                                     <input type="password" class="form-control" id="password" name="password">
                                 </div>
                                 <div class="form-group">
+                                    <label for="active">وضعیت:</label>
+                                    <select class="form-control" id="active" name="active">
+                                        <option value="true">فعال</option>
+                                        <option value="false">غیر فعال</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="photo">عکس:</label>
                                     <input type="file" id="photo" name="photo" required="true">
                                 </div>
 
-
                                 <button type="reset" class="btn btn-primary" id="reset">انصراف</button>
-                                <button type="submit" class="btn btn-primary pull-left">اعمال تغییرات</button>
-
+                                <button type="submit" class="btn btn-primary">اعمال تغییرات</button>
+                                <%--<button type="button" class="btn btn-primary">آغاز مسئولیت جدید</button>--%>
                             </form>
                         </div>
                     </div>
@@ -238,18 +243,6 @@
 
 </div>
 <!-- /#wrapper -->
-
-<!-- jQuery -->
-<script src="../js/jquery.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="../js/bootstrap.min.js"></script>
-
-<!-- Morris Charts JavaScript -->
-<script src="../js/plugins/morris/raphael.min.js"></script>
-<script src="../js/plugins/morris/morris.min.js"></script>
-<script src="../js/plugins/morris/morris-data.js"></script>
-
 </body>
 
 </html>

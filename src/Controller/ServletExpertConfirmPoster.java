@@ -3,6 +3,7 @@ package Controller;
 
 import Logic.PlanDAO;
 import Models.Plan;
+import Models.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,7 +27,7 @@ public class ServletExpertConfirmPoster extends HttpServlet {
 
         PlanDAO planDAO = new PlanDAO();
 
-        Plan plan = planDAO.getPlanById(Integer.parseInt(request.getParameter("id")));
+        Plan plan = planDAO.getCompletePlanById(Integer.parseInt(request.getParameter("id")));
 
         plan.setExpertComment(request.getParameter("expertComment"));
 
@@ -34,10 +35,17 @@ public class ServletExpertConfirmPoster extends HttpServlet {
         plan.setRegistrationEndDate(request.getParameter("registrationEndDate"));
         plan.setAdvertisementBeginDate(request.getParameter("advertisementBeginDate"));
         plan.setAdvertisementEndDate(request.getParameter("advertisementEndDate"));
+        plan.setRegistrationFee(request.getParameter("registrationFee"));
+        plan.setRegistrationPlace(request.getParameter("registrationPlace"));
+        plan.setSeen("false");
+
+        plan.setWorkflowState(planDAO.getWorkflowForward(plan.getId()));
+
+        plan.getPlanStateHistories().add(planDAO.getPlanStateHistory((User) request.getSession().getAttribute("currentUser"), plan));
+
+        plan.setSeen("false");
 
         planDAO.updatePlan(plan);
-
-        planDAO.workflowForward(plan.getId());
 
         request.getRequestDispatcher("../Controller/ServletDashboardInitializer").forward(request, response);
     }
