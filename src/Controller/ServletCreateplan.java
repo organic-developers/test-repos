@@ -4,16 +4,15 @@ package Controller;
 import Logic.WorkflowDAO;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-//import javax.servlet.annotation.WebServlet;
 
-
-//@WebServlet(name = "ServletCreate-plan")
+@WebServlet(name = "ServletCreateplan")
 public class ServletCreateplan extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);
@@ -27,6 +26,22 @@ public class ServletCreateplan extends HttpServlet {
 //
 //        request.setAttribute("workflows", workflows);
 
-        request.getRequestDispatcher("/app/create-plan.jsp").forward(request, response);
+        String type = request.getParameter("type");
+
+        if(type.equals("1")){
+            request.getRequestDispatcher("/app/create-plan-trip.jsp").forward(request, response);
+        } else if(type.equals("2")){
+            request.getRequestDispatcher("/app/create-plan-contest.jsp").forward(request, response);
+        } else if(type.equals("3")){
+            request.getRequestDispatcher("/app/create-plan-exhibition.jsp").forward(request, response);
+        } else if(type.equals("4")){
+            request.getRequestDispatcher("/app/create-plan-conference.jsp").forward(request, response);
+        } else if(type.equals("5")){
+            request.getRequestDispatcher("/app/create-plan-educational.jsp").forward(request, response);
+        } else if(type.equals("6")){
+            request.getRequestDispatcher("/app/create-plan-magazine.jsp").forward(request, response);
+        } else if(type.equals("7")){
+            request.getRequestDispatcher("/app/create-plan-else.jsp").forward(request, response);
+        }
     }
 }

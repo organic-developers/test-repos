@@ -141,7 +141,7 @@
 
     <servlet>
         <servlet-name>ServletCreatePlan</servlet-name>
-        <servlet-class>Controller.ServletCreatePlan</servlet-class>
+        <servlet-class>Controller.ServletCreateplan</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ServletCreatePlan</servlet-name>
