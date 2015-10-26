@@ -498,16 +498,16 @@ public class PlanDAO {
     }
 
 //    public void addPlanStateHistory(User user, Plan plan) {
-//        PlanStateHistory planStateHistory = new PlanStateHistory();
-//        planStateHistory.setUser(user);
-//        planStateHistory.setTimestamp(getTimeStamp());
+//        PlanStateHistory PlanStateHistory = new PlanStateHistory();
+//        PlanStateHistory.setUser(user);
+//        PlanStateHistory.setTimestamp(getTimeStamp());
 //
 //        Plan plan1 = getCompletePlanById(plan.getId());
 //
-//        planStateHistory.setWorkflowState(plan.getWorkflowState());
-//        planStateHistory.setChanges(getChanges(plan1, plan));
+//        PlanStateHistory.setWorkflowState(plan.getWorkflowState());
+//        PlanStateHistory.setChanges(getChanges(plan1, plan));
 //
-//        plan.getPlanStateHistories().add(planStateHistory);
+//        plan.getPlanStateHistories().add(PlanStateHistory);
 //
 //        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 //        Session session = sessionFactory.openSession();

@@ -314,7 +314,7 @@
     </class>
     <!-- /suggested plan -->
 
-    <!-- planStateHistory -->
+    <!-- PlanStateHistory -->
     <class name="Models.PlanStateHistory" table="plan_state_history">
         <meta attribute="class-description">
             This class contains details about planStateHistories happened to plans.
@@ -331,6 +331,6 @@
             <one-to-many class="Models.Change"/>
         </set>
     </class>
-    <!-- /planStateHistory -->
+    <!-- /PlanStateHistory -->
 
 </hibernate-mapping>
