@@ -9,7 +9,7 @@ import java.util.Set;
  * Created by Saied on 9/25/2015.
  */
 @Entity
-public class PlanStateHistory {
+public class planStateHistory {
     private int id;
 
     @Id
