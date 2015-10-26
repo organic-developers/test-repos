@@ -13,7 +13,7 @@ import java.util.List;
 
 
 @WebServlet(name = "ServletCreateplan")
-public class ServletCreateplan extends HttpServlet {
+public class ServletCreatePlan extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);
     }
