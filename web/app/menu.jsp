@@ -95,13 +95,13 @@
                         <a href="/Controller/ServletCreatePlanInitializer"><i class="fa fa-fw fa-file-text"></i> تعريف طرح</a>
                     </li>
                     <li>
-                        <a href="/Controller/ServletSuggestedPlans"><i class="fa fa-calendar-o"></i> طرح های پیشنهادی</a>
+                        <a href="/Controller/ServletSuggestedPlans"><i class="fa fa-calendar-o"></i>  طرح های پیشنهادی</a>
                     </li>
                     <li>
                         <a href="/Controller/ServletAssociationsManagement"><i class="fa fa-slideshare"></i>  مدیریت انجمن ها</a>
                     </li>
                     <li>
-                        <a href="/Controller/ServletRegistrationVerification"><i class="fa fa-check-square-o"></i> تایید ثبت نام ها</a>
+                        <a href="/Controller/ServletSliders"><i class="fa fa-picture-o"></i> مدیریت اسلایدر </a>
                     </li>
                     <li>
                         <a href="/Controller/ServletResourceManagement"><i class="fa fa-sitemap"></i> مديريت منابع</a>
@@ -123,17 +123,16 @@
                         <a href="/Controller/ServletEmailing"><i class="fa fa-fw fa-envelope"></i>سیستم اطلاع رسانی </a>
                     </li>
                     <li>
-                        <a href="/Controller/ServletCreateplan"><i class="fa fa-fw fa-file-text"></i> تعريف طرح</a>
+                        <a href="/Controller/ServletCreatePlanInitializer"><i class="fa fa-fw fa-file-text"></i> تعريف طرح</a>
                     </li>
                     <li>
-                        <a href="/Controller/ServletSuggestedPlans"><i class="fa fa-calendar-o"></i> طرح های آینده و طرح های
-                            پیشنهادی</a>
+                        <a href="/Controller/ServletSuggestedPlans"><i class="fa fa-calendar-o"></i> طرح های پیشنهادی </a>
                     </li>
                     <li>
                         <a href="/Controller/ServletAssociationsManagement"><i class="fa fa-slideshare"></i> مدیریت انجمن ها</a>
                     </li>
                     <li>
-                        <a href="/Controller/ServletRegistrationVerification"><i class="fa fa-check-square-o"></i> تایید ثبت نام ها</a>
+                        <a href="/Controller/ServletSliders"><i class="fa fa-picture-o"></i> مدیریت اسلایدر </a>
                     </li>
                     <li>
                         <a href="/Controller/ServletResourceManagement"><i class="fa fa-sitemap"></i> مديريت منابع</a>
@@ -148,10 +147,6 @@
                     <li>
                         <a href="/Controller/ServletReport"><i class="fa fa-fw fa-bar-chart-o"></i> سيستم گزارش گيري</a>
                     </li>
-                    <%--<li>--%>
-                        <%--<a href="/Controller/ServletSuggestedAndFuturePlans"><i class="fa fa-calendar-o"></i> طرح های آینده و طرح های--%>
-                            <%--پیشنهادی</a>--%>
-                    <%--</li>--%>
                     <li>
                         <a href="/Controller/ServletResources">منابع</a>
                     </li>
@@ -165,20 +160,16 @@
                         <a href="/Controller/ServletReport"><i class="fa fa-fw fa-bar-chart-o"></i> سيستم گزارش گيري</a>
                     </li>
                     <li>
-                        <a href="/Controller/ServletUsersClerkInitialize"><i class="fa fa-fw fa-users"></i> اعضا</a>
+                        <a href="/Controller/ServletUsersActiveInitialize"><i class="fa fa-fw fa-users"></i> اعضا</a>
                     </li>
                     <li>
                         <a href="/Controller/ServletEmailing"><i class="fa fa-fw fa-envelope"></i>سیستم اطلاع رسانی </a>
                     </li>
                     <li>
-                        <a href="/Controller/ServletCreateplan"><i class="fa fa-fw fa-file-text"></i> تعريف طرح</a>
+                        <a href="/Controller/ServletCreatePlanInitializer"><i class="fa fa-fw fa-file-text"></i> تعريف طرح</a>
                     </li>
                     <li>
-                        <a href="/Controller/ServletSuggestedPlansClerk"><i class="fa fa-calendar-o"></i> طرح های آینده و طرح های
-                            پیشنهادی</a>
-                    </li>
-                    <li>
-                        <a href="/Controller/ServletRegistrationVerification"><i class="fa fa-check-square-o"></i> تایید ثبت نام ها</a>
+                        <a href="/Controller/ServletSuggestedPlansClerk"><i class="fa fa-calendar-o"></i>طرح های پیشنهادی </a>
                     </li>
                     <li>
                         <a href="/Controller/ServletResources">منابع</a>

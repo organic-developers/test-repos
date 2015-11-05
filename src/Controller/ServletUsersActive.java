@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.IOException;
-import java.util.List;
 
+import Logic.Address;
 import Logic.AssociationDAO;
 import Logic.PositionDAO;
 import Logic.UserDAO;
@@ -18,7 +18,7 @@ import Models.*;
 import com.google.gson.Gson;
 
 @WebServlet(name = "ServletUsersActive", urlPatterns = {"/ServletUsersActive"})
-@MultipartConfig (location = "C:\\Users\\Saied\\IdeaProjects\\scientific-associations\\web\\uploaded-files", fileSizeThreshold = 1024 * 1024,
+@MultipartConfig (location =  Address.MEMBERS_AB, fileSizeThreshold = 1024 * 1024,
         maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 *5)
 public class ServletUsersActive extends HttpServlet {
 
@@ -114,19 +114,25 @@ public class ServletUsersActive extends HttpServlet {
         if(!"".equals(request.getParameter("phone").trim())) {
             user.setPhone(request.getParameter("phone"));
         }
-        user.setActive(request.getParameter("active"));
 
         user.setPosition(positionDAO.getPositionById(Integer.parseInt(request.getParameter("positionTitle").trim())));
 
-        Association association = associationDAO.getAssociationById(Integer.parseInt(request.getParameter("associationId")));
-        user.setAssociation(association);
+        int userId = ((User)request.getSession().getAttribute("currentUser")).getPosition().getId();
+
+        if( userId == 1 || userId == 2 ){
+            Association association = associationDAO.getAssociationById(Integer.parseInt(request.getParameter("associationId")));
+            user.setAssociation(association);
+            user.setActive(request.getParameter("active"));
+        } else if (userId == 4){
+            user.setAssociation(((User) request.getSession().getAttribute("currentUser")).getAssociation());
+            user.setActive("true");
+        }
 
         try{
-            String directory = "/uploaded-files/";
             Part photo = request.getPart("photo");
             if (photo != null) {
                 photo.write(photo.getSubmittedFileName());
-                user.setPhoto(directory + photo.getSubmittedFileName());
+                user.setPhoto(Address.MEMBERS_RE + photo.getSubmittedFileName());
             }
         } catch (Exception e){
             user.setPhoto(request.getParameter("image2"));

@@ -82,9 +82,9 @@
         $(document).ready(function () {
             $("#deactiveAll").click(function () {
                 $.post("/Controller/ServletUsersActive?method=methodB",
-                                    {
+                        {
 //                                        id: x,
-                                    },
+                        },
                         function (data, status) {
 //                            alert("Data: " + data.id + "\nStatus: " + status);
                             location.reload();
@@ -119,9 +119,10 @@
 
             <div class="row">
                 <div class="col-lg-8">
-                    <a href="/Controller/ServletUsersNotActiveInitialize" class="btn btn-default" style="margin: 20px">کاربران
-                        غیر فعال</a>
-
+                    <c:if test="${currentUser.position.id == 1 || currentUser.position.id == 2}">
+                        <a href="/Controller/ServletUsersNotActiveInitialize" class="btn btn-default" style="margin: 20px">کاربران
+                            غیر فعال</a>
+                    </c:if>
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title"><i class="fa fa-users"></i>اعضای فعال</h3>
@@ -151,7 +152,9 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <button class="btn btn-primary" id="deactiveAll">پایان مسئولیت همه اعضا</button>
+                            <c:if test="${currentUser.position.id == 1 || currentUser.position.id == 2}">
+                                <button class="btn btn-primary" id="deactiveAll">پایان مسئولیت همه اعضا</button>
+                            </c:if>
                         </div>
                     </div>
                 </div>
@@ -174,9 +177,16 @@
                                 <div class="form-group">
                                     <label for="associationId">انجمن:</label>
                                     <select class="form-control" id="associationId" name="associationId">
-                                        <c:forEach var="association" items="${associations}">
-                                            <option value="${association.id}">${association.name}</option>
-                                        </c:forEach>
+                                        <c:choose>
+                                            <c:when test="${currentUser.position.id == 4}">
+                                                <option value="${currentUser.association.id}">${currentUser.association.name}</option>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:forEach var="association" items="${associations}">
+                                                    <option value="${association.id}">${association.name}</option>
+                                                </c:forEach>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -216,21 +226,23 @@
                                     <label for="email">ایمیل:</label>
                                     <input type="email" class="form-control" id="email" name="email" required>
                                 </div>
-                                <div class="form-group">
-                                    <label for="userName">نام کاربری:</label>
-                                    <input type="text" class="form-control" id="userName" name="userName">
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">رمز عبور:</label>
-                                    <input type="password" class="form-control" id="password" name="password">
-                                </div>
-                                <div class="form-group">
-                                    <label for="active">وضعیت:</label>
-                                    <select class="form-control" id="active" name="active">
-                                        <option value="true">فعال</option>
-                                        <option value="false">غیر فعال</option>
-                                    </select>
-                                </div>
+                                <c:if test="${currentUser.position.id == 1 || currentUser.position.id == 2}">
+                                    <div class="form-group">
+                                        <label for="userName">نام کاربری:</label>
+                                        <input type="text" class="form-control" id="userName" name="userName">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">رمز عبور:</label>
+                                        <input type="password" class="form-control" id="password" name="password">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="active">وضعیت:</label>
+                                        <select class="form-control" id="active" name="active">
+                                            <option value="true">فعال</option>
+                                            <option value="false">غیر فعال</option>
+                                        </select>
+                                    </div>
+                                </c:if>
                                 <div class="form-group">
                                     <label for="photo">عکس:</label>
                                     <input type="file" id="photo" name="photo" required="true">

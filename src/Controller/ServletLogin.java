@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
@@ -43,6 +44,7 @@ public class ServletLogin extends HttpServlet {
 //            HttpSession session = request.getSession();
 //            //session.setAttribute("name", name);
 //            session.setAttribute("user", user.isValid());
+
 
         UserDAO userDAO = new UserDAO();
         User user = userDAO.getUserByUsernameAndPassword(request.getParameter("user_name"), request.getParameter("password"));

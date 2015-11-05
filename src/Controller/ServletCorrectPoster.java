@@ -1,5 +1,6 @@
 package Controller;
 
+import Logic.Address;
 import Logic.PlanDAO;
 import Models.Plan;
 import Models.User;
@@ -10,10 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 import java.io.IOException;
 
-@MultipartConfig(location = "C:\\Users\\Saied\\IdeaProjects\\scientific-associations\\web\\uploaded-files", fileSizeThreshold = 1024 * 1024,
+@MultipartConfig(location = Address.PLANS_AB, fileSizeThreshold = 1024 * 1024,
         maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
 @WebServlet(name = "ServletCorrectPoster", urlPatterns = "/ServletCorrectPoster")
 public class ServletCorrectPoster extends HttpServlet {
@@ -29,16 +29,7 @@ public class ServletCorrectPoster extends HttpServlet {
         PlanDAO planDAO = new PlanDAO();
         Plan plan = planDAO.getCompletePlanById(Integer.parseInt(request.getParameter("id")));
 
-
-        try {
-            Part poster = request.getPart("poster");
-            if (poster != null) {
-                poster.write("poster");
-                plan.setPoster("/uploaded-files/" + poster.getSubmittedFileName());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        plan.setPoster(new ServletPlanFields(request).getPoster());
 
         plan.setRegistrationBeginDate(request.getParameter("registrationBeginDate"));
         plan.setRegistrationEndDate(request.getParameter("registrationEndDate"));

@@ -38,45 +38,19 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-
+    <!-- jQuery -->
     <script src="/js/jquery-1.11.3.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/js/bootstrap.min.js"></script>
 
+    <!-- Persian DatePicker -->
     <link rel="stylesheet" href="/css/persianDatepicker-default.css"/>
     <script src="/js/persianDatepicker.min.js"></script>
 
+    <!-- Custom js -->
     <script src="/js/added.js"></script>
 
-
-    <script>
-        $(document).ready(function () {
-            $("#studentMoney, #sponsorMoney, #otherIncome").change(function () {
-                var sum = Number($("#studentMoney").val()) + Number($("#sponsorMoney").val()) +
-                        Number($("#otherIncome").val());
-                $("#incomeSum").val(sum);
-            })
-        });
-
-        $(document).ready(function () {
-            $("[name='expense-value-']").change(function () {
-                var sum = 0;
-                var expenses = $("[name='expense-value-']");
-                for (var i = 0; i < expenses.length; i++) {
-                    sum += Number(expenses[i].value);
-                }
-                $("#expenseSum").val(sum);
-            })
-        });
-
-        $(document).ready(function () {
-            $("#studentMoney, #sponsorMoney, #otherIncome, [name='expense-value-']").change(function () {
-                var sum = Number($("#incomeSum").val()) - Number($("#expenseSum").val());
-                $("#moneySum").val(sum);
-            })
-        });
-    </script>
 
 </head>
 <body class="dashboard-background">
@@ -99,21 +73,12 @@
             </div>
             <!-- /.row -->
 
-
             <!-- /.row -->
             <div class="row">
-                <form class="form-horizontal" role="form" action="/Controller/ServletCreatePlanTrip"
+                <!-- form -->
+                <form class="form-horizontal" role="form" action="/Controller/ServletCreatePlanTrip?type=1"
                       method="post" enctype="multipart/form-data">
                     <input type="text" name="id" value="${plan.id}" style="display: none;"/>
-                    <!-- type -->
-                    <!-- text -->
-                    <div class="form-group" style="display: none;">
-                        <label class="control-label col-sm-2">ماهیت:</label>
-
-                        <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="type" value="1">
-                        </div>
-                    </div>
                     <!-- title -->
                     <!-- text -->
                     <div class="form-group">
@@ -158,7 +123,6 @@
                         </div>
                     </div>
                     <!-- requestedItems -->
-                    <!-- textarea -->
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="needed">موارد درخواستی:</label>
 
@@ -186,7 +150,6 @@
                         </div>
                     </div>
                     <!-- personnel -->
-                    <!-- modal -->
                     <div class="form-group">
                         <label class="control-label col-sm-2">پرسنل اجرایی:</label>
 
@@ -284,9 +247,8 @@
                         </div>
                     </div>
                     <!-- expenses -->
-                    <!-- modal -->
                     <div class="form-group">
-                        <label class="control-label col-sm-2">ریز هزینه ها (ریال)</label>
+                        <label class="control-label col-sm-2">ریز هزینه ها (ریال):</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
 
@@ -357,8 +319,7 @@
                     </div>
                     <!-- studentsMoney number -->
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="studentMoney">مبالغ دریافتی از دانشجویان
-                            (ریال)</label>
+                        <label class="control-label col-sm-2" for="studentMoney">مبالغ دریافتی از دانشجویان (ریال):</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
                             <input type="number" class="form-control" id="studentMoney"
@@ -367,7 +328,7 @@
                     </div>
                     <!-- sponserMoney number-->
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="sponsorMoney">مبالغ دریافتی از اسپانسر(ریال)</label>
+                        <label class="control-label col-sm-2" for="sponsorMoney">مبالغ دریافتی از اسپانسر (ریال):</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
                             <input type="number" class="form-control" id="sponsorMoney"
@@ -403,7 +364,7 @@
                     </div>
                     <!-- moneySum number-->
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="moneySum">مبلغ پرداختی (ریال)</label>
+                        <label class="control-label col-sm-2" for="moneySum">مبلغ پرداختی (ریال):</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
                             <input type="number" class="form-control" id="moneySum" name="moneySum"
@@ -465,7 +426,7 @@
                     </div>
                     <!-- studentsMoney number -->
                     <div class="form-group" style="display: none;">
-                        <label class="control-label col-sm-2">مبالغ دریافتی از دانشجویان (ریال)</label>
+                        <label class="control-label col-sm-2">مبالغ دریافتی از دانشجویان (ریال):</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
                             <input type="number" class="form-control" name="studentMoney">
@@ -473,7 +434,7 @@
                     </div>
                     <!-- sponserMoney number-->
                     <div class="form-group" style="display: none;">
-                        <label class="control-label col-sm-2">مبالغ دریافتی از اسپانسر(ریال)</label>
+                        <label class="control-label col-sm-2">مبالغ دریافتی از اسپانسر(ریال):</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
                             <input type="number" class="form-control" name="sponsorMoney">
@@ -483,12 +444,13 @@
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-10">
                             <button type="submit" class="btn btn-primary" name="submit" value="send">ارسال</button>
-                            <button type="submit" class="btn btn-info" name="submit" value="tentative">ذخیره موقت
-                            </button>
+                            <button type="submit" class="btn btn-info" name="submit" value="tentative">ذخیره موقت</button>
                         </div>
                     </div>
                 </form>
+                <!-- /.form -->
             </div>
+            <!-- /.row -->
 
         </div>
         <!-- /.container-fluid -->

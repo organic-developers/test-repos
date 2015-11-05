@@ -1,5 +1,11 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Saied
+  Date: 8/6/2015
+  Time: 3:29 AM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -17,7 +23,6 @@
 
     <!-- Bootstrap Core CSS RTL-->
     <link href="../css/bootstrap-rtl.min.css" rel="stylesheet">
-
 
     <!-- Custom CSS -->
     <link href="../css/sb-admin.css" rel="stylesheet">
@@ -52,12 +57,12 @@
                     processData: false,
                     dataType: "json",
                     success: function (data) {
-                        alert("succeess");
+                        alert("success");
                         document.getElementById("resource-form").reset();
                         var x = '<div class="col-lg-10 col-lg-offset-1 uploaded-file">' +
                                 '<h4>' +
                                 '<span class="glyphicon glyphicon-remove text-danger"></span>' +
-                                '<a href="' + data.path + '" target="_blank" id=' + data.id + '>' + data.name + '</a>' +
+                                '<a href="' + data.path + '" target="_blank" id=' + data.id + '>' + data.comment + '</a>' +
                                 '</h4>' +
                                 '</div>';
                         $("#uploaded-files").append(x);
@@ -76,7 +81,7 @@
                     var p = $(this).next("a").attr("id");
 
                     $.ajax({
-                        url: "/Controller/ServletResourceManagement?method=methodB",
+                        url: "/Controller/ServletSliderManagement?method=methodB",
                         type: "POST",
                         data: {"id": p},
                         success: function(){
@@ -88,7 +93,6 @@
             })
         })
     </script>
-
 </head>
 
 <body class="dashboard-background">
@@ -107,8 +111,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">
-                        مدیریت منابع
-                    </h1>
+مدیریت اسلایدر                    </h1>
                 </div>
             </div>
             <!-- /.row -->
@@ -119,15 +122,21 @@
             <div class="row">
                 <div class=" col-lg-10 col-lg-offset-1">
                     <div class="row">
-                        <form role="form" id="resource-form" action="/Controller/ServletResourceManagement"
+                        <form role="form" id="resource-form" action="/Controller/ServletSliderManagement"
                               method="POST" enctype="multipart/form-data">
                             <div class="form-group col-lg-8">
                                 <input type="text" class="form-control" id="name"
-                                       placeholder="عنوان منبع" name="name" required>
+                                       placeholder="توضیحات" name="comment" required>
                             </div>
 
                             <div class="form-group col-lg-8">
-                                <input type="file" id="resource" name="resource" required>
+                                <h5 class="text-danger">
+                                    تصاویر  بهتر است دارای نسبت تصویر 15:7 باشند!
+                                    </h5>
+                            </div>
+
+                            <div class="form-group col-lg-8">
+                                <input type="file" id="resource" name="slider" required>
                             </div>
 
                             <div class="form-group col-lg-8">
@@ -144,17 +153,15 @@
 
             <!-- uploaded files -->
             <div class="row" id="uploaded-files">
-                <c:forEach var="resource" items="${resources}">
+                <c:forEach var="slider" items="${sliders}">
                     <div class="col-lg-10 col-lg-offset-1 uploaded-file">
                         <h4>
                             <span class="glyphicon glyphicon-remove text-danger"></span>
-                            <a href="${resource.path}" target="_blank" id="${resource.id}">${resource.name}</a>
+                            <a href="${slider.path}" target="_blank" id="${slider.id}">${slider.comment}</a>
                         </h4>
                     </div>
                 </c:forEach>
             </div>
-
-
             <!-- /uploaded files -->
 
         </div>
@@ -166,11 +173,6 @@
 </div>
 <!-- /#wrapper -->
 
-<!-- jQuery -->
-<script src="../js/jquery.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="../js/bootstrap.min.js"></script>
 
 </body>
 

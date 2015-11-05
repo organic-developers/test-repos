@@ -1,5 +1,6 @@
 package Controller;
 
+import Logic.Address;
 import Logic.AssociationDAO;
 import Logic.PositionDAO;
 import Logic.UserDAO;
@@ -15,11 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.IOException;
-import java.util.List;
 
 
 @WebServlet(name = "ServletUsersNotActive", urlPatterns = {"/ServletUsersNotActive"})
-@MultipartConfig(location = "C:\\Users\\Saied\\IdeaProjects\\scientific-associations\\web\\uploaded-files", fileSizeThreshold = 1024 * 1024,
+@MultipartConfig(location =  Address.MEMBERS_AB, fileSizeThreshold = 1024 * 1024,
         maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
 public class ServletUsersNotActive extends HttpServlet {
 
@@ -64,12 +64,12 @@ public class ServletUsersNotActive extends HttpServlet {
                     e.printStackTrace();
                     request.getRequestDispatcher("/app/failed.jsp").forward(request, response);
                 }
-                request.getRequestDispatcher("/Controller/ServletUsersActiveNotInitialize").forward(request, response);
+                request.getRequestDispatcher("/Controller/ServletUsersNotActiveInitialize").forward(request, response);
             } else {
                 User user = makeUser(request);
                 user.setId(Integer.parseInt(request.getParameter("id").trim()));
                 userDAO.updateUser(user);
-                request.getRequestDispatcher("/Controller/ServletUsersActiveNotInitialize").forward(request, response);
+                request.getRequestDispatcher("/Controller/ServletUsersNotActiveInitialize").forward(request, response);
             }
         }
     }
@@ -107,11 +107,10 @@ public class ServletUsersNotActive extends HttpServlet {
         user.setAssociation(association);
 
         try {
-            String directory = "/uploaded-files/";
             Part photo = request.getPart("photo");
             if (photo != null) {
                 photo.write(photo.getSubmittedFileName());
-                user.setPhoto(directory + photo.getSubmittedFileName());
+                user.setPhoto(Address.MEMBERS_RE + photo.getSubmittedFileName());
             }
         } catch (Exception e) {
             user.setPhoto(request.getParameter("image2"));

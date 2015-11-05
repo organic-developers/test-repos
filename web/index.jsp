@@ -84,12 +84,12 @@
                 </div>
             </div>
 
-            <c:forEach var="plan" items="${plans}">
+            <c:forEach var="slider" items="${sliders}">
             <div class="item">
-                <img src="${plan.poster}">
+                <img src="${slider.path}">
                 <div class="carousel-caption carousel-inner">
-                    <h4>${plan.association.name}</h4>
-                    <p>${plan.name}</p>
+                    <h4>${slider.comment}</h4>
+                    <%--<p>${plan.name}</p>--%>
                 </div>
             </div>
             </c:forEach>

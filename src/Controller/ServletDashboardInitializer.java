@@ -45,18 +45,18 @@ public class ServletDashboardInitializer extends HttpServlet {
 
         request.setAttribute("plans", plans);
 
-        int positionId = user.getPosition().getId();
+//        int positionId = user.getPosition().getId();
 
 
-        if (positionId == 4) {
-            request.getRequestDispatcher("/app/dashboardClerk.jsp").forward(request, response);
-        } else if (positionId == 1) {
+//        if (positionId == 4) {
+//            request.getRequestDispatcher("/app/dashboardClerk.jsp").forward(request, response);
+//        } else if (positionId == 1) {
             request.getRequestDispatcher("/app/dashboardBoss.jsp").forward(request, response);
-        } else if (positionId == 2) {
-            request.getRequestDispatcher("/app/dashboardExpert.jsp").forward(request, response);
-        } else if (positionId == 3) {
-            request.getRequestDispatcher("/app/dashboardAdvisor.jsp").forward(request, response);
-        }
+//        } else if (positionId == 2) {
+//            request.getRequestDispatcher("/app/dashboardExpert.jsp").forward(request, response);
+//        } else if (positionId == 3) {
+//            request.getRequestDispatcher("/app/dashboardAdvisor.jsp").forward(request, response);
+//        }
 
 //        request.getRequestDispatcher("/app/dashboard-index.jsp").forward(request, response);
     }

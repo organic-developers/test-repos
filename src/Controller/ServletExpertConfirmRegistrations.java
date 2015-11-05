@@ -1,7 +1,6 @@
 package Controller;
 
 import Logic.PlanDAO;
-import Logic.TableMaker;
 import Models.Plan;
 import Models.User;
 
@@ -30,7 +29,7 @@ public class ServletExpertConfirmRegistrations extends HttpServlet {
 
         Plan plan = planDAO.getCompletePlanById(Integer.parseInt(request.getParameter("id")));
 
-        plan.setEnlisted(new TableMaker().makeEnlisted(request));
+        plan.setEnlisted(new ServletPlanFields(request).makeEnlisted());
 
         plan.setExpertComment(request.getParameter("expertComment"));
 

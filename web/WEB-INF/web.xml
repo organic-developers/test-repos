@@ -141,7 +141,7 @@
 
     <servlet>
         <servlet-name>ServletCreatePlan</servlet-name>
-        <servlet-class>Controller.ServletCreateplan</servlet-class>
+        <servlet-class>Controller.ServletCreatePlan</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ServletCreatePlan</servlet-name>
@@ -337,12 +337,21 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>ServletRegistrationVerification</servlet-name>
-        <servlet-class>Controller.ServletRegistrationVerification</servlet-class>
+        <servlet-name>ServletSliders</servlet-name>
+        <servlet-class>Controller.ServletSliders</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ServletRegistrationVerification</servlet-name>
-        <url-pattern>/Controller/ServletRegistrationVerification</url-pattern>
+        <servlet-name>ServletSliders</servlet-name>
+        <url-pattern>/Controller/ServletSliders</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletSliderManagement</servlet-name>
+        <servlet-class>Controller.ServletSliderManagement</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletSliderManagement</servlet-name>
+        <url-pattern>/Controller/ServletSliderManagement</url-pattern>
     </servlet-mapping>
 
     <servlet>

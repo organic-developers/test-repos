@@ -1,8 +1,8 @@
 package Controller;
 
 import Logic.Address;
-import Logic.ResourceDAO;
-import Models.Resource;
+import Logic.SliderDAO;
+import Models.Slider;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
@@ -15,10 +15,14 @@ import javax.servlet.http.Part;
 import java.io.IOException;
 import java.util.List;
 
-@MultipartConfig(location =  Address.RESOURCES_AB, fileSizeThreshold = 1024 * 1024,
+/**
+ * Created by Saied on 10/31/2015.
+ */
+
+@MultipartConfig(location = Address.SLIDER_AB, fileSizeThreshold = 1024 * 1024,
         maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
-@WebServlet(name = "ServletResourceManagement", urlPatterns = "ServletResourceManagement")
-public class ServletResourceManagement extends HttpServlet {
+@WebServlet(name = "ServletSliderManagement", urlPatterns = "/ServletSliderManagement")
+public class ServletSliderManagement extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -32,7 +36,7 @@ public class ServletResourceManagement extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        ResourceDAO resourceDAO = new ResourceDAO();
+        SliderDAO sliderDAO = new SliderDAO();
 
         boolean ajax = "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
 
@@ -42,39 +46,38 @@ public class ServletResourceManagement extends HttpServlet {
 
             if (method.equals("methodA")) {
 
-                Resource resource = new Resource();
-                resource.setName(request.getParameter("name"));
+                Slider slider = new Slider();
+                slider.setComment(request.getParameter("comment"));
 
-                Part part = request.getPart("resource");
+                Part part = request.getPart("slider");
                 String path = part.getSubmittedFileName();
                 part.write(path);
-                resource.setPath(Address.RESOURCES_RE + part.getSubmittedFileName());
+                slider.setPath(Address.SLIDER_RE + part.getSubmittedFileName());
 
-                resourceDAO.addResourse(resource);
+                sliderDAO.addSlider(slider);
 
-                resource.setId(1);
+                slider.setId(1);
 
-                String json = new Gson().toJson(resource);
+                String json = new Gson().toJson(slider);
 
                 response.setContentType("application/json");  // Set content type of the response so that jQuery knows what it can expect.
                 response.setCharacterEncoding("UTF-8"); // You want world domination, huh?
                 response.getWriter().write(json);       // Write response body.
 
             } else if (method.equals("methodB")) {
-                Resource resource = resourceDAO.getResourceById(Integer.parseInt(request.getParameter("id").trim()));
-                resourceDAO.deleteResource(resource);
+                Slider slider = sliderDAO.getSlidersById(Integer.parseInt(request.getParameter("id").trim()));
+                sliderDAO.deleteSlider(slider);
 
             } else {
 //                throw new IllegalArgumentExcpetion("'method' parameter required, must be 'methodA' or 'methodB' !");
             }
 
         } else {
-            List resources = resourceDAO.getAllResources();
+            List sliders = sliderDAO.getAllSliders();
 
-            request.setAttribute("resources", resources);
+            request.setAttribute("sliders", sliders);
 
-            request.getRequestDispatcher("/app/resource-management.jsp").forward(request, response);
+            request.getRequestDispatcher("/app/slider-management.jsp").forward(request, response);
         }
     }
-
 }

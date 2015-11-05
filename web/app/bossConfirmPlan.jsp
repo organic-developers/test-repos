@@ -237,7 +237,7 @@
                                                    placeholder="عنوان" value="${expense.name}">
                                         </div>
                                         <div class="form-group col-xs-2">
-                                            <input type="text" class="form-control" name="expense-value-"
+                                            <input type="number" class="form-control" name="expense-value-"
                                                    placeholder="هزینه" value="${expense.value}">
                                         </div>
                                         <div class="form-group col-xs-7">

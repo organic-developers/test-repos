@@ -1,17 +1,76 @@
-package Logic;
+package Controller;
 
+import Logic.FileUtil;
 import Models.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Saied on 10/13/2015.
+ * Created by Saied on 10/30/2015.
  */
-public class TableMaker {
+public class ServletPlanFields {
 
-    public List makeEnlisted(HttpServletRequest request) {
+    HttpServletRequest request;
+
+    private FileUtil fileUtil = new FileUtil();
+    private String TA = fileUtil.getTodayAddress();
+    private String RD = fileUtil.makeRelativeDirectory();
+    private String AD = fileUtil.makeAbsoluteDirectory();
+
+    public ServletPlanFields(HttpServletRequest request){
+        this.request = request;
+    }
+
+    public String getAttachment(){
+        return getFile("attachment");
+    }
+
+    public String getGuidelines(){
+        return getFile("guidelines");
+    }
+
+    public String getResume(){
+        return getFile("resume");
+    }
+
+    public String getPoster(){
+        return getFile("poster");
+    }
+
+    private String getFile(String file){
+        try {
+            Part attachment = request.getPart(file);
+            if (attachment != null) {
+
+                File f = new File(AD + attachment.getSubmittedFileName());
+                if (!f.exists()) {
+                    System.out.println("File not existed");
+                    attachment.write(TA + attachment.getSubmittedFileName());
+                    return (RD + attachment.getSubmittedFileName());
+                } else {
+                    int count = 1;
+                    String[] tokens = attachment.getSubmittedFileName().split("\\.(?=[^\\.]+$)");
+                    f = new File(AD + tokens[0] + count + "." + tokens[1]);
+                    while (f.exists()) {
+                        System.out.println("File existed!");
+                        count++;
+                        f = new File(AD + tokens[0] + count + "."  + tokens[1]);
+                    }
+                    attachment.write(TA + tokens[0] + count + "."  + tokens[1]);
+                    return (RD + tokens[0] + count + "."  + tokens[1]);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List makeEnlisted() {
         int i = 0;
         if (!(request.getParameter("enlisted-fName-" + i) == null || request.getParameter("enlisted-fName-" + i).equals(""))) {
             List enlisteds = new ArrayList<>();
@@ -31,7 +90,7 @@ public class TableMaker {
     }
 
 
-    public List makeExpenses(HttpServletRequest request) {
+    public List makeExpenses() {
         int i = 0;
         if (!(request.getParameter("expense-name-" + i) == null || request.getParameter("expense-name-" + i).equals(""))) {
             List expenses = new ArrayList<>();
@@ -49,7 +108,7 @@ public class TableMaker {
     }
 
 
-    public List makePersonnel(HttpServletRequest request) {
+    public List makePersonnel() {
         int i = 0;
         if (!(request.getParameter("personnel-fName-" + i) == null || request.getParameter("personnel-fName-" + i).equals(""))) {
             List<Personnel> personnels = new ArrayList<>();
@@ -67,7 +126,7 @@ public class TableMaker {
     }
 
 
-    public List makeGuests(HttpServletRequest request) {
+    public List makeGuests() {
         int i = 0;
         if (!(request.getParameter("guest-fName-" + i) == null || request.getParameter("guest-fName-" + i).equals(""))) {
             List guests = new ArrayList<>();
@@ -84,7 +143,7 @@ public class TableMaker {
     }
 
 
-    public List makeJudges(HttpServletRequest request) {
+    public List makeJudges() {
         int i = 0;
         if (!(request.getParameter("judge-fName-" + i) == null || request.getParameter("judge-fName-" + i).equals(""))) {
             List judges = new ArrayList<>();

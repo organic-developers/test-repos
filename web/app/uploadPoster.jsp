@@ -90,20 +90,20 @@
                             <input type="text" class="form-control" name="title" value="${plan.title}" disabled>
                         </div>
                     </div>
-                    <!-- poster -->
-                    <!-- file -->
-                    <div class="form-group">
-                        <label class="control-label col-sm-2">پوستر:</label>
-
-                        <div class="col-sm-7 col-sm-offset-1">
-                            <input type="file" id="poster" name="poster" required>
-                        </div>
-                    </div>
                     <!-- warning -->
                     <div class="form-group">
                         <label class="control-label col-sm-3"></label>
                         <div class="col-sm-7">
                             <h5 class="text-danger">در طرح تبليغاتي استفاده از لوگوي مديريت انجمن هاي علمي دانشجويي، لوگوي انجمن مربوطه و ذكر مبلغ، مكان، زمان و مهلت ثبت نام ضروري مي باشد. ريز مشخصات بازديد نيز ذكر گردد.</h5>
+                        </div>
+                    </div>
+                    <!-- poster -->
+                    <!-- file -->
+                    <div class="form-group" style="margin-top: -12px;">
+                        <label class="control-label col-sm-2">پوستر:</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="file" id="poster" name="poster" required>
                         </div>
                     </div>
 
@@ -120,19 +120,19 @@
                             <input type="text" class="form-control pdp" placeholder="yyyy/mm/dd" name="registrationEndDate">
                         </div>
                     </div>
-                    <!-- advertisement period -->
-                    <div class="form-group">
-                        <label class="control-label col-sm-2">بازه زمانی نمایش تبلیغات در سایت:</label>
-                        <!-- beginDate -->
-                        <div class="col-sm-3 col-sm-offset-1">
-                            <input type="text" class="form-control pdp" placeholder="yyyy/mm/dd" name="advertisementBeginDate">
-                        </div>
-                        <label class="control-label col-sm-1">لغایت</label>
-                        <!-- endDate -->
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control pdp" placeholder="yyyy/mm/dd" name="advertisementEndDate">
-                        </div>
-                    </div>
+                    <%--<!-- advertisement period -->--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label class="control-label col-sm-2">بازه زمانی نمایش تبلیغات در سایت:</label>--%>
+                        <%--<!-- beginDate -->--%>
+                        <%--<div class="col-sm-3 col-sm-offset-1">--%>
+                            <%--<input type="text" class="form-control pdp" placeholder="yyyy/mm/dd" name="advertisementBeginDate">--%>
+                        <%--</div>--%>
+                        <%--<label class="control-label col-sm-1">لغایت</label>--%>
+                        <%--<!-- endDate -->--%>
+                        <%--<div class="col-sm-3">--%>
+                            <%--<input type="text" class="form-control pdp" placeholder="yyyy/mm/dd" name="advertisementEndDate">--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                     <!-- registration fee -->
                     <!-- number -->
                     <div class="form-group">

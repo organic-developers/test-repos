@@ -1,5 +1,6 @@
 package Controller;
 
+import Logic.Address;
 import Logic.AssociationDAO;
 import Models.Association;
 
@@ -14,8 +15,8 @@ import java.io.IOException;
 
 
 
-@MultipartConfig(location = "C:\\Users\\Saied\\IdeaProjects\\scientific-associations\\web\\uploaded-files",
-        maxFileSize = 1024 * 1024 * 5 , maxRequestSize = 1024 * 1024 * 5 * 5, fileSizeThreshold = 1024 * 1024)
+@MultipartConfig(location = Address.ASSOCIATIONS_AB, maxFileSize = 1024 * 1024 * 5 ,
+        maxRequestSize = 1024 * 1024 * 5 * 5, fileSizeThreshold = 1024 * 1024)
 @WebServlet(name = "ServletEditAssociation", urlPatterns = "/ServletEditAssociation")
 public class ServletEditAssociation extends HttpServlet {
 
@@ -40,7 +41,7 @@ public class ServletEditAssociation extends HttpServlet {
         try {
             Part logo = request.getPart("logo");
             logo.write(logo.getSubmittedFileName());
-            association.setLogo("/image/" + logo.getSubmittedFileName());
+            association.setLogo(Address.ASSOCIATIONS_RE + logo.getSubmittedFileName());
         } catch (Exception e){
             e.printStackTrace();
         }

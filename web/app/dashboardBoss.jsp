@@ -1,3 +1,4 @@
+<%@ page import="Models.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -40,6 +41,46 @@
     <!-- jQuery -->
     <script src="/js/jquery-1.11.3.min.js"></script>
 
+    <script>
+        $(document).ready(function () {
+            var num = $("#menu1").children(".well").length;
+            $("#confirmed-box").html(num);
+            var num = $("#menu2").children(".well").length;
+            $("#boss-box").html(num);
+            var num = $("#menu3").children(".well").length;
+            $("#expert-box").html(num);
+            var num = $("#menu4").children(".well").length;
+            $("#advisor-box").html(num);
+            var num = $("#menu5").children(".well").length;
+            $("#clerk-box").html(num);
+        })
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            var num = $("#menu1").children(".well[rejected='rejected']").length;
+            $("#confirmed-num").html(num);
+            var num = $("#menu1").children(".well[rejected!='rejected']").length;
+            $("#rejected-num").html(num);
+            var num = $("#menu2").children(".well[seen='seen']").length;
+            $("#boss-box-seen").html(num);
+            var num = $("#menu2").children(".well[seen!='seen']").length;
+            $("#boss-box-not-seen").html(num);
+            var num = $("#menu3").children(".well[seen='seen']").length;
+            $("#expert-box-seen").html(num);
+            var num = $("#menu3").children(".well[seen!='seen']").length;
+            $("#expert-box-not-seen").html(num);
+            var num = $("#menu4").children(".well[seen='seen']").length;
+            $("#advisor-box-seen").html(num);
+            var num = $("#menu4").children(".well[seen!='seen']").length;
+            $("#advisor-box-not-seen").html(num);
+            var num = $("#menu5").children(".well[seen='seen']").length;
+            $("#clerk-box-seen").html(num);
+            var num = $("#menu5").children(".well[seen!='seen']").length;
+            $("#clerk-box-not-seen").html(num);
+        })
+    </script>
+
 </head>
 <body>
 
@@ -47,7 +88,7 @@
 
     <!-- Navigation -->
     <%@ include file="menu.jsp" %>
-
+    <% int positionId = ((User) request.getSession().getAttribute("currentUser")).getPosition().getId(); %>
     <div id="page-wrapper">
 
         <div class="container-fluid">
@@ -316,19 +357,16 @@
                                 <div class="row">
                                     <div class="huge">
                                         <div class="row">
-                                            <div class="col-lg-1 col-lg-offset-3"
-                                                 style="padding-top: 15px; padding-bottom: 15px; padding-right: 24px;">
-                                                25
-                                            </div>
-                                            <div class="col-lg-8 col-lg-offset-1">
-
-
-                                            </div>
+                                            <div class="col-lg-1 col-lg-offset-3 box-number" id="confirmed-box"></div>
+                                            <div class="col-lg-7 col-lg-offset-2 each-number">تصویب شده: <span
+                                                    id="confirmed-num"></span></div>
+                                            <div class="col-lg-7 col-lg-offset-2 each-number">رد شده: <span
+                                                    id="rejected-num"></span></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div style="font-size: 13px; padding-top: 5px; text-align: center; border-top-width: 1px; border-top-style: solid; margin-top: 11px;">
-                                    طرح های تصویب شده
+                                    طرح های تصویب/رد شده
                                 </div>
                             </div>
                         </div>
@@ -336,7 +374,6 @@
                     <div class="active"><a data-toggle="pill" href="#menu1">
                         <div class="panel-footer">
                             <span class="pull-right">نمایش جزییات</span>
-                            <span class="pull-left"><i class="fa fa-arrow-circle-left"></i></span>
 
                             <div class="clearfix"></div>
                         </div>
@@ -355,14 +392,11 @@
                                 <div class="row">
                                     <div class="huge">
                                         <div class="row">
-                                            <div class="col-lg-1 col-lg-offset-1" style="padding-top: 15px;">12
-                                            </div>
-                                            <div class="col-lg-8 col-lg-offset-1"><a href="#"><span class="badge "
-                                                                                                    style="margin-right: 0px; padding-right: 4px; padding-left: 4px; color: rgb(255, 255, 255); background-color: rgb(201, 48, 44);">3 بررسی نشده</span></a>
-                                                <a href="#"><span class="badge "
-                                                                  style="margin-right: 0px; padding-right: 4px; padding-left: 4px; color: rgb(255, 255, 255); background-color: rgb(201, 48, 44);">3 رد شده</span></a>
-
-                                            </div>
+                                            <div class="col-lg-1 col-lg-offset-3 box-number" id="boss-box"></div>
+                                            <div class="col-lg-8 col-lg-offset-2 each-number">بررسی شده: <span
+                                                    id="boss-box-seen"></span></div>
+                                            <div class="col-lg-8 col-lg-offset-2 each-number">بررسی نشده: <span
+                                                    id="boss-box-not-seen"></span></div>
                                         </div>
                                     </div>
                                 </div>
@@ -375,7 +409,6 @@
                     <div class="active"><a data-toggle="pill" href="#menu2">
                         <div class="panel-footer">
                             <span class="pull-right">نمایش جزییات</span>
-                            <span class="pull-left"><i class="fa fa-arrow-circle-left"></i></span>
 
                             <div class="clearfix"></div>
                         </div>
@@ -394,14 +427,11 @@
                                 <div class="row">
                                     <div class="huge">
                                         <div class="row">
-                                            <div class="col-lg-1 col-lg-offset-1" style="padding-top: 15px;">12
-                                            </div>
-                                            <div class="col-lg-8 col-lg-offset-1"><a href="#"><span class="badge "
-                                                                                                    style="margin-right: 0px; padding-right: 4px; padding-left: 4px; color: rgb(255, 255, 255); background-color: rgb(201, 48, 44);">3 بررسی نشده</span></a>
-
-                                                <a href="#"><span
-                                                        style="margin-right: 0px; margin-bottom: 0px; color: rgb(255, 255, 255); background-color: rgb(51, 122, 183);"
-                                                        class="badge ">7 بررسی شده</span></a></div>
+                                            <div class="col-lg-1 col-lg-offset-3 box-number" id="expert-box"></div>
+                                            <div class="col-lg-8 col-lg-offset-2 each-number">بررسی شده: <span
+                                                    id="expert-box-seen"></span></div>
+                                            <div class="col-lg-8 col-lg-offset-2 each-number">بررسی نشده: <span
+                                                    id="expert-box-not-seen"></span></div>
                                         </div>
                                     </div>
                                 </div>
@@ -414,7 +444,6 @@
                     <div class="active"><a data-toggle="pill" href="#menu3">
                         <div class="panel-footer">
                             <span class="pull-right">نمایش جزییات</span>
-                            <span class="pull-left"><i class="fa fa-arrow-circle-left"></i></span>
 
                             <div class="clearfix"></div>
                         </div>
@@ -433,14 +462,11 @@
                                 <div class="row">
                                     <div class="huge">
                                         <div class="row">
-                                            <div class="col-lg-1 col-lg-offset-1" style="padding-top: 15px;">6</div>
-                                            <div class="col-lg-8 col-lg-offset-1"><a href="#"><span class="badge "
-                                                                                                    style="margin-right: 0px; padding-right: 4px; padding-left: 4px; color: rgb(255, 255, 255); border-color: rgb(238, 162, 54); background-color: rgb(201, 48, 44);">3 بررسی نشده</span></a>
-
-
-                                                <a href="#"> <span
-                                                        style="margin-right: 0px; margin-bottom: 0px; color: rgb(255, 255, 255); background-color: rgb(201, 48, 44);"
-                                                        class="badge ">3 رد شده</span></a></div>
+                                            <div class="col-lg-1 col-lg-offset-3 box-number" id="advisor-box"></div>
+                                            <div class="col-lg-8 col-lg-offset-2 each-number">بررسی شده: <span
+                                                    id="advisor-box-seen"></span></div>
+                                            <div class="col-lg-8 col-lg-offset-2 each-number">بررسی نشده: <span
+                                                    id="advisor-box-not-seen"></span></div>
                                         </div>
                                     </div>
                                 </div>
@@ -453,7 +479,6 @@
                     <div class="active"><a data-toggle="pill" href="#menu4">
                         <div class="panel-footer">
                             <span class="pull-right">نمایش جزییات</span>
-                            <span class="pull-left"><i class="fa fa-arrow-circle-left"></i></span>
 
                             <div class="clearfix"></div>
                         </div>
@@ -472,17 +497,11 @@
                                 <div class="row">
                                     <div class="huge">
                                         <div class="row">
-                                            <div class="col-lg-1 col-lg-offset-1"
-                                                 style="padding-top: 15px; padding-bottom: 15px;">6
-                                            </div>
-                                            <div style="margin-top: 12px; padding-right: 10px;"
-                                                 class="col-lg-8 col-lg-offset-1"><a
-                                                    style="border-top-width: 0px; border-top-style: solid; margin-top: 0px; padding-bottom: 0px;"
-                                                    href="#"><span class="badge "
-                                                                   style="margin-right: 0px; padding-right: 4px; padding-left: 4px; color: rgb(255, 255, 255); border-color: rgb(238, 162, 54); background-color: rgb(201, 48, 44);">3 بررسی نشده</span></a>
-
-
-                                            </div>
+                                            <div class="col-lg-1 col-lg-offset-3 box-number" id="clerk-box"></div>
+                                            <div class="col-lg-8 col-lg-offset-2 each-number">بررسی شده: <span
+                                                    id="clerk-box-seen"></span></div>
+                                            <div class="col-lg-8 col-lg-offset-2 each-number">بررسی نشده: <span
+                                                    id="clerk-box-not-seen"></span></div>
                                         </div>
                                     </div>
                                 </div>
@@ -495,7 +514,6 @@
                     <div class="active"><a data-toggle="pill" href="#menu5">
                         <div class="panel-footer">
                             <span class="pull-right">نمایش جزییات</span>
-                            <span class="pull-left"><i class="fa fa-arrow-circle-left"></i></span>
 
                             <div class="clearfix"></div>
                         </div>
@@ -507,6 +525,17 @@
         </div>
         <!-- /box section -->
 
+        <!-- color guide -->
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <div class="col-sm-2"><span class="color-block" style="background-color: #CBD3F7"></span><span>بررسی نشده</span></div>
+                <div class="col-sm-2"><span class="color-block" style="background-color: #B2EAB1"></span><span>بررسی شده</span></div>
+                <div class="col-sm-2"><span class="color-block" style="background-color: #f5f5f5"></span><span>تصویب شده</span></div>
+                <div class="col-sm-2"><span class="color-block" style="background-color: #A9A9A9"></span><span>رد شده</span></div>
+            </div>
+        </div>
+        <!-- /color guide -->
+
         <!-- tab pane -->
         <div class="tab-content ">
 
@@ -516,7 +545,9 @@
 
                 <c:forEach var="plan" items="${plans}">
                     <c:if test="${plan.workflowState.box == 5 }">
-                        <div class="well well-lg">
+                        <div class="well well-lg back-white"
+                             <c:if test="${plan.workflowState.id == 14}">style="background: #A9A9A9"
+                             rejected="rejected"</c:if>>
                             <div class="row">
                                 <div class="col-lg-8">
                                     <h5 class="page-header">${plan.title}/${plan.association.name}</h5>
@@ -539,12 +570,13 @@
             <!-- /confirmed plans box contents -->
 
             <!-- boss box contents -->
-            <div id="menu2" class="tab-pane fade in active">
+            <div id="menu2" class="tab-pane fade <%if (positionId == 1) {%>in active<%}%>">
                 <h3 class="page-header">محتویات صندوق ریاست انجمن ها</h3>
 
                 <c:forEach var="plan" items="${plans}">
                     <c:if test="${plan.workflowState.box == 4}">
-                        <div class="well well-lg">
+                        <div class="well well-lg"
+                             <c:if test="${plan.seen == 'true'}">style="background: #B2EAB1" seen="seen"</c:if> >
                             <div class="row">
                                 <div class="col-lg-8">
                                     <h5 class="page-header">${plan.title}/${plan.association.name}</h5>
@@ -553,7 +585,9 @@
                                         <div class="col-lg-12">
                                             <form action="/Controller/ServletDashboardSwitch" method="post">
                                                 <input type="text" value="${plan.id}" name="id" style="display: none;"/>
+                                                <%if (positionId == 1) {%>
                                                 <button type="submit" class="btn btn-info">بررسی</button>
+                                                <%}%>
                                             </form>
                                         </div>
                                     </div>
@@ -567,12 +601,13 @@
             <!-- /boss box contents -->
 
             <!-- expert box contents -->
-            <div id="menu3" class="tab-pane fade">
+            <div id="menu3" class="tab-pane fade <%if (positionId == 2) {%>in active<%}%>">
                 <h3 class="page-header"> محتویات صندوق کارشناس انجمن ها</h3>
 
                 <c:forEach var="plan" items="${plans}">
                     <c:if test="${plan.workflowState.box == 3}">
-                        <div class="well well-lg">
+                        <div class="well well-lg"
+                             <c:if test="${plan.seen == 'true'}">style="background: #B2EAB1" seen="seen"</c:if>>
                             <div class="row">
                                 <div class="col-lg-8">
                                     <h5 class="page-header">${plan.title}/${plan.association.name}</h5>
@@ -581,7 +616,9 @@
                                         <div class="col-lg-12">
                                             <form action="/Controller/ServletDashboardSwitch" method="post">
                                                 <input type="text" value="${plan.id}" name="id" style="display: none;"/>
+                                                <% if (positionId == 1 || positionId == 2) {%>
                                                 <button type="submit" class="btn btn-info">بررسی</button>
+                                                <%} %>
                                             </form>
                                         </div>
                                     </div>
@@ -595,12 +632,13 @@
             <!-- /expert box contents -->
 
             <!-- advisor box contents -->
-            <div id="menu4" class="tab-pane fade">
+            <div id="menu4" class="tab-pane fade <%if (positionId == 3) {%>in active<%}%>">
                 <h3 class="page-header">محتویات صندوق مشاور علمی</h3>
 
                 <c:forEach var="plan" items="${plans}">
                     <c:if test="${plan.workflowState.box == 2}">
-                        <div class="well well-lg">
+                        <div class="well well-lg"
+                             <c:if test="${plan.seen == 'true'}">style="background: #B2EAB1" seen="seen"</c:if>>
                             <div class="row">
                                 <div class="col-lg-8">
                                     <h5 class="page-header">${plan.title}/${plan.association.name}</h5>
@@ -609,7 +647,9 @@
                                         <div class="col-lg-12">
                                             <form action="/Controller/ServletDashboardSwitch" method="post">
                                                 <input type="text" value="${plan.id}" name="id" style="display: none;"/>
+                                                <% if (positionId == 1 || positionId == 3) {%>
                                                 <button type="submit" class="btn btn-info">بررسی</button>
+                                                <%} %>
                                             </form>
                                         </div>
                                     </div>
@@ -623,12 +663,13 @@
             <!-- /advisor box contents -->
 
             <!-- clerk box contents -->
-            <div id="menu5" class="tab-pane fade">
+            <div id="menu5" class="tab-pane fade <%if (positionId == 4) {%>in active<%}%>">
                 <h3 class="page-header">محتویات صندوق دبیر</h3>
 
                 <c:forEach var="plan" items="${plans}">
                     <c:if test="${plan.workflowState.box == 1}">
-                        <div class="well well-lg">
+                        <div class="well well-lg"
+                             <c:if test="${plan.seen == 'true'}">style="background: #B2EAB1" seen="seen"</c:if>>
                             <div class="row">
                                 <div class="col-lg-8">
                                     <h5 class="page-header">${plan.title}/${plan.association.name}</h5>
@@ -637,7 +678,9 @@
                                         <div class="col-lg-12">
                                             <form action="/Controller/ServletDashboardSwitch" method="post">
                                                 <input type="text" value="${plan.id}" name="id" style="display: none;"/>
+                                                <% if (positionId == 1 || positionId == 4) {%>
                                                 <button type="submit" class="btn btn-info">بررسی</button>
+                                                <%} %>
                                             </form>
                                         </div>
                                     </div>

@@ -33,12 +33,16 @@ public class ServletDashboardSwitch extends HttpServlet {
                case 1:
                    request.setAttribute("plan", plan);
                    request.getRequestDispatcher("../app/AdvisorConfirmPlan.jsp").forward(request, response);
-                   planStateHistoryObserve(request);
+                   if(((User)request.getSession().getAttribute("currentUser")).getPosition().getId() == 3) {
+                       planStateHistoryObserve(request);
+                   }
                    break;
                case 2:
                    request.setAttribute("plan", plan);
                    request.getRequestDispatcher("../app/expertConfirmPlan.jsp").forward(request, response);
-                   planStateHistoryObserve(request);
+                   if(((User)request.getSession().getAttribute("currentUser")).getPosition().getId() == 2) {
+                       planStateHistoryObserve(request);
+                   }
                    break;
                case 3:
                    request.setAttribute("plan", plan);
@@ -48,12 +52,16 @@ public class ServletDashboardSwitch extends HttpServlet {
                case 4:
                    request.setAttribute("plan", plan);
                    request.getRequestDispatcher("../app/uploadPoster.jsp").forward(request, response);
-                   planStateHistoryObserve(request);
+                   if(((User)request.getSession().getAttribute("currentUser")).getPosition().getId() == 4) {
+                       planStateHistoryObserve(request);
+                   }
                    break;
                case 5:
                    request.setAttribute("plan", plan);
                    request.getRequestDispatcher("../app/expertConfirmPoster.jsp").forward(request, response);
-                   planStateHistoryObserve(request);
+                   if(((User)request.getSession().getAttribute("currentUser")).getPosition().getId() == 2) {
+                       planStateHistoryObserve(request);
+                   }
                    break;
                case 6:
                    request.setAttribute("plan", plan);
@@ -63,12 +71,16 @@ public class ServletDashboardSwitch extends HttpServlet {
                case 7:
                    request.setAttribute("plan", plan);
                    request.getRequestDispatcher("../app/enterRegistrations.jsp").forward(request, response);
-                   planStateHistoryObserve(request);
+                   if(((User)request.getSession().getAttribute("currentUser")).getPosition().getId() == 4) {
+                       planStateHistoryObserve(request);
+                   }
                    break;
                case 8:
                    request.setAttribute("plan", plan);
                    request.getRequestDispatcher("../app/expertConfirmRegistrations.jsp").forward(request, response);
-                   planStateHistoryObserve(request);
+                   if(((User)request.getSession().getAttribute("currentUser")).getPosition().getId() == 2) {
+                       planStateHistoryObserve(request);
+                   }
                    break;
                case 9:
                    request.setAttribute("plan", plan);
@@ -78,27 +90,35 @@ public class ServletDashboardSwitch extends HttpServlet {
                case 10:
                    request.setAttribute("plan", plan);
                    request.getRequestDispatcher("../app/planTrip.jsp").forward(request, response);
-                   planStateHistoryObserve(request);
+//                   planStateHistoryObserve(request);
                    break;
                case 15:
                    request.setAttribute("plan", plan);
                    request.getRequestDispatcher("../app/create-plan-trip.jsp").forward(request, response);
-                   planStateHistoryObserve(request);
+                   if(((User)request.getSession().getAttribute("currentUser")).getPosition().getId() == 4) {
+                       planStateHistoryObserve(request);
+                   }
                    break;
                case 11:
                    request.setAttribute("plan", plan);
                    request.getRequestDispatcher("../app/correctPlan.jsp").forward(request, response);
-                   planStateHistoryObserve(request);
+                   if(((User)request.getSession().getAttribute("currentUser")).getPosition().getId() == 4) {
+                       planStateHistoryObserve(request);
+                   }
                    break;
                case 12:
                    request.setAttribute("plan", plan);
                    request.getRequestDispatcher("../app/correctPoster.jsp").forward(request, response);
-                   planStateHistoryObserve(request);
+                   if(((User)request.getSession().getAttribute("currentUser")).getPosition().getId() == 4) {
+                       planStateHistoryObserve(request);
+                   }
                    break;
                case 13:
                    request.setAttribute("plan", plan);
                    request.getRequestDispatcher("../app/correctRegistrations.jsp").forward(request, response);
-                   planStateHistoryObserve(request);
+                   if(((User)request.getSession().getAttribute("currentUser")).getPosition().getId() == 4) {
+                       planStateHistoryObserve(request);
+                   }
                    break;
            }
        } catch (Exception e){

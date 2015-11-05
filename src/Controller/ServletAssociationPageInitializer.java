@@ -47,6 +47,7 @@ public class ServletAssociationPageInitializer extends HttpServlet {
             PlanDAO planDAO = new PlanDAO();
 
         request.setAttribute("registringPlans", planDAO.getRegistringPlansByAssociationId(associationId));
+        request.setAttribute("executingPlans", planDAO.getExecutingPlansByAssociationId(associationId));
         request.setAttribute("finishedPlans", planDAO.getFinishedPlansByAssociationId(associationId));
 //        request.setAttribute("futurePlans", planDAO.getFuturePlansByAssociationId(associationId));
         request.setAttribute("suggestedPlans", suggestedPlanDAO.getInViewSuggestedPlansByAssociationId(associationId));

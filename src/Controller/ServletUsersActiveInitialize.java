@@ -3,6 +3,7 @@ package Controller;
 import Logic.AssociationDAO;
 import Logic.PositionDAO;
 import Logic.UserDAO;
+import Models.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -32,11 +33,24 @@ public class ServletUsersActiveInitialize extends HttpServlet {
     public void fillTable(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
-            request.setAttribute("positions", positionDAO.getAllPositionsExceptExpertAndBoss());
+            int userId = ((User)request.getSession().getAttribute("currentUser")).getPosition().getId();
 
-            request.setAttribute("users", userDAO.getAllActiveUsersExceptExpertAndBoss());
+            if( userId == 1 || userId == 2 ){
 
-            request.setAttribute("associations", associationDAO.getAllActiveAssociations());
+                request.setAttribute("positions", positionDAO.getAllPositionsExceptExpertAndBoss());
+
+                request.setAttribute("users", userDAO.getAllActiveUsersExceptExpertAndBoss());
+
+                request.setAttribute("associations", associationDAO.getAllActiveAssociations());
+
+            } else if (userId == 4){
+
+                request.setAttribute("positions", positionDAO.getAllMemberPositionsExceptClerk());
+
+                User user = (User) request.getSession(false).getAttribute("currentUser");
+
+                request.setAttribute("users", userDAO.getAllActiveMembersExceptClerkByAssociationId(user.getAssociation().getId()));
+            }
 
             request.getRequestDispatcher("/app/users-active.jsp").forward(request, response);
 

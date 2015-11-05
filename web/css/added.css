@@ -29,8 +29,13 @@ div.well-lg .page-header {
 
 div.tab-pane .well-lg {
 	padding: 16px;
-	border: 2px solid #337AB7;
+	/*border: 2px solid #337AB7;*/
+    background-color: #CBD3F7;
 	direction: rtl;
+}
+
+div.tab-pane .well-lg.back-white {
+    background-color: #f5f5f5;
 }
 
 div.tab-pane {
@@ -85,4 +90,22 @@ div.tab-pane {
 .btn-planStateHistories {
     height: 32px;
     margin: -5px;
+}
+
+.each-number {
+    margin-top: 12px;
+    padding-right: 5px;
+    font-size: 0.3em;
+}
+
+.box-number {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    /*padding-right: 24px;*/
+}
+.color-block {
+    display: inline-block;
+    width: 18px;
+    height: 12px;
+    margin-left: 4px;
 }

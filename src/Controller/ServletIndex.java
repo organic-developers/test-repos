@@ -2,6 +2,7 @@ package Controller;
 
 import Logic.AssociationDAO;
 import Logic.PlanDAO;
+import Logic.SliderDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,10 +32,10 @@ public class ServletIndex extends HttpServlet {
 
         request.setAttribute("associations", associations);
 
-        PlanDAO planDAO = new PlanDAO();
+        SliderDAO sliderDAO = new SliderDAO();
 
-//        List plans = planDAO.getAdvertisingPlans();
-//        request.setAttribute("plans", plans);
+        List sliders = sliderDAO.getAllSliders();
+        request.setAttribute("sliders", sliders);
 
         request.getRequestDispatcher("/index.jsp").forward(request, response);
     }

@@ -38,8 +38,6 @@ public class ServletUsersClerkInitialize extends HttpServlet {
 
             request.setAttribute("users", userDAO.getAllActiveMembersExceptClerkByAssociationId(user.getAssociation().getId()));
 
-//            request.setAttribute("associations", associationDAO.getAllActiveAssociations());
-
             request.getRequestDispatcher("/app/users-clerk.jsp").forward(request, response);
 
         } catch (Exception e){

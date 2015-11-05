@@ -47,8 +47,10 @@ public class ServletBossConfirmPlan extends HttpServlet {
         plan.setSponsorMoney(request.getParameter("sponsorMoney"));
         plan.setOtherIncome(request.getParameter("otherIncome"));
 
-        plan.setPersonnel(makePersonnel(request));
-        plan.setExpenses(makeExpenses(request));
+        ServletPlanFields pf = new ServletPlanFields(request);
+
+        plan.setPersonnel(pf.makePersonnel());
+        plan.setExpenses(pf.makeExpenses());
 
 
         if(request.getParameter("submit").equals("confirm")){
@@ -68,43 +70,4 @@ public class ServletBossConfirmPlan extends HttpServlet {
         request.getRequestDispatcher("../Controller/ServletDashboardInitializer").forward(request, response);
     }
 
-
-    public List makePersonnel(HttpServletRequest request) {
-        int i = 0;
-        if (!(request.getParameter("personnel-fName-" + i) == null || request.getParameter("personnel-fName-" + i).equals(""))) {
-            List<Personnel> personnels = new ArrayList<>();
-            while (!(request.getParameter("personnel-fName-" + i) == null || request.getParameter("personnel-fName-" + i).equals(""))) {
-                Personnel personnel = new Personnel();
-                personnel.setfName(request.getParameter("personnel-fName-" + i));
-                personnel.setlName(request.getParameter("personnel-lName-" + i));
-                personnel.setPhone(request.getParameter("personnel-phone-" + i));
-                personnels.add(personnel);
-                i++;
-            }
-            return personnels;
-        }
-        return null;
-    }
-
-
-    public List makeExpenses(HttpServletRequest request) {
-        int i = 0;
-        if (!(request.getParameter("expense-name-" + i) == null)) {
-            if (!(request.getParameter("expense-name-" + i).equals(""))) {
-                List expenses = new ArrayList<>();
-                while (!(request.getParameter("expense-name-" + i) == null)) {
-                    if (!(request.getParameter("expense-name-" + i).equals(""))) {
-                        Expense expense = new Expense();
-                        expense.setName(request.getParameter("expense-name-" + i));
-                        expense.setValue(request.getParameter("expense-value-" + i));
-                        expense.setComment(request.getParameter("expense-comment-" + i));
-                        expenses.add(expense);
-                        i++;
-                    }
-                }
-                return expenses;
-            }
-        }
-        return null;
-    }
 }

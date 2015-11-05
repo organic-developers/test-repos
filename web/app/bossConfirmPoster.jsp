@@ -92,21 +92,21 @@
                                    value="${plan.registrationEndDate}">
                         </div>
                     </div>
-                    <!-- advertisement period -->
-                    <div class="form-group">
-                        <label class="control-label col-sm-2">بازه زمانی نمایش تبلیغات در سایت:</label>
-                        <!-- beginDate -->
-                        <div class="col-sm-3 col-sm-offset-1">
-                            <input type="text" class="form-control pdp" placeholder="yyyy/mm/dd"
-                                   name="advertisementBeginDate" value="${plan.advertisementBeginDate}">
-                        </div>
-                        <label class="control-label col-sm-1">لغایت</label>
-                        <!-- endDate -->
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control pdp" placeholder="yyyy/mm/dd" name="advertisementEndDate"
-                                   value="${plan.advertisementEndDate}">
-                        </div>
-                    </div>
+                    <%--<!-- advertisement period -->--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label class="control-label col-sm-2">بازه زمانی نمایش تبلیغات در سایت:</label>--%>
+                        <%--<!-- beginDate -->--%>
+                        <%--<div class="col-sm-3 col-sm-offset-1">--%>
+                            <%--<input type="text" class="form-control pdp" placeholder="yyyy/mm/dd"--%>
+                                   <%--name="advertisementBeginDate" value="${plan.advertisementBeginDate}">--%>
+                        <%--</div>--%>
+                        <%--<label class="control-label col-sm-1">لغایت</label>--%>
+                        <%--<!-- endDate -->--%>
+                        <%--<div class="col-sm-3">--%>
+                            <%--<input type="text" class="form-control pdp" placeholder="yyyy/mm/dd" name="advertisementEndDate"--%>
+                                   <%--value="${plan.advertisementEndDate}">--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                     <!-- registration fee -->
                     <!-- number -->
                     <div class="form-group">

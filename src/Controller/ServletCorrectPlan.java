@@ -40,8 +40,10 @@ public class ServletCorrectPlan extends HttpServlet {
         plan.setTime(request.getParameter("time"));
         plan.setRequestedItems(request.getParameter("requestedItems"));
 
-        plan.setEnlisted(makeEnlisted(request));
-        plan.setExpenses(makeExpenses(request));
+        ServletPlanFields pf = new ServletPlanFields(request);
+
+        plan.setPersonnel(pf.makePersonnel());
+        plan.setExpenses(pf.makeExpenses());
 
 
         plan.setWorkflowState(planDAO.getWorkflowForward(plan.getId()));
@@ -53,46 +55,5 @@ public class ServletCorrectPlan extends HttpServlet {
         planDAO.updatePlan(plan);
 
         request.getRequestDispatcher("/Controller/ServletDashboardInitializer").forward(request, response);
-    }
-
-    public List makeEnlisted(HttpServletRequest request) {
-        int i = 0;
-        if (!(request.getParameter("enlisted-fName-" + i) == null || request.getParameter("enlisted-fName-" + i).equals(""))) {
-            List enlisteds = new ArrayList<>();
-            while (!(request.getParameter("enlisted-fName-" + i) == null || request.getParameter("enlisted-fName-" + i).equals(""))) {
-                Enlisted enlisted = new Enlisted();
-                enlisted.setfName(request.getParameter("enlisted-fName-" + i));
-                enlisted.setlName(request.getParameter("enlisted-lName-" + i));
-                enlisted.setStudentId(request.getParameter("enlisted-StudentId-" + i));
-                enlisted.setPhone(request.getParameter("enlisted-phone-" + i));
-                enlisted.setEmail(request.getParameter("enlisted-email-" + i));
-                enlisteds.add(enlisted);
-                i++;
-            }
-            return enlisteds;
-        }
-        return null;
-    }
-
-
-    public List makeExpenses(HttpServletRequest request) {
-        int i = 0;
-        if (!(request.getParameter("expense-name-" + i) == null)) {
-            if (!(request.getParameter("expense-name-" + i).equals(""))) {
-                List expenses = new ArrayList<>();
-                while (!(request.getParameter("expense-name-" + i) == null)) {
-                    if (!(request.getParameter("expense-name-" + i).equals(""))) {
-                        Expense expense = new Expense();
-                        expense.setName(request.getParameter("expense-name-" + i));
-                        expense.setValue(request.getParameter("expense-value-" + i));
-                        expense.setComment(request.getParameter("expense-comment-" + i));
-                        expenses.add(expense);
-                        i++;
-                    }
-                }
-                return expenses;
-            }
-        }
-        return null;
     }
 }

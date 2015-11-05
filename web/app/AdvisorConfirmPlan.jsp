@@ -241,6 +241,71 @@
                         </div>
 
                     </div>
+                    <!-- studentsMoney number -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="studentMoney">مبالغ دریافتی از دانشجویان
+                            (ریال)</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="number" class="form-control" id="studentMoney" name="studentMoney"
+                                   value="${plan.studentMoney}" disabled>
+                        </div>
+                    </div>
+                    <!-- sponserMoney number-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="sponsorMoney">مبالغ دریافتی از اسپانسر(ریال)</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="number" class="form-control" id="sponsorMoney" name="sponsorMoney"
+                                   value="${plan.sponsorMoney}" disabled>
+                        </div>
+                    </div>
+                    <!-- otherIncome number-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="otherIncome">سایر درآمدها (ریال):</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="number" class="form-control" id="otherIncome" name="otherIncome"
+                                   value="${plan.otherIncome}" disabled>
+                        </div>
+                    </div>
+                    <!-- expenseSum number-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="expenseSum">جمع هزینه ها (ریال):</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="number" class="form-control" id="expenseSum" name="expenseSum"
+                                   value="${plan.expenseSum}" disabled>
+                        </div>
+                    </div>
+                    <!-- incomeSum number-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="incomeSum">جمع درآمدها (ریال):</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="number" class="form-control" id="incomeSum" name="incomeSum"
+                                   value="${plan.incomeSum}" disabled>
+                        </div>
+                    </div>
+                    <!-- moneySum number-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="moneySum">مبلغ پرداختی (ریال)</label>
+
+                        <div class="col-sm-7 col-sm-offset-1">
+                            <input type="number" class="form-control" id="moneySum" name="moneySum"
+                                   value="${plan.moneySum}" disabled>
+                        </div>
+                    </div>
+                    <!-- attachment file-->
+                    <c:if test="${plan.attachment != null}">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">پیوست:</label>
+
+                            <div class="col-sm-7 col-sm-offset-1">
+                                <a href="${plan.attachment}" target="_blank">فایل پیوست</a>
+                            </div>
+                        </div>
+                    </c:if>
                     <!-- advisorComment -->
                     <!-- textarea -->
                     <div class="form-group">

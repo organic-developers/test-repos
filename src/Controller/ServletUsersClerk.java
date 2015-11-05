@@ -1,9 +1,9 @@
 package Controller;
 
+import Logic.Address;
 import Logic.AssociationDAO;
 import Logic.PositionDAO;
 import Logic.UserDAO;
-import Models.Association;
 import Models.User;
 import com.google.gson.Gson;
 
@@ -15,12 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.IOException;
-import java.util.List;
-
-
 
 @WebServlet(name = "ServletUsersClerk", urlPatterns = {"/ServletUsersClerk"})
-@MultipartConfig(location = "C:\\Users\\Saied\\IdeaProjects\\scientific-associations\\web\\uploaded-files", fileSizeThreshold = 1024 * 1024,
+@MultipartConfig(location =  Address.MEMBERS_AB, fileSizeThreshold = 1024 * 1024,
         maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 *5)
 public class ServletUsersClerk extends HttpServlet {
 
@@ -86,18 +83,16 @@ public class ServletUsersClerk extends HttpServlet {
         user.setStudentId(request.getParameter("studentId"));
         user.setNationalId(request.getParameter("nationalId"));
         user.setPhone(request.getParameter("phone"));
-        user.setActive("true");
 
         user.setPosition(positionDAO.getPositionById(Integer.parseInt(request.getParameter("positionTitle").trim())));
 
         user.setAssociation(((User) request.getSession().getAttribute("currentUser")).getAssociation());
 
         try{
-            String directory = "/uploaded-files/";
             Part photo = request.getPart("photo");
             if (photo != null) {
                 photo.write(photo.getSubmittedFileName());
-                user.setPhoto(directory + photo.getSubmittedFileName());
+                user.setPhoto(Address.MEMBERS_RE + photo.getSubmittedFileName());
             }
         } catch (Exception e){
             user.setPhoto(request.getParameter("image2"));

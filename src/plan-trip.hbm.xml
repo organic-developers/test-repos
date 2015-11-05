@@ -333,4 +333,17 @@
     </class>
     <!-- /PlanStateHistory -->
 
+    <!-- Slider -->
+    <class name="Models.Slider" table="slider">
+        <meta attribute="class-description">
+            This class contains the detail of slider pictures.
+        </meta>
+        <id name="id" column="id" type="int">
+            <generator class="native"/>
+        </id>
+        <property name="comment" column="comment" type="string"/>
+        <property name="path" column="path" type="string"/>
+    </class>
+    <!-- /Slider -->
+
 </hibernate-mapping>

@@ -11,8 +11,11 @@ import org.hibernate.SessionFactory;
 
 import java.util.*;
 import java.util.Calendar;
+import Logic.DateUtil;
 
 public class PlanDAO {
+
+    DateUtil dateUtil = new DateUtil();
 
     public List<Plan> getAllPlans() {
         List plans = null;
@@ -61,16 +64,43 @@ public class PlanDAO {
     public List<Plan> getRegistringPlansByAssociationId(int associationId) {
         List plans = null;
 
-        String today = getTodayDate();
+        String today = dateUtil.getTodayDate();
 
         try {
             SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
             Session session = sessionFactory.openSession();
             session.beginTransaction();
 
-            String qry = "select e from Plan e join fetch e.workflow join fetch e.association a" +
+            String qry = "select e from Plan e join fetch e.workflow join fetch e.association a join fetch e.workflowState b" +
                     " where a.id = :associationId and " +
+                    " b.id = 7 and" +
                     " :today BETWEEN e.registrationBeginDate AND e.registrationEndDate";
+            plans = session.createQuery(qry)
+                    .setParameter("associationId", associationId)
+                    .setParameter("today", today)
+                    .list();
+
+            session.getTransaction().commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return plans;
+    }
+
+    public List<Plan> getExecutingPlansByAssociationId(int associationId) {
+        List plans = null;
+
+        String today = dateUtil.getTodayDate();
+
+        try {
+            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+            Session session = sessionFactory.openSession();
+            session.beginTransaction();
+
+            String qry = "select e from Plan e join fetch e.workflow join fetch e.association a join fetch e.workflowState b" +
+                    " where a.id = :associationId and " +
+                    " :today BETWEEN e.beginDate AND e.endDate";
             plans = session.createQuery(qry)
                     .setParameter("associationId", associationId)
                     .setParameter("today", today)
@@ -87,7 +117,7 @@ public class PlanDAO {
     public List<Plan> getFinishedPlansByAssociationId(int associationId) {
         List plans = null;
 
-        String today = getTodayDate();
+        String today = dateUtil.getTodayDate();
 
         try {
             SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -146,9 +176,12 @@ public class PlanDAO {
             plan = (Plan) session.createQuery(qry)
                     .setParameter("id", id)
                     .uniqueResult();
+            System.out.println(plan.getTitle());
 
+            Hibernate.initialize(plan.getEnlisted());
             Hibernate.initialize(plan.getAssociation());
             Hibernate.initialize(plan.getWorkflow());
+            Hibernate.initialize(plan.getWorkflow().getId());
             Hibernate.initialize(plan.getWorkflowState());
             Hibernate.initialize(plan.getPlanStateHistories());
 
@@ -323,7 +356,7 @@ public class PlanDAO {
     public PlanStateHistory getPlanStateHistoryCreatePlan(User user, Plan plan) {
         PlanStateHistory planStateHistory = new PlanStateHistory();
         planStateHistory.setUser(user);
-        planStateHistory.setTimestamp(getTimeStamp());
+        planStateHistory.setTimestamp(dateUtil.getTimeStamp());
 
         planStateHistory.setWorkflowState(plan.getWorkflowState());
         planStateHistory.setChanges(getChangesCreatePlan(plan));
@@ -522,7 +555,7 @@ public class PlanDAO {
     public PlanStateHistory getPlanStateHistory(User user, Plan plan) {
         PlanStateHistory planStateHistory = new PlanStateHistory();
         planStateHistory.setUser(user);
-        planStateHistory.setTimestamp(getTimeStamp());
+        planStateHistory.setTimestamp(dateUtil.getTimeStamp());
 
         Plan plan1 = getCompletePlanById(plan.getId());
 
@@ -1183,32 +1216,5 @@ public class PlanDAO {
         return changes;
     }
 
-    public String getTimeStamp() {
-        PersianCalendar persianCalendar1 = new PersianCalendar(new Date());
 
-        String timeStamp = persianCalendar1.get(Calendar.YEAR)
-                + "-" + (persianCalendar1.get(Calendar.MONTH) + 1)
-                + "-" + persianCalendar1.get(Calendar.DAY_OF_MONTH)
-                + " " + persianCalendar1.get(Calendar.HOUR_OF_DAY)
-                + ":" + persianCalendar1.get(Calendar.MINUTE)
-                + ":" + persianCalendar1.get(Calendar.SECOND);
-        return timeStamp;
-    }
-
-    public String getTodayDate() {
-
-        PersianCalendar persianCalendar = new PersianCalendar();
-        String today = "" + persianCalendar.get(Calendar.YEAR);
-        if (persianCalendar.get(Calendar.MONTH) + 1 <= 9) {
-            today += "/0" + (persianCalendar.get(Calendar.MONTH) + 1);
-        } else {
-            today += "/" + (persianCalendar.get(Calendar.MONTH) + 1);
-        }
-        if (persianCalendar.get(Calendar.DAY_OF_MONTH) <= 9) {
-            today += "/0" + persianCalendar.get(Calendar.DAY_OF_MONTH);
-        } else {
-            today += "/" + persianCalendar.get(Calendar.DAY_OF_MONTH);
-        }
-        return today;
-    }
 }

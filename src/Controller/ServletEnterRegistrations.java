@@ -33,7 +33,8 @@ public class ServletEnterRegistrations extends HttpServlet {
 
         Plan plan = planDAO.getCompletePlanById(Integer.parseInt(request.getParameter("id")));
 
-        plan.setEnlisted(makeEnlisted(request));
+        ServletPlanFields pf = new ServletPlanFields(request);
+        plan.setEnlisted(pf.makeEnlisted());
 
         plan.setWorkflowState(planDAO.getWorkflowForward(plan.getId()));
 
@@ -44,25 +45,6 @@ public class ServletEnterRegistrations extends HttpServlet {
         planDAO.updatePlan(plan);
 
         request.getRequestDispatcher("../Controller/ServletDashboardInitializer").forward(request, response);
-    }
-
-    public List makeEnlisted(HttpServletRequest request) {
-        int i = 0;
-        if (!(request.getParameter("enlisted-fName-" + i) == null || request.getParameter("enlisted-fName-" + i).equals(""))) {
-            List enlisteds = new ArrayList<>();
-            while (!(request.getParameter("enlisted-fName-" + i) == null || request.getParameter("enlisted-fName-" + i).equals(""))) {
-                Enlisted enlisted = new Enlisted();
-                enlisted.setfName(request.getParameter("enlisted-fName-" + i));
-                enlisted.setlName(request.getParameter("enlisted-lName-" + i));
-                enlisted.setStudentId(request.getParameter("enlisted-studentId-" + i));
-                enlisted.setPhone(request.getParameter("enlisted-phone-" + i));
-                enlisted.setEmail(request.getParameter("enlisted-email-" + i));
-                enlisteds.add(enlisted);
-                i++;
-            }
-            return enlisteds;
-        }
-        return null;
     }
 }
 
