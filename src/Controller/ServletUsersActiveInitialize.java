@@ -39,7 +39,7 @@ public class ServletUsersActiveInitialize extends HttpServlet {
 
                 request.setAttribute("positions", positionDAO.getAllPositionsExceptExpertAndBoss());
 
-                request.setAttribute("users", userDAO.getAllActiveUsersExceptExpertAndBoss());
+                request.setAttribute("users", userDAO.getAllUsersExceptExpertAndBoss());
 
                 request.setAttribute("associations", associationDAO.getAllActiveAssociations());
 

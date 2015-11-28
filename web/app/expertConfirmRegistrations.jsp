@@ -43,6 +43,41 @@
 
     <script src="/js/jquery-1.11.3.min.js"></script>
     <script src="/js/added.js"></script>
+
+
+    <style>
+        @media screen {
+            .for-print{
+                display: none;
+            }
+        }
+        @media only print {
+            .col-xs-2 {width: 33.33%;}
+            .col-sm-2 {width: 33.33%;}
+            .col-lg-2 {width: 33.33%;}
+            .col-xs-3 {width: 33.33%;}
+            .col-sm-3 {width: 33.33%;}
+            .col-lg-3 {width: 33.33%;}
+
+            .planStateHistories, .page-header, .glyphicon, .line, .btn, .control-label, [name="title"], [name='enlisted-phone-'], [name="enlisted-email-"], [id="expertComment"] {
+                display: none;
+            }
+            .form-group {
+                margin-bottom: 6px;
+
+            }
+            .form-control[placeholder] {
+                border: none;
+                border-top: 1px dashed darkgray;
+                border-radius: 0px;
+                /*box-shadow: none;*/
+            }
+        }
+            .form-control[placeholder] {
+                box-shadow: none;
+            }
+
+    </style>
 </head>
 <body>
 
@@ -77,6 +112,12 @@
                         <div class="col-sm-7 col-sm-offset-1">
                             <input type="text" class="form-control" name="title" value="${plan.title}" disabled>
                         </div>
+                    </div>
+                    <!-- just for @media print -->
+                    <div class="row for-print">
+                        <div class="col-xs-3"><label>نام</label></div>
+                        <div class="col-xs-3"><label>نام خانوادگی</label></div>
+                        <div class="col-xs-3"><label>شماره دانشجویی</label></div>
                     </div>
                     <!-- enlisted list -->
                     <div class="form-group">

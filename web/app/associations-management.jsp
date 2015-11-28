@@ -114,14 +114,14 @@
                         <div class="col-sm-6 col-md-3">
                             <c:choose>
                             <c:when test="${association.active eq 'false'}">
-                            <div class="thumbnail thumbnail-gray">
+                            <div class="thumbnail thumbnail-gray" style="height: 338px;">
                                 <img src="${association.logo}" alt="مشکل در بارگزاری لوگو"
                                      style="height: 200px; width: 100%; display: block;">
 
                                 <div class="caption">
                                     <h4>${association.name}</h4>
                                 </div>
-                                <div class="caption caption-botton">
+                                <div class="caption caption-botton" style="position: absolute; bottom: 25px;">
                                     <form action="ServletEditAssociationInitializer" style="display: inline;">
                                         <input type="text" value="${association.id}" name="id" style="display: none;"/>
                                         <button type="submit" class="btn btn-primary btn-edit">ویرایش</button>
@@ -131,14 +131,14 @@
                             </div>
                             </c:when>
                             <c:otherwise>
-                                <div class="thumbnail">
+                                <div class="thumbnail" style="height: 338px;">
                                     <img src="${association.logo}" alt="مشکل در بارگزاری لوگو"
                                          style="height: 200px; width: 100%; display: block;">
 
                                     <div class="caption">
                                         <h4>${association.name}</h4>
                                     </div>
-                                    <div class="caption caption-botton">
+                                    <div class="caption caption-botton" style="position: absolute; bottom: 25px;">
                                         <form action="ServletEditAssociationInitializer" style="display: inline;">
                                             <input type="text" value="${association.id}" name="id" style="display: none;"/>
                                             <button type="submit" class="btn btn-primary btn-edit">ویرایش</button>

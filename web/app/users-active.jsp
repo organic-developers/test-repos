@@ -22,6 +22,7 @@
     <!-- Custom CSS -->
     <link href="../css/sb-admin.css" rel="stylesheet">
     <link href="../css/sb-admin-rtl.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/added.css"/>
 
     <!-- Custom Fonts -->
     <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -91,6 +92,37 @@
                         });
             })
         })
+
+        $(document).ready(function () {
+            $(".btn-inOfficeHistory").each(function () {
+                $(this).click(function () {
+                    alert("asddasd");
+                    $.ajax({
+                        url: "/Controller/ServletShowInOfficeHistory",
+                        type: "post",
+                        data: {"id": $(this).attr("id")},
+                        dataType: "json",
+                        success: function (InOffices) {
+                            alert("success");
+                            $("#inOfficeModalBody").html("");
+                            for (var i = 0; i < InOffices.length; i++) {
+                                var text;
+                                if (InOffices[i].toDate == null) {
+                                    text = '<tr><td>' + InOffices[i].positionName + '</td>' +
+                                            '<td>' + InOffices[i].fromDate + '</td>' +
+                                            '<td>' + "" + '</td></tr>';
+                                } else {
+                                    text = '<tr><td>' + InOffices[i].positionName + '</td>' +
+                                            '<td>' + InOffices[i].fromDate + '</td>' +
+                                            '<td>' + InOffices[i].toDate + '</td></tr>';
+                                }
+                                $("#inOfficeModalBody").append(text);
+                            }
+                        }
+                    });
+                });
+            });
+        });
     </script>
 
 </head>
@@ -117,10 +149,61 @@
             </div>
 
 
+            <div class="row" style="padding-left: 15px;">
+                <div class="col-sm-12" style="background-color: #EEEEEE;
+    border-radius: 6px;
+    padding-top: 15px;
+    margin-bottom: 20px;">
+                    <form action="/Controller/ServletDashboardFilters" method="post">
+                        <div class="form-group col-sm-3">
+                            <lable>انجمن:</lable>
+                            <select class="form-control" name="association">
+                                <option value="1000">همه</option>
+                                <c:forEach var="association" items="${associations}">
+                                    <option value="${association.id}">${association.name}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <lable>سمت:</lable>
+                            <select class="form-control" name="position">
+                                <option value="1000">همه</option>
+                                <c:forEach var="position" items="${positions}">
+                                    <option value="${position.id}">${position.name}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <lable>تاریخ:</lable>
+                            <div class="row">
+                                <div class="form-group col-sm-1">
+                                    <label>از</label>
+                                </div>
+                                <div class="form-group col-sm-5">
+                                    <input class="form-control" name="beginDate">
+                                </div>
+                                <div class="form-group col-sm-1">
+                                    <label>تا</label>
+                                </div>
+                                <div class="form-group col-sm-5">
+                                    <input class="form-control" name="endDate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-2" style="text-align: center; bottom: -20px;">
+                            <button type="submit" class="btn btn-primary">نمایش</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
             <div class="row">
+
                 <div class="col-lg-8">
+
                     <c:if test="${currentUser.position.id == 1 || currentUser.position.id == 2}">
-                        <a href="/Controller/ServletUsersNotActiveInitialize" class="btn btn-default" style="margin: 20px">کاربران
+
+                        <a href="/Controller/ServletUsersNotActiveInitialize" class="btn btn-default"
+                           style="margin: 20px">کاربران
                             غیر فعال</a>
                     </c:if>
                     <div class="panel panel-default">
@@ -134,7 +217,8 @@
                                     <tr>
                                         <th>نام</th>
                                         <th>نام خانوادگی</th>
-                                        <th>سمت</th>
+                                        <th>سمت فعلی</th>
+                                        <th>سمت های قبلی</th>
                                         <th>انجمن مربوطه</th>
                                         <th style="display: none;">id</th>
                                     </tr>
@@ -145,6 +229,12 @@
                                             <td>${user.fName}</td>
                                             <td>${user.lName}</td>
                                             <td>${user.position.name}</td>
+                                            <td>
+                                                <button class="btn btn-primary btn-inOfficeHistory"
+                                                        id="${user.id}"
+                                                        data-toggle="modal" data-target="#inOfficesModal">مشاهده
+                                                </button>
+                                            </td>
                                             <td>${user.association.name}</td>
                                             <td style="display: none;">${user.id}</td>
                                         </tr>
@@ -158,6 +248,48 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Modal - changes -->
+                <div class="modal fade" id="inOfficesModal" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title"></h4>
+                                <br/>
+                            </div>
+                            <div class="modal-body">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"><i class="fa fa-calendar"></i> تغییرات</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <!-- .table -->
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-hover table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>سمت</th>
+                                                    <th>از تاریخ</th>
+                                                    <th>تا تاریخ</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody id="inOfficeModalBody">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- /.table -->
+                                    </div>
+                                </div>
+                                <!-- /.panel -->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.Modal -->
 
 
                 <div class="col-lg-4">

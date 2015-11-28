@@ -1,6 +1,7 @@
 package Controller;
 
 
+import Logic.AssociationDAO;
 import Logic.WorkflowDAO;
 
 import javax.servlet.ServletException;
@@ -25,6 +26,10 @@ public class ServletCreatePlan extends HttpServlet {
 //        List workflows = workflowDAO.getAllWorkflows();
 //
 //        request.setAttribute("workflows", workflows);
+        AssociationDAO associationDAO = new AssociationDAO();
+        List associations = associationDAO.getAllActiveAssociations();
+
+        request.setAttribute("associations", associations);
 
         String type = request.getParameter("type");
 

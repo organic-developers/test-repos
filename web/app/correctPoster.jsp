@@ -49,6 +49,8 @@
     <script src="/js/persianDatepicker.min.js"></script>
 
     <script src="/js/added.js"></script>
+    <script src="/js/added-datepicker.js"></script>
+
 </head>
 <body class="dashboard-background">
 

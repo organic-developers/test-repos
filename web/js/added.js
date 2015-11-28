@@ -81,6 +81,31 @@ $(document).ready(function () {
         $(".enlisted-table").append(x);
         makeRemovable();
     });
+    $("#enlisted-plus-plus").click(function () {
+        var x = '<div class="table-row">' +
+            '<div class="form-group col-xs-2">' +
+            '<input type="text" class="form-control" name="enlisted-fName-" placeholder="نام">' +
+            '</div>' +
+            '<div class="form-group col-xs-2">' +
+            '<input type="text" class="form-control" name="enlisted-lName-" placeholder="نام خانوادگی">' +
+            '</div>' +
+            '<div class="form-group col-xs-2">' +
+            '<input type="number" class="form-control" name="enlisted-studentId-" placeholder="شماره دانشجویی">' +
+            '</div>' +
+            '<div class="form-group col-xs-2">' +
+            '<input type="number" class="form-control" name="enlisted-phone-" placeholder="تلفن همراه">' +
+            '</div>' +
+            '<div class="form-group col-xs-2">' +
+            '<input type="email" class="form-control" name="enlisted-email-" placeholder="ایمیل">' +
+            '</div>' +
+            '<div class="form-group col-xs-1">' +
+            '<input type="checkbox" class="form-control checki" name="confirmed-" value="true">' +
+            '</div>'+
+            '<div class="form-group col-xs-1"><span class="glyphicon glyphicon-remove" ></span></div>' +
+            '</div>';
+        $(".enlisted-table").append(x);
+        makeRemovable();
+    });
     $("#guest-plus").click(function () {
         var i = $(".guest-table .table-row").length;
         var x = '<div class="table-row">' +
@@ -406,15 +431,15 @@ function calculateMoneySum(){
     var sum = Number($("#incomeSum").val()) - Number($("#expenseSum").val());
     $("#moneySum").val(sum);
 }
-
-$(document).ready(function () {
-    $(".usage").persianDatepicker();
-    $(".pdp").persianDatepicker({
-        formatDate: "YYYY/0M/0D",
-        startDay: "today",
-        cellWidth: 28,
-        cellHeight: 24,
-        fontSize: 12,
-    });
-});
+//
+//$(document).ready(function () {
+//    $(".usage").persianDatepicker();
+//    $(".pdp").persianDatepicker({
+//        formatDate: "YYYY/0M/0D",
+//        startDay: "today",
+//        cellWidth: 28,
+//        cellHeight: 24,
+//        fontSize: 12,
+//    });
+//});
 

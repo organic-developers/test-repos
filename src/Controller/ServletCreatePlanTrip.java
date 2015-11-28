@@ -50,9 +50,17 @@ public class ServletCreatePlanTrip extends HttpServlet {
 
 
     public Plan makePlan(HttpServletRequest request) throws IOException, ServletException {
+
         Plan plan = new Plan();
 
-        plan.setAssociation(((User) request.getSession().getAttribute("currentUser")).getAssociation());
+        User currentUser = (User) request.getSession().getAttribute("currentUser");
+        if(currentUser.getPosition().getId() == 1){
+            AssociationDAO associationDAO = new AssociationDAO();
+            plan.setAssociation(associationDAO.getAssociationById(Integer.parseInt(request.getParameter("association"))));
+        } else {
+            plan.setAssociation(currentUser.getAssociation());
+        }
+
         if (request.getParameter("id") != null && !request.getParameter("id").equals("")) {
             plan.setId(Integer.parseInt(request.getParameter("id")));
         }

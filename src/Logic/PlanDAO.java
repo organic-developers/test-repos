@@ -2,16 +2,14 @@ package Logic;
 
 import Controller.HibernateUtil;
 import Models.*;
-import com.ghasemkiani.util.icu.PersianCalendar;
 import com.google.gson.Gson;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import java.nio.charset.Charset;
 import java.util.*;
-import java.util.Calendar;
-import Logic.DateUtil;
 
 public class PlanDAO {
 
@@ -217,7 +215,7 @@ public class PlanDAO {
             Hibernate.initialize(plan.getGuests());
             Hibernate.initialize(plan.getJudges());
             Hibernate.initialize(plan.getPlanStateHistories());
-            for (PlanStateHistory PlanStateHistory : plan.getPlanStateHistories()) {
+            for (Models.PlanStateHistory PlanStateHistory : plan.getPlanStateHistories()) {
                 Hibernate.initialize(PlanStateHistory.getWorkflowState());
                 Hibernate.initialize(PlanStateHistory.getUser().getPosition());
             }
@@ -245,6 +243,47 @@ public class PlanDAO {
         session.getTransaction().commit();
         session.close();
 
+        return plans;
+    }
+
+    public List<Plan> getPlansByWorkflowId(int workflowId) {
+
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        String qry = "select e from Plan e join fetch e.workflowState join fetch e.association a " +
+                "where e.workflow.id = :workflow";
+        List plans = session.createQuery(qry)
+                .setParameter("workflow", workflowId)
+                .list();
+
+        session.getTransaction().commit();
+        session.close();
+
+        return plans;
+    }
+
+    public List<Plan> getPlansByAssociationAndWorkflow(int associationId, int workflowId) {
+
+        List plans = null;
+        try {
+            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+            Session session = sessionFactory.openSession();
+            session.beginTransaction();
+
+            String qry = "select e from Plan e join fetch e.workflowState join fetch e.association a" +
+                    " where e.workflow.id = :workflowId and a.id = :associationId";
+            plans = session.createQuery(qry)
+                    .setParameter("workflowId", workflowId)
+                    .setParameter("associationId", associationId)
+                    .list();
+
+            session.getTransaction().commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return plans;
     }
 
@@ -579,20 +618,23 @@ public class PlanDAO {
             if ((plan.getTitle() != null && !plan.getTitle().equals("")) && (plan1.getTitle() != null && !plan1.getTitle().equals(""))) {
                 if (!plan.getTitle().equals(plan1.getTitle())) {
                     Change change = new Change();
-                    change.setFieldName("title");
+                    String myString = "\u0639\u0646\u0648\u0627\u0646";
+                    change.setFieldName(myString);
                     change.setModifiedFrom(plan1.getTitle());
                     change.setModifiedTo(plan.getTitle());
                     changes.add(change);
                 }
             } else if (plan.getTitle() != null && !plan.getTitle().equals("")) {
                 Change change = new Change();
-                change.setFieldName("title");
+                String myString = "\u0639\u0646\u0648\u0627\u0646";
+                change.setFieldName(myString);
                 change.setModifiedFrom("");
                 change.setModifiedTo(plan.getTitle());
                 changes.add(change);
             } else {
                 Change change = new Change();
-                change.setFieldName("title");
+                String myString = "\u0639\u0646\u0648\u0627\u0646";
+                change.setFieldName(myString);
                 change.setModifiedFrom(plan1.getTitle());
                 change.setModifiedTo("");
                 changes.add(change);
@@ -603,20 +645,23 @@ public class PlanDAO {
             if ((plan.getPlace() != null && !plan.getPlace().equals("")) && (plan1.getPlace() != null && !plan1.getPlace().equals(""))) {
                 if (!plan.getPlace().equals(plan1.getPlace())) {
                     Change change = new Change();
-                    change.setFieldName("place");
+                    String myString = "\u0645\u0643\u0627\u0646";
+                    change.setFieldName(myString);
                     change.setModifiedFrom(plan1.getPlace());
                     change.setModifiedTo(plan.getPlace());
                     changes.add(change);
                 }
             } else if (plan.getPlace() != null && !plan.getPlace().equals("")) {
                 Change change = new Change();
-                change.setFieldName("place");
+                String myString = "\u0645\u0643\u0627\u0646";
+                change.setFieldName(myString);
                 change.setModifiedFrom("");
                 change.setModifiedTo(plan.getPlace());
                 changes.add(change);
             } else {
                 Change change = new Change();
-                change.setFieldName("place");
+                String myString = "\u0645\u0643\u0627\u0646";
+                change.setFieldName(myString);
                 change.setModifiedFrom(plan1.getPlace());
                 change.setModifiedTo("");
                 changes.add(change);
@@ -627,20 +672,23 @@ public class PlanDAO {
             if ((plan.getBeginDate() != null && !plan.getBeginDate().equals("")) && (plan1.getBeginDate() != null && !plan1.getBeginDate().equals(""))) {
                 if (!plan.getBeginDate().equals(plan1.getBeginDate())) {
                     Change change = new Change();
-                    change.setFieldName("beginDate");
+                    String myString = "\u062A\u0627\u0631\u06CC\u062E\u061C\u0622\u063A\u0627\u0632";
+                    change.setFieldName(myString);
                     change.setModifiedFrom(plan1.getBeginDate());
                     change.setModifiedTo(plan.getBeginDate());
                     changes.add(change);
                 }
             } else if (plan.getBeginDate() != null && !plan.getBeginDate().equals("")) {
                 Change change = new Change();
-                change.setFieldName("beginDate");
+                String myString = "\u062A\u0627\u0631\u06CC\u062E\u061C\u0622\u063A\u0627\u0632";
+                change.setFieldName(myString);
                 change.setModifiedFrom("");
                 change.setModifiedTo(plan.getBeginDate());
                 changes.add(change);
             } else {
                 Change change = new Change();
-                change.setFieldName("beginDate");
+                String myString = "\u062A\u0627\u0631\u06CC\u062E\u061C\u0622\u063A\u0627\u0632";
+                change.setFieldName(myString);
                 change.setModifiedFrom(plan1.getBeginDate());
                 change.setModifiedTo("");
                 changes.add(change);
@@ -651,20 +699,23 @@ public class PlanDAO {
             if ((plan.getEndDate() != null && !plan.getEndDate().equals("")) && (plan1.getEndDate() != null && !plan1.getEndDate().equals(""))) {
                 if (!plan.getEndDate().equals(plan1.getEndDate())) {
                     Change change = new Change();
-                    change.setFieldName("endDate");
+                    String myString = "\u062A\u0627\u0631\u06CC\u062E\u061C\u067E\u0627\u06CC\u0627\u0646";
+                    change.setFieldName(myString);
                     change.setModifiedFrom(plan1.getEndDate());
                     change.setModifiedTo(plan.getEndDate());
                     changes.add(change);
                 }
             } else if (plan.getEndDate() != null && !plan.getEndDate().equals("")) {
                 Change change = new Change();
-                change.setFieldName("endDate");
+                String myString = "\u062A\u0627\u0631\u06CC\u062E\u061C\u067E\u0627\u06CC\u0627\u0646";
+                change.setFieldName(myString);
                 change.setModifiedFrom("");
                 change.setModifiedTo(plan.getEndDate());
                 changes.add(change);
             } else {
                 Change change = new Change();
-                change.setFieldName("endDate");
+                String myString = "\u062A\u0627\u0631\u06CC\u062E\u061C\u067E\u0627\u06CC\u0627\u0646";
+                change.setFieldName(myString);
                 change.setModifiedFrom(plan1.getEndDate());
                 change.setModifiedTo("");
                 changes.add(change);
@@ -675,20 +726,23 @@ public class PlanDAO {
             if ((plan.getTime() != null && !plan.getTime().equals("")) && (plan1.getTime() != null && !plan1.getTime().equals(""))) {
                 if (!plan.getTime().equals(plan1.getTime())) {
                     Change change = new Change();
-                    change.setFieldName("time");
+                    String myString = "\u0632\u0645\u0627\u0646\u061C\u0628\u0631\u06AF\u0632\u0627\u0631\u06CC";
+                    change.setFieldName(myString);
                     change.setModifiedFrom(plan1.getTime());
                     change.setModifiedTo(plan.getTime());
                     changes.add(change);
                 }
             } else if (plan.getTime() != null && !plan.getTime().equals("")) {
                 Change change = new Change();
-                change.setFieldName("time");
+                String myString = "\u0632\u0645\u0627\u0646\u061C\u0628\u0631\u06AF\u0632\u0627\u0631\u06CC";
+                change.setFieldName(myString);
                 change.setModifiedFrom("");
                 change.setModifiedTo(plan.getTime());
                 changes.add(change);
             } else {
                 Change change = new Change();
-                change.setFieldName("time");
+                String myString = "\u0632\u0645\u0627\u0646\u061C\u0628\u0631\u06AF\u0632\u0627\u0631\u06CC";
+                change.setFieldName(myString);
                 change.setModifiedFrom(plan1.getTime());
                 change.setModifiedTo("");
                 changes.add(change);
@@ -699,44 +753,51 @@ public class PlanDAO {
             if ((plan.getRequestedItems() != null && !plan.getRequestedItems().equals("")) && (plan1.getRequestedItems() != null && !plan1.getRequestedItems().equals(""))) {
                 if (!plan.getRequestedItems().equals(plan1.getRequestedItems())) {
                     Change change = new Change();
-                    change.setFieldName("requestedItems");
+                    String myString = "\u0645\u0648\u0627\u0631\u062F\u061C\u062F\u0631\u062E\u0648\u0627\u0633\u062A\u06CC";
+                    change.setFieldName(myString);
                     change.setModifiedFrom(plan1.getRequestedItems());
                     change.setModifiedTo(plan.getRequestedItems());
                     changes.add(change);
                 }
             } else if (plan.getRequestedItems() != null && !plan.getRequestedItems().equals("")) {
                 Change change = new Change();
-                change.setFieldName("requestedItems");
+                String myString = "\u0645\u0648\u0627\u0631\u062F\u061C\u062F\u0631\u062E\u0648\u0627\u0633\u062A\u06CC";
+                change.setFieldName(myString);
                 change.setModifiedFrom("");
                 change.setModifiedTo(plan.getRequestedItems());
                 changes.add(change);
             } else {
                 Change change = new Change();
-                change.setFieldName("requestedItems");
+                String myString = "\u0645\u0648\u0627\u0631\u062F\u061C\u062F\u0631\u062E\u0648\u0627\u0633\u062A\u06CC";
+                change.setFieldName(myString);
                 change.setModifiedFrom(plan1.getRequestedItems());
                 change.setModifiedTo("");
                 changes.add(change);
             }
         }
 
+
         if (!((plan.getStudentMoney() == null || plan.getStudentMoney().equals("")) && (plan1.getStudentMoney() == null || plan1.getStudentMoney().equals("")))) {
             if ((plan.getStudentMoney() != null && !plan.getStudentMoney().equals("")) && (plan1.getStudentMoney() != null && !plan1.getStudentMoney().equals(""))) {
                 if (!plan.getStudentMoney().equals(plan1.getStudentMoney())) {
                     Change change = new Change();
-                    change.setFieldName("studentMoney");
+                    String myString = "\u0645\u0628\u0627\u0644\u063A\u061C\u062F\u0631\u06CC\u0627\u0641\u062A\u06CC\u061C\u0627\u0632\u061C\u062F\u0627\u0646\u0634\u062C\u0648\u06CC\u0627\u0646";
+                    change.setFieldName(myString);
                     change.setModifiedFrom(plan1.getStudentMoney());
                     change.setModifiedTo(plan.getStudentMoney());
                     changes.add(change);
                 }
             } else if (plan.getStudentMoney() != null && !plan.getStudentMoney().equals("")) {
                 Change change = new Change();
-                change.setFieldName("studentMoney");
+                String myString = "\u0645\u0628\u0627\u0644\u063A\u061C\u062F\u0631\u06CC\u0627\u0641\u062A\u06CC\u061C\u0627\u0632\u061C\u062F\u0627\u0646\u0634\u062C\u0648\u06CC\u0627\u0646";
+                change.setFieldName(myString);
                 change.setModifiedFrom("");
                 change.setModifiedTo(plan.getStudentMoney());
                 changes.add(change);
             } else {
                 Change change = new Change();
-                change.setFieldName("studentMoney");
+                String myString = "\u0645\u0628\u0627\u0644\u063A\u061C\u062F\u0631\u06CC\u0627\u0641\u062A\u06CC\u061C\u0627\u0632\u061C\u062F\u0627\u0646\u0634\u062C\u0648\u06CC\u0627\u0646";
+                change.setFieldName(myString);
                 change.setModifiedFrom(plan1.getStudentMoney());
                 change.setModifiedTo("");
                 changes.add(change);
@@ -747,20 +808,23 @@ public class PlanDAO {
             if ((plan.getSponsorMoney() != null && !plan.getSponsorMoney().equals("")) && (plan1.getSponsorMoney() != null && !plan1.getSponsorMoney().equals(""))) {
                 if (!plan.getSponsorMoney().equals(plan1.getSponsorMoney())) {
                     Change change = new Change();
-                    change.setFieldName("sponsorMoney");
+                    String myString = "\u0645\u0628\u0627\u0644\u063A\u061C\u062F\u0631\u06CC\u0627\u0641\u062A\u06CC\u061C\u0627\u0632\u061C\u0627\u0633\u067E\u0627\u0646\u0633\u0631";
+                    change.setFieldName(myString);
                     change.setModifiedFrom(plan1.getSponsorMoney());
                     change.setModifiedTo(plan.getSponsorMoney());
                     changes.add(change);
                 }
             } else if (plan.getSponsorMoney() != null && !plan.getSponsorMoney().equals("")) {
                 Change change = new Change();
-                change.setFieldName("sponsorMoney");
+                String myString = "\u0645\u0628\u0627\u0644\u063A\u061C\u062F\u0631\u06CC\u0627\u0641\u062A\u06CC\u061C\u0627\u0632\u061C\u0627\u0633\u067E\u0627\u0646\u0633\u0631";
+                change.setFieldName(myString);
                 change.setModifiedFrom("");
                 change.setModifiedTo(plan.getSponsorMoney());
                 changes.add(change);
             } else {
                 Change change = new Change();
-                change.setFieldName("sponsorMoney");
+                String myString = "\u0645\u0628\u0627\u0644\u063A\u061C\u062F\u0631\u06CC\u0627\u0641\u062A\u06CC\u061C\u0627\u0632\u061C\u0627\u0633\u067E\u0627\u0646\u0633\u0631";
+                change.setFieldName(myString);
                 change.setModifiedFrom(plan1.getSponsorMoney());
                 change.setModifiedTo("");
                 changes.add(change);
@@ -771,20 +835,23 @@ public class PlanDAO {
             if ((plan.getOtherIncome() != null && !plan.getOtherIncome().equals("")) && (plan1.getOtherIncome() != null && !plan1.getOtherIncome().equals(""))) {
                 if (!plan.getOtherIncome().equals(plan1.getOtherIncome())) {
                     Change change = new Change();
-                    change.setFieldName("otherIncome");
+                    String myString = "\u0633\u0627\u06CC\u0631\u061C\u062F\u0631\u0622\u0645\u062F\u0647\u0627";
+                    change.setFieldName(myString);
                     change.setModifiedFrom(plan1.getOtherIncome());
                     change.setModifiedTo(plan.getOtherIncome());
                     changes.add(change);
                 }
             } else if (plan.getOtherIncome() != null && !plan.getOtherIncome().equals("")) {
                 Change change = new Change();
-                change.setFieldName("otherIncome");
+                String myString = "\u0633\u0627\u06CC\u0631\u061C\u062F\u0631\u0622\u0645\u062F\u0647\u0627";
+                change.setFieldName(myString);
                 change.setModifiedFrom("");
                 change.setModifiedTo(plan.getOtherIncome());
                 changes.add(change);
             } else {
                 Change change = new Change();
-                change.setFieldName("otherIncome");
+                String myString = "\u0633\u0627\u06CC\u0631\u061C\u062F\u0631\u0622\u0645\u062F\u0647\u0627";
+                change.setFieldName(myString);
                 change.setModifiedFrom(plan1.getOtherIncome());
                 change.setModifiedTo("");
                 changes.add(change);
@@ -795,20 +862,23 @@ public class PlanDAO {
             if ((plan.getSidePrograms() != null && !plan.getSidePrograms().equals("")) && (plan1.getSidePrograms() != null && !plan1.getSidePrograms().equals(""))) {
                 if (!plan.getSidePrograms().equals(plan1.getSidePrograms())) {
                     Change change = new Change();
-                    change.setFieldName("sidePrograms");
+                    String myString = "\u0628\u0631\u0646\u0627\u0645\u0647\u061C\u0647\u0627\u06CC\u061C\u062C\u0627\u0646\u0628\u06CC";
+                    change.setFieldName(myString);
                     change.setModifiedFrom(plan1.getSidePrograms());
                     change.setModifiedTo(plan.getSidePrograms());
                     changes.add(change);
                 }
             } else if (plan.getSidePrograms() != null && !plan.getSidePrograms().equals("")) {
                 Change change = new Change();
-                change.setFieldName("sidePrograms");
+                String myString = "\u0628\u0631\u0646\u0627\u0645\u0647\u061C\u0647\u0627\u06CC\u061C\u062C\u0627\u0646\u0628\u06CC";
+                change.setFieldName(myString);
                 change.setModifiedFrom("");
                 change.setModifiedTo(plan.getSidePrograms());
                 changes.add(change);
             } else {
                 Change change = new Change();
-                change.setFieldName("sidePrograms");
+                String myString = "\u0628\u0631\u0646\u0627\u0645\u0647\u061C\u0647\u0627\u06CC\u061C\u062C\u0627\u0646\u0628\u06CC";
+                change.setFieldName(myString);
                 change.setModifiedFrom(plan1.getSidePrograms());
                 change.setModifiedTo("");
                 changes.add(change);
@@ -819,20 +889,23 @@ public class PlanDAO {
             if ((plan.getRegistrationBeginDate() != null && !plan.getRegistrationBeginDate().equals("")) && (plan1.getRegistrationBeginDate() != null && !plan1.getRegistrationBeginDate().equals(""))) {
                 if (!plan.getRegistrationBeginDate().equals(plan1.getRegistrationBeginDate())) {
                     Change change = new Change();
-                    change.setFieldName("registrationBeginDate");
+                    String myString = "\u062A\u0627\u0631\u06CC\u062E\u061C\u0622\u063A\u0627\u0632\u062B\u0628\u062A\u061C\u0646\u0627\u0645";
+                    change.setFieldName(myString);
                     change.setModifiedFrom(plan1.getRegistrationBeginDate());
                     change.setModifiedTo(plan.getRegistrationBeginDate());
                     changes.add(change);
                 }
             } else if (plan.getRegistrationBeginDate() != null && !plan.getRegistrationBeginDate().equals("")) {
                 Change change = new Change();
-                change.setFieldName("registrationBeginDate");
+                String myString = "\u062A\u0627\u0631\u06CC\u062E\u061C\u0622\u063A\u0627\u0632\u062B\u0628\u062A\u061C\u0646\u0627\u0645";
+                change.setFieldName(myString);
                 change.setModifiedFrom("");
                 change.setModifiedTo(plan.getRegistrationBeginDate());
                 changes.add(change);
             } else {
                 Change change = new Change();
-                change.setFieldName("registrationBeginDate");
+                String myString = "\u062A\u0627\u0631\u06CC\u062E\u061C\u0622\u063A\u0627\u0632\u062B\u0628\u062A\u061C\u0646\u0627\u0645";
+                change.setFieldName(myString);
                 change.setModifiedFrom(plan1.getRegistrationBeginDate());
                 change.setModifiedTo("");
                 changes.add(change);
@@ -843,20 +916,23 @@ public class PlanDAO {
             if ((plan.getRegistrationEndDate() != null && !plan.getRegistrationEndDate().equals("")) && (plan1.getRegistrationEndDate() != null && !plan1.getRegistrationEndDate().equals(""))) {
                 if (!plan.getRegistrationEndDate().equals(plan1.getRegistrationEndDate())) {
                     Change change = new Change();
-                    change.setFieldName("registrationEndDate");
+                    String myString = "\u062A\u0627\u0631\u06CC\u062E\u061C\u067E\u0627\u06CC\u0627\u0646\u062B\u0628\u062A\u061C\u0646\u0627\u0645";
+                    change.setFieldName(myString);
                     change.setModifiedFrom(plan1.getRegistrationEndDate());
                     change.setModifiedTo(plan.getRegistrationEndDate());
                     changes.add(change);
                 }
             } else if (plan.getRegistrationEndDate() != null && !plan.getRegistrationEndDate().equals("")) {
                 Change change = new Change();
-                change.setFieldName("registrationEndDate");
+                String myString = "\u062A\u0627\u0631\u06CC\u062E\u061C\u067E\u0627\u06CC\u0627\u0646\u062B\u0628\u062A\u061C\u0646\u0627\u0645";
+                change.setFieldName(myString);
                 change.setModifiedFrom("");
                 change.setModifiedTo(plan.getRegistrationEndDate());
                 changes.add(change);
             } else {
                 Change change = new Change();
-                change.setFieldName("registrationEndDate");
+                String myString = "\u062A\u0627\u0631\u06CC\u062E\u061C\u067E\u0627\u06CC\u0627\u0646\u062B\u0628\u062A\u061C\u0646\u0627\u0645";
+                change.setFieldName(myString);
                 change.setModifiedFrom(plan1.getRegistrationEndDate());
                 change.setModifiedTo("");
                 changes.add(change);
@@ -915,20 +991,23 @@ public class PlanDAO {
             if ((plan.getRegistrationMin() != null && !plan.getRegistrationMin().equals("")) && (plan1.getRegistrationMin() != null && !plan1.getRegistrationMin().equals(""))) {
                 if (!plan.getRegistrationMin().equals(plan1.getRegistrationMin())) {
                     Change change = new Change();
-                    change.setFieldName("registrationMin");
+                    String myString = "\u062D\u062F\u0627\u0642\u0644\u061C\u0634\u0631\u0643\u062A\u0643\u0646\u0646\u062F\u06AF\u0627\u0646";
+                    change.setFieldName(myString);
                     change.setModifiedFrom(plan1.getRegistrationMin());
                     change.setModifiedTo(plan.getRegistrationMin());
                     changes.add(change);
                 }
             } else if (plan.getRegistrationMin() != null && !plan.getRegistrationMin().equals("")) {
                 Change change = new Change();
-                change.setFieldName("registrationMin");
+                String myString = "\u062D\u062F\u0627\u0642\u0644\u061C\u0634\u0631\u0643\u062A\u0643\u0646\u0646\u062F\u06AF\u0627\u0646";
+                change.setFieldName(myString);
                 change.setModifiedFrom("");
                 change.setModifiedTo(plan.getRegistrationMin());
                 changes.add(change);
             } else {
                 Change change = new Change();
-                change.setFieldName("registrationMin");
+                String myString = "\u062D\u062F\u0627\u0642\u0644\u061C\u0634\u0631\u0643\u062A\u0643\u0646\u0646\u062F\u06AF\u0627\u0646";
+                change.setFieldName(myString);
                 change.setModifiedFrom(plan1.getRegistrationMin());
                 change.setModifiedTo("");
                 changes.add(change);
@@ -939,20 +1018,23 @@ public class PlanDAO {
             if ((plan.getRegistrationMax() != null && !plan.getRegistrationMax().equals("")) && (plan1.getRegistrationMax() != null && !plan1.getRegistrationMax().equals(""))) {
                 if (!plan.getRegistrationMax().equals(plan1.getRegistrationMax())) {
                     Change change = new Change();
-                    change.setFieldName("registrationMax");
+                    String myString = "\u062D\u062F\u0627\u0643\u067A\u0631\u061C\u0634\u0631\u0643\u062A\u0643\u0646\u0646\u062F\u06AF\u0627\u0646";
+                    change.setFieldName(myString);
                     change.setModifiedFrom(plan1.getRegistrationMax());
                     change.setModifiedTo(plan.getRegistrationMax());
                     changes.add(change);
                 }
             } else if (plan.getRegistrationMax() != null && !plan.getRegistrationMax().equals("")) {
                 Change change = new Change();
-                change.setFieldName("registrationMax");
+                String myString = "\u062D\u062F\u0627\u0643\u067A\u0631\u061C\u0634\u0631\u0643\u062A\u0643\u0646\u0646\u062F\u06AF\u0627\u0646";
+                change.setFieldName(myString);
                 change.setModifiedFrom("");
                 change.setModifiedTo(plan.getRegistrationMax());
                 changes.add(change);
             } else {
                 Change change = new Change();
-                change.setFieldName("registrationMax");
+                String myString = "\u062D\u062F\u0627\u0643\u062B\u0631\u061C\u0634\u0631\u0643\u062A\u0643\u0646\u0646\u062F\u06AF\u0627\u0646";
+                change.setFieldName(myString);
                 change.setModifiedFrom(plan1.getRegistrationMax());
                 change.setModifiedTo("");
                 changes.add(change);
@@ -963,20 +1045,23 @@ public class PlanDAO {
             if ((plan.getRegistrationPlace() != null && !plan.getRegistrationPlace().equals("")) && (plan1.getRegistrationPlace() != null && !plan1.getRegistrationPlace().equals(""))) {
                 if (!plan.getRegistrationPlace().equals(plan1.getRegistrationPlace())) {
                     Change change = new Change();
-                    change.setFieldName("registrationPlace");
+                    String myString = "\u0645\u0643\u0627\u0646\u061C\u062B\u0628\u062A\u061C\u0646\u0627\u0645";
+                    change.setFieldName(myString);
                     change.setModifiedFrom(plan1.getRegistrationPlace());
                     change.setModifiedTo(plan.getRegistrationPlace());
                     changes.add(change);
                 }
             } else if (plan.getRegistrationPlace() != null && !plan.getRegistrationPlace().equals("")) {
                 Change change = new Change();
-                change.setFieldName("registrationPlace");
+                String myString = "\u0645\u0643\u0627\u0646\u061C\u062B\u0628\u062A\u061C\u0646\u0627\u0645";
+                change.setFieldName(myString);
                 change.setModifiedFrom("");
                 change.setModifiedTo(plan.getRegistrationPlace());
                 changes.add(change);
             } else {
                 Change change = new Change();
-                change.setFieldName("registrationPlace");
+                String myString = "\u0645\u0643\u0627\u0646\u061C\u062B\u0628\u062A\u061C\u0646\u0627\u0645";
+                change.setFieldName(myString);
                 change.setModifiedFrom(plan1.getRegistrationPlace());
                 change.setModifiedTo("");
                 changes.add(change);
@@ -987,20 +1072,23 @@ public class PlanDAO {
             if ((plan.getRegistrationFee() != null && !plan.getRegistrationFee().equals("")) && (plan1.getRegistrationFee() != null && !plan1.getRegistrationFee().equals(""))) {
                 if (!plan.getRegistrationFee().equals(plan1.getRegistrationFee())) {
                     Change change = new Change();
-                    change.setFieldName("registrationFee");
+                    String myString = "\u0647\u0632\u06CC\u0646\u0647\u061C\u062B\u0628\u062A\u061C\u0646\u0627\u0645";
+                    change.setFieldName(myString);
                     change.setModifiedFrom(plan1.getRegistrationFee());
                     change.setModifiedTo(plan.getRegistrationFee());
                     changes.add(change);
                 }
             } else if (plan.getRegistrationFee() != null && !plan.getRegistrationFee().equals("")) {
                 Change change = new Change();
-                change.setFieldName("registrationFee");
+                String myString = "\u0647\u0632\u06CC\u0646\u0647\u061C\u062B\u0628\u062A\u061C\u0646\u0627\u0645";
+                change.setFieldName(myString);
                 change.setModifiedFrom("");
                 change.setModifiedTo(plan.getRegistrationFee());
                 changes.add(change);
             } else {
                 Change change = new Change();
-                change.setFieldName("registrationFee");
+                String myString = "\u0647\u0632\u06CC\u0646\u0647\u061C\u062B\u0628\u062A\u061C\u0646\u0627\u0645";
+                change.setFieldName(myString);
                 change.setModifiedFrom(plan1.getRegistrationFee());
                 change.setModifiedTo("");
                 changes.add(change);
@@ -1014,7 +1102,8 @@ public class PlanDAO {
                         (plan.getSupervisorPosition().equals(plan1.getSupervisorPosition())) &&
                         (plan.getSupervisorPhone().equals(plan1.getSupervisorPhone())))) {
                     Change change = new Change();
-                    change.setFieldName("supervisor");
+                    String myString = "\u0627\u0633\u062A\u0627\u062F\u061C\u06CC\u0627\u061C\u0643\u0627\u0631\u0634\u0646\u0627\u0633\u061C\u0645\u0631\u0628\u0648\u0637\u0647\u061C\u062C\u0647\u062B\u061C\u062D\u0636\u0648\u0631";
+                    change.setFieldName(myString);
                     String from = plan1.getSupervisorFName() + "-" + plan1.getSupervisorLName() + "-" +
                             plan1.getSupervisorPosition() + "-" + plan1.getSupervisorPhone();
                     change.setModifiedFrom(from);
@@ -1025,7 +1114,8 @@ public class PlanDAO {
                 }
             } else if (plan.getSupervisorFName() != null && !plan.getSupervisorFName().equals("")) {
                 Change change = new Change();
-                change.setFieldName("supervisor");
+                String myString = "\u0627\u0633\u062A\u0627\u062F\u061C\u06CC\u0627\u061C\u0643\u0627\u0631\u0634\u0646\u0627\u0633\u061C\u0645\u0631\u0628\u0648\u0637\u0647\u061C\u062C\u0647\u062B\u061C\u062D\u0636\u0648\u0631";
+                change.setFieldName(myString);
                 String to = plan.getSupervisorFName() + "-" + plan.getSupervisorLName() + "-" +
                         plan.getSupervisorPosition() + "-" + plan.getSupervisorPhone();
                 change.setModifiedFrom("");
@@ -1034,7 +1124,8 @@ public class PlanDAO {
 
             } else {
                 Change change = new Change();
-                change.setFieldName("supervisor");
+                String myString = "\u0627\u0633\u062A\u0627\u062F\u061C\u06CC\u0627\u061C\u0643\u0627\u0631\u0634\u0646\u0627\u0633\u061C\u0645\u0631\u0628\u0648\u0637\u0647\u061C\u062C\u0647\u062B\u061C\u062D\u0636\u0648\u0631";
+                change.setFieldName(myString);
                 String from = plan1.getSupervisorFName() + "-" + plan1.getSupervisorLName() + "-" +
                         plan1.getSupervisorPosition() + "-" + plan1.getSupervisorPhone();
                 change.setModifiedFrom(from);
@@ -1046,15 +1137,16 @@ public class PlanDAO {
         if (!((plan.getPersonnel() == null || plan.getPersonnel().size() == 0) && (plan1.getPersonnel() == null || plan1.getPersonnel().size() == 0))) {
             if (plan.getPersonnel() != null && plan1.getPersonnel() != null && plan.getPersonnel().size() > 0 &&
                     plan1.getPersonnel().size() > 0) {
-                for(Personnel personnel: (List<Personnel>)plan1.getPersonnel()){
+                for (Personnel personnel : (List<Personnel>) plan1.getPersonnel()) {
                     personnel.setId(0);
                 }
-                for(Personnel personnel: (List<Personnel>)plan.getPersonnel()){
+                for (Personnel personnel : (List<Personnel>) plan.getPersonnel()) {
                     personnel.setId(0);
                 }
                 if (!(new Gson().toJson(plan.getPersonnel()).equals(new Gson().toJson(plan1.getPersonnel())))) {
                     Change change = new Change();
-                    change.setFieldName("personnel");
+                    String myString = "\u067E\u0631\u0633\u0646\u0644";
+                    change.setFieldName(myString);
                     change.setModifiedFrom(new Gson().toJson(plan1.getPersonnel()));
                     change.setModifiedTo(new Gson().toJson(plan.getPersonnel()));
                     change.setJson("personnel");
@@ -1062,14 +1154,16 @@ public class PlanDAO {
                 }
             } else if (plan.getPersonnel() != null && plan.getPersonnel().size() > 0) {
                 Change change = new Change();
-                change.setFieldName("personnel");
+                String myString = "\u067E\u0631\u0633\u0646\u0644";
+                change.setFieldName(myString);
                 change.setModifiedFrom("");
                 change.setModifiedTo(new Gson().toJson(plan.getPersonnel()));
                 change.setJson("personnel");
                 changes.add(change);
             } else if (plan1.getPersonnel() != null && plan1.getPersonnel().size() > 0) {
                 Change change = new Change();
-                change.setFieldName("personnel");
+                String myString = "\u067E\u0631\u0633\u0646\u0644";
+                change.setFieldName(myString);
                 change.setModifiedFrom(new Gson().toJson(plan1.getPersonnel()));
                 change.setModifiedTo("");
                 change.setJson("personnel");
@@ -1080,15 +1174,16 @@ public class PlanDAO {
         if (!((plan.getExpenses() == null || plan.getExpenses().size() == 0) && (plan1.getExpenses() == null || plan1.getExpenses().size() == 0))) {
             if (plan.getExpenses() != null && plan1.getExpenses() != null && plan.getExpenses().size() > 0 &&
                     plan1.getExpenses().size() > 0) {
-                for(Expense expense: (List<Expense>)plan1.getExpenses()){
+                for (Expense expense : (List<Expense>) plan1.getExpenses()) {
                     expense.setId(0);
                 }
-                for(Expense expense: (List<Expense>)plan.getExpenses()){
+                for (Expense expense : (List<Expense>) plan.getExpenses()) {
                     expense.setId(0);
                 }
                 if (!(new Gson().toJson(plan.getExpenses()).equals(new Gson().toJson(plan1.getExpenses())))) {
                     Change change = new Change();
-                    change.setFieldName("expenses");
+                    String myString = "\u0647\u0632\u06CC\u0646\u0647\u061C\u0647\u0627";
+                    change.setFieldName(myString);
                     change.setModifiedFrom(new Gson().toJson(plan1.getExpenses()));
                     change.setModifiedTo(new Gson().toJson(plan.getExpenses()));
                     change.setJson("expenses");
@@ -1096,14 +1191,16 @@ public class PlanDAO {
                 }
             } else if (plan.getExpenses() != null && plan.getExpenses().size() > 0) {
                 Change change = new Change();
-                change.setFieldName("expenses");
+                String myString = "\u0647\u0632\u06CC\u0646\u0647\u061C\u0647\u0627";
+                change.setFieldName(myString);
                 change.setModifiedFrom("");
                 change.setModifiedTo(new Gson().toJson(plan.getExpenses()));
                 change.setJson("expenses");
                 changes.add(change);
             } else if (plan1.getExpenses() != null && plan1.getExpenses().size() > 0) {
                 Change change = new Change();
-                change.setFieldName("expenses");
+                String myString = "\u0647\u0632\u06CC\u0646\u0647\u061C\u0647\u0627";
+                change.setFieldName(myString);
                 change.setModifiedFrom(new Gson().toJson(plan1.getExpenses()));
                 change.setModifiedTo("");
                 change.setJson("expenses");
@@ -1114,15 +1211,16 @@ public class PlanDAO {
         if (!((plan.getEnlisted() == null || plan.getEnlisted().size() == 0) && (plan1.getEnlisted() == null || plan1.getEnlisted().size() == 0))) {
             if (plan.getEnlisted() != null && plan1.getEnlisted() != null && plan.getEnlisted().size() > 0 &&
                     plan1.getEnlisted().size() > 0) {
-                for(Enlisted enlisted: (List<Enlisted>)plan1.getEnlisted()){
+                for (Enlisted enlisted : (List<Enlisted>) plan1.getEnlisted()) {
                     enlisted.setId(0);
                 }
-                for(Enlisted enlisted: (List<Enlisted>)plan.getEnlisted()){
+                for (Enlisted enlisted : (List<Enlisted>) plan.getEnlisted()) {
                     enlisted.setId(0);
                 }
                 if (!(new Gson().toJson(plan.getEnlisted()).equals(new Gson().toJson(plan1.getEnlisted())))) {
                     Change change = new Change();
-                    change.setFieldName("enlisted");
+                    String myString = "\u062B\u0628\u062A\u061C\u0646\u0627\u0645\u061C\u0643\u0646\u0646\u062F\u06AF\u0627\u0646";
+                    change.setFieldName(myString);
                     change.setModifiedFrom(new Gson().toJson(plan1.getEnlisted()));
                     change.setModifiedTo(new Gson().toJson(plan.getEnlisted()));
                     change.setJson("enlisted");
@@ -1130,14 +1228,16 @@ public class PlanDAO {
                 }
             } else if (plan.getEnlisted() != null && plan.getEnlisted().size() > 0) {
                 Change change = new Change();
-                change.setFieldName("enlisted");
+                String myString = "\u062B\u0628\u062A\u061C\u0646\u0627\u0645\u061C\u0643\u0646\u0646\u062F\u06AF\u0627\u0646";
+                change.setFieldName(myString);
                 change.setModifiedFrom("");
                 change.setModifiedTo(new Gson().toJson(plan.getEnlisted()));
                 change.setJson("enlisted");
                 changes.add(change);
             } else if (plan1.getEnlisted() != null && plan1.getEnlisted().size() > 0) {
                 Change change = new Change();
-                change.setFieldName("enlisted");
+                String myString = "\u062B\u0628\u062A\u061C\u0646\u0627\u0645\u061C\u0643\u0646\u0646\u062F\u06AF\u0627\u0646";
+                change.setFieldName(myString);
                 change.setModifiedFrom(new Gson().toJson(plan1.getEnlisted()));
                 change.setModifiedTo("");
                 change.setJson("enlisted");
@@ -1148,15 +1248,16 @@ public class PlanDAO {
         if (!((plan.getJudges() == null || plan.getJudges().size() == 0) && (plan1.getJudges() == null || plan1.getJudges().size() == 0))) {
             if (plan.getJudges() != null && plan1.getJudges() != null && plan.getJudges().size() > 0 &&
                     plan1.getJudges().size() > 0) {
-                for(Judge judge: (List<Judge>)plan1.getJudges()){
+                for (Judge judge : (List<Judge>) plan1.getJudges()) {
                     judge.setId(0);
                 }
-                for(Judge judge: (List<Judge>)plan.getJudges()){
+                for (Judge judge : (List<Judge>) plan.getJudges()) {
                     judge.setId(0);
                 }
                 if (!(new Gson().toJson(plan.getJudges()).equals(new Gson().toJson(plan1.getJudges())))) {
                     Change change = new Change();
-                    change.setFieldName("judges");
+                    String myString = "\u062F\u0627\u0648\u0631\u0647\u0627";
+                    change.setFieldName(myString);
                     change.setModifiedFrom(new Gson().toJson(plan1.getJudges()));
                     change.setModifiedTo(new Gson().toJson(plan.getJudges()));
                     change.setJson("judges");
@@ -1164,14 +1265,16 @@ public class PlanDAO {
                 }
             } else if (plan.getJudges() != null && plan.getJudges().size() > 0) {
                 Change change = new Change();
-                change.setFieldName("judges");
+                String myString = "\u062F\u0627\u0648\u0631\u0647\u0627";
+                change.setFieldName(myString);
                 change.setModifiedFrom("");
                 change.setModifiedTo(new Gson().toJson(plan.getJudges()));
                 change.setJson("judges");
                 changes.add(change);
             } else if (plan1.getJudges() != null && plan1.getJudges().size() > 0) {
                 Change change = new Change();
-                change.setFieldName("judges");
+                String myString = "\u062F\u0627\u0648\u0631\u0647\u0627";
+                change.setFieldName(myString);
                 change.setModifiedFrom(new Gson().toJson(plan1.getJudges()));
                 change.setModifiedTo("");
                 change.setJson("judges");
@@ -1182,15 +1285,16 @@ public class PlanDAO {
         if (!((plan.getGuests() == null || plan.getGuests().size() == 0) && (plan1.getGuests() == null || plan1.getGuests().size() == 0))) {
             if (plan.getGuests() != null && plan1.getGuests() != null && plan.getGuests().size() > 0 &&
                     plan1.getGuests().size() > 0) {
-                for(Guest guest: (List<Guest>)plan1.getGuests()){
+                for (Guest guest : (List<Guest>) plan1.getGuests()) {
                     guest.setId(0);
                 }
-                for(Guest guest: (List<Guest>)plan.getGuests()){
+                for (Guest guest : (List<Guest>) plan.getGuests()) {
                     guest.setId(0);
                 }
                 if (!(new Gson().toJson(plan.getGuests()).equals(new Gson().toJson(plan1.getGuests())))) {
                     Change change = new Change();
-                    change.setFieldName("guests");
+                    String myString = "\u0645\u0647\u0645\u0627\u0646\u0627\u0646";
+                    change.setFieldName(myString);
                     change.setModifiedFrom(new Gson().toJson(plan1.getGuests()));
                     change.setModifiedTo(new Gson().toJson(plan.getGuests()));
                     change.setJson("guests");
@@ -1198,14 +1302,16 @@ public class PlanDAO {
                 }
             } else if (plan.getGuests() != null && plan.getGuests().size() > 0) {
                 Change change = new Change();
-                change.setFieldName("guests");
+                String myString = "\u0645\u0647\u0645\u0627\u0646\u0627\u0646";
+                change.setFieldName(myString);
                 change.setModifiedFrom("");
                 change.setModifiedTo(new Gson().toJson(plan.getGuests()));
                 change.setJson("guests");
                 changes.add(change);
             } else if (plan1.getGuests() != null && plan1.getGuests().size() > 0) {
                 Change change = new Change();
-                change.setFieldName("guests");
+                String myString = "\u0645\u0647\u0645\u0627\u0646\u0627\u0646";
+                change.setFieldName(myString);
                 change.setModifiedFrom(new Gson().toJson(plan1.getGuests()));
                 change.setModifiedTo("");
                 change.setJson("guests");
@@ -1215,6 +1321,4 @@ public class PlanDAO {
 
         return changes;
     }
-
-
 }

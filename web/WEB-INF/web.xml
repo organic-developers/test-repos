@@ -149,60 +149,6 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>ServletCreatePlanConference</servlet-name>
-        <servlet-class>Controller.ServletCreatePlanConference</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletCreatePlanConference</servlet-name>
-        <url-pattern>/Controller/ServletCreatePlanConference</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>ServletCreatePlanContest</servlet-name>
-        <servlet-class>Controller.ServletCreatePlanContest</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletCreatePlanContest</servlet-name>
-        <url-pattern>/Controller/ServletCreatePlanContest</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>ServletCreatePlanEducational</servlet-name>
-        <servlet-class>Controller.ServletCreatePlanEducational</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletCreatePlanEducational</servlet-name>
-        <url-pattern>/Controller/ServletCreatePlanEducational</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>ServletCreatePlanElse</servlet-name>
-        <servlet-class>Controller.ServletCreatePlanElse</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletCreatePlanElse</servlet-name>
-        <url-pattern>/Controller/ServletCreatePlanElse</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>ServletCreatePlanExhibition</servlet-name>
-        <servlet-class>Controller.ServletCreatePlanExhibition</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletCreatePlanExhibition</servlet-name>
-        <url-pattern>/Controller/ServletCreatePlanExhibition</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>ServletCreatePlanMagazine</servlet-name>
-        <servlet-class>Controller.ServletCreatePlanMagazine</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletCreatePlanMagazine</servlet-name>
-        <url-pattern>/Controller/ServletCreatePlanMagazine</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>ServletCreatePlanTrip</servlet-name>
         <servlet-class>Controller.ServletCreatePlanTrip</servlet-class>
     </servlet>
@@ -218,6 +164,15 @@
     <servlet-mapping>
         <servlet-name>ServletDashboardInitializer</servlet-name>
         <url-pattern>/Controller/ServletDashboardInitializer</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletShowInOfficeHistory</servlet-name>
+        <servlet-class>Controller.ServletShowInOfficeHistory</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletShowInOfficeHistory</servlet-name>
+        <url-pattern>/Controller/ServletShowInOfficeHistory</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -469,6 +424,15 @@
     <servlet-mapping>
         <servlet-name>ServletShowPlanDetails</servlet-name>
         <url-pattern>/Controller/ServletShowPlanDetails</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletDashboardFilters</servlet-name>
+        <servlet-class>Controller.ServletDashboardFilters</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletDashboardFilters</servlet-name>
+        <url-pattern>/Controller/ServletDashboardFilters</url-pattern>
     </servlet-mapping>
 
     <servlet>

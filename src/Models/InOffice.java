@@ -41,4 +41,26 @@ public class InOffice {
     public void setToDate(String toDate) {
         this.toDate = toDate;
     }
+
+    private Position position;
+
+    @javax.persistence.ManyToOne
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    private String positionName;
+
+    @Basic
+    public String getPositionName() {
+        return positionName;
+    }
+
+    public void setPositionName(String positionName) {
+        this.positionName = positionName;
+    }
 }

@@ -192,10 +192,10 @@
         <property name="active"/>
         <many-to-one name="association" class="Models.Association" column="association_id" cascade="all"/>
         <many-to-one name="position" class="Models.Position" column="position_id"/>
-        <!--<set name="inOffice" cascade="all">-->
-            <!--<key column="user_id"/>-->
-            <!--<one-to-many class="Models.InOffice"/>-->
-        <!--</set>-->
+        <bag name="inOffice" cascade="all" order-by="id desc">
+            <key column="user_id"/>
+            <one-to-many class="Models.InOffice"/>
+        </bag>
     </class>
     <!-- /users -->
 
@@ -283,6 +283,7 @@
         </id>
         <property name="fromDate" column="from_date" type="string"/>
         <property name="toDate" column="to_date" type="string"/>
+        <many-to-one name="position" class="Models.Position" column="position_id"/>
     </class>
     <!-- /in_office -->
 

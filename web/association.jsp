@@ -45,8 +45,9 @@
                     type: "POST",
                     data: postData,
                     success: function () {
-                        alert("success");
+//                        alert("success");
                         document.getElementById("spf").reset();
+                        $("#successful-suggestion").modal('show');
                     }
                 })
                 e.preventDefault();
@@ -66,8 +67,10 @@
                         success: function (likeNumber) {
 //                            alert("success");
                             var number = divLike.find("p")[0];
-                            number.innerHTML = "";
-                            number.innerHTML = likeNumber;
+                            if(likeNumber != 0){
+                                number.innerHTML = "";
+                                number.innerHTML = likeNumber;
+                            }
                         }
                     })
                 })
@@ -85,7 +88,7 @@
                         data: {"id": $(this).attr("id")},
                         dataType: "json",
                         success: function (plan) {
-                            alert("success");
+//                            alert("success");
                             var detailsList;
                             $("#detailsList").html("");
                             switch (plan.workflow.id) {
@@ -118,7 +121,7 @@
             });
         });
 
-        function showDetailsPlanTrip(plan){
+        function showDetailsPlanTrip(plan) {
             var detailsList =
                     '<div class="form-group">' +
                     '<label class="col-sm-2 control-label">عنوان طرح:</label>' +
@@ -176,7 +179,7 @@
                     '</div>';
             return detailsList;
         }
-        function showDetailsPlanContest(plan){
+        function showDetailsPlanContest(plan) {
             var detailsList =
                     '<div class="form-group">' +
                     '<label class="col-sm-2 control-label">عنوان طرح:</label>' +
@@ -241,6 +244,41 @@
             return detailsList;
         }
     </script>
+
+
+    <script>
+        $(document).ready(function () {
+            $(".btn-registration").click(function (){
+                $("#planId").val($(this).attr("id"));
+            });
+        });
+        $(document).ready(function () {
+            $("#register-btn").click(function () {
+//                var d = $("#registration-form");
+//                alert("clicked");
+                $.ajax({
+                    url: "/Controller/ServletAssociationPage?method=methodC",
+                    type: "POST",
+                    data: {"planId": $("#planId").val(), "fName": $("#fName").val(),
+                        "lName": $("#lName").val(), "studentId": $("#studentId").val(),
+                        "phone": $("#phone").val(), "email": $("#email").val()},
+//                    mimeType: $(this).attr("enctype"),
+//                    contentType: false,
+//                    cache: false,
+//                    processData: false,
+//                    dataType: "json",
+                    success: function (data) {
+//                        alert("succeess");
+                        document.getElementById("registration-form").reset();
+                        $("#register").modal('hide');
+                        $("#register-successful").modal('show');
+//                    $("#uploaded-files").append(x);
+                    }
+
+                })
+            })
+        })
+    </script>
 </head>
 
 
@@ -267,10 +305,11 @@
     <!-- .nav-pills -->
     <ul class="nav nav-pills" style="font-size: larger">
         <li class="active"><a data-toggle="pill" href="#home">طرح های در حال ثبت نام</a></li>
-        <li><a data-toggle="pill" href="#menu1">طرح های آینده</a></li>
-        <li><a data-toggle="pill" href="#menu2">پیشنهاد طرح</a></li>
-        <li><a data-toggle="pill" href="#menu3">طرح های برگزار شده</a></li>
-        <li><a data-toggle="pill" href="#menu4">اعضای انجمن</a></li>
+        <li><a data-toggle="pill" href="#menu1">طرح های در حال اجرا</a></li>
+        <li><a data-toggle="pill" href="#menu2">طرح های آینده</a></li>
+        <li><a data-toggle="pill" href="#menu3">پیشنهاد طرح</a></li>
+        <li><a data-toggle="pill" href="#menu4">طرح های برگزار شده</a></li>
+        <li><a data-toggle="pill" href="#menu5">اعضای انجمن</a></li>
     </ul>
     <!-- /.nav-pills -->
 
@@ -299,9 +338,10 @@
                                 <div class="col-lg-12">
                                     <br>
                                     <button type="submit" data-toggle="modal" data-target="#register"
-                                            class="btn btn-success">ثبت نام
+                                            class="btn btn-success btn-registration" id="${registringPlan.id}">ثبت نام
                                     </button>
-                                    <button type="button" data-toggle="modal" id="${registringPlan.id}" data-target="#details"
+                                    <button type="button" data-toggle="modal" id="${registringPlan.id}"
+                                            data-target="#details"
                                             class="btn btn-info btn-details">
                                         جزییات
                                     </button>
@@ -320,15 +360,53 @@
 
         </div>
 
-        <!-- future plans -->
+        <!-- executing plans -->
         <div id="menu1" class="tab-pane fade">
+
+            <c:forEach var="executingPlan" items="${executingPlans}">
+                <div class="well well-lg" style="border: 2px solid #337AB7;min-height:140px">
+                    <div class="row">
+                        <div style="direction: rtl;" class="col-lg-8">
+                            <h5 style="margin-top: 0px; font-size: 17px;" class="page-header">
+                                عنوان: ${executingPlan.title}</h5>
+
+                            <p>
+                                <span>تاریخ برگزاری: ${executingPlan.beginDate}</span>
+                                <span>محل برگزاری: ${executingPlan.place}</span>
+                            </p>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <br>
+                                    <button type="button" data-toggle="modal" id="${executingPlan.id}"
+                                            data-target="#details"
+                                            class="btn btn-info btn-details">
+                                        جزییات
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-lg-offset-0">
+                            <a href="${executingPlan.poster}" target="_blank">
+                                <img style="width: 50%; float: left; margin-top: 7px;"
+                                     src="${executingPlan.poster}" alt="Generic placeholder image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+
+        </div>
+
+        <!-- future plans -->
+        <div id="menu2" class="tab-pane fade">
             <div>
                 <h4>-جسله معارف ورودی های 93 دانشکده کامپیوتر / تاریخ برگزاری: 1394/3/3</h4>
             </div>
         </div>
 
         <!-- suggesting plan -->
-        <div id="menu2" class="tab-pane fade">
+        <div id="menu3" class="tab-pane fade">
             <a href="#new-plan" class="fix-position-link btn" id="create-plan-fixed">پیشنهاد طرح</a>
 
             <ul class="media-list">
@@ -403,7 +481,7 @@
         </div>
 
         <!-- finished plans -->
-        <div id="menu3" class="tab-pane fade">
+        <div id="menu4" class="tab-pane fade">
 
             <c:forEach var="finishedPlan" items="${finishedPlans}">
                 <div class="well well-lg" style="border: 2px solid #337AB7;min-height:140px">
@@ -420,7 +498,8 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <br>
-                                    <button type="button" id="${finishedPlan.id}" data-toggle="modal" data-target="#details"
+                                    <button type="button" id="${finishedPlan.id}" data-toggle="modal"
+                                            data-target="#details"
                                             class="btn btn-info btn-details">
                                         جزییات
                                     </button>
@@ -440,7 +519,7 @@
         </div>
 
         <!-- association members -->
-        <div id="menu4" class="tab-pane fade">
+        <div id="menu5" class="tab-pane fade">
             <c:forEach var="user" items="${users}">
                 <h3>${user.fName} ${user.lName} - ${user.position.name}</h3>
             </c:forEach>
@@ -464,80 +543,80 @@
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" action="#" id="detailsList">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">عنوان طرح:</label>
+                    <%--<div class="form-group">--%>
+                        <%--<label class="col-sm-2 control-label">عنوان طرح:</label>--%>
 
-                        <div class="col-sm-10">
-                            <p class="form-control-static">مسابقات ACM</p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">محل برکزاری:</label>
+                        <%--<div class="col-sm-10">--%>
+                            <%--<p class="form-control-static">مسابقات ACM</p>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label class="col-sm-2 control-label">محل برکزاری:</label>--%>
 
-                        <div class="col-sm-10">
-                            <p class="form-control-static">سایت مرکزی دانشگاه</p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">تاریخ برگزاری:</label>
+                        <%--<div class="col-sm-10">--%>
+                            <%--<p class="form-control-static">سایت مرکزی دانشگاه</p>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label class="col-sm-2 control-label">تاریخ برگزاری:</label>--%>
 
-                        <div class="col-sm-10">
-                            <p class="form-control-static">93/9/20</p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">ساعت برگزاری:</label>
+                        <%--<div class="col-sm-10">--%>
+                            <%--<p class="form-control-static">93/9/20</p>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label class="col-sm-2 control-label">ساعت برگزاری:</label>--%>
 
-                        <div class="col-sm-10">
-                            <p class="form-control-static">8 صبح</p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">هزینه ثبت نام</label>
+                        <%--<div class="col-sm-10">--%>
+                            <%--<p class="form-control-static">8 صبح</p>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label class="col-sm-2 control-label">هزینه ثبت نام</label>--%>
 
-                        <div class="col-sm-10">
-                            <p class="form-control-static">12 هزار تومان</p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">مهلت ثبت نام</label>
+                        <%--<div class="col-sm-10">--%>
+                            <%--<p class="form-control-static">12 هزار تومان</p>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label class="col-sm-2 control-label">مهلت ثبت نام</label>--%>
 
-                        <div class="col-sm-10">
-                            <p class="form-control-static">19/9/11</p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">مکان ثبت نام:</label>
+                        <%--<div class="col-sm-10">--%>
+                            <%--<p class="form-control-static">19/9/11</p>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label class="col-sm-2 control-label">مکان ثبت نام:</label>--%>
 
-                        <div class="col-sm-10">
-                            <p class="form-control-static">دفتر انجمن علمی دانشکده کامپیوتر</p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">ظرفیت:</label>
+                        <%--<div class="col-sm-10">--%>
+                            <%--<p class="form-control-static">دفتر انجمن علمی دانشکده کامپیوتر</p>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label class="col-sm-2 control-label">ظرفیت:</label>--%>
 
-                        <div class="col-sm-10">
-                            <p class="form-control-static">محدود</p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">تعداد جلسات:</label>
+                        <%--<div class="col-sm-10">--%>
+                            <%--<p class="form-control-static">محدود</p>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label class="col-sm-2 control-label">تعداد جلسات:</label>--%>
 
-                        <div class="col-sm-10">
-                            <p class="form-control-static">----</p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">جوایز:</label>
+                        <%--<div class="col-sm-10">--%>
+                            <%--<p class="form-control-static">----</p>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label class="col-sm-2 control-label">جوایز:</label>--%>
 
-                        <div class="col-sm-10">
-                            <p class="form-control-static">تیم اول 100.000 تومان</p>
+                        <%--<div class="col-sm-10">--%>
+                            <%--<p class="form-control-static">تیم اول 100.000 تومان</p>--%>
 
-                            <p class="form-control-static">تیم دوم 60.000 تومان</p>
+                            <%--<p class="form-control-static">تیم دوم 60.000 تومان</p>--%>
 
-                            <p class="form-control-static">تیم سوم 30.000 تومان</p>
-                        </div>
-                    </div>
+                            <%--<p class="form-control-static">تیم سوم 30.000 تومان</p>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                 </form>
             </div>
             <div class="modal-footer">
@@ -560,47 +639,95 @@
                 <h4 class="modal-title">ثبت نام</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" role="form" action="#">
+                <form class="form-horizontal" role="form" action="/Controller/ServletAssociationPage" id="registration-form">
+                    <div class="form-group" style="display: none;">
+                        <input type="text" id="planId" name="planId">
+                    </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">نام:</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="fName">
+                            <input type="text" class="form-control" id="fName" name="fName" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">نام خانوادگی:</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="lName">
+                            <input type="text" class="form-control" id="lName" name="lName" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">شماره دانشجویی:</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="studentId">
+                            <input type="number" class="form-control" id="studentId" name="studentId" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">ایمیل:</label>
 
                         <div class="col-sm-10">
-                            <input type="email" class="form-control" id="email">
+                            <input type="email" class="form-control" id="email" name="email" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">تلفن همراه:</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="phoneNumber">
+                            <input type="number" class="form-control" id="phone" name="phone" required>
                         </div>
                     </div>
                 </form>
-                <p class="text-danger text-center">برای تایید ثبت نام خود به دفتر انجمن مربوطه مراجعه فرمایید!</p>
+                <p class="text-danger text-center">پس از ثبت اطلاعات برای تایید ثبت نام خود، به دفتر انجمن مربوطه مراجعه فرمایید!</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-info ">ثبت</button>
+                <button type="button" class="btn btn-info" id="register-btn">ثبت</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- Modal - successful suggestion -->
+<div id="successful-suggestion" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">پیشنهاد طرح</h4>
+            </div>
+            <div class="modal-body">
+                <p class="text-danger text-center">طرح پیشنهادی شما برای بررسی ارسال شد!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal - registeration successful -->
+<div id="register-successful" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">ثبت نام</h4>
+            </div>
+            <div class="modal-body">
+                <p class="text-danger text-center">اطلاعات شما با موفقیت ثبت شد!</p>
+                <p class="text-danger text-center">برای تایید ثبت نام خود و در صورت نیاز پرداخت هزینه یا ارائه مدارک به دفتر انجمن مربوطه مراجعه فرمایید!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
             </div>
         </div>
 

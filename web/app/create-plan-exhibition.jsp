@@ -46,6 +46,7 @@
 <script src="/js/persianDatepicker.min.js"></script>
 
 <script src="/js/added.js"></script>
+<script src="/js/added-datepicker.js"></script>
 
 
 </head>
@@ -76,6 +77,20 @@
                 <form class="form-horizontal" role="form" action="/Controller/ServletCreatePlanTrip?type=3"
                       method="post" enctype="multipart/form-data">
                     <input type="text" name="id" value="${plan.id}" style="display: none;"/>
+                    <!-- association -->
+                    <c:if test="${currentUser.position.id == 1}">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">انجمن علمی دانشجویی:</label>
+
+                            <div class="col-sm-7 col-sm-offset-1">
+                                <select class="form-control" name="association" id="association">
+                                    <c:forEach var="association" items="${associations}">
+                                        <option value="${association.id}">${association.name}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+                    </c:if>
                     <!-- title -->
                     <!-- text -->
                     <div class="form-group">

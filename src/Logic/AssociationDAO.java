@@ -32,7 +32,8 @@ public class AssociationDAO {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        String qry = "select e from Association e";
+        String qry = "select e from Association e" +
+                " where e.id <> 1";
         List associations = session.createQuery(qry).list();
 
         session.getTransaction().commit();
@@ -47,7 +48,8 @@ public class AssociationDAO {
         session.beginTransaction();
 
         String qry = "select e from Association e " +
-                "where e.active like 'true'";
+                " where e.id <> 1 and" +
+                " e.active like 'true'";
         List associations = session.createQuery(qry)
                 .list();
 

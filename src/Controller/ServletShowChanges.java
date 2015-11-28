@@ -1,11 +1,7 @@
 package Controller;
 
-import Logic.PlanDAO;
 import Logic.PlanStateHistoryDAO;
-import Models.Change;
-import Models.Plan;
 import Models.PlanStateHistory;
-import Models.User;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;

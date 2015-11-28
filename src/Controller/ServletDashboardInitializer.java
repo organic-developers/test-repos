@@ -1,6 +1,8 @@
 package Controller;
 
+import Logic.AssociationDAO;
 import Logic.PlanDAO;
+import Logic.WorkflowDAO;
 import Models.Plan;
 import Models.User;
 
@@ -28,15 +30,21 @@ public class ServletDashboardInitializer extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         PlanDAO planDAO = new PlanDAO();
+        AssociationDAO associationDAO = new AssociationDAO();
+        WorkflowDAO workflowDAO = new WorkflowDAO();
 
         List<Plan> plans = null;
 
         User user = (User) request.getSession().getAttribute("currentUser");
 
-        if (user.getAssociation().getId() == 8) {
+        if (user.getAssociation().getId() == 1) {
 
             plans = planDAO.getAllPlans();
             Collections.reverse(plans);
+            List associations = associationDAO.getAllAssociations();
+            List workflows = workflowDAO.getAllWorkflows();
+            request.setAttribute("associations", associations);
+            request.setAttribute("workflows", workflows);
 
         } else {
             plans = planDAO.getPlansByAssociationId(user.getAssociation().getId());

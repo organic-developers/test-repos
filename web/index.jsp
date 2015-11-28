@@ -7,18 +7,20 @@
     <title></title>
     <link rel="stylesheet" href="index_1.jsp_files/bootstrap.css">
     <link rel="stylesheet" href="index_1.jsp_files/index.css">
-    <script type="text/javascript" src="index_1.jsp_files/jquery-1.js"></script>
-    <script type="text/javascript" src="index_1.jsp_files/docs.js"></script>
+    <%--<script type="text/javascript" src="index_1.jsp_files/jquery-1.js"></script>--%>
+    <%--<script type="text/javascript" src="index_1.jsp_files/docs.js"></script>--%>
     <script src="index_1.jsp_files/bootstrap.js"></script>
     <style type="text/css" id="holderjs-style"></style>
 
     <!-- Bootstrap Core CSS RTL-->
     <link href="css/bootstrap-rtl.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/jquery-confirm.min.css"/>
 
     <!-- Custom CSS -->
     <link href="/css/added.css" rel="stylesheet"/>
 
     <script src="/js/jquery-1.11.3.min.js"></script>
+    <script src="/js/jquery-confirm.min.js"></script>
 
     <script>
         $(document).ready(function(ev){
@@ -133,7 +135,6 @@
     <!-- /Associations -->
 </div>
 <!-- /.container -->
-
 
 <!-- Bottom Navbar -->
 <div class="navbar navbar-default navbar-index" style="background: #222222;">

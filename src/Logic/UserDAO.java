@@ -2,6 +2,7 @@ package Logic;
 
 import Controller.HibernateUtil;
 import Models.Association;
+import Models.InOffice;
 import Models.User;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
@@ -145,6 +146,25 @@ public class UserDAO {
         return users;
     }
 
+    public List getAllUsersExceptExpertAndBoss(){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        String qry = "select e from User e join fetch e.position join fetch e.association" +
+                " where e.position.id != 1" +
+                " and e.position.id != 2";
+
+        List<User> users = session.createQuery(qry)
+                .list();
+
+
+        session.getTransaction().commit();
+        session.close();
+
+        return users;
+    }
+
     public User getUserById(int id){
 
         User user = null;
@@ -158,6 +178,13 @@ public class UserDAO {
             user = (User) session.createQuery( qry )
                     .setParameter( "id", id )
                     .uniqueResult();
+
+            for(InOffice inOffice: user.getInOffice()){
+                Hibernate.initialize(inOffice.getPosition());
+                Hibernate.initialize(inOffice.getPosition().getId());
+                Hibernate.initialize(inOffice.getPosition().getName());
+            }
+
 //            Association association = user.getAssociation();
 //            System.out.println("" + association.getNumber() + association.getName() + association.getId());
 
@@ -169,6 +196,36 @@ public class UserDAO {
             e.printStackTrace();
         }
         return user;
+    }
+    public List getUserInOfficeHistoryById(int id){
+
+        User user = null;
+        List<InOffice> inOfficeHistory = null;
+        try {
+            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+            Session session = sessionFactory.openSession();
+            session.beginTransaction();
+
+            String qry = "select e from User e" +
+                    " where e.id = :id";
+            user = (User) session.createQuery( qry )
+                    .setParameter( "id", id )
+                    .uniqueResult();
+
+            inOfficeHistory = user.getInOffice();
+
+            for(InOffice inOffice: inOfficeHistory){
+                Hibernate.initialize(inOffice.getPosition());
+//                Hibernate.initialize(inOffice.getPosition().getId());
+//                Hibernate.initialize(inOffice.getPosition().getName());
+            }
+
+            session.getTransaction().commit();
+            session.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return inOfficeHistory;
     }
 
     public void addUser(User user) throws HibernateException{

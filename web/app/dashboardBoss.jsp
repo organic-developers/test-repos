@@ -94,254 +94,292 @@
         <div class="container-fluid">
 
             <br/>
-            <br/>
 
             <!-- Filters Section -->
             <div class="row">
-                <div class="row col-lg-10 col-lg-offset-1">
+                <%--<div class="row col-lg-10 col-lg-offset-1">--%>
 
-                    <!-- type filter -->
-                    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingOne">
-                                    <h4 class="panel-title">
-                                        <a class="collapsed" role="button" data-toggle="collapse"
-                                           data-parent="#accordion"
-                                           href="#collapseOne" aria-expanded="false"
-                                           aria-controls="collapseOne">ماهیت</a>
-                                    </h4>
-                                </div>
-                                <div style="height: 0px;" aria-expanded="false" id="collapseOne"
-                                     class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                    <div class="panel-body">
+                <%--<!-- type filter -->--%>
+                <%--<div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">--%>
+                <%--<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">--%>
+                <%--<div class="panel panel-default">--%>
+                <%--<div class="panel-heading" role="tab" id="headingOne">--%>
+                <%--<h4 class="panel-title">--%>
+                <%--<a class="collapsed" role="button" data-toggle="collapse"--%>
+                <%--data-parent="#accordion"--%>
+                <%--href="#collapseOne" aria-expanded="false"--%>
+                <%--aria-controls="collapseOne">ماهیت</a>--%>
+                <%--</h4>--%>
+                <%--</div>--%>
+                <%--<div style="height: 0px;" aria-expanded="false" id="collapseOne"--%>
+                <%--class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">--%>
+                <%--<div class="panel-body">--%>
 
-                                        <div class="form-group">
+                <%--<div class="form-group">--%>
 
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input value="" type="checkbox">بازدید عملی
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input value="" type="checkbox">کلاس ها و دوره های آموزشی
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input value="" type="checkbox">مسابقات عملی
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input value="" type="checkbox">نمایشگاه
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input value="" type="checkbox">همایش هاو کنفرانس ها
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input value="" type="checkbox">چاپ نشریه
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                    <!-- /type filter -->
-
-                    <!-- association filter -->
-                    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingTwo">
-                                    <h4 class="panel-title">
-                                        <a class="collapsed" role="button" data-toggle="collapse"
-                                           data-parent="#accordion"
-                                           href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            انجمن ها
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div style="height: 0px;" aria-expanded="false" id="collapseTwo"
-                                     class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                    <div class="panel-body">
-
-                                        <div class="form-group">
-
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input value="" type="checkbox">انجمن کامپیوتر
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input value="" type="checkbox">انجمن برق
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input value="" type="checkbox">انجمن مکانیک
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input value="" type="checkbox">انجمن معماری
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input value="" type="checkbox">انجمن معدن و ژئوفیزیک
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input value="" type="checkbox">انجمن مدیریت
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input value="" type="checkbox">انجمن کشاورزی
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input value="" type="checkbox">انجمن عمران
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input value="" type="checkbox">انجمن کارآفرینی
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input value="" type="checkbox">انجمن فیزیک و نجوم
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input value="" type="checkbox">انجمن شیمی
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input value="" type="checkbox">انجمن زمین شناسی
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input value="" type="checkbox">انجمن زبان
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input value="" type="checkbox">انجمن ریاضی
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input value="" type="checkbox">انجمن رباتیک
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input value="" type="checkbox">انجمن حسابداری
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input value="" type="checkbox">انجمن تربیت بدنی
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input value="" type="checkbox">انجمن پدافند غیر عامل
-                                                </label>
-                                            </div>
-                                        </div>
+                <%--<div class="checkbox">--%>
+                <%--<label>--%>
+                <%--<input value="" type="checkbox">بازدید عملی--%>
+                <%--</label>--%>
+                <%--</div>--%>
+                <%--<div class="checkbox">--%>
+                <%--<label>--%>
+                <%--<input value="" type="checkbox">کلاس ها و دوره های آموزشی--%>
+                <%--</label>--%>
+                <%--</div>--%>
+                <%--<div class="checkbox">--%>
+                <%--<label>--%>
+                <%--<input value="" type="checkbox">مسابقات عملی--%>
+                <%--</label>--%>
+                <%--</div>--%>
+                <%--<div class="checkbox">--%>
+                <%--<label>--%>
+                <%--<input value="" type="checkbox">نمایشگاه--%>
+                <%--</label>--%>
+                <%--</div>--%>
+                <%--<div class="checkbox">--%>
+                <%--<label>--%>
+                <%--<input value="" type="checkbox">همایش هاو کنفرانس ها--%>
+                <%--</label>--%>
+                <%--</div>--%>
+                <%--<div class="checkbox">--%>
+                <%--<label>--%>
+                <%--<input value="" type="checkbox">چاپ نشریه--%>
+                <%--</label>--%>
+                <%--</div>--%>
+                <%--</div>--%>
+                <%--</div>--%>
+                <%--</div>--%>
+                <%--</div>--%>
 
 
-                                    </div>
-                                </div>
+                <%--</div>--%>
+                <%--</div>--%>
+                <%--<!-- /type filter -->--%>
+
+                <%--<!-- association filter -->--%>
+                <%--<div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">--%>
+                <%--<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">--%>
+                <%--<div class="panel panel-default">--%>
+                <%--<div class="panel-heading" role="tab" id="headingTwo">--%>
+                <%--<h4 class="panel-title">--%>
+                <%--<a class="collapsed" role="button" data-toggle="collapse"--%>
+                <%--data-parent="#accordion"--%>
+                <%--href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">--%>
+                <%--انجمن ها--%>
+                <%--</a>--%>
+                <%--</h4>--%>
+                <%--</div>--%>
+                <%--<div style="height: 0px;" aria-expanded="false" id="collapseTwo"--%>
+                <%--class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">--%>
+                <%--<div class="panel-body">--%>
+
+                <%--<div class="form-group">--%>
+
+                <%--<div class="checkbox">--%>
+                <%--<label>--%>
+                <%--<input value="" type="checkbox">انجمن کامپیوتر--%>
+                <%--</label>--%>
+                <%--</div>--%>
+                <%--<div class="checkbox">--%>
+                <%--<label>--%>
+                <%--<input value="" type="checkbox">انجمن برق--%>
+                <%--</label>--%>
+                <%--</div>--%>
+                <%--<div class="checkbox">--%>
+                <%--<label>--%>
+                <%--<input value="" type="checkbox">انجمن مکانیک--%>
+                <%--</label>--%>
+                <%--</div>--%>
+                <%--<div class="checkbox">--%>
+                <%--<label>--%>
+                <%--<input value="" type="checkbox">انجمن معماری--%>
+                <%--</label>--%>
+                <%--</div>--%>
+                <%--<div class="checkbox">--%>
+                <%--<label>--%>
+                <%--<input value="" type="checkbox">انجمن معدن و ژئوفیزیک--%>
+                <%--</label>--%>
+                <%--</div>--%>
+                <%--<div class="checkbox">--%>
+                <%--<label>--%>
+                <%--<input value="" type="checkbox">انجمن مدیریت--%>
+                <%--</label>--%>
+                <%--</div>--%>
+                <%--<div class="checkbox">--%>
+                <%--<label>--%>
+                <%--<input value="" type="checkbox">انجمن کشاورزی--%>
+                <%--</label>--%>
+                <%--</div>--%>
+                <%--<div class="checkbox">--%>
+                <%--<label>--%>
+                <%--<input value="" type="checkbox">انجمن عمران--%>
+                <%--</label>--%>
+                <%--</div>--%>
+                <%--<div class="checkbox">--%>
+                <%--<label>--%>
+                <%--<input value="" type="checkbox">انجمن کارآفرینی--%>
+                <%--</label>--%>
+                <%--</div>--%>
+                <%--<div class="checkbox">--%>
+                <%--<label>--%>
+                <%--<input value="" type="checkbox">انجمن فیزیک و نجوم--%>
+                <%--</label>--%>
+                <%--</div>--%>
+                <%--<div class="checkbox">--%>
+                <%--<label>--%>
+                <%--<input value="" type="checkbox">انجمن شیمی--%>
+                <%--</label>--%>
+                <%--</div>--%>
+                <%--<div class="checkbox">--%>
+                <%--<label>--%>
+                <%--<input value="" type="checkbox">انجمن زمین شناسی--%>
+                <%--</label>--%>
+                <%--</div>--%>
+                <%--<div class="checkbox">--%>
+                <%--<label>--%>
+                <%--<input value="" type="checkbox">انجمن زبان--%>
+                <%--</label>--%>
+                <%--</div>--%>
+                <%--<div class="checkbox">--%>
+                <%--<label>--%>
+                <%--<input value="" type="checkbox">انجمن ریاضی--%>
+                <%--</label>--%>
+                <%--</div>--%>
+                <%--<div class="checkbox">--%>
+                <%--<label>--%>
+                <%--<input value="" type="checkbox">انجمن رباتیک--%>
+                <%--</label>--%>
+                <%--</div>--%>
+                <%--<div class="checkbox">--%>
+                <%--<label>--%>
+                <%--<input value="" type="checkbox">انجمن حسابداری--%>
+                <%--</label>--%>
+                <%--</div>--%>
+                <%--<div class="checkbox">--%>
+                <%--<label>--%>
+                <%--<input value="" type="checkbox">انجمن تربیت بدنی--%>
+                <%--</label>--%>
+                <%--</div>--%>
+                <%--<div class="checkbox">--%>
+                <%--<label>--%>
+                <%--<input value="" type="checkbox">انجمن پدافند غیر عامل--%>
+                <%--</label>--%>
+                <%--</div>--%>
+                <%--</div>--%>
 
 
-                            </div>
+                <%--</div>--%>
+                <%--</div>--%>
 
 
-                        </div>
-                    </div>
-                    <!-- /association filter -->
-
-                    <!-- date filter -->
-                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 ">
-                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="accordion">
-                                    <h4 class="panel-title">
-                                        <a class="collapsed" role="button" data-toggle="collapse"
-                                           data-parent="#accordion"
-                                           href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                            ترم
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div style="height: 0px;" aria-expanded="false" id="collapseThree"
-                                     class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                                    <div class="panel-body">
+                <%--</div>--%>
 
 
-                                        <div class="form-group">
-                                            <label>از نیمسال </label>
-                                            <select class="form-control">
-                                                <option>اول 93</option>
-                                                <option>دوم 93</option>
-                                                <option>اول 94</option>
-                                                <option>دوم 94</option>
-                                                <option>اول 95</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>تا نیمسال</label>
-                                            <select class="form-control">
-                                                <option>اول 93</option>
-                                                <option>دوم 93</option>
-                                                <option>اول 94</option>
-                                                <option>دوم 94</option>
-                                                <option>اول 95</option>
-                                            </select>
-                                        </div>
+                <%--</div>--%>
+                <%--</div>--%>
+                <%--<!-- /association filter -->--%>
+
+                <%--<!-- date filter -->--%>
+                <%--<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 ">--%>
+                <%--<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">--%>
+                <%--<div class="panel panel-default">--%>
+                <%--<div class="panel-heading" role="tab" id="accordion">--%>
+                <%--<h4 class="panel-title">--%>
+                <%--<a class="collapsed" role="button" data-toggle="collapse"--%>
+                <%--data-parent="#accordion"--%>
+                <%--href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">--%>
+                <%--ترم--%>
+                <%--</a>--%>
+                <%--</h4>--%>
+                <%--</div>--%>
+                <%--<div style="height: 0px;" aria-expanded="false" id="collapseThree"--%>
+                <%--class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">--%>
+                <%--<div class="panel-body">--%>
 
 
-                                    </div>
-                                </div>
+                <%--<div class="form-group">--%>
+                <%--<label>از نیمسال </label>--%>
+                <%--<select class="form-control">--%>
+                <%--<option>اول 93</option>--%>
+                <%--<option>دوم 93</option>--%>
+                <%--<option>اول 94</option>--%>
+                <%--<option>دوم 94</option>--%>
+                <%--<option>اول 95</option>--%>
+                <%--</select>--%>
+                <%--</div>--%>
+                <%--<div class="form-group">--%>
+                <%--<label>تا نیمسال</label>--%>
+                <%--<select class="form-control">--%>
+                <%--<option>اول 93</option>--%>
+                <%--<option>دوم 93</option>--%>
+                <%--<option>اول 94</option>--%>
+                <%--<option>دوم 94</option>--%>
+                <%--<option>اول 95</option>--%>
+                <%--</select>--%>
+                <%--</div>--%>
 
 
-                            </div>
+                <%--</div>--%>
+                <%--</div>--%>
 
 
-                        </div>
-                    </div>
-                    <!-- /date filter -->
+                <%--</div>--%>
 
-                    <!-- filter button -->
-                    <div class="col-lg-1 col-lg-offset-2">
-                        <button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal">نمایش
-                        </button>
-                    </div>
-                    <!-- /filter button -->
 
-                </div>
+                <%--</div>--%>
+                <%--</div>--%>
+                <%--<!-- /date filter -->--%>
+
+                <%--<!-- filter button -->--%>
+                <%--<div class="col-lg-1 col-lg-offset-2">--%>
+                <%--<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal">نمایش--%>
+                <%--</button>--%>
+                <%--</div>--%>
+                <%--<!-- /filter button -->--%>
+
+                <%--</div>--%>
             </div>
             <!-- /Filters Section -->
+
+
+            <% if (positionId == 1 || positionId == 2) {%>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1" style="background-color: #EEEEEE;
+    border-radius: 6px;
+    padding-top: 15px;
+    margin-bottom: 20px;">
+                    <form action="/Controller/ServletDashboardFilters" method="post">
+                        <div class="form-group col-sm-1">
+                            <lable>انجمن:</lable>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <select class="form-control" name="association">
+                                <option value="1000">همه</option>
+                                <c:forEach var="association" items="${associations}">
+                                    <option value="${association.id}">${association.name}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-1">
+                            <lable>ماهیت:</lable>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <select class="form-control" name="workflow">
+                                <option value="1000">همه</option>
+                                <c:forEach var="workflow" items="${workflows}">
+                                    <option value="${workflow.id}">${workflow.name}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-2" style="float: left;">
+                            <button type="submit" class="btn btn-primary">نمایش</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <%} %>
+
         </div>
 
         <!-- box section -->
@@ -528,10 +566,14 @@
         <!-- color guide -->
         <div class="row">
             <div class="col-sm-10 col-sm-offset-1">
-                <div class="col-sm-2"><span class="color-block" style="background-color: #CBD3F7"></span><span>بررسی نشده</span></div>
-                <div class="col-sm-2"><span class="color-block" style="background-color: #B2EAB1"></span><span>بررسی شده</span></div>
-                <div class="col-sm-2"><span class="color-block" style="background-color: #f5f5f5"></span><span>تصویب شده</span></div>
-                <div class="col-sm-2"><span class="color-block" style="background-color: #A9A9A9"></span><span>رد شده</span></div>
+                <div class="col-sm-2"><span class="color-block" style="background-color: #CBD3F7"></span><span>بررسی نشده</span>
+                </div>
+                <div class="col-sm-2"><span class="color-block"
+                                            style="background-color: #B2EAB1"></span><span>بررسی شده</span></div>
+                <div class="col-sm-2"><span class="color-block"
+                                            style="background-color: #f5f5f5"></span><span>تصویب شده</span></div>
+                <div class="col-sm-2"><span class="color-block"
+                                            style="background-color: #A9A9A9"></span><span>رد شده</span></div>
             </div>
         </div>
         <!-- /color guide -->

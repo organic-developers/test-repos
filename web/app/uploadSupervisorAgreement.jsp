@@ -45,6 +45,7 @@
 
     <script src="/js/jquery-1.11.3.min.js"></script>
     <script src="/js/added.js"></script>
+    <script src="/js/added-datepicker.js"></script>
 
 </head>
 <body class="dashboard-background">

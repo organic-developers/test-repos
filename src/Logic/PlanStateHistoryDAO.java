@@ -19,11 +19,11 @@ import java.util.List;
 public class PlanStateHistoryDAO {
 
     public PlanStateHistory getObserveEvent(User user) {
-        PlanStateHistory PlanStateHistory = new PlanStateHistory();
-        PlanStateHistory.setName("„‘«ÂœÂ");
-        PlanStateHistory.setUser(user);
-        PlanStateHistory.setTimestamp(getTimeStamp());
-        return PlanStateHistory;
+        PlanStateHistory planStateHistory = new PlanStateHistory();
+        planStateHistory.setName("\u0645\u0634\u0627\u0647\u062F\u0647");
+        planStateHistory.setUser(user);
+        planStateHistory.setTimestamp(getTimeStamp());
+        return planStateHistory;
     }
 
     public String getTimeStamp(){

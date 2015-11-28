@@ -27,11 +27,9 @@
     <link href="/css/sb-admin-rtl.css" rel="stylesheet">
     <link href="/css/added.css" rel="stylesheet"/>
 
-    <!-- Morris Charts CSS -->
-    <link href="/css/plugins/morris.css" rel="stylesheet">
-
     <!-- Custom Fonts -->
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/jquery-confirm.min.css"/>
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -43,7 +41,44 @@
 
 
     <script src="/js/jquery-1.11.3.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/js/bootstrap.min.js"></script>
     <script src="/js/added.js"></script>
+    <script src="/js/jquery-confirm.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $("#send1").on('click', function(){
+                var x = $(".checki:checked").length;
+                alert($(".checki:checked").length);
+                if( x > ${plan.registrationMax}){
+                    $.confirm({
+                        title: 'هشدار!',
+                        content: 'تعداد افراد تایید شده از حداکثر مجاز بیشتر می باشد!' +
+                        'در صورت تایید مسئولیت های ایجاد شده بر عهده کاربر می باشد!',
+                        confirm: function(){
+                            $("#send").click();
+                        },
+                        cancel: function(){
+                        }
+                    });
+                }else if( x < ${plan.registrationMin}){
+                    $.confirm({
+                        title: 'هشدار!',
+                        content: 'تعداد افراد تایید شده از حداقل مجاز کمتر می باشد! ' +
+                        'در صورت تایید مسئولیت های ایجاد شده بر عهده کاربر می باشد!',
+                        confirm: function(){
+                            $("#send").click();
+                        },
+                        cancel: function(){
+                        }
+                    });
+                }else {
+                    $("#send").click();
+                }
+            });
+        });
+    </script>
 
 </head>
 <body class="dashboard-background">
@@ -68,7 +103,7 @@
             <!-- .row -->
             <div class="row">
                 <form class="form-horizontal" role="form" action="/Controller/ServletEnterRegistrations"
-                      method="post">
+                      method="post" id="registration-form">
                     <!-- hidden id -->
                     <input type="text" id="id" name="id" value="${plan.id}" style="display: none;">
                     <!-- title -->
@@ -77,7 +112,7 @@
                         <label class="control-label col-sm-2">عنوان طرح:</label>
 
                         <div class="col-sm-7 col-sm-offset-1">
-                            <input type="text" class="form-control" name="title" value="${plan.title}"  disabled>
+                            <input type="text" class="form-control" name="title" value="${plan.title}" disabled>
                         </div>
                     </div>
                     <!-- enlisted list -->
@@ -107,9 +142,14 @@
                                             <input type="text" class="form-control" name="enlisted-phone-"
                                                    placeholder="تلفن همراه" value="${enlisted.phone}">
                                         </div>
-                                        <div class="form-group col-xs-3">
+                                        <div class="form-group col-xs-2">
                                             <input type="text" class="form-control" name="enlisted-email-"
                                                    placeholder="ایمیل" value="${enlisted.email}">
+                                        </div>
+                                        <div class="form-group col-xs-1">
+                                            <input type="checkbox" class="form-control checki" name="confirmed-"
+                                                   value="true"
+                                                   <c:if test="${enlisted.confirmed == 'true'}">checked</c:if>>
                                         </div>
                                         <div class="form-group col-xs-1">
                                             <span class="glyphicon glyphicon-remove"></span>
@@ -117,7 +157,8 @@
                                     </div>
                                 </c:forEach>
                             </div>
-                            <span class="glyphicon glyphicon-plus" id="enlisted-plus"></span>
+                            <span class="glyphicon glyphicon-plus" id="enlisted-plus-plus"></span>
+
                             <div class="line line-bottom"></div>
                         </div>
 
@@ -125,7 +166,9 @@
                     <!-- submit button -->
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-10">
-                            <button type="submit" class="btn btn-primary" value="submit">اعمال تغییرات</button>
+                            <button type="submit" class="btn btn-primary" name="submit" id="send" value="send" style="display: none;">ارسال</button>
+                            <button type="button" class="btn btn-primary" name="submit" id="send1" value="send">ارسال</button>
+                            <button type="submit" class="btn btn-info" name="submit" id="tentative" value="tentative">ثبت موقت</button>
                         </div>
                     </div>
                 </form>
@@ -145,8 +188,6 @@
 </div>
 <!-- /#wrapper -->
 
-<!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js"></script>
 
 </body>
 </html>
